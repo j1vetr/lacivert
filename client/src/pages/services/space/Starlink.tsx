@@ -18,10 +18,6 @@ export default function StarlinkPage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-medium text-sm mb-8 backdrop-blur-md">
-                <Globe className="w-4 h-4 text-cyan-400" />
-                Authorized Starlink Reseller
-            </div>
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight">
               STARLINK <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">MARITIME</span>
