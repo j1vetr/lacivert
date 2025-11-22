@@ -7,9 +7,9 @@ import globalNetBg from "@assets/generated_images/abstract_dark_global_network_m
 
 export default function Home() {
   return (
-    <div className="bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30">
+    <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
       {/* Hero Section - KEPT AS IS */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <video 
             autoPlay 
@@ -52,24 +52,24 @@ export default function Home() {
       </section>
 
       {/* Premium Services Grid (Bento Style) */}
-      <section className="py-32 relative">
+      <section className="py-32 relative bg-slate-50 dark:bg-transparent transition-colors">
         <div className="container mx-auto px-4">
             <div className="text-center mb-20">
-                <h2 className="text-sm font-bold tracking-widest text-cyan-500 uppercase mb-4">360° Teknoloji Yönetimi</h2>
-                <h3 className="text-4xl md:text-5xl font-heading font-bold text-white">Dijital Dönüşümün Merkezi</h3>
+                <h2 className="text-sm font-bold tracking-widest text-cyan-600 dark:text-cyan-500 uppercase mb-4">360° Teknoloji Yönetimi</h2>
+                <h3 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white">Dijital Dönüşümün Merkezi</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 
                 {/* Card 1: IT Support (Large) */}
-                <div className="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
+                <div className="md:col-span-2 bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
                     <div className="absolute right-0 top-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
                     <div className="relative z-10">
-                        <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 mb-8 border border-blue-500/20">
+                        <div className="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-8 border border-blue-200 dark:border-blue-500/20">
                             <Server className="w-7 h-7" />
                         </div>
-                        <h4 className="text-3xl font-bold text-white mb-4">IT Destek & Altyapı</h4>
-                        <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
+                        <h4 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">IT Destek & Altyapı</h4>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
                             Sunuculardan son kullanıcı bilgisayarlarına kadar tüm donanım ve yazılım envanterinizin yönetimi. 
                             SLA garantili 7/24 destek hizmetleri.
                         </p>
@@ -80,7 +80,7 @@ export default function Home() {
                             <Badge text="Donanım Tedarik" />
                         </div>
                         <Link href="/it-hizmetleri">
-                            <a className="inline-flex items-center text-blue-400 font-semibold hover:text-blue-300 transition-colors">
+                            <a className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                                 İncele <ArrowRight className="ml-2 w-5 h-5" />
                             </a>
                         </Link>
@@ -88,14 +88,14 @@ export default function Home() {
                 </div>
 
                 {/* Card 2: Cyber Security (Tall) */}
-                <div className="md:row-span-2 bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col">
+                <div className="md:row-span-2 bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col shadow-lg dark:shadow-none">
                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.1),transparent_60%)]"></div>
                      <div className="relative z-10 flex-grow">
-                        <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-8 border border-emerald-500/20">
+                        <div className="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 border border-emerald-200 dark:border-emerald-500/20">
                             <Shield className="w-7 h-7" />
                         </div>
-                        <h4 className="text-3xl font-bold text-white mb-4">Siber Güvenlik</h4>
-                        <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                        <h4 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Siber Güvenlik</h4>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 leading-relaxed">
                             IMO uyumlu, denizcilik odaklı siber savunma hattı.
                         </p>
                         <ul className="space-y-4 mb-8">
@@ -106,39 +106,39 @@ export default function Home() {
                         </ul>
                      </div>
                      <Link href="/siber-guvenlik">
-                        <a className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-center text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto">
+                        <a className="w-full py-4 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-center text-slate-900 dark:text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto">
                            Güvenliği Sağla <Shield className="w-4 h-4" />
                         </a>
                     </Link>
                 </div>
 
                 {/* Card 3: Space Comm */}
-                <div className="bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
-                    <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-400 mb-6 border border-purple-500/20">
+                <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
+                    <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6 border border-purple-200 dark:border-purple-500/20">
                         <Satellite className="w-7 h-7" />
                     </div>
-                    <h4 className="text-2xl font-bold text-white mb-3">Uzay Haberleşmesi</h4>
-                    <p className="text-slate-400 mb-6">
+                    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Uzay Haberleşmesi</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mb-6">
                         Starlink, OneWeb ve Iridium sistemleri ile okyanus ortasında bile fiber hızında internet.
                     </p>
                     <Link href="/uzay-haberlesmesi">
-                        <a className="inline-flex items-center text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                        <a className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-500 dark:hover:text-purple-300 transition-colors">
                             Keşfet <ArrowRight className="ml-2 w-4 h-4" />
                         </a>
                     </Link>
                 </div>
 
                 {/* Card 4: Land Comm */}
-                <div className="bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
-                    <div className="w-14 h-14 rounded-2xl bg-orange-500/20 flex items-center justify-center text-orange-400 mb-6 border border-orange-500/20">
+                <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
+                    <div className="w-14 h-14 rounded-2xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 mb-6 border border-orange-200 dark:border-orange-500/20">
                         <Radio className="w-7 h-7" />
                     </div>
-                    <h4 className="text-2xl font-bold text-white mb-3">Kara Haberleşmesi</h4>
-                    <p className="text-slate-400 mb-6">
+                    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Kara Haberleşmesi</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mb-6">
                         Peplink ve Teltonika ile kesintisiz 4G/5G mobil internet ve SD-WAN çözümleri.
                     </p>
                     <Link href="/kara-haberlesmesi">
-                        <a className="inline-flex items-center text-orange-400 font-semibold hover:text-orange-300 transition-colors">
+                        <a className="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-500 dark:hover:text-orange-300 transition-colors">
                             Keşfet <ArrowRight className="ml-2 w-4 h-4" />
                         </a>
                     </Link>
@@ -149,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* Global Connectivity / Why Us */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
              <div 
@@ -203,18 +203,18 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Premium Glow */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden bg-background transition-colors">
         <div className="absolute inset-0 bg-cyan-900/5"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 tracking-tight">
-                Geleceğe <span className="text-cyan-400">Hazır Mısınız?</span>
+            <h2 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+                Geleceğe <span className="text-cyan-600 dark:text-cyan-400">Hazır Mısınız?</span>
             </h2>
-            <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Teknolojik altyapınızı modern standartlara taşıyın. Ücretsiz keşif ve danışmanlık hizmetimizle tanışın.
             </p>
-            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50 font-bold h-20 px-16 rounded-full text-xl shadow-[0_0_50px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
+            <Button asChild size="lg" className="bg-slate-900 dark:bg-white text-white dark:text-slate-950 hover:bg-cyan-600 dark:hover:bg-cyan-50 font-bold h-20 px-16 rounded-full text-xl shadow-2xl dark:shadow-[0_0_50px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
                 <Link href="/iletisim">
                     Projeye Başla
                 </Link>
@@ -228,7 +228,7 @@ export default function Home() {
 
 function Badge({ text }: { text: string }) {
     return (
-        <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300 text-xs font-medium">
+        <span className="px-3 py-1 rounded-md bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium">
             {text}
         </span>
     )
@@ -236,8 +236,8 @@ function Badge({ text }: { text: string }) {
 
 function FeatureItem({ text }: { text: string }) {
     return (
-        <li className="flex items-center gap-3 text-slate-300">
-            <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+        <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-500 flex-shrink-0" />
             <span>{text}</span>
         </li>
     )
@@ -245,7 +245,7 @@ function FeatureItem({ text }: { text: string }) {
 
 function SectorCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
     return (
-        <div className="bg-slate-900/80 backdrop-blur-md border border-white/5 p-6 rounded-2xl hover:bg-slate-800 hover:border-cyan-500/30 transition-all duration-300 group">
+        <div className="bg-slate-900/80 dark:bg-slate-900/80 backdrop-blur-md border border-white/5 p-6 rounded-2xl hover:bg-slate-800 hover:border-cyan-500/30 transition-all duration-300 group">
             <div className="text-cyan-500 mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
             <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
             <p className="text-slate-400 text-sm leading-snug">{desc}</p>

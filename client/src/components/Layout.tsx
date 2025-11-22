@@ -1,8 +1,9 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Shield, Server, Wifi, Radio, Mail, Phone, MapPin, Linkedin, Instagram, Facebook, ChevronDown, Globe, Satellite } from "lucide-react";
+import { Menu, X, Shield, Server, Wifi, Radio, Mail, Phone, MapPin, Linkedin, Instagram, Facebook, ChevronDown, Globe, Satellite, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTheme } from "@/components/theme-provider";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +15,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import logoWhite from "@assets/lacivert light logo_1763796346759.png";
 import logoDark from "@assets/lacivert dark logo_1763796405911.png";
+
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -47,6 +50,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </a>
                 </div>
                 <div className="flex items-center gap-4">
+                     <ThemeToggle />
                      <a href="#" className="hover:text-white transition-colors">TR</a>
                      <span className="w-px h-3 bg-white/20"></span>
                      <a href="#" className="hover:text-white transition-colors">EN</a>
