@@ -1,4 +1,4 @@
-import { Wifi, Router, Globe, Share2, Shield, Smartphone, CheckCircle } from "lucide-react";
+import { Wifi, Router, Globe, Share2, Shield, Smartphone, CheckCircle, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
