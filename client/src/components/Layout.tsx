@@ -3,6 +3,7 @@ import { Menu, X, Shield, Server, Wifi, Radio, Mail, Phone, MapPin, Linkedin, In
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import logoWhite from "@assets/lacivert light logo_1763796346759.png";
 
 const navLinks = [
   { name: "Ana Sayfa", href: "/" },
@@ -35,17 +36,35 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className={`text-2xl font-heading font-bold tracking-tight ${scrolled ? "text-foreground" : "text-white"}`}>
-                LACİVERT
-              </span>
-              <span className={`text-xs tracking-widest font-medium ${scrolled ? "text-muted-foreground" : "text-white/70"}`}>
-                TEKNOLOJİ
-              </span>
-            </div>
+            {/* 
+              If scrolled (white bg), we ideally need the dark logo. 
+              If not scrolled (dark bg), we use the white logo.
+              Since we only have the white logo (logoWhite) for now, we use it when not scrolled.
+              For scrolled state, we can fallback to text or use the white logo with filter (if needed) 
+              but standard practice is waiting for the dark logo. 
+              For now, I'll keep using the text/icon for scrolled state if logo is missing for that mode, 
+              OR just use the white logo if the user accepts it (but white on white won't work).
+              
+              Let's use the Image when NOT scrolled.
+              Let's use the Text/Icon when scrolled (until we get the dark logo).
+            */}
+            {!scrolled ? (
+               <img src={logoWhite} alt="Lacivert Teknoloji" className="h-12 object-contain" />
+            ) : (
+              <div className="flex items-center gap-2">
+                <div className="bg-primary p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-heading font-bold tracking-tight text-foreground">
+                    LACİVERT
+                  </span>
+                  <span className="text-xs tracking-widest font-medium text-muted-foreground">
+                    TEKNOLOJİ
+                  </span>
+                </div>
+              </div>
+            )}
           </Link>
 
           {/* Desktop Nav */}
@@ -118,19 +137,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             {/* Brand Column */}
             <div className="space-y-6">
-              <div className="flex items-center gap-2">
-                <div className="bg-accent p-2 rounded-lg">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-heading font-bold tracking-tight text-white">
-                    LACİVERT
-                  </span>
-                  <span className="text-xs tracking-widest font-medium text-white/70">
-                    TEKNOLOJİ
-                  </span>
-                </div>
-              </div>
+              <Link href="/">
+                <img src={logoWhite} alt="Lacivert Teknoloji" className="h-12 object-contain mb-4" />
+              </Link>
               <p className="text-slate-400 leading-relaxed">
                 İşletmenizin teknoloji altyapısını güvenli, hızlı ve sürdürülebilir hale getiriyoruz. 
                 Denizcilikten kurumsal ofislere kadar geniş bir yelpazede profesyonel çözümler sunuyoruz.
