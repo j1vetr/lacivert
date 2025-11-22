@@ -171,10 +171,8 @@ export default function Home() {
                             <FeatureItem text="Olay Müdahalesi (IR)" />
                         </ul>
                      </div>
-                     <Link href="/siber-guvenlik">
-                        <a className="w-full py-4 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-center text-slate-900 dark:text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto">
-                           Güvenliği Sağla <Shield className="w-4 h-4" />
-                        </a>
+                     <Link href="/siber-guvenlik" className="w-full py-4 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-center text-slate-900 dark:text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto relative z-20 cursor-pointer hover:scale-[1.02]">
+                        Güvenliği Sağla <Shield className="w-4 h-4" />
                     </Link>
                 </div>
 
