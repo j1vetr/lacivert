@@ -5,6 +5,43 @@ import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_net
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.png";
 
+import { useEffect, useState } from "react";
+
+function TypewriterText({ text, delay = 500 }: { text: string, delay?: number }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => {
+      setStarted(true);
+    }, delay);
+    return () => clearTimeout(startTimeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    let i = 0;
+    const interval = setInterval(() => {
+        if (i < text.length) {
+            setDisplayedText(text.substring(0, i + 1));
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 100); // Typing speed
+
+    return () => clearInterval(interval);
+  }, [text, started]);
+
+  return (
+    <span className="inline-block">
+      {displayedText}
+      <span className="animate-pulse text-cyan-400">|</span>
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
@@ -35,7 +72,7 @@ export default function Home() {
               <span className="block text-slate-400 text-4xl sm:text-5xl md:text-6xl font-light tracking-normal mb-2">İşletmeniz için</span>
               TEKNOLOJİYİ <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 drop-shadow-2xl">
-                GÜVENLE YÖNETİN
+                <TypewriterText text="GÜVENLE YÖNETİN" delay={1000} />
               </span>
             </h1>
 

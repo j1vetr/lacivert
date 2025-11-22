@@ -6,13 +6,13 @@ import imgLand from "@assets/generated_images/futuristic_navy_blue_technology_ne
 
 export default function ServicesLand() {
   return (
-    <div className="bg-white">
+    <div className="bg-background font-sans text-foreground">
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2668&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 pt-32 md:pt-20">
           <div className="max-w-4xl animate-in slide-in-from-left duration-700">
@@ -46,16 +46,16 @@ export default function ServicesLand() {
       {/* Solutions Tabs */}
       <section className="py-24 relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 transform origin-top-right z-0"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 dark:bg-slate-900/20 -skew-x-12 transform origin-top-right z-0"></div>
         
         <div className="container mx-auto px-4 relative z-10">
             <Tabs defaultValue="peplink" className="w-full">
                 <div className="flex justify-center mb-16">
-                    <TabsList className="inline-flex h-auto p-2 bg-slate-100 rounded-full border border-slate-200 shadow-inner">
-                        <TabsTrigger value="peplink" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500">
+                    <TabsList className="inline-flex h-auto p-2 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 shadow-inner">
+                        <TabsTrigger value="peplink" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500 dark:text-slate-400">
                             <Router className="w-5 h-5" /> Peplink SD-WAN
                         </TabsTrigger>
-                        <TabsTrigger value="teltonika" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500">
+                        <TabsTrigger value="teltonika" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500 dark:text-slate-400">
                             <Box className="w-5 h-5" /> Teltonika Networks
                         </TabsTrigger>
                     </TabsList>
@@ -67,11 +67,11 @@ export default function ServicesLand() {
                         {/* Left Column: Content */}
                         <div className="lg:col-span-7 space-y-10">
                             <div>
-                                <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                                <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary dark:text-white mb-6">
                                     Kesintisiz Bağlantı İçin <br/>
-                                    <span className="text-indigo-600">SpeedFusion™ Teknolojisi</span>
+                                    <span className="text-indigo-600 dark:text-indigo-400">SpeedFusion™ Teknolojisi</span>
                                 </h2>
-                                <p className="text-xl text-slate-600 leading-relaxed">
+                                <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
                                     Peplink, birden fazla internet kaynağını (Starlink, 4G/5G, VSAT, Fiber) birleştirerek 
                                     tek bir "kırılmaz" (unbreakable) bağlantı oluşturur. SD-WAN yetenekleri ile 
                                     trafik akışını optimize eder ve maliyetleri düşürür.
@@ -136,11 +136,11 @@ export default function ServicesLand() {
                          {/* Left Column: Content */}
                          <div className="lg:col-span-7 space-y-10">
                             <div>
-                                <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                                <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary dark:text-white mb-6">
                                     Endüstriyel IoT İçin <br/>
-                                    <span className="text-blue-600">Güvenilir Bağlantı</span>
+                                    <span className="text-blue-600 dark:text-blue-400">Güvenilir Bağlantı</span>
                                 </h2>
-                                <p className="text-xl text-slate-600 leading-relaxed">
+                                <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
                                     Teltonika Networks; endüstriyel ortamlar için tasarlanmış, sağlam ve güvenilir 
                                     4G/5G router, gateway ve switch çözümleri sunar. Zorlu koşullarda bile 
                                     M2M ve IoT operasyonlarınızın sürekliliğini sağlar.
@@ -203,10 +203,10 @@ export default function ServicesLand() {
       </section>
 
       {/* Technical Specs / Comparison Section */}
-      <section className="py-24 bg-slate-50 border-t border-slate-200">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-3xl font-heading font-bold text-primary mb-4">Teknik Özellikler & Karşılaştırma</h2>
+                <h2 className="text-3xl font-heading font-bold text-primary dark:text-white mb-4">Teknik Özellikler & Karşılaştırma</h2>
                 <p className="text-muted-foreground">Projeniz için en doğru donanımı seçmenize yardımcı olalım.</p>
             </div>
             
@@ -236,12 +236,12 @@ export default function ServicesLand() {
 
 function PremiumFeatureCard({ icon, title, desc, color }: { icon: React.ReactNode, title: string, desc: string, color: string }) {
     return (
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 group">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all duration-300 group">
             <div className={`${color} w-12 h-12 rounded-xl flex items-center justify-center mb-4 shadow-lg transform group-hover:scale-110 transition-transform`}>
                 {icon}
             </div>
-            <h3 className="text-lg font-bold text-primary mb-2">{title}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+            <h3 className="text-lg font-bold text-primary dark:text-white mb-2">{title}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</p>
         </div>
     )
 }
@@ -262,18 +262,18 @@ function PremiumListItem({ title, desc }: { title: string, desc: string }) {
 
 function SpecCard({ title, subtitle, features, highlight = false }: { title: string, subtitle: string, features: string[], highlight?: boolean }) {
     return (
-        <div className={`p-8 rounded-3xl border ${highlight ? 'bg-white border-accent shadow-xl scale-105 z-10' : 'bg-slate-100 border-slate-200'}`}>
-            <h3 className="text-2xl font-bold text-primary mb-1">{title}</h3>
-            <p className="text-slate-500 mb-8 font-medium">{subtitle}</p>
+        <div className={`p-8 rounded-3xl border ${highlight ? 'bg-white dark:bg-slate-800 border-accent shadow-xl scale-105 z-10' : 'bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800'}`}>
+            <h3 className="text-2xl font-bold text-primary dark:text-white mb-1">{title}</h3>
+            <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">{subtitle}</p>
             <ul className="space-y-4 mb-8">
                 {features.map((f, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700">
+                    <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
                         <div className="w-2 h-2 rounded-full bg-accent"></div>
                         {f}
                     </li>
                 ))}
             </ul>
-            <Button variant={highlight ? "default" : "outline"} className={`w-full ${highlight ? 'bg-primary hover:bg-primary/90' : ''}`}>
+            <Button variant={highlight ? "default" : "outline"} className={`w-full ${highlight ? 'bg-primary hover:bg-primary/90 text-white' : 'dark:text-white dark:border-slate-700 dark:hover:bg-slate-800'}`}>
                 Detaylı Bilgi
             </Button>
         </div>
