@@ -34,7 +34,7 @@ export default function ServicesSecurity() {
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Denizcilik ve kurumsal ağlarınız için GTMaritime ile güçlendirilmiş, yapay zeka destekli
+              Denizcilik ve kurumsal ağlarınız için ileri teknoloji, yapay zeka destekli
               ve IMO regülasyonlarına tam uyumlu yeni nesil siber savunma hattı.
             </p>
 
@@ -90,7 +90,7 @@ export default function ServicesSecurity() {
                 </h2>
                 <p className="text-xl text-slate-400 leading-relaxed">
                     Lacivert Teknoloji, sadece bir antivirüs değil, ağınızın her noktasına nüfuz eden 
-                    bütünleşik bir güvenlik ekosistemi sunar. GTMaritime ortaklığı ile özellikle 
+                    bütünleşik bir güvenlik ekosistemi sunar. Gelişmiş altyapımız ile özellikle 
                     uydu iletişimi kullanan gemiler için optimize edilmiştir.
                 </p>
             </div>
@@ -110,7 +110,7 @@ export default function ServicesSecurity() {
                         </div>
                         <h3 className="text-3xl font-bold text-white mb-4">Yüksek Bant Genişliği (EDR)</h3>
                         <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
-                            CrowdStrike Falcon teknolojisi ile güçlendirilmiş, imza tabanlı olmayan yeni nesil koruma. 
+                            Gelişmiş yapay zeka teknolojisi ile güçlendirilmiş, imza tabanlı olmayan yeni nesil koruma. 
                             VSAT ve Starlink kullanan gemiler ve kurumsal ofisler için davranışsal analiz yapan yapay zeka motoru.
                         </p>
                         
@@ -130,7 +130,7 @@ export default function ServicesSecurity() {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">Düşük Bant Genişliği</h3>
                     <p className="text-slate-400 mb-8 leading-relaxed">
-                        L-Band (Iridium/Inmarsat) kullanan veya kotalı sistemler için ESET tabanlı, 
+                        L-Band (Iridium/Inmarsat) kullanan veya kotalı sistemler için kaynak optimizasyonlu, 
                         ultra düşük veri tüketen özel paketler.
                     </p>
                     <ul className="space-y-4">
