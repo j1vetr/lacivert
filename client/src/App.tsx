@@ -11,6 +11,8 @@ import ServicesIT from "@/pages/ServicesIT";
 import ServicesSecurity from "@/pages/ServicesSecurity";
 import ServicesStarlink from "@/pages/ServicesStarlink";
 import Contact from "@/pages/Contact";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfUse from "@/pages/TermsOfUse";
 
 function Router() {
   return (
@@ -22,6 +24,8 @@ function Router() {
         <Route path="/siber-guvenlik" component={ServicesSecurity} />
         <Route path="/starlink" component={ServicesStarlink} />
         <Route path="/iletisim" component={Contact} />
+        <Route path="/gizlilik-politikasi" component={PrivacyPolicy} />
+        <Route path="/kullanim-sartlari" component={TermsOfUse} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
