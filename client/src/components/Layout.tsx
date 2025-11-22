@@ -286,7 +286,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
             <div className="flex flex-col md:flex-row items-center gap-4">
-                <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. Tüm hakları saklıdır.</p>
+                <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. Tüm Hakları Saklıdır.</p>
                 <a href="https://toov.com.tr" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-cyan-400 transition-colors flex items-center gap-1">
                     Tasarım: TOOV <span className="text-red-500/80">♥</span> tarafından yapıldı
                 </a>
