@@ -24,7 +24,7 @@ export default function OneWebPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/60 to-slate-950"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 pt-48 md:pt-40">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
               {t('sub_oneweb.hero_title_prefix')} <span className="text-blue-500">{t('sub_oneweb.hero_title_main')}</span>
