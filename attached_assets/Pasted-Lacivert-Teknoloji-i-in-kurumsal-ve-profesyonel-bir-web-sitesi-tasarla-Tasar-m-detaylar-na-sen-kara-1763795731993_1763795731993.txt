@@ -1,0 +1,226 @@
+Lacivert Teknoloji için kurumsal ve profesyonel bir web sitesi tasarla. Tasarım detaylarına sen karar ver ama içerik olarak aşağıdaki tüm bölümler ve bilgiler sitede yer almalıdır:
+
+1) Ana Sayfa İçeriği
+
+Ana sayfa Lacivert Teknoloji’nin verdiği tüm hizmetleri açık, net ve güven veren şekilde özetlesin.
+Ana sayfada anlatılması gereken içerikler:
+
+– Firmanın tanımı:
+Lacivert Teknoloji; IT hizmetleri, siber güvenlik çözümleri, Starlink uydu interneti, network kurulumu, bulut çözümleri, kameralı güvenlik ve teknik destek sağlayan kurumsal teknoloji firmasıdır.
+
+– Hizmet özet kartları:
+Ana sayfada şu hizmetler özet şekilde anlatılmalı:
+
+IT Hizmetleri
+
+Siber Güvenlik
+
+Starlink İnternet
+
+Network & Firewall
+
+Bulut Çözümleri
+
+IP Kamera Sistemleri
+
+Teknik Destek & Bakım
+
+– Firma avantajları:
+Kısa maddeler halinde:
+
+7/24 teknik destek
+
+Deneyimli teknik ekip
+
+Kurumsal SLA yaklaşımı
+
+Uzak ve yerinde destek
+
+Filoya/şubelere ölçeklenebilir çözümler
+
+– Referans/çözüm alanları:
+
+Denizcilik
+
+Kurumsal ofisler
+
+KOBİ’ler
+
+Endüstriyel tesisler
+
+Enerji & offshore sahaları
+
+2) Hakkımızda Sayfası
+
+Hakkımızda sayfasında şu bilgiler anlatılmalıdır:
+
+Lacivert Teknoloji’nin misyonu: işletmelerin teknoloji altyapılarını güvenli, hızlı ve sürdürülebilir hale getirmek.
+
+Hizmet verdiği sektörler: denizcilik, enerji, üretim, kurumsal ofisler, KOBİ’ler.
+
+Yaklaşım: çözüm odaklı çalışma, şeffaf iletişim, uzun vadeli teknik partnerlik.
+
+Uzmanlık alanları: IT hizmetleri, siber güvenlik, uydu internet çözümleri, altyapı kurulumu.
+
+Vizyon: tüm işletmelerin kesintisiz bağlantı ve güvenli teknoloji deneyimi yaşaması.
+
+3) IT Hizmetleri Sayfası
+
+IT hizmetleri detaylı şekilde anlatılmalı. Bu sayfada şu bilgiler bulunmalı:
+
+– IT Destek & Bakım:
+Sunucu, bilgisayar, yazılım, ağ, güvenlik, yedekleme gibi tüm sistemlerin bakımı.
+
+– Network Hizmetleri:
+Switch, router, firewall kurulumu, kablolama, ağ mimarisi planlama.
+
+– Bulut Hizmetleri:
+Bulut tabanlı depolama, yedekleme, veri taşıma, merkezi yönetim çözümleri.
+
+– IP Kamera & Güvenlik Sistemleri:
+Kurulum, izleme, kayıt sistemleri, uzaktan erişim desteği.
+
+– Teknik Destek:
+Yerinde destek, uzaktan bağlantı desteği, saha çözümleri.
+
+– Avantajlar:
+
+7/24 ekip
+
+Uzaktan yönetim
+
+Raporlama
+
+Kurumsal SLA
+
+4) Siber Güvenlik Sayfası (Önemli İçerik)
+
+Bu sayfa hem kurumsal hem de güçlü içerik taşımak zorunda. Şunlar anlatılmalı:
+
+– Hizmet Tanımı:
+Şirketlerin ve gemilerin network, endpoint ve tüm dijital altyapılarını siber tehditlere karşı koruma.
+
+– Sunulan Çözümler:
+
+Endpoint Güvenliği (EDR/Antivirüs)
+
+Ağ güvenliği
+
+Low-bandwidth uyumlu koruma
+
+Filo/şube bazlı merkezi yönetim
+
+7/24 izleme
+
+Uzaktan müdahale
+
+Raporlama ve uyumluluk
+
+– Kimler İçin:
+
+Denizcilik
+
+KOBİ
+
+Kurumsal yapılar
+
+Endüstriyel tesisler
+
+– SSS:
+
+Koruma kapsamı
+
+Destek süreci
+
+Uyum standartları
+
+Kurulum & devreye alma
+
+5) Starlink İnternet Sayfası (Tam İçerik)
+
+Bu sayfa Starlink hizmetini eksiksiz anlatmalıdır:
+
+– Starlink nedir?
+LEO uydu sistemiyle yüksek hızlı ve düşük gecikmeli internet teknolojisi.
+
+– Nereye uygundur?
+
+Ticari gemiler
+
+Yatlar
+
+Offshore platformlar
+
+Uzak çalışma alanları
+
+Kırsal bölgeler
+
+– Temel Avantajlar:
+
+Global kapsama
+
+Düşük gecikme
+
+Kesintisiz bağlantı
+
+Kurulumu hızlı
+
+Uzaktan destek sağlanabilir
+
+Filoya ölçeklenebilir
+
+– Paketler:
+
+Starter 50 GB
+
+Professional 100 GB
+
+Platinum 150 GB
+
+Enterprise 250 GB
+Paketlerde fiyat olmak zorunda değil, “Teklif Al” yeterli.
+
+– Kurulum:
+Anten kurulumu, devreye alma, test, uzaktan destek süreçleri anlatılmalıdır.
+
+– SSS:
+
+Nerelerde çalışır?
+
+Hızlar neye bağlı değişir?
+
+Kurulum süresi?
+
+Destek süprocessi?
+
+6) İletişim Sayfası
+
+İletişim sayfasında şu bilgiler bulunacak:
+
+Firma adı: Lacivert Teknoloji
+
+Adres: Gürsel Mah. İmrahor Cad. Premier Kampüs Ofis No: 29/A Kat:6 Ofis:217 – Kağıthane / İstanbul
+
+Telefon: 0532 503 34 17
+
+E-posta: info@lacivertteknoloji.com
+
+Hızlı iletişim formu
+
+Mesaj başlığı, ad-soyad, telefon, e-posta, mesaj alanı
+
+7) Site Genelinde Olması Gerekenler (İçerik Anlamında)
+
+Her sayfada net bir “Teklif Al” veya “İletişime Geç” çağrısı olmalı.
+
+Metinler yalın, profesyonel ve güven odaklı olmalı.
+
+Gereksiz teknik detay yok, kullanıcıya fayda odaklı anlatım olmalı.
+
+ÇIKTI BEKLENTİSİ:
+
+Bu içeriğe göre tam site tasarla.
+Tasarım detaylarını sen belirle; ben sadece sayfaların ne anlatması gerektiğini veriyorum.
+
+
+Tasarım olarak mükemmel olması hem kurumsal, hemde tasarım olarak üst düzey farklı bir şey çıkarmalısın.
