@@ -3,16 +3,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Server, Wifi, Cloud, Video, Settings, CheckCircle, ArrowRight, Anchor, Building2, Factory, Zap, Radio } from "lucide-react";
 import { Link } from "wouter";
 import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png";
+import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 
 export default function Home() {
   return (
     <div>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        >
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+            poster={heroBg}
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px]"></div>
         </div>
         
