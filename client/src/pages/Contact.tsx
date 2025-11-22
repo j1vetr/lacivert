@@ -48,9 +48,9 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-blue-500/30">
       {/* Header */}
-      <section className="bg-primary text-white pt-32 pb-20">
+      <section className="bg-slate-900 text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">İletişim</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
@@ -64,8 +64,8 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-8">
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-                <h2 className="text-2xl font-bold text-primary mb-8">İletişim Bilgileri</h2>
+              <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-800">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">İletişim Bilgileri</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -73,8 +73,8 @@ export default function Contact() {
                       <MapPin className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary mb-1">Adres</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">Adres</h3>
+                      <p className="text-slate-600 dark:text-slate-400">
                         Gürsel Mah. İmrahor Cad. Premier Kampüs Ofis No: 29/A Kat:6 Ofis:217 <br/> Kağıthane / İstanbul
                       </p>
                     </div>
@@ -85,8 +85,8 @@ export default function Contact() {
                       <Phone className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary mb-1">Telefon</h3>
-                      <p className="text-muted-foreground">0532 503 34 17</p>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">Telefon</h3>
+                      <p className="text-slate-600 dark:text-slate-400">0532 503 34 17</p>
                     </div>
                   </div>
 
@@ -95,15 +95,15 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary mb-1">E-posta</h3>
-                      <p className="text-muted-foreground">info@lacivertteknoloji.com</p>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">E-posta</h3>
+                      <p className="text-slate-600 dark:text-slate-400">info@lacivertteknoloji.com</p>
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Google Map Embed */}
-              <div className="rounded-2xl overflow-hidden h-64 w-full shadow-sm border border-border">
+              <div className="rounded-2xl overflow-hidden h-64 w-full shadow-sm border border-slate-200 dark:border-slate-800">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387587.22600174503!2d28.68269274443944!3d40.62932615174701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409fe0002530ff91%3A0xa03f962ca8048551!2sLacivert%20Teknoloji!5e0!3m2!1str!2str!4v1763801124174!5m2!1str!2str" 
                     width="100%" 
@@ -118,9 +118,9 @@ export default function Contact() {
 
             {/* Form */}
             <div className="lg:col-span-2">
-              <Card className="border-border shadow-sm">
+              <Card className="border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none bg-white dark:bg-slate-900">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-primary mb-6">Hızlı İletişim Formu</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Hızlı İletişim Formu</h2>
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,9 +129,9 @@ export default function Contact() {
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Ad Soyad</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">Ad Soyad</FormLabel>
                               <FormControl>
-                                <Input placeholder="Adınız Soyadınız" className="h-12 bg-slate-50" {...field} />
+                                <Input placeholder="Adınız Soyadınız" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -142,9 +142,9 @@ export default function Contact() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Telefon</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">Telefon</FormLabel>
                               <FormControl>
-                                <Input placeholder="05XX XXX XX XX" className="h-12 bg-slate-50" {...field} />
+                                <Input placeholder="05XX XXX XX XX" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -158,9 +158,9 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>E-posta</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">E-posta</FormLabel>
                               <FormControl>
-                                <Input placeholder="ornek@sirket.com" className="h-12 bg-slate-50" {...field} />
+                                <Input placeholder="ornek@sirket.com" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -171,9 +171,9 @@ export default function Contact() {
                           name="subject"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Konu</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">Konu</FormLabel>
                               <FormControl>
-                                <Input placeholder="Mesajınızın konusu" className="h-12 bg-slate-50" {...field} />
+                                <Input placeholder="Mesajınızın konusu" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -186,16 +186,16 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Mesajınız</FormLabel>
+                            <FormLabel className="text-slate-900 dark:text-white">Mesajınız</FormLabel>
                             <FormControl>
-                              <Textarea placeholder="Talebinizi detaylı olarak yazınız..." className="min-h-[150px] bg-slate-50 resize-none" {...field} />
+                              <Textarea placeholder="Talebinizi detaylı olarak yazınız..." className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 resize-none" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
 
-                      <Button type="submit" size="lg" className="w-full md:w-auto px-8 h-12 bg-primary hover:bg-primary/90">
+                      <Button type="submit" size="lg" className="w-full md:w-auto px-8 h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 font-bold">
                         <Send className="w-4 h-4 mr-2" />
                         Mesajı Gönder
                       </Button>

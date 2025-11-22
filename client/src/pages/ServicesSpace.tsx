@@ -20,9 +20,9 @@ import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_mode
 
 export default function ServicesSpace() {
   return (
-    <div>
+    <div className="bg-background font-sans text-foreground">
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden">
+      <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${imgSpace})` }}
@@ -59,9 +59,9 @@ export default function ServicesSpace() {
             <Tabs defaultValue="starlink" className="w-full">
                 <div className="flex justify-center mb-12">
                     <TabsList className="grid w-full max-w-3xl grid-cols-3 h-16 p-1 bg-slate-100 dark:bg-slate-800 rounded-full">
-                        <TabsTrigger value="starlink" className="rounded-full text-lg font-semibold data-[state=active]:bg-white data-[state=active]:shadow-md transition-all">Starlink</TabsTrigger>
-                        <TabsTrigger value="eutelsat" className="rounded-full text-lg font-semibold data-[state=active]:bg-white data-[state=active]:shadow-md transition-all">Eutelsat OneWeb</TabsTrigger>
-                        <TabsTrigger value="iridium" className="rounded-full text-lg font-semibold data-[state=active]:bg-white data-[state=active]:shadow-md transition-all">Iridium</TabsTrigger>
+                        <TabsTrigger value="starlink" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Starlink</TabsTrigger>
+                        <TabsTrigger value="eutelsat" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Eutelsat OneWeb</TabsTrigger>
+                        <TabsTrigger value="iridium" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Iridium</TabsTrigger>
                     </TabsList>
                 </div>
 
@@ -69,7 +69,7 @@ export default function ServicesSpace() {
                 <TabsContent value="starlink" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-bold mb-6">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold mb-6">
                                 <Rocket className="w-4 h-4 text-accent" /> LEO Constellation
                             </div>
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
@@ -87,12 +87,12 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<Globe />} title="Global Kapsama" />
                                 <FeatureItem icon={<ShieldCheck />} title="Kolay Kurulum" />
                             </div>
-                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
                                 <Link href="/uzay-haberlesmesi/starlink">Starlink Paketlerini İncele</Link>
                             </Button>
                         </div>
-                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-                            <h3 className="text-xl font-bold mb-6">Öne Çıkan Özellikler</h3>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                            <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">Öne Çıkan Özellikler</h3>
                             <ul className="space-y-4">
                                 <ListItem title="Denizcilik İçin Optimize" desc="Zorlu deniz koşullarına dayanıklı donanım." />
                                 <ListItem title="Esnek Paketler" desc="50GB, 1TB, 5TB ve sınırsız veri seçenekleri." />
@@ -125,12 +125,12 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<Globe />} title="Kutup Kapsaması" />
                                 <FeatureItem icon={<ShieldCheck />} title="Yüksek Güvenlik" />
                             </div>
-                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
                                 <Link href="/uzay-haberlesmesi/oneweb">Eutelsat Detayları</Link>
                             </Button>
                         </div>
-                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-                            <h3 className="text-xl font-bold mb-6">Neden Eutelsat OneWeb?</h3>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                            <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">Neden Eutelsat OneWeb?</h3>
                             <ul className="space-y-4">
                                 <ListItem title="Entegre Teknoloji" desc="GEO ve LEO uydularının gücünü birleştirir." />
                                 <ListItem title="Intellian Terminalleri" desc="OW11FM, OW10HM gibi gelişmiş denizcilik antenleri." />
@@ -163,12 +163,12 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<Zap />} title="Hava Koşullarına Dirençli" />
                                 <FeatureItem icon={<Radio />} title="L-Band Güvenilirliği" />
                             </div>
-                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
                                 <Link href="/uzay-haberlesmesi/iridium">Iridium Detayları</Link>
                             </Button>
                         </div>
-                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-                            <h3 className="text-xl font-bold mb-6">Iridium Çözümleri</h3>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+                            <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">Iridium Çözümleri</h3>
                             <ul className="space-y-4">
                                 <ListItem title="Iridium Certus 700" desc="704 Kbps indirme hızı ile en hızlı L-band hizmeti." />
                                 <ListItem title="GMDSS Sistemleri" desc="Acil durum ve güvenlik haberleşmesi için standart." />
@@ -205,9 +205,9 @@ export default function ServicesSpace() {
 
 function FeatureItem({ icon, title }: { icon: React.ReactNode, title: string }) {
     return (
-        <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+        <div className="flex items-center gap-3 p-4 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-slate-100 dark:border-slate-800">
             <div className="text-accent">{icon}</div>
-            <span className="font-bold text-primary text-sm">{title}</span>
+            <span className="font-bold text-slate-900 dark:text-white text-sm">{title}</span>
         </div>
     )
 }
@@ -219,7 +219,7 @@ function ListItem({ title, desc }: { title: string, desc: string }) {
                 <CheckCircle className="w-5 h-5 text-accent" />
             </div>
             <div>
-                <h4 className="font-bold text-primary text-sm">{title}</h4>
+                <h4 className="font-bold text-slate-900 dark:text-white text-sm">{title}</h4>
                 <p className="text-sm text-muted-foreground">{desc}</p>
             </div>
         </li>

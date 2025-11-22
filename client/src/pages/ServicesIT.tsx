@@ -6,9 +6,9 @@ import imgHardware from "@assets/generated_images/realistic_professional_server_
 
 export default function ServicesIT() {
   return (
-    <div className="bg-slate-950 font-sans text-slate-200 selection:bg-blue-500/30">
+    <div className="bg-background font-sans text-foreground selection:bg-blue-500/30">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center overflow-hidden">
+      <section className="relative h-[80vh] flex items-center overflow-hidden bg-slate-950">
          <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity transform scale-105"
           style={{ backgroundImage: `url(${imgServer})` }}
@@ -47,14 +47,14 @@ export default function ServicesIT() {
       </section>
 
       {/* Services Grid - Dark Premium Layout */}
-      <section id="services" className="py-32 relative overflow-hidden">
-         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent"></div>
+      <section id="services" className="py-32 relative overflow-hidden bg-slate-50 dark:bg-transparent transition-colors">
+         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
         <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-24">
-                <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
                     360° Teknoloji Yönetimi
                 </h2>
-                <p className="text-xl text-slate-400 leading-relaxed">
+                <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
                     Siz işinize odaklanın, biz teknolojinize. Uzman ekibimiz ve proaktif yaklaşımımızla 
                     sistemlerinizin kesintisiz ve yüksek performansta çalışmasını sağlıyoruz.
                 </p>
@@ -168,15 +168,15 @@ export default function ServicesIT() {
 
 function ServiceCard({ icon, title, desc, features }: { icon: React.ReactNode, title: string, desc: string, features: string[] }) {
     return (
-        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 hover:bg-slate-800/50 hover:border-blue-500/30 transition-all group">
-            <div className="mb-6 bg-slate-950 w-16 h-16 rounded-xl flex items-center justify-center border border-slate-800 group-hover:border-blue-500/20 transition-colors">
+        <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-blue-500/30 transition-all group shadow-sm dark:shadow-none">
+            <div className="mb-6 bg-slate-100 dark:bg-slate-950 w-16 h-16 rounded-xl flex items-center justify-center border border-slate-200 dark:border-slate-800 group-hover:border-blue-500/20 transition-colors">
                 {icon}
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
-            <p className="text-slate-400 mb-8 leading-relaxed">{desc}</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{title}</h3>
+            <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">{desc}</p>
             <ul className="space-y-3">
                 {features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-slate-300 text-sm">
+                    <li key={idx} className="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
                         {feature}
                     </li>

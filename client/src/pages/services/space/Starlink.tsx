@@ -5,9 +5,9 @@ import heroBg from "@assets/generated_images/starlink_maritime_flat_high_perform
 
 export default function StarlinkPage() {
   return (
-    <div className="bg-slate-950 font-sans text-slate-200 selection:bg-cyan-500/30">
+    <div className="bg-background font-sans text-foreground selection:bg-cyan-500/30">
       {/* Hero Section */}
-      <section className="relative h-[85vh] flex items-center overflow-hidden">
+      <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
              <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
@@ -47,21 +47,21 @@ export default function StarlinkPage() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-slate-900/50 border-y border-white/5">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-white/5 transition-colors">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <FeatureCard 
-                    icon={<Zap className="w-8 h-8 text-yellow-400" />}
+                    icon={<Zap className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />}
                     title="Düşük Gecikme (Latency)"
                     desc="<20ms gecikme süresi ile gerçek zamanlı uygulamalar, video konferans ve oyun için ideal."
                 />
                 <FeatureCard 
-                    icon={<Wifi className="w-8 h-8 text-cyan-400" />}
+                    icon={<Wifi className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />}
                     title="Yüksek Hız"
                     desc="220 Mbps'e varan indirme hızları ile denizde ofis konforunu yaşayın."
                 />
                 <FeatureCard 
-                    icon={<Shield className="w-8 h-8 text-emerald-400" />}
+                    icon={<Shield className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />}
                     title="Zorlu Koşullara Dayanıklı"
                     desc="IP56 sertifikalı Flat High Performance antenler ile fırtına, sıcak ve soğuğa karşı tam koruma."
                 />
@@ -70,14 +70,14 @@ export default function StarlinkPage() {
       </section>
 
       {/* Packages Section */}
-      <section id="packages" className="py-32 relative">
+      <section id="packages" className="py-32 relative bg-background transition-colors">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
-                <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-                    Size Uygun <span className="text-cyan-500">Starlink Paketi</span>
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                    Size Uygun <span className="text-cyan-600 dark:text-cyan-500">Starlink Paketi</span>
                 </h2>
-                <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                     İhtiyacınıza göre optimize edilmiş maritime veri paketlerimiz. 
                     Tüm paketlerde "Priority Data" ayrıcalığı.
                 </p>
@@ -109,11 +109,11 @@ export default function StarlinkPage() {
       </section>
 
       {/* Technical Specs */}
-      <section className="py-24 bg-slate-900">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900 transition-colors">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h3 className="text-3xl font-bold text-white mb-8">Flat High Performance Kit</h3>
+                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">Flat High Performance Kit</h3>
                     <div className="space-y-6">
                         <SpecRow label="Anten Tipi" value="Elektronik Faz Dizili (Electronic Phased Array)" />
                         <SpecRow label="Görüş Alanı" value="140°" />
@@ -124,23 +124,23 @@ export default function StarlinkPage() {
                         <SpecRow label="Güç Tüketimi" value="110-150W Ort." />
                     </div>
                 </div>
-                <div className="bg-slate-800 rounded-2xl p-8 border border-white/10">
-                    <h4 className="text-xl font-bold text-white mb-6">Kurulum ve Destek</h4>
-                    <p className="text-slate-400 mb-8 leading-relaxed">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-white/10 shadow-lg dark:shadow-none">
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Kurulum ve Destek</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                         Lacivert Teknoloji olarak, Starlink kitlerinin temini, gemiye kurulumu ve 
                         network entegrasyonu (Peplink/Firewall) konularında anahtar teslim hizmet sunuyoruz.
                     </p>
                     <ul className="space-y-4 mb-8">
-                        <li className="flex items-center gap-3 text-slate-300">
-                            <Check className="w-5 h-5 text-cyan-500" />
+                        <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
                             <span>Profesyonel Montaj</span>
                         </li>
-                        <li className="flex items-center gap-3 text-slate-300">
-                            <Check className="w-5 h-5 text-cyan-500" />
+                        <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
                             <span>Network Entegrasyonu</span>
                         </li>
-                        <li className="flex items-center gap-3 text-slate-300">
-                            <Check className="w-5 h-5 text-cyan-500" />
+                        <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
                             <span>7/24 Teknik Destek</span>
                         </li>
                     </ul>
@@ -157,32 +157,32 @@ export default function StarlinkPage() {
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
     return (
-        <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-            <div className="mb-6 p-4 rounded-full bg-slate-950 border border-slate-800 shadow-lg">
+        <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none">
+            <div className="mb-6 p-4 rounded-full bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-lg">
                 {icon}
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-            <p className="text-slate-400 leading-relaxed">{desc}</p>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{title}</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{desc}</p>
         </div>
     )
 }
 
 function PackageCard({ size, type, features }: { size: string, type: string, features: string[] }) {
     return (
-        <div className="relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-slate-900 border-white/10 hover:border-white/20">
+        <div className="relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 hover:border-cyan-500/30 shadow-lg dark:shadow-none">
             <div className="text-center mb-8">
-                <div className="text-sm font-bold text-cyan-500 uppercase tracking-widest mb-2">{type}</div>
-                <div className="text-5xl font-bold text-white mb-4">{size}</div>
+                <div className="text-sm font-bold text-cyan-600 dark:text-cyan-500 uppercase tracking-widest mb-2">{type}</div>
+                <div className="text-5xl font-bold text-slate-900 dark:text-white mb-4">{size}</div>
             </div>
             <div className="space-y-4 mb-8">
                 {features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center justify-center gap-3 text-sm text-slate-300">
-                        <Check className="w-4 h-4 text-cyan-500 flex-shrink-0" />
+                    <div key={idx} className="flex items-center justify-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                        <Check className="w-4 h-4 text-cyan-600 dark:text-cyan-500 flex-shrink-0" />
                         <span>{feat}</span>
                     </div>
                 ))}
             </div>
-            <Button asChild className="w-full font-bold bg-white/10 hover:bg-white/20 text-white">
+            <Button asChild className="w-full font-bold bg-slate-900 dark:bg-white/10 hover:bg-slate-800 dark:hover:bg-white/20 text-white">
                 <Link href="/iletisim">Teklif İste</Link>
             </Button>
         </div>
@@ -191,9 +191,9 @@ function PackageCard({ size, type, features }: { size: string, type: string, fea
 
 function SpecRow({ label, value }: { label: string, value: string }) {
     return (
-        <div className="flex justify-between items-center py-3 border-b border-white/10">
-            <span className="text-slate-400">{label}</span>
-            <span className="text-white font-medium">{value}</span>
+        <div className="flex justify-between items-center py-3 border-b border-slate-200 dark:border-white/10">
+            <span className="text-slate-600 dark:text-slate-400">{label}</span>
+            <span className="text-slate-900 dark:text-white font-medium">{value}</span>
         </div>
     )
 }
