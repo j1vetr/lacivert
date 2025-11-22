@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Server, Wifi, Cloud, Video, Settings, CheckCircle, ArrowRight, Anchor, Building2, Factory, Zap, Radio } from "lucide-react";
 import { Link } from "wouter";
 import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png";
-import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
+import heroVideo from "@assets/generated_videos/ship_on_digital_ocean_connecting_to_starlink_satellite.mp4";
 
 export default function Home() {
   return (
