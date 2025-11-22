@@ -1,7 +1,7 @@
 import { Shield, Lock, Eye, FileWarning, Server, Activity, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import heroBg from "@assets/generated_images/futuristic_digital_cyber_security_shield_concept.png";
+import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.png";
 
 export default function ServicesSecurity() {
   return (
