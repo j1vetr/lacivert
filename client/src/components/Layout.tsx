@@ -32,10 +32,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Navigation */}
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-slate-950/95 backdrop-blur-md shadow-md py-3 border-b border-white/10" : "bg-transparent py-6"
+          scrolled ? "bg-slate-950/95 backdrop-blur-md shadow-md border-b border-white/10" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Info Box (Top Bar) */}
+        <div className={`w-full border-b border-white/10 bg-slate-950/50 backdrop-blur-sm transition-all duration-300 ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-10'}`}>
+            <div className="container mx-auto px-4 h-full flex justify-between items-center text-xs text-slate-400">
+                <div className="flex items-center gap-6">
+                    <a href="mailto:info@lacivertteknoloji.com" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                        <Mail className="w-3 h-3" /> info@lacivertteknoloji.com
+                    </a>
+                    <a href="tel:05325033417" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                        <Phone className="w-3 h-3" /> 0532 503 34 17
+                    </a>
+                </div>
+                <div className="flex items-center gap-4">
+                     <a href="#" className="hover:text-white transition-colors">TR</a>
+                     <span className="w-px h-3 bg-white/20"></span>
+                     <a href="#" className="hover:text-white transition-colors">EN</a>
+                </div>
+            </div>
+        </div>
+
+        <div className={`container mx-auto px-4 flex justify-between items-center transition-all duration-300 ${scrolled ? 'py-3' : 'py-4'}`}>
           <Link href="/" className="flex items-center gap-2 group relative">
             <div className="relative px-4 py-2">
               {/* Animated Border Container */}
@@ -154,7 +173,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
            <div className="hidden lg:block">
                 <Button 
                 asChild
-                className="bg-white text-slate-950 hover:bg-white/90 font-bold"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 border-0"
                 >
                 <Link href="/iletisim">
                     Teklif Al
