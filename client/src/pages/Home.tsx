@@ -34,6 +34,27 @@ function TypewriterText({ text, delay = 500 }: { text: string, delay?: number })
     return () => clearInterval(interval);
   }, [text, started]);
 
+  // Custom rendering for the specific hero text to handle mixed colors
+  if (text === "GÜVENLE YÖNETİN") {
+      const spaceIndex = displayedText.indexOf(' ');
+      const hasSpace = spaceIndex !== -1;
+      
+      const firstPart = hasSpace ? displayedText.substring(0, spaceIndex) : displayedText;
+      const secondPart = hasSpace ? displayedText.substring(spaceIndex) : "";
+
+      return (
+        <span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 drop-shadow-2xl">
+            {firstPart}
+          </span>
+          <span className="text-white drop-shadow-2xl">
+            {secondPart}
+          </span>
+          <span className="animate-pulse text-cyan-400">|</span>
+        </span>
+      );
+  }
+
   return (
     <span>
       {displayedText}
@@ -71,7 +92,7 @@ export default function Home() {
             <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight">
               <span className="block text-slate-400 text-4xl sm:text-5xl md:text-6xl font-light tracking-normal mb-2">İşletmeniz için</span>
               TEKNOLOJİYİ <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 drop-shadow-2xl">
+              <span>
                 <TypewriterText text="GÜVENLE YÖNETİN" delay={1000} />
               </span>
             </h1>
