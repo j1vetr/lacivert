@@ -87,27 +87,22 @@ export default function StarlinkPage() {
                 <PackageCard 
                     size="50 GB" 
                     type="Priority"
-                    desc="Küçük tekneler ve temel iletişim ihtiyaçları için."
-                    features={["50 GB Priority Data", "Sınırsız Standard Data", "Global Kapsama"]}
+                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
                 />
                 <PackageCard 
                     size="100 GB" 
                     type="Priority"
-                    desc="Orta ölçekli kullanım ve düzenli operasyonlar için."
-                    features={["100 GB Priority Data", "Sınırsız Standard Data", "Global Kapsama"]}
-                    popular
+                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
                 />
                 <PackageCard 
                     size="150 GB" 
                     type="Priority"
-                    desc="Yüksek veri ihtiyacı olan ticari gemiler için."
-                    features={["150 GB Priority Data", "Sınırsız Standard Data", "Global Kapsama"]}
+                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
                 />
                 <PackageCard 
                     size="250 GB" 
                     type="Priority"
-                    desc="Yoğun kullanım, mürettebat ve yolcu gemileri için."
-                    features={["250 GB Priority Data", "Sınırsız Standard Data", "Global Kapsama", "Özel Destek"]}
+                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
                 />
             </div>
         </div>
@@ -172,28 +167,22 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
     )
 }
 
-function PackageCard({ size, type, desc, features, popular }: { size: string, type: string, desc: string, features: string[], popular?: boolean }) {
+function PackageCard({ size, type, features }: { size: string, type: string, features: string[] }) {
     return (
-        <div className={`relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 ${popular ? 'bg-gradient-to-b from-slate-800 to-slate-900 border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.15)]' : 'bg-slate-900 border-white/10 hover:border-white/20'}`}>
-            {popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-cyan-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
-                    En Çok Tercih Edilen
-                </div>
-            )}
+        <div className="relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-slate-900 border-white/10 hover:border-white/20">
             <div className="text-center mb-8">
                 <div className="text-sm font-bold text-cyan-500 uppercase tracking-widest mb-2">{type}</div>
                 <div className="text-5xl font-bold text-white mb-4">{size}</div>
-                <p className="text-slate-400 text-sm h-10">{desc}</p>
             </div>
             <div className="space-y-4 mb-8">
                 {features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-sm text-slate-300">
+                    <div key={idx} className="flex items-center justify-center gap-3 text-sm text-slate-300">
                         <Check className="w-4 h-4 text-cyan-500 flex-shrink-0" />
                         <span>{feat}</span>
                     </div>
                 ))}
             </div>
-            <Button asChild className={`w-full font-bold ${popular ? 'bg-cyan-600 hover:bg-cyan-500 text-white' : 'bg-white/10 hover:bg-white/20 text-white'}`}>
+            <Button asChild className="w-full font-bold bg-white/10 hover:bg-white/20 text-white">
                 <Link href="/iletisim">Teklif İste</Link>
             </Button>
         </div>
