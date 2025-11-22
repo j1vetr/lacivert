@@ -29,7 +29,7 @@ export default function ServicesSpace() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-32 md:pt-20">
+        <div className="container mx-auto px-4 relative z-10 pt-40 md:pt-32">
           <div className="max-w-3xl animate-in slide-in-from-left duration-700">
             <div className="flex items-center gap-2 text-accent mb-6">
                 <Satellite className="w-6 h-6 animate-pulse" />

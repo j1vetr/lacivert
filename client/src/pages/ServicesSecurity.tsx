@@ -21,7 +21,7 @@ export default function ServicesSecurity() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-32 md:pt-20">
+        <div className="container mx-auto px-4 relative z-10 pt-40 md:pt-32">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             
             <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-cyan-950/50 border border-cyan-500/30 mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.2)]">
