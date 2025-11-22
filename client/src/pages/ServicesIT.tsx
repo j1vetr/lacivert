@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import imgServer from "@assets/generated_images/modern_clean_server_room_with_blue_lighting.webp";
-import imgHardware from "@assets/generated_images/modern_server_room_with_blue_lighting.png";
+import imgHardware from "@assets/generated_images/close-up_of_enterprise_rack_server_blade_with_blue_leds.png";
 import { useTranslation } from "react-i18next";
 
 export default function ServicesIT() {
