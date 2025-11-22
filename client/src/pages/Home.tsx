@@ -64,42 +64,30 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <ServiceCard 
-              icon={<Settings className="w-10 h-10 text-accent" />}
-              title="IT Hizmetleri"
+              icon={<Settings className="w-12 h-12 text-accent" />}
+              title="IT Destek"
               description="Sunucu, bilgisayar, yazılım ve donanım altyapınız için profesyonel bakım ve yönetim hizmetleri."
               href="/it-hizmetleri"
             />
             <ServiceCard 
-              icon={<Shield className="w-10 h-10 text-accent" />}
+              icon={<Shield className="w-12 h-12 text-accent" />}
               title="Siber Güvenlik"
-              description="Network ve endpoint güvenliği ile işletmenizi dijital tehditlere karşı 7/24 koruyoruz."
+              description="GTMaritime ortaklığı ile gemi ve ofisleriniz için IMO uyumlu, uçtan uca siber güvenlik."
               href="/siber-guvenlik"
             />
             <ServiceCard 
-              icon={<Radio className="w-10 h-10 text-accent" />}
-              title="Starlink İnternet"
-              description="Denizcilik ve uzak sahalar için yüksek hızlı, düşük gecikmeli LEO uydu internet çözümleri."
-              href="/starlink"
+              icon={<Radio className="w-12 h-12 text-accent" />}
+              title="Uzay Haberleşmesi"
+              description="Starlink, Eutelsat OneWeb ve Iridium ile dünyanın her yerinde kesintisiz uydu iletişimi."
+              href="/uzay-haberlesmesi"
             />
-            <ServiceCard 
-              icon={<Wifi className="w-10 h-10 text-accent" />}
-              title="Network & Firewall"
-              description="Güvenli ağ mimarisi, switch, router ve firewall kurulumu ile kesintisiz iletişim."
-              href="/it-hizmetleri"
-            />
-            <ServiceCard 
-              icon={<Cloud className="w-10 h-10 text-accent" />}
-              title="Bulut Çözümleri"
-              description="Veri yedekleme, depolama ve merkezi yönetim için ölçeklenebilir bulut altyapıları."
-              href="/it-hizmetleri"
-            />
-            <ServiceCard 
-              icon={<Video className="w-10 h-10 text-accent" />}
-              title="IP Kamera Sistemleri"
-              description="Gelişmiş izleme ve kayıt sistemleri ile tesislerinizin güvenliğini sağlayın."
-              href="/it-hizmetleri"
+             <ServiceCard 
+              icon={<Wifi className="w-12 h-12 text-accent" />}
+              title="Kara Haberleşmesi"
+              description="E-Sim, Peplink SD-WAN ve Teltonika çözümleri ile karada ve hareket halinde güvenli bağlantı."
+              href="/kara-haberlesmesi"
             />
           </div>
         </div>

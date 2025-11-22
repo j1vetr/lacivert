@@ -8,10 +8,11 @@ import logoDark from "@assets/lacivert dark logo_1763796405911.png";
 
 const navLinks = [
   { name: "Ana Sayfa", href: "/" },
-  { name: "Hakkımızda", href: "/hakkimizda" },
-  { name: "IT Hizmetleri", href: "/it-hizmetleri" },
+  { name: "IT Destek", href: "/it-hizmetleri" },
   { name: "Siber Güvenlik", href: "/siber-guvenlik" },
-  { name: "Starlink", href: "/starlink" },
+  { name: "Uzay Haberleşmesi", href: "/uzay-haberlesmesi" },
+  { name: "Kara Haberleşmesi", href: "/kara-haberlesmesi" },
+  { name: "Hakkımızda", href: "/hakkimizda" },
   { name: "İletişim", href: "/iletisim" },
 ];
 

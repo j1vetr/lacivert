@@ -9,7 +9,8 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import ServicesIT from "@/pages/ServicesIT";
 import ServicesSecurity from "@/pages/ServicesSecurity";
-import ServicesStarlink from "@/pages/ServicesStarlink";
+import ServicesSpace from "@/pages/ServicesSpace";
+import ServicesLand from "@/pages/ServicesLand";
 import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfUse from "@/pages/TermsOfUse";
@@ -22,7 +23,8 @@ function Router() {
         <Route path="/hakkimizda" component={About} />
         <Route path="/it-hizmetleri" component={ServicesIT} />
         <Route path="/siber-guvenlik" component={ServicesSecurity} />
-        <Route path="/starlink" component={ServicesStarlink} />
+        <Route path="/uzay-haberlesmesi" component={ServicesSpace} />
+        <Route path="/kara-haberlesmesi" component={ServicesLand} />
         <Route path="/iletisim" component={Contact} />
         <Route path="/gizlilik-politikasi" component={PrivacyPolicy} />
         <Route path="/kullanim-sartlari" component={TermsOfUse} />
