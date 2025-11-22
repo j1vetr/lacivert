@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Server, Wifi, Cloud, Video, Settings, CheckCircle, ArrowRight, Anchor, Building2, Factory, Zap, Radio } from "lucide-react";
+import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Zap, Radio, Globe, Satellite, Cpu, Activity, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png";
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
+import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.png";
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero Section */}
+    <div className="bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30">
+      {/* Hero Section - KEPT AS IS */}
       <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video 
@@ -26,22 +26,22 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10 pt-20">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 fade-in duration-1000">
-            <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/20 text-sm font-medium mb-6 backdrop-blur-sm">
+            <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-medium mb-6 backdrop-blur-sm">
               Profesyonel Teknoloji Çözümleri
             </span>
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-              Teknolojiyi <span className="text-accent">Güvenle</span> Yönetin
+              Teknolojiyi <span className="text-cyan-400">Güvenle</span> Yönetin
             </h1>
             <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
               Lacivert Teknoloji; IT hizmetleri, siber güvenlik, Starlink uydu interneti ve bulut çözümleri ile işletmenizi geleceğe taşıyor.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="text-lg h-14 px-8 bg-accent hover:bg-accent/90 text-primary font-semibold">
+              <Button asChild size="lg" className="text-lg h-14 px-8 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(8,145,178,0.4)] transition-all hover:scale-105 border-0">
                 <Link href="/it-hizmetleri">
                   Hizmetlerimizi Keşfedin
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg h-14 px-8 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm">
+              <Button asChild size="lg" variant="outline" className="text-lg h-14 px-8 border-white/20 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm rounded-full">
                 <Link href="/iletisim">
                   Bizimle İletişime Geçin
                 </Link>
@@ -51,136 +51,204 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* Services Grid */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
+      {/* Premium Services Grid (Bento Style) */}
+      <section className="py-32 relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
-              Hizmetlerimiz
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Uçtan uca teknoloji çözümleriyle iş süreçlerinizi optimize ediyoruz.
-            </p>
-          </div>
+            <div className="text-center mb-20">
+                <h2 className="text-sm font-bold tracking-widest text-cyan-500 uppercase mb-4">360° Teknoloji Yönetimi</h2>
+                <h3 className="text-4xl md:text-5xl font-heading font-bold text-white">Dijital Dönüşümün Merkezi</h3>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <ServiceCard 
-              icon={<Settings className="w-12 h-12 text-accent" />}
-              title="IT Destek"
-              description="Sunucu, bilgisayar, yazılım ve donanım altyapınız için profesyonel bakım ve yönetim hizmetleri."
-              href="/it-hizmetleri"
-            />
-            <ServiceCard 
-              icon={<Shield className="w-12 h-12 text-accent" />}
-              title="Siber Güvenlik"
-              description="GTMaritime ortaklığı ile gemi ve ofisleriniz için IMO uyumlu, uçtan uca siber güvenlik."
-              href="/siber-guvenlik"
-            />
-            <ServiceCard 
-              icon={<Radio className="w-12 h-12 text-accent" />}
-              title="Uzay Haberleşmesi"
-              description="Starlink, Eutelsat OneWeb ve Iridium ile dünyanın her yerinde kesintisiz uydu iletişimi."
-              href="/uzay-haberlesmesi"
-            />
-             <ServiceCard 
-              icon={<Wifi className="w-12 h-12 text-accent" />}
-              title="Kara Haberleşmesi"
-              description="E-Sim, Peplink SD-WAN ve Teltonika çözümleri ile karada ve hareket halinde güvenli bağlantı."
-              href="/kara-haberlesmesi"
-            />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                
+                {/* Card 1: IT Support (Large) */}
+                <div className="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
+                    <div className="absolute right-0 top-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 mb-8 border border-blue-500/20">
+                            <Server className="w-7 h-7" />
+                        </div>
+                        <h4 className="text-3xl font-bold text-white mb-4">IT Destek & Altyapı</h4>
+                        <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
+                            Sunuculardan son kullanıcı bilgisayarlarına kadar tüm donanım ve yazılım envanterinizin yönetimi. 
+                            SLA garantili 7/24 destek hizmetleri.
+                        </p>
+                        <div className="flex flex-wrap gap-3 mb-8">
+                            <Badge text="Sunucu Yönetimi" />
+                            <Badge text="Bulut Yedekleme" />
+                            <Badge text="Helpdesk" />
+                            <Badge text="Donanım Tedarik" />
+                        </div>
+                        <Link href="/it-hizmetleri">
+                            <a className="inline-flex items-center text-blue-400 font-semibold hover:text-blue-300 transition-colors">
+                                İncele <ArrowRight className="ml-2 w-5 h-5" />
+                            </a>
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Card 2: Cyber Security (Tall) */}
+                <div className="md:row-span-2 bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col">
+                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.1),transparent_60%)]"></div>
+                     <div className="relative z-10 flex-grow">
+                        <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-8 border border-emerald-500/20">
+                            <Shield className="w-7 h-7" />
+                        </div>
+                        <h4 className="text-3xl font-bold text-white mb-4">Siber Güvenlik</h4>
+                        <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                            IMO uyumlu, denizcilik odaklı siber savunma hattı.
+                        </p>
+                        <ul className="space-y-4 mb-8">
+                            <FeatureItem text="EDR & NGAV Koruması" />
+                            <FeatureItem text="7/24 SOC İzleme" />
+                            <FeatureItem text="Penetrasyon Testleri" />
+                            <FeatureItem text="Olay Müdahalesi (IR)" />
+                        </ul>
+                     </div>
+                     <Link href="/siber-guvenlik">
+                        <a className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-center text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto">
+                           Güvenliği Sağla <Shield className="w-4 h-4" />
+                        </a>
+                    </Link>
+                </div>
+
+                {/* Card 3: Space Comm */}
+                <div className="bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
+                    <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-400 mb-6 border border-purple-500/20">
+                        <Satellite className="w-7 h-7" />
+                    </div>
+                    <h4 className="text-2xl font-bold text-white mb-3">Uzay Haberleşmesi</h4>
+                    <p className="text-slate-400 mb-6">
+                        Starlink, OneWeb ve Iridium sistemleri ile okyanus ortasında bile fiber hızında internet.
+                    </p>
+                    <Link href="/uzay-haberlesmesi">
+                        <a className="inline-flex items-center text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                            Keşfet <ArrowRight className="ml-2 w-4 h-4" />
+                        </a>
+                    </Link>
+                </div>
+
+                {/* Card 4: Land Comm */}
+                <div className="bg-slate-900 rounded-[2rem] p-10 border border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500">
+                    <div className="w-14 h-14 rounded-2xl bg-orange-500/20 flex items-center justify-center text-orange-400 mb-6 border border-orange-500/20">
+                        <Radio className="w-7 h-7" />
+                    </div>
+                    <h4 className="text-2xl font-bold text-white mb-3">Kara Haberleşmesi</h4>
+                    <p className="text-slate-400 mb-6">
+                        Peplink ve Teltonika ile kesintisiz 4G/5G mobil internet ve SD-WAN çözümleri.
+                    </p>
+                    <Link href="/kara-haberlesmesi">
+                        <a className="inline-flex items-center text-orange-400 font-semibold hover:text-orange-300 transition-colors">
+                            Keşfet <ArrowRight className="ml-2 w-4 h-4" />
+                        </a>
+                    </Link>
+                </div>
+
+            </div>
         </div>
       </section>
 
-      {/* Why Us / Advantages */}
-      <section className="py-24 bg-primary text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(6,182,212,0.15),transparent_50%)]"></div>
+      {/* Global Connectivity / Why Us */}
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+             <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+                style={{ backgroundImage: `url(${globalNetBg})` }}
+            ></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950"></div>
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-                Neden Lacivert Teknoloji?
-              </h2>
-              <div className="space-y-6">
-                <AdvantageItem title="7/24 Teknik Destek" description="Kesintisiz operasyonlarınız için her an yanınızdayız." />
-                <AdvantageItem title="Deneyimli Teknik Ekip" description="Alanında uzman sertifikalı mühendis kadrosu." />
-                <AdvantageItem title="Kurumsal SLA Yaklaşımı" description="Garanti edilen hizmet seviyeleri ve şeffaf raporlama." />
-                <AdvantageItem title="Uzak ve Yerinde Destek" description="Sorunlara en hızlı şekilde müdahale ediyoruz." />
-                <AdvantageItem title="Ölçeklenebilir Çözümler" description="Filo ve şube yapılarına uygun merkezi yönetim." />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 className="text-4xl md:text-6xl font-heading font-bold text-white mb-8 leading-tight">
+                        Sınırları Kaldıran <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Teknoloji Ağı</span>
+                    </h2>
+                    <p className="text-xl text-slate-400 mb-12 leading-relaxed">
+                        Lacivert Teknoloji, denizde, karada ve uzayda kesintisiz iletişim ve güvenlik sağlar. 
+                        Küresel çözüm ortaklarımız ve yerel uzmanlığımızla işletmenizi dünyaya bağlıyoruz.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-8">
+                        <div>
+                            <div className="text-4xl font-bold text-white mb-2">7/24</div>
+                            <div className="text-cyan-500 font-medium text-sm uppercase tracking-wider">Teknik Destek</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-white mb-2">%99.9</div>
+                            <div className="text-cyan-500 font-medium text-sm uppercase tracking-wider">Uptime Garantisi</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-white mb-2">IMO</div>
+                            <div className="text-cyan-500 font-medium text-sm uppercase tracking-wider">Tam Uyumluluk</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-white mb-2">Global</div>
+                            <div className="text-cyan-500 font-medium text-sm uppercase tracking-wider">Hizmet Ağı</div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Sectors Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                   <SectorCard icon={<Anchor className="w-8 h-8" />} title="Denizcilik" desc="Gemi ve liman işletmeleri için özel çözümler." />
+                   <SectorCard icon={<Building2 className="w-8 h-8" />} title="Kurumsal" desc="Plazalar ve ofisler için fiber altyapı." />
+                   <SectorCard icon={<Factory className="w-8 h-8" />} title="Endüstriyel" desc="Fabrika ve üretim tesisleri için IoT." />
+                   <SectorCard icon={<Zap className="w-8 h-8" />} title="Enerji" desc="Santraller ve uzak sahalar için bağlantı." />
+                </div>
             </div>
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center hover:bg-white/20 transition-colors duration-300">
-                  <Anchor className="w-12 h-12 text-accent mb-4" />
-                  <h3 className="font-bold text-lg">Denizcilik</h3>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center hover:bg-white/20 transition-colors duration-300 mt-8">
-                  <Building2 className="w-12 h-12 text-accent mb-4" />
-                  <h3 className="font-bold text-lg">Kurumsal</h3>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center hover:bg-white/20 transition-colors duration-300">
-                  <Factory className="w-12 h-12 text-accent mb-4" />
-                  <h3 className="font-bold text-lg">Endüstriyel</h3>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center hover:bg-white/20 transition-colors duration-300 mt-8">
-                  <Zap className="w-12 h-12 text-accent mb-4" />
-                  <h3 className="font-bold text-lg">Enerji</h3>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-            Teknolojinizi Geleceğe Hazırlayın
-          </h2>
-          <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-            İhtiyaçlarınıza özel çözümler için uzman ekibimizle görüşün.
-          </p>
-          <Button asChild size="lg" className="text-lg px-10 h-14 shadow-xl shadow-primary/20">
-            <Link href="/iletisim">
-              Hemen Teklif Alın
-            </Link>
-          </Button>
+      {/* CTA Section - Premium Glow */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-cyan-900/5"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+            <h2 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 tracking-tight">
+                Geleceğe <span className="text-cyan-400">Hazır Mısınız?</span>
+            </h2>
+            <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Teknolojik altyapınızı modern standartlara taşıyın. Ücretsiz keşif ve danışmanlık hizmetimizle tanışın.
+            </p>
+            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50 font-bold h-20 px-16 rounded-full text-xl shadow-[0_0_50px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
+                <Link href="/iletisim">
+                    Projeye Başla
+                </Link>
+            </Button>
         </div>
       </section>
+
     </div>
   );
 }
 
-function ServiceCard({ icon, title, description, href }: { icon: React.ReactNode, title: string, description: string, href: string }) {
-  return (
-    <Link href={href}>
-      <div className="group bg-white p-8 rounded-xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
-        <div className="mb-6 p-4 bg-slate-50 rounded-lg w-fit group-hover:bg-accent/10 transition-colors">
-          {icon}
-        </div>
-        <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">{description}</p>
-        <div className="flex items-center text-accent font-medium text-sm group-hover:translate-x-2 transition-transform">
-          Detaylı Bilgi <ArrowRight className="w-4 h-4 ml-2" />
-        </div>
-      </div>
-    </Link>
-  );
+function Badge({ text }: { text: string }) {
+    return (
+        <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300 text-xs font-medium">
+            {text}
+        </span>
+    )
 }
 
-function AdvantageItem({ title, description }: { title: string, description: string }) {
-  return (
-    <div className="flex items-start gap-4">
-      <div className="mt-1 bg-accent/20 p-1 rounded-full">
-        <CheckCircle className="w-5 h-5 text-accent" />
-      </div>
-      <div>
-        <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
-        <p className="text-slate-300">{description}</p>
-      </div>
-    </div>
-  );
+function FeatureItem({ text }: { text: string }) {
+    return (
+        <li className="flex items-center gap-3 text-slate-300">
+            <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+            <span>{text}</span>
+        </li>
+    )
+}
+
+function SectorCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+    return (
+        <div className="bg-slate-900/80 backdrop-blur-md border border-white/5 p-6 rounded-2xl hover:bg-slate-800 hover:border-cyan-500/30 transition-all duration-300 group">
+            <div className="text-cyan-500 mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+            <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+            <p className="text-slate-400 text-sm leading-snug">{desc}</p>
+        </div>
+    )
 }
