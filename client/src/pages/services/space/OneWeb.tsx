@@ -2,7 +2,7 @@ import { Globe, Satellite, Zap, Shield, Check, ArrowRight, Activity } from "luci
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/eutelsat_oneweb_satellite_constellation_in_space.png";
+import heroBg from "@assets/generated_images/eutelsat_oneweb_satellite_constellation_in_space.webp";
 
 export default function OneWebPage() {
   return (

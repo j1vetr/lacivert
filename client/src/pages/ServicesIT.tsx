@@ -2,8 +2,8 @@ import { Check, Server, Network, Cloud, Monitor, HardDrive, ShieldCheck, Cpu, Sh
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import imgServer from "@assets/generated_images/modern_clean_server_room_with_blue_lighting.png";
-import imgHardware from "@assets/generated_images/realistic_professional_server_rack_with_clean_cabling_and_blue_status_lights.png";
+import imgServer from "@assets/generated_images/modern_clean_server_room_with_blue_lighting.webp";
+import imgHardware from "@assets/generated_images/enterprise_it_hardware_and_server_equipment_with_blue_lighting.webp";
 
 export default function ServicesIT() {
   return (

@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Zap, Radio, Globe, Satellite, Cpu, Activity, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png";
+import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.webp";
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
-import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.png";
+import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 
 import { useEffect, useState } from "react";
 

@@ -2,7 +2,7 @@ import { Wifi, Zap, Globe, Shield, Check, ArrowRight, Ship, Download, Upload } f
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/starlink_maritime_flat_high_performance_dish_on_a_luxury_yacht_at_sunset.png";
+import heroBg from "@assets/generated_images/starlink_maritime_flat_high_performance_dish_on_a_luxury_yacht_at_sunset.webp";
 
 export default function StarlinkPage() {
   return (

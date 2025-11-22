@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
-import imgLand from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png"; // Placeholder
+import imgLand from "@assets/generated_images/futuristic_navy_blue_technology_network_background.webp"; // Placeholder
 
 export default function ServicesLand() {
   return (

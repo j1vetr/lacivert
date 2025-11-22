@@ -2,7 +2,7 @@ import { Shield, Lock, Eye, FileWarning, Server, Activity, CheckCircle, Globe, C
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.png";
+import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.webp";
 
 export default function ServicesSecurity() {
   return (
@@ -29,11 +29,6 @@ export default function ServicesSecurity() {
         <div className="container mx-auto px-4 relative z-10 pt-40 md:pt-32">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             
-            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-cyan-950/50 border border-cyan-500/30 mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-                <Shield className="w-5 h-5 text-cyan-400 animate-pulse" />
-                <span className="font-mono tracking-widest uppercase text-cyan-100 text-sm font-semibold">IMO Compliant Cyber Defense</span>
-            </div>
-
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tighter">
               SİBER <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">GÜVENLİK</span>

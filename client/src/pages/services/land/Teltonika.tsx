@@ -2,7 +2,7 @@ import { Radio, Server, Shield, Activity, Check, ArrowRight } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/teltonika_industrial_5g_gateway_device.png";
+import heroBg from "@assets/generated_images/teltonika_industrial_5g_gateway_device.webp";
 
 export default function TeltonikaPage() {
   return (

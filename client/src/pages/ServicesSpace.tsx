@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
-import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_modern_commercial_ship.png";
+import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_modern_commercial_ship.webp";
 
 export default function ServicesSpace() {
   return (

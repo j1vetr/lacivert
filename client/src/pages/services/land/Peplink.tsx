@@ -2,7 +2,7 @@ import { Network, Zap, Lock, Activity, Check, ArrowRight, Server } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/peplink_5g_maritime_router_device.png";
+import heroBg from "@assets/generated_images/peplink_5g_maritime_router_device.webp";
 
 export default function PeplinkPage() {
   return (

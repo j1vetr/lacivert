@@ -2,7 +2,7 @@ import { Phone, Shield, Globe, Anchor, Check, AlertTriangle } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/iridium_certus_maritime_satellite_terminal_on_a_ship.png";
+import heroBg from "@assets/generated_images/iridium_certus_maritime_satellite_terminal_on_a_ship.webp";
 
 export default function IridiumPage() {
   return (

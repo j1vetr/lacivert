@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Target, Lightbulb, Globe, Users, Building2, Ship, Factory, Zap } from "lucide-react";
 import { SEO } from "@/components/SEO";
-import imgCloud from "@assets/generated_images/abstract_cloud_computing_network_visualization.png";
+import imgCloud from "@assets/generated_images/abstract_cloud_computing_network_visualization.webp";
 
 export default function About() {
   return (
