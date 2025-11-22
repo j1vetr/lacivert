@@ -18,10 +18,6 @@ export default function ServicesIT() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl animate-in slide-in-from-bottom-8 duration-700 fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 font-medium text-sm mb-8 backdrop-blur-md">
-                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                KURUMSAL TEKNOLOJİ ÇÖZÜM ORTAĞINIZ
-            </div>
             <h1 className="text-6xl md:text-8xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
               Profesyonel <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">IT DESTEK</span> Hizmetleri
