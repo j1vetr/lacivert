@@ -44,7 +44,7 @@ export default function ServicesSecurity() {
               ve IMO regülasyonlarına tam uyumlu yeni nesil siber savunma hattı.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex flex-col sm:flex-row gap-6 mb-16">
                 <Button asChild size="lg" className="bg-cyan-600 text-white hover:bg-cyan-500 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0">
                     <Link href="/iletisim">
                         Güvenlik Analizi Başlat
@@ -85,16 +85,16 @@ export default function ServicesSecurity() {
       </div>
 
       {/* Main Solutions Area */}
-      <section id="solutions" className="py-32 relative">
+      <section id="solutions" className="py-32 relative bg-slate-50 dark:bg-transparent transition-colors">
         <div className="container mx-auto px-4">
             
             {/* Section Header */}
             <div className="mb-20 max-w-3xl">
-                <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
                     Çok Katmanlı <br/>
-                    <span className="text-cyan-500">Savunma Mimarisi</span>
+                    <span className="text-cyan-600 dark:text-cyan-500">Savunma Mimarisi</span>
                 </h2>
-                <p className="text-xl text-slate-400 leading-relaxed">
+                <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
                     Lacivert Teknoloji, sadece bir antivirüs değil, ağınızın her noktasına nüfuz eden 
                     bütünleşik bir güvenlik ekosistemi sunar. Gelişmiş altyapımız ile özellikle 
                     uydu iletişimi kullanan gemiler için optimize edilmiştir.
@@ -105,17 +105,17 @@ export default function ServicesSecurity() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
                 {/* Card 1: High Bandwidth */}
-                <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-10 border border-white/10 relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-500">
-                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <Cpu className="w-64 h-64" />
+                <div className="lg:col-span-2 bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 rounded-[2rem] p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-500 shadow-lg dark:shadow-none">
+                    <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-10 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity">
+                        <Cpu className="w-64 h-64 text-slate-900 dark:text-white" />
                     </div>
                     
                     <div className="relative z-10">
-                        <div className="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-8 text-cyan-400 border border-cyan-500/20">
+                        <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-8 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-500/20">
                             <Activity className="w-8 h-8" />
                         </div>
-                        <h3 className="text-3xl font-bold text-white mb-4">Yüksek Bant Genişliği (EDR)</h3>
-                        <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
+                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Yüksek Bant Genişliği (EDR)</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
                             Gelişmiş yapay zeka teknolojisi ile güçlendirilmiş, imza tabanlı olmayan yeni nesil koruma. 
                             VSAT ve Starlink kullanan gemiler ve kurumsal ofisler için davranışsal analiz yapan yapay zeka motoru.
                         </p>
@@ -130,12 +130,12 @@ export default function ServicesSecurity() {
                 </div>
 
                 {/* Card 2: Low Bandwidth */}
-                <div className="bg-slate-900/50 rounded-[2rem] p-10 border border-white/10 relative overflow-hidden hover:bg-slate-800 transition-colors">
-                    <div className="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-8 text-indigo-400 border border-indigo-500/20">
+                <div className="bg-white dark:bg-slate-900/50 rounded-[2rem] p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-lg dark:shadow-none">
+                    <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-8 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20">
                         <Signal className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Düşük Bant Genişliği</h3>
-                    <p className="text-slate-400 mb-8 leading-relaxed">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Düşük Bant Genişliği</h3>
+                    <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                         L-Band (Iridium/Inmarsat) kullanan veya kotalı sistemler için kaynak optimizasyonlu, 
                         ultra düşük veri tüketen özel paketler.
                     </p>
@@ -147,12 +147,12 @@ export default function ServicesSecurity() {
                 </div>
 
                 {/* Card 3: SOC */}
-                <div className="bg-slate-900/50 rounded-[2rem] p-10 border border-white/10 relative overflow-hidden hover:bg-slate-800 transition-colors">
-                     <div className="w-16 h-16 bg-rose-500/20 rounded-2xl flex items-center justify-center mb-8 text-rose-400 border border-rose-500/20">
+                <div className="bg-white dark:bg-slate-900/50 rounded-[2rem] p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-lg dark:shadow-none">
+                     <div className="w-16 h-16 bg-rose-100 dark:bg-rose-500/20 rounded-2xl flex items-center justify-center mb-8 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-500/20">
                         <Eye className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">7/24 SOC Hizmeti</h3>
-                    <p className="text-slate-400 mb-8 leading-relaxed">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">7/24 SOC Hizmeti</h3>
+                    <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                         Sistemlerinizi 7 gün 24 saat izleyen uzman güvenlik analistleri. 
                         Alarm oluştuğunda anında müdahale.
                     </p>
@@ -164,16 +164,16 @@ export default function ServicesSecurity() {
                 </div>
 
                 {/* Card 4: Compliance */}
-                <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-10 border border-white/10 relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-500">
-                     <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <FileWarning className="w-64 h-64" />
+                <div className="lg:col-span-2 bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 rounded-[2rem] p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-500 shadow-lg dark:shadow-none">
+                     <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-10 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity">
+                        <FileWarning className="w-64 h-64 text-slate-900 dark:text-white" />
                     </div>
                      <div className="relative z-10">
-                        <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-8 text-emerald-400 border border-emerald-500/20">
+                        <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-8 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
                             <Shield className="w-8 h-8" />
                         </div>
-                        <h3 className="text-3xl font-bold text-white mb-4">IMO & Regülasyon Uyumu</h3>
-                        <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
+                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">IMO & Regülasyon Uyumu</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
                             Uluslararası Denizcilik Örgütü (IMO) 2021 siber güvenlik kararlarına tam uyumluluk sağlayın. 
                             Denetimler için gerekli tüm raporlama ve loglama altyapısını kuruyoruz.
                         </p>
@@ -212,10 +212,10 @@ export default function ServicesSecurity() {
 function PremiumListItem({ text, small = false }: { text: string, small?: boolean }) {
     return (
         <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center shrink-0">
-                <CheckCircle className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="w-6 h-6 rounded-full bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center shrink-0">
+                <CheckCircle className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
             </div>
-            <span className={`${small ? 'text-base' : 'text-lg'} text-slate-300 font-medium`}>{text}</span>
+            <span className={`${small ? 'text-base' : 'text-lg'} text-slate-600 dark:text-slate-300 font-medium`}>{text}</span>
         </div>
     )
 }
