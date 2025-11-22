@@ -13,6 +13,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import logoWhite from "@assets/lacivert light logo_1763796346759.png";
 import logoDark from "@assets/lacivert dark logo_1763796405911.png";
 
@@ -21,6 +27,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +36,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans text-foreground">
@@ -179,31 +188,76 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Mobile Nav */}
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-white">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-950 border-slate-800 text-white">
-                <div className="flex flex-col gap-8 mt-10">
-                    <Link href="/" className="text-xl font-medium hover:text-blue-400">Ana Sayfa</Link>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-950 border-slate-800 text-white overflow-y-auto">
+                <div className="flex flex-col gap-6 mt-10">
+                    <Link href="/" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">Ana Sayfa</Link>
                     
                     <div className="space-y-4">
                         <div className="text-xl font-medium text-slate-400">Hizmetlerimiz</div>
-                        <div className="pl-4 flex flex-col gap-4 border-l border-slate-800">
-                            <Link href="/it-hizmetleri" className="text-lg hover:text-blue-400">IT Destek</Link>
-                            <Link href="/uzay-haberlesmesi" className="text-lg hover:text-blue-400">Uzay Haberleşmesi</Link>
-                            <Link href="/kara-haberlesmesi" className="text-lg hover:text-blue-400">Kara Haberleşmesi</Link>
-                            <Link href="/siber-guvenlik" className="text-lg hover:text-blue-400">Siber Güvenlik</Link>
-                        </div>
+                        
+                        <Accordion type="single" collapsible className="w-full border-none">
+                            <AccordionItem value="it" className="border-none">
+                                <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
+                                    IT Destek & Bakım
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
+                                        <Link href="/it-hizmetleri" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="cyber" className="border-none">
+                                <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
+                                    Siber Güvenlik
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
+                                        <Link href="/siber-guvenlik" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="space" className="border-none">
+                                <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
+                                    Uzay Haberleşmesi
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
+                                        <Link href="/uzay-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                        <Link href="/uzay-haberlesmesi/starlink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Starlink Maritime</Link>
+                                        <Link href="/uzay-haberlesmesi/oneweb" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Eutelsat OneWeb</Link>
+                                        <Link href="/uzay-haberlesmesi/iridium" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Iridium Certus</Link>
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="land" className="border-none">
+                                <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
+                                    Kara Haberleşmesi
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
+                                        <Link href="/kara-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                        <Link href="/kara-haberlesmesi/peplink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Peplink SD-WAN</Link>
+                                        <Link href="/kara-haberlesmesi/teltonika" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Teltonika Networks</Link>
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     </div>
 
-                    <Link href="/hakkimizda" className="text-xl font-medium hover:text-blue-400">Hakkımızda</Link>
-                    <Link href="/iletisim" className="text-xl font-medium hover:text-blue-400">İletişim</Link>
+                    <Link href="/hakkimizda" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">Hakkımızda</Link>
+                    <Link href="/iletisim" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">İletişim</Link>
                     
                   <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white">
-                    <Link href="/iletisim">Teklif Al</Link>
+                    <Link href="/iletisim" onClick={closeMobileMenu}>Teklif Al</Link>
                   </Button>
                 </div>
               </SheetContent>
@@ -216,6 +270,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-grow pt-0">
         {children}
       </main>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/905325033417"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 md:p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all hover:scale-110 flex items-center justify-center animate-in fade-in zoom-in duration-500"
+        title="WhatsApp ile İletişime Geçin"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="w-6 h-6 md:w-8 md:h-8">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+      </a>
 
       {/* Footer */}
       <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-white/10">

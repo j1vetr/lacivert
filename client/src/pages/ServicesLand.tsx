@@ -51,11 +51,11 @@ export default function ServicesLand() {
         <div className="container mx-auto px-4 relative z-10">
             <Tabs defaultValue="peplink" className="w-full">
                 <div className="flex justify-center mb-16">
-                    <TabsList className="inline-flex h-auto p-2 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 shadow-inner">
-                        <TabsTrigger value="peplink" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500 dark:text-slate-400">
+                    <TabsList className="flex flex-col md:inline-flex h-auto p-2 bg-slate-100 dark:bg-slate-800 rounded-3xl md:rounded-full border border-slate-200 dark:border-slate-700 shadow-inner gap-2 md:gap-0 w-full md:w-auto">
+                        <TabsTrigger value="peplink" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400 w-full md:w-auto">
                             <Router className="w-5 h-5" /> Peplink SD-WAN
                         </TabsTrigger>
-                        <TabsTrigger value="teltonika" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center gap-3 text-slate-500 dark:text-slate-400">
+                        <TabsTrigger value="teltonika" className="rounded-full px-8 py-4 text-lg font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-lg transition-all flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400 w-full md:w-auto">
                             <Box className="w-5 h-5" /> Teltonika Networks
                         </TabsTrigger>
                     </TabsList>

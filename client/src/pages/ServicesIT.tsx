@@ -26,7 +26,7 @@ export default function ServicesIT() {
               İşletmenizin dijital altyapısını uçtan uca yönetiyoruz. Sunucu bakımından donanım tedariğine, 
               ağ güvenliğinden son kullanıcı desteğine kadar tek noktadan profesyonel çözüm.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-0">
                 <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white h-14 px-10 text-lg font-bold rounded-full shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all hover:scale-105">
                     <Link href="/iletisim">
                     Hemen Teklif Alın

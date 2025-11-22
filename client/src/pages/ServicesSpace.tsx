@@ -58,10 +58,10 @@ export default function ServicesSpace() {
         <div className="container mx-auto px-4">
             <Tabs defaultValue="starlink" className="w-full">
                 <div className="flex justify-center mb-12">
-                    <TabsList className="grid w-full max-w-3xl grid-cols-3 h-16 p-1 bg-slate-100 dark:bg-slate-800 rounded-full">
-                        <TabsTrigger value="starlink" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Starlink</TabsTrigger>
-                        <TabsTrigger value="eutelsat" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Eutelsat OneWeb</TabsTrigger>
-                        <TabsTrigger value="iridium" className="rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Iridium</TabsTrigger>
+                    <TabsList className="flex flex-col md:grid md:w-full md:max-w-3xl md:grid-cols-3 h-auto md:h-16 p-1 bg-slate-100 dark:bg-slate-800 rounded-3xl md:rounded-full gap-2 md:gap-0">
+                        <TabsTrigger value="starlink" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Starlink</TabsTrigger>
+                        <TabsTrigger value="eutelsat" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Eutelsat OneWeb</TabsTrigger>
+                        <TabsTrigger value="iridium" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Iridium</TabsTrigger>
                     </TabsList>
                 </div>
 
