@@ -25,25 +25,33 @@ export default function Home() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10 pt-20">
-          <div className="max-w-3xl animate-in slide-in-from-bottom-10 fade-in duration-1000">
-            <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-medium mb-6 backdrop-blur-sm">
+          <div className="max-w-4xl animate-in slide-in-from-bottom-10 fade-in duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/90 text-sm font-medium mb-8 backdrop-blur-md">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
               Profesyonel Teknoloji Çözümleri
-            </span>
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-              Teknolojiyi <span className="text-cyan-400">Güvenle</span> Yönetin
+            </div>
+            
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight">
+              <span className="block text-slate-400 text-4xl sm:text-5xl md:text-6xl font-light tracking-normal mb-2">İşletmeniz için</span>
+              TEKNOLOJİYİ <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 drop-shadow-2xl">
+                GÜVENLE YÖNETİN
+              </span>
             </h1>
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+
+            <p className="text-lg md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl font-light border-l-4 border-cyan-500 pl-6">
               Lacivert Teknoloji; IT hizmetleri, siber güvenlik, Starlink uydu interneti ve bulut çözümleri ile işletmenizi geleceğe taşıyor.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="text-lg h-14 px-8 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(8,145,178,0.4)] transition-all hover:scale-105 border-0">
+            
+            <div className="flex flex-col sm:flex-row gap-5">
+              <Button asChild size="lg" className="text-lg h-16 px-10 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all hover:scale-105 border-0 ring-1 ring-white/20">
                 <Link href="/it-hizmetleri">
                   Hizmetlerimizi Keşfedin
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg h-14 px-8 border-white/20 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm rounded-full">
+              <Button asChild size="lg" variant="outline" className="text-lg h-16 px-10 border-white/20 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm rounded-full transition-all hover:scale-105">
                 <Link href="/iletisim">
-                  Bizimle İletişime Geçin
+                  İletişime Geçin
                 </Link>
               </Button>
             </div>
