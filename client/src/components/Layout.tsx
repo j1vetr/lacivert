@@ -68,71 +68,56 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">Hizmetlerimiz</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="flex flex-col md:flex-row gap-4 p-6 md:w-[850px] bg-slate-950 border border-slate-800 shadow-2xl">
+                            <div className="flex flex-row p-6 w-[900px] bg-slate-950 border border-slate-800 shadow-2xl gap-8">
                                 
-                                {/* Col 1: IT Support (Card) */}
-                                <div className="flex-1">
-                                    <Link href="/it-hizmetleri" className="flex h-full flex-col justify-between rounded-xl bg-gradient-to-br from-blue-950/50 to-slate-900 p-5 border border-blue-900/30 relative overflow-hidden group hover:border-blue-500/50 transition-all">
-                                        <div>
-                                            <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3 border border-blue-500/20 text-blue-400">
-                                                <Server className="h-5 w-5" />
-                                            </div>
-                                            <div className="mb-2 text-lg font-bold text-white">
-                                                IT Destek
-                                            </div>
-                                            <p className="text-xs text-slate-400 leading-relaxed">
-                                                Kurumsal sistem yönetimi, donanım ve 7/24 teknik destek.
-                                            </p>
-                                        </div>
-                                        <div className="mt-4 flex items-center text-xs font-bold text-blue-400 group-hover:translate-x-1 transition-transform">
-                                            İncele <ChevronDown className="ml-1 h-3 w-3 -rotate-90" />
-                                        </div>
+                                {/* Col 1: Main Services */}
+                                <div className="flex flex-col gap-2 w-1/3">
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Ana Hizmetler</div>
+                                    <Link href="/it-hizmetleri" className="group block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-900 hover:text-accent-foreground focus:bg-slate-900 focus:text-accent-foreground">
+                                        <div className="text-base font-bold text-white group-hover:text-blue-400 mb-1">IT Destek & Bakım</div>
+                                        <p className="line-clamp-2 text-sm leading-snug text-slate-400 group-hover:text-slate-300">
+                                            Kurumsal sistem yönetimi ve 7/24 teknik destek.
+                                        </p>
+                                    </Link>
+                                    <Link href="/siber-guvenlik" className="group block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-900 hover:text-accent-foreground focus:bg-slate-900 focus:text-accent-foreground">
+                                        <div className="text-base font-bold text-white group-hover:text-emerald-400 mb-1">Siber Güvenlik</div>
+                                        <p className="line-clamp-2 text-sm leading-snug text-slate-400 group-hover:text-slate-300">
+                                            IMO uyumlu ağ güvenliği ve SOC hizmetleri.
+                                        </p>
                                     </Link>
                                 </div>
 
-                                {/* Col 2: Cyber Security (Card) */}
-                                <div className="flex-1">
-                                    <Link href="/siber-guvenlik" className="flex h-full flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-950/50 to-slate-900 p-5 border border-emerald-900/30 relative overflow-hidden group hover:border-emerald-500/50 transition-all">
-                                        <div>
-                                            <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-3 border border-emerald-500/20 text-emerald-400">
-                                                <Shield className="h-5 w-5" />
-                                            </div>
-                                            <div className="mb-2 text-lg font-bold text-white">
-                                                Siber Güvenlik
-                                            </div>
-                                            <p className="text-xs text-slate-400 leading-relaxed">
-                                                IMO uyumlu ağ güvenliği, EDR ve SOC hizmetleri.
-                                            </p>
-                                        </div>
-                                        <div className="mt-4 flex items-center text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
-                                            İncele <ChevronDown className="ml-1 h-3 w-3 -rotate-90" />
-                                        </div>
+                                {/* Col 2: Space Communication */}
+                                <div className="flex flex-col gap-2 w-1/3">
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Uzay Haberleşmesi</div>
+                                    <Link href="/uzay-haberlesmesi" className="group block select-none rounded-md px-4 py-3 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-bold text-white group-hover:text-cyan-400">Genel Bakış</div>
+                                    </Link>
+                                    <div className="h-px bg-slate-800 mx-4 my-1"></div>
+                                    <Link href="/uzay-haberlesmesi/starlink" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Starlink Maritime</div>
+                                    </Link>
+                                    <Link href="/uzay-haberlesmesi/oneweb" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Eutelsat OneWeb</div>
+                                    </Link>
+                                    <Link href="/uzay-haberlesmesi/iridium" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Iridium Certus</div>
                                     </Link>
                                 </div>
 
-                                {/* Col 3: Land Comm (List) */}
-                                <div className="flex-1 flex flex-col gap-2">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-1">Kara Haberleşmesi</div>
-                                    <ListItem href="/kara-haberlesmesi/peplink" title="Peplink SD-WAN" icon={<Radio className="w-4 h-4 text-indigo-400" />}>
-                                        SpeedFusion bonding.
-                                    </ListItem>
-                                    <ListItem href="/kara-haberlesmesi/teltonika" title="Teltonika" icon={<Wifi className="w-4 h-4 text-blue-400" />}>
-                                        Endüstriyel 5G router.
-                                    </ListItem>
-                                </div>
-
-                                {/* Col 4: Space Comm (List) */}
-                                <div className="flex-1 flex flex-col gap-2">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-1">Uzay Haberleşmesi</div>
-                                    <ListItem href="/uzay-haberlesmesi/starlink" title="Starlink" icon={<Satellite className="w-4 h-4 text-cyan-400" />}>
-                                        LEO uydu interneti.
-                                    </ListItem>
-                                    <ListItem href="/uzay-haberlesmesi/oneweb" title="OneWeb" icon={<Globe className="w-4 h-4 text-blue-400" />}>
-                                        Kurumsal LEO bağlantı.
-                                    </ListItem>
-                                     <ListItem href="/uzay-haberlesmesi/iridium" title="Iridium" icon={<Phone className="w-4 h-4 text-gray-400" />}>
-                                        L-Band yedeklilik.
-                                    </ListItem>
+                                {/* Col 3: Land Communication */}
+                                <div className="flex flex-col gap-2 w-1/3">
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Kara Haberleşmesi</div>
+                                    <Link href="/kara-haberlesmesi" className="group block select-none rounded-md px-4 py-3 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-bold text-white group-hover:text-indigo-400">Genel Bakış</div>
+                                    </Link>
+                                    <div className="h-px bg-slate-800 mx-4 my-1"></div>
+                                    <Link href="/kara-haberlesmesi/peplink" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Peplink SD-WAN</div>
+                                    </Link>
+                                    <Link href="/kara-haberlesmesi/teltonika" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Teltonika Networks</div>
+                                    </Link>
                                 </div>
 
                             </div>
