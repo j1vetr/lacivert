@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         }`}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group relative">
             {/* 
               If scrolled (white bg), we ideally need the dark logo. 
               If not scrolled (dark bg), we use the white logo.
@@ -50,9 +50,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Let's use the Text/Icon when scrolled (until we get the dark logo).
             */}
             {!scrolled ? (
-               <img src={logoWhite} alt="Lacivert Teknoloji" className="h-12 object-contain" />
+               <div className="relative p-1">
+                  <div className="absolute inset-0 bg-accent/20 blur-md rounded-full animate-pulse"></div>
+                  <img src={logoWhite} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
+               </div>
             ) : (
-               <img src={logoDark} alt="Lacivert Teknoloji" className="h-12 object-contain" />
+               <div className="relative p-1">
+                 <div className="absolute inset-0 bg-primary/10 blur-md rounded-full animate-pulse"></div>
+                 <img src={logoDark} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
+               </div>
             )}
           </Link>
 
@@ -62,7 +68,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link 
                 key={link.href} 
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-accent ${
+                className={`text-base font-medium transition-colors duration-200 hover:text-accent ${
                   location === link.href
                     ? "text-accent"
                     : scrolled
