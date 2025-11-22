@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logoWhite from "@assets/lacivert light logo_1763796346759.png";
+import logoDark from "@assets/lacivert dark logo_1763796405911.png";
 
 const navLinks = [
   { name: "Ana Sayfa", href: "/" },
@@ -51,19 +52,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {!scrolled ? (
                <img src={logoWhite} alt="Lacivert Teknoloji" className="h-12 object-contain" />
             ) : (
-              <div className="flex items-center gap-2">
-                <div className="bg-primary p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
-                  <Shield className="w-6 h-6 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-heading font-bold tracking-tight text-foreground">
-                    LACİVERT
-                  </span>
-                  <span className="text-xs tracking-widest font-medium text-muted-foreground">
-                    TEKNOLOJİ
-                  </span>
-                </div>
-              </div>
+               <img src={logoDark} alt="Lacivert Teknoloji" className="h-12 object-contain" />
             )}
           </Link>
 
