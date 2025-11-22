@@ -68,43 +68,70 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">Hizmetlerimiz</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="grid gap-3 p-6 md:w-[500px] lg:w-[600px] lg:grid-cols-[1fr_1fr] bg-slate-950 border border-slate-800 shadow-2xl">
-                                <div className="row-span-3">
-                                    <NavigationMenuLink asChild>
-                                        <Link href="/it-hizmetleri" className="flex h-full w-full select-none flex-col justify-between rounded-xl bg-gradient-to-br from-blue-950 via-slate-900 to-slate-900 p-6 no-underline outline-none focus:shadow-md border border-blue-900/30 relative overflow-hidden group cursor-pointer">
-                                            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
-                                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-all duration-500 pointer-events-none"></div>
-                                            
-                                            <div className="relative z-10 pointer-events-none">
-                                                <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 border border-blue-500/20 text-blue-400">
-                                                    <Server className="h-6 w-6" />
-                                                </div>
-                                                <div className="mb-2 text-xl font-bold text-white">
-                                                    IT Destek & Bakım
-                                                </div>
-                                                <p className="text-sm text-slate-400 leading-relaxed mb-4">
-                                                    Kurumsal sistem yönetimi, donanım tedariği ve 7/24 teknik destek çözümleri ile iş sürekliliğinizi garanti altına alın.
-                                                </p>
-                                            </div>
-                                            
-                                            <div className="relative z-10 inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors mt-auto group-hover:translate-x-1 duration-300">
-                                                Detayları İncele <ChevronDown className="ml-1 h-4 w-4 -rotate-90" />
-                                            </div>
-                                        </Link>
-                                    </NavigationMenuLink>
+                            <div className="flex flex-row gap-3 p-6 md:w-[600px] lg:w-[800px] bg-slate-950 border border-slate-800 shadow-2xl">
+                                
+                                {/* Column 1: IT Support */}
+                                <div className="flex-1 min-w-[200px]">
+                                    <Link href="/it-hizmetleri" className="block h-full select-none rounded-xl bg-gradient-to-br from-blue-950/50 to-slate-900 p-5 no-underline outline-none focus:shadow-md border border-blue-900/30 relative overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+                                        <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3 border border-blue-500/20 text-blue-400">
+                                            <Server className="h-5 w-5" />
+                                        </div>
+                                        <div className="mb-2 text-lg font-bold text-white">
+                                            IT Destek
+                                        </div>
+                                        <p className="text-xs text-slate-400 leading-relaxed">
+                                            Kurumsal sistem yönetimi ve 7/24 teknik destek.
+                                        </p>
+                                    </Link>
                                 </div>
 
-                                <div className="flex flex-col gap-2">
-                                    <ListItem href="/uzay-haberlesmesi/starlink" title="Starlink Maritime" icon={<Satellite className="w-5 h-5 text-cyan-400" />}>
-                                        Yüksek hızlı ve düşük gecikmeli LEO uydu interneti.
-                                    </ListItem>
-                                    <ListItem href="/kara-haberlesmesi/peplink" title="Peplink SD-WAN" icon={<Radio className="w-5 h-5 text-indigo-400" />}>
-                                        Kesintisiz 4G/5G ve uydu birleştirme teknolojileri.
-                                    </ListItem>
-                                     <ListItem href="/siber-guvenlik" title="Siber Güvenlik" icon={<Shield className="w-5 h-5 text-emerald-400" />}>
-                                        IMO uyumlu ağ güvenliği, EDR ve SOC hizmetleri.
-                                    </ListItem>
+                                {/* Column 2: Cyber Security */}
+                                <div className="flex-1 min-w-[200px]">
+                                    <Link href="/siber-guvenlik" className="block h-full select-none rounded-xl bg-gradient-to-br from-emerald-950/50 to-slate-900 p-5 no-underline outline-none focus:shadow-md border border-emerald-900/30 relative overflow-hidden group cursor-pointer hover:border-emerald-500/50 transition-all">
+                                        <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-3 border border-emerald-500/20 text-emerald-400">
+                                            <Shield className="h-5 w-5" />
+                                        </div>
+                                        <div className="mb-2 text-lg font-bold text-white">
+                                            Siber Güvenlik
+                                        </div>
+                                        <p className="text-xs text-slate-400 leading-relaxed">
+                                            IMO uyumlu ağ güvenliği ve SOC hizmetleri.
+                                        </p>
+                                    </Link>
                                 </div>
+
+                                {/* Column 3: Land & Space Communication */}
+                                <div className="flex-[1.5] flex flex-col gap-4">
+                                    {/* Land Comm Group */}
+                                    <div>
+                                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 px-2">Kara Haberleşmesi</div>
+                                        <div className="flex flex-col gap-1">
+                                            <ListItem href="/kara-haberlesmesi/peplink" title="Peplink SD-WAN" icon={<Radio className="w-4 h-4 text-indigo-400" />}>
+                                                SpeedFusion bonding teknolojisi.
+                                            </ListItem>
+                                            <ListItem href="/kara-haberlesmesi/teltonika" title="Teltonika Networks" icon={<Wifi className="w-4 h-4 text-blue-400" />}>
+                                                Endüstriyel 5G router çözümleri.
+                                            </ListItem>
+                                        </div>
+                                    </div>
+
+                                    {/* Space Comm Group */}
+                                    <div>
+                                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 px-2">Uzay Haberleşmesi</div>
+                                        <div className="flex flex-col gap-1">
+                                            <ListItem href="/uzay-haberlesmesi/starlink" title="Starlink Maritime" icon={<Satellite className="w-4 h-4 text-cyan-400" />}>
+                                                LEO uydu interneti.
+                                            </ListItem>
+                                            <ListItem href="/uzay-haberlesmesi/oneweb" title="Eutelsat OneWeb" icon={<Globe className="w-4 h-4 text-blue-400" />}>
+                                                Kurumsal LEO bağlantı.
+                                            </ListItem>
+                                             <ListItem href="/uzay-haberlesmesi/iridium" title="Iridium Certus" icon={<Phone className="w-4 h-4 text-gray-400" />}>
+                                                L-Band yedeklilik ve GMDSS.
+                                            </ListItem>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -113,6 +140,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         <NavigationMenuLink asChild>
                             <Link href="/hakkimizda" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
                                 Hakkımızda
+                            </Link>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    
+                    <NavigationMenuItem>
+                        <NavigationMenuLink asChild>
+                            <Link href="/inovasyon" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
+                                İnovasyon
                             </Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>

@@ -16,6 +16,8 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfUse from "@/pages/TermsOfUse";
 import ScrollToTop from "@/components/ScrollToTop";
 
+import InnovationPage from "@/pages/Innovation";
+
 // Sub-service pages
 import StarlinkPage from "@/pages/services/space/Starlink";
 import OneWebPage from "@/pages/services/space/OneWeb";
@@ -30,6 +32,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/hakkimizda" component={About} />
+        <Route path="/inovasyon" component={InnovationPage} />
         <Route path="/it-hizmetleri" component={ServicesIT} />
         <Route path="/siber-guvenlik" component={ServicesSecurity} />
         <Route path="/uzay-haberlesmesi" component={ServicesSpace} />
