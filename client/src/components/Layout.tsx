@@ -50,13 +50,33 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Let's use the Text/Icon when scrolled (until we get the dark logo).
             */}
             {!scrolled ? (
-               <div className="relative p-1">
-                  <div className="absolute inset-0 bg-accent/20 blur-md rounded-full animate-pulse"></div>
+               <div className="relative px-4 py-2">
+                  {/* Animated Border Container */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                    <rect 
+                      x="0" y="0" width="100%" height="100%" 
+                      rx="8" ry="8" 
+                      fill="none" 
+                      stroke="hsl(189, 94%, 43%)" /* Accent Cyan */
+                      strokeWidth="2" 
+                      className="animate-logo-border opacity-80 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                    />
+                  </svg>
                   <img src={logoWhite} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
                </div>
             ) : (
-               <div className="relative p-1">
-                 <div className="absolute inset-0 bg-primary/10 blur-md rounded-full animate-pulse"></div>
+               <div className="relative px-4 py-2">
+                 {/* Animated Border Container Dark */}
+                 <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                    <rect 
+                      x="0" y="0" width="100%" height="100%" 
+                      rx="8" ry="8" 
+                      fill="none" 
+                      stroke="hsl(222, 47%, 11%)" /* Primary Navy */
+                      strokeWidth="2" 
+                      className="animate-logo-border opacity-80"
+                    />
+                  </svg>
                  <img src={logoDark} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
                </div>
             )}

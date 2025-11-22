@@ -37,6 +37,21 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
+@keyframes border-travel {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-logo-border {
+  stroke-dasharray: 100 900; /* Line length 100, Gap 900 (enough to cover perimeter) */
+  stroke-linecap: round;
+  animation: border-travel 4s linear infinite;
+}
+
 :root {
   /* Lacivert Tech Palette - Navy Blue & Tech Cyan */
   /* Primary Navy: #0F172A (Slate 900-ish) -> HSL 222 47% 11% */
