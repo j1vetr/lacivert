@@ -2,11 +2,16 @@ import { Wifi, Router, Globe, Share2, Shield, CheckCircle, Zap, ArrowRight, Exte
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SEO } from "@/components/SEO";
 import imgLand from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png"; // Placeholder
 
 export default function ServicesLand() {
   return (
     <div className="bg-background font-sans text-foreground">
+      <SEO 
+        title="Kara Haberleşmesi" 
+        description="Peplink ve Teltonika ile 4G/5G mobil internet, SD-WAN ve yedekli bağlantı çözümleri." 
+      />
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">

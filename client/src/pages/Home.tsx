@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Zap, Radio, Globe, Satellite, Cpu, Activity, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_network_background.png";
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.png";
@@ -66,6 +67,10 @@ function TypewriterText({ text, delay = 500 }: { text: string, delay?: number })
 export default function Home() {
   return (
     <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
+      <SEO 
+        title="Ana Sayfa" 
+        description="Lacivert Teknoloji; IT hizmetleri, siber güvenlik, Starlink uydu interneti ve bulut çözümleri sunan kurumsal teknoloji partneriniz." 
+      />
       {/* Hero Section - KEPT AS IS */}
       <section className="relative h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">

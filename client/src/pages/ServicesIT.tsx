@@ -1,12 +1,17 @@
 import { Check, Server, Network, Cloud, Monitor, HardDrive, ShieldCheck, Cpu, ShoppingCart, Wrench, Headphones, Laptop } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import imgServer from "@assets/generated_images/modern_clean_server_room_with_blue_lighting.png";
 import imgHardware from "@assets/generated_images/realistic_professional_server_rack_with_clean_cabling_and_blue_status_lights.png";
 
 export default function ServicesIT() {
   return (
     <div className="bg-background font-sans text-foreground selection:bg-blue-500/30">
+      <SEO 
+        title="IT Destek & Bakım" 
+        description="Kurumsal sistem yönetimi, sunucu bakımı ve 7/24 teknik destek hizmetleri." 
+      />
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center overflow-hidden bg-slate-950">
          <div 

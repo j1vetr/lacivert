@@ -1,11 +1,16 @@
 import { Radio, Server, Shield, Activity, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/teltonika_industrial_5g_gateway_device.png";
 
 export default function TeltonikaPage() {
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-blue-500/30">
+      <SEO 
+        title="Teltonika Networks" 
+        description="Endüstriyel 4G/5G router ve IoT gateway çözümleri." 
+      />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

@@ -1,11 +1,16 @@
 import { Shield, Lock, Eye, FileWarning, Server, Activity, CheckCircle, Globe, Cpu, Network, Zap, AlertTriangle, ArrowRight, Fingerprint, ScanLine, Signal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.png";
 
 export default function ServicesSecurity() {
   return (
     <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
+      <SEO 
+        title="Siber Güvenlik" 
+        description="IMO uyumlu ağ güvenliği, SOC hizmetleri ve siber savunma çözümleri." 
+      />
       {/* Hero Section - Dark & Cyber */}
       <section className="relative h-[85vh] flex items-center overflow-hidden">
         {/* Background Layers */}

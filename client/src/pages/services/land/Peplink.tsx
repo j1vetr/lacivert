@@ -1,11 +1,16 @@
 import { Network, Zap, Lock, Activity, Check, ArrowRight, Server } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/peplink_5g_maritime_router_device.png";
 
 export default function PeplinkPage() {
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-indigo-500/30">
+      <SEO 
+        title="Peplink SD-WAN" 
+        description="SpeedFusion teknolojisi ile kesintisiz internet ve bant genişliği birleştirme." 
+      />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

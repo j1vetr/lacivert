@@ -16,11 +16,16 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SEO } from "@/components/SEO";
 import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_modern_commercial_ship.png";
 
 export default function ServicesSpace() {
   return (
     <div className="bg-background font-sans text-foreground">
+      <SEO 
+        title="Uzay Haberleşmesi" 
+        description="Starlink, OneWeb ve Iridium uydu internet çözümleri ile denizlerde kesintisiz iletişim." 
+      />
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
         <div 

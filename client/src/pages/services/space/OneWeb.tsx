@@ -1,11 +1,16 @@
 import { Globe, Satellite, Zap, Shield, Check, ArrowRight, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/eutelsat_oneweb_satellite_constellation_in_space.png";
 
 export default function OneWebPage() {
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-blue-500/30">
+      <SEO 
+        title="Eutelsat OneWeb" 
+        description="Kurumsal sınıf LEO uydu interneti. Garantili bant genişliği (CIR) ve SLA." 
+      />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

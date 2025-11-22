@@ -1,8 +1,10 @@
 import { FileText, Scale } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 export default function TermsOfUse() {
   return (
     <div>
+      <SEO title="Kullanım Şartları" />
       {/* Header */}
       <section className="bg-slate-950 text-white pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">

@@ -1,8 +1,10 @@
 import { FileText, ShieldCheck } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 export default function PrivacyPolicy() {
   return (
     <div>
+      <SEO title="Gizlilik Politikası" />
       {/* Header */}
       <section className="bg-slate-950 text-white pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">

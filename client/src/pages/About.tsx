@@ -1,10 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Target, Lightbulb, Globe, Users, Building2, Ship, Factory, Zap } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import imgCloud from "@assets/generated_images/abstract_cloud_computing_network_visualization.png";
 
 export default function About() {
   return (
     <div>
+      <SEO 
+        title="Hakkımızda" 
+        description="Lacivert Teknoloji hakkında, vizyonumuz, misyonumuz ve uzman ekibimiz." 
+      />
       {/* Header */}
       <section className="bg-slate-900 text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">

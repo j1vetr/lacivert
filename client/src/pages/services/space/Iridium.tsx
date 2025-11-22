@@ -1,11 +1,16 @@
 import { Phone, Shield, Globe, Anchor, Check, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/iridium_certus_maritime_satellite_terminal_on_a_ship.png";
 
 export default function IridiumPage() {
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-gray-500/30">
+      <SEO 
+        title="Iridium Certus" 
+        description="Küresel kapsama alanı ve L-Band güvenilirliği ile Iridium Certus hizmetleri." 
+      />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

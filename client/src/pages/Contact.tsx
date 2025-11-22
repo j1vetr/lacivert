@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { SEO } from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "İsim en az 2 karakter olmalıdır."),
@@ -49,6 +50,10 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-blue-500/30">
+      <SEO 
+        title="İletişim" 
+        description="Projeleriniz için bize ulaşın. Adres, telefon ve e-posta bilgileri." 
+      />
       {/* Header */}
       <section className="bg-slate-900 text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">

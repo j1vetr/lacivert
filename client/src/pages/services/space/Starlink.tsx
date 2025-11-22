@@ -1,11 +1,16 @@
 import { Wifi, Zap, Globe, Shield, Check, ArrowRight, Ship, Download, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/starlink_maritime_flat_high_performance_dish_on_a_luxury_yacht_at_sunset.png";
 
 export default function StarlinkPage() {
   return (
     <div className="bg-background font-sans text-foreground selection:bg-cyan-500/30">
+      <SEO 
+        title="Starlink Maritime" 
+        description="Starlink Maritime ile denizde fiber hızında internet. Yüksek hız, düşük gecikme." 
+      />
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
