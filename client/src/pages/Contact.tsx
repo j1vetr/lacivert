@@ -102,10 +102,17 @@ export default function Contact() {
                 </div>
               </div>
               
-              {/* Map could go here if we had an embed code, placeholder for now */}
-              <div className="bg-slate-200 rounded-2xl h-64 w-full flex items-center justify-center text-slate-400">
-                <MapPin className="w-12 h-12 opacity-20" />
-                <span className="ml-2 opacity-50">Harita Alanı</span>
+              {/* Google Map Embed */}
+              <div className="rounded-2xl overflow-hidden h-64 w-full shadow-sm border border-border">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387587.22600174503!2d28.68269274443944!3d40.62932615174701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409fe0002530ff91%3A0xa03f962ca8048551!2sLacivert%20Teknoloji!5e0!3m2!1str!2str!4v1763801124174!5m2!1str!2str" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen={true} 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
 

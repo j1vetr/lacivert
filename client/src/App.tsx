@@ -14,10 +14,12 @@ import ServicesLand from "@/pages/ServicesLand";
 import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfUse from "@/pages/TermsOfUse";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
   return (
     <Layout>
+      <ScrollToTop />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/hakkimizda" component={About} />
