@@ -35,7 +35,7 @@ export default function ServicesSpace() {
                 <Satellite className="w-6 h-6 animate-pulse" />
                 <span className="font-mono tracking-widest uppercase">LEO & GEO Satellite Solutions</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-none">
+            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-8 leading-none">
               UZAY <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 text-4xl md:text-6xl font-light">
                 HABERLEŞMESİ

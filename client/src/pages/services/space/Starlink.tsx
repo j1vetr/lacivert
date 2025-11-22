@@ -22,7 +22,7 @@ export default function StarlinkPage() {
                 <Globe className="w-4 h-4 text-cyan-400" />
                 Authorized Starlink Reseller
             </div>
-            <h1 className="text-6xl md:text-8xl font-heading font-bold text-white mb-8 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight">
               STARLINK <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">MARITIME</span>
             </h1>

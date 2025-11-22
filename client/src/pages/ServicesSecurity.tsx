@@ -29,7 +29,7 @@ export default function ServicesSecurity() {
                 <span className="font-mono tracking-widest uppercase text-cyan-100 text-sm font-semibold">IMO Compliant Cyber Defense</span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-heading font-bold text-white mb-8 leading-tight tracking-tighter">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tighter">
               SİBER <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">GÜVENLİK</span>
             </h1>
             

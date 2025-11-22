@@ -18,7 +18,7 @@ export default function ServicesIT() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl animate-in slide-in-from-bottom-8 duration-700 fade-in">
-            <h1 className="text-6xl md:text-8xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
               Profesyonel <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400">IT DESTEK</span> Hizmetleri
             </h1>
