@@ -153,14 +153,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
-                            <Link href="/inovasyon" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
-                                İnovasyon
-                            </Link>
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
                             <Link href="/iletisim" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
                                 İletişim
                             </Link>
