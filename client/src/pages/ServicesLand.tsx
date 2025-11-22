@@ -119,8 +119,10 @@ export default function ServicesLand() {
                                     <PremiumListItem title="Denizcilik" desc="Kıyıdan uzaklaştıkça 4G'den uyduya kesintisiz geçiş." />
                                 </ul>
                                 <div className="mt-8 pt-8 border-t border-white/10 relative z-10">
-                                    <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
-                                        Peplink Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                    <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
+                                        <Link href="/kara-haberlesmesi/peplink">
+                                            Peplink Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>
@@ -186,8 +188,10 @@ export default function ServicesLand() {
                                     <PremiumListItem title="Perakende & ATM" desc="POS sistemleri için yedekli bağlantı." />
                                 </ul>
                                 <div className="mt-8 pt-8 border-t border-white/10 relative z-10">
-                                    <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
-                                        Teltonika Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                    <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
+                                        <Link href="/kara-haberlesmesi/teltonika">
+                                            Teltonika Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>

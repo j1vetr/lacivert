@@ -88,7 +88,7 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<ShieldCheck />} title="Kolay Kurulum" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                                <Link href="/iletisim">Starlink Teklifi Al</Link>
+                                <Link href="/uzay-haberlesmesi/starlink">Starlink Paketlerini İncele</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
@@ -126,7 +126,7 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<ShieldCheck />} title="Yüksek Güvenlik" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                                <Link href="/iletisim">Eutelsat Teklifi Al</Link>
+                                <Link href="/uzay-haberlesmesi/oneweb">Eutelsat Detayları</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
@@ -164,7 +164,7 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<Radio />} title="L-Band Güvenilirliği" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                                <Link href="/iletisim">Iridium Teklifi Al</Link>
+                                <Link href="/uzay-haberlesmesi/iridium">Iridium Detayları</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
