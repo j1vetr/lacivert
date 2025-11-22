@@ -18,13 +18,16 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
 import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_modern_commercial_ship.webp";
+import { useTranslation } from "react-i18next";
 
 export default function ServicesSpace() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-background font-sans text-foreground">
       <SEO 
-        title="Uzay Haberleşmesi" 
-        description="Starlink, OneWeb ve Iridium uydu internet çözümleri ile denizlerde kesintisiz iletişim." 
+        title={t('services_space.title')} 
+        description={t('services_space.desc')} 
       />
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
@@ -38,20 +41,20 @@ export default function ServicesSpace() {
           <div className="max-w-3xl animate-in slide-in-from-left duration-700">
             <div className="flex items-center gap-2 text-accent mb-6">
                 <Satellite className="w-6 h-6 animate-pulse" />
-                <span className="font-mono tracking-widest uppercase">LEO & GEO Satellite Solutions</span>
+                <span className="font-mono tracking-widest uppercase">{t('services_space.hero_badge')}</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-8 leading-none">
-              UZAY <br/>
+              {t('services_space.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 text-4xl md:text-6xl font-light">
-                HABERLEŞMESİ
+                {t('services_space.hero_title_main')}
               </span>
             </h1>
             <p className="text-xl text-slate-300 max-w-xl mb-10 leading-relaxed">
-              Starlink, Eutelsat OneWeb ve Iridium teknolojileri ile dünyanın en uzak noktalarında bile kesintisiz, yüksek hızlı ve güvenilir uydu iletişimi.
+              {t('services_space.hero_desc')}
             </p>
             <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-slate-200 font-bold h-14 px-8">
                 <Link href="/iletisim">
-                Teklif Alın
+                {t('common.get_quote')}
                 </Link>
             </Button>
           </div>
@@ -64,9 +67,9 @@ export default function ServicesSpace() {
             <Tabs defaultValue="starlink" className="w-full">
                 <div className="flex justify-center mb-12">
                     <TabsList className="flex flex-col md:grid md:w-full md:max-w-3xl md:grid-cols-3 h-auto md:h-16 p-1 bg-slate-100 dark:bg-slate-800 rounded-3xl md:rounded-full gap-2 md:gap-0">
-                        <TabsTrigger value="starlink" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Starlink</TabsTrigger>
-                        <TabsTrigger value="eutelsat" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Eutelsat OneWeb</TabsTrigger>
-                        <TabsTrigger value="iridium" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">Iridium</TabsTrigger>
+                        <TabsTrigger value="starlink" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">{t('services_space.tab_starlink_title')}</TabsTrigger>
+                        <TabsTrigger value="eutelsat" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">{t('services_space.tab_oneweb_title')}</TabsTrigger>
+                        <TabsTrigger value="iridium" className="w-full rounded-full text-lg font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-md transition-all text-slate-600 dark:text-slate-300 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white py-3 md:py-0">{t('services_space.tab_iridium_title')}</TabsTrigger>
                     </TabsList>
                 </div>
 
@@ -78,13 +81,10 @@ export default function ServicesSpace() {
                                 <Rocket className="w-4 h-4 text-accent" /> LEO Constellation
                             </div>
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-                                Starlink Maritime
+                                {t('services_space.tab_starlink_title')}
                             </h2>
                             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                                Starlink, dünyanın en gelişmiş geniş bant uydu internet sistemidir. 
-                                LEO (Alçak Dünya Yörüngesi) uydularını kullanarak, denizcilik sektörü için 
-                                fiber hızında internet ve düşük gecikme (latency) sunar. 
-                                350 Mbps'ye varan indirme hızları ile gemi operasyonlarını ve mürettebat refahını dönüştürür.
+                                {t('services_space.tab_starlink_desc')}
                             </p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <FeatureItem icon={<Signal />} title="Yüksek Hız (350 Mbps+)" />
@@ -93,11 +93,11 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<ShieldCheck />} title="Kolay Kurulum" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
-                                <Link href="/uzay-haberlesmesi/starlink">Starlink Paketlerini İncele</Link>
+                                <Link href="/uzay-haberlesmesi/starlink">{t('common.examine_packages')}</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
-                            <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">Öne Çıkan Özellikler</h3>
+                            <h3 className="text-xl font-bold mb-6 text-slate-900 dark:text-white">{t('common.features')}</h3>
                             <ul className="space-y-4">
                                 <ListItem title="Denizcilik İçin Optimize" desc="Zorlu deniz koşullarına dayanıklı donanım." />
                                 <ListItem title="Esnek Paketler" desc="50GB, 1TB, 5TB ve sınırsız veri seçenekleri." />
@@ -116,13 +116,10 @@ export default function ServicesSpace() {
                                 <Globe className="w-4 h-4 text-cyan-400" /> GEO-LEO Integrated
                             </div>
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-                                Eutelsat OneWeb
+                                {t('services_space.tab_oneweb_title')}
                             </h2>
                             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                                Eutelsat OneWeb, dünyanın ilk entegre GEO-LEO uydu iletişim operatörüdür. 
-                                Kurumsal ve devlet müşterileri için tasarlanmış LEO ağı ile denizcilik, 
-                                mobilite ve işletmeler için kesintisiz bağlantı sağlar. 
-                                SLA (Hizmet Seviyesi Anlaşması) garantili CIR (Taahhüt Edilen Bilgi Hızı) seçenekleri sunar.
+                                {t('services_space.tab_oneweb_desc')}
                             </p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <FeatureItem icon={<Signal />} title="Garantili Hız (CIR)" />
@@ -131,7 +128,7 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<ShieldCheck />} title="Yüksek Güvenlik" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
-                                <Link href="/uzay-haberlesmesi/oneweb">Eutelsat Detayları</Link>
+                                <Link href="/uzay-haberlesmesi/oneweb">{t('common.examine')}</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
@@ -154,13 +151,10 @@ export default function ServicesSpace() {
                                 <Satellite className="w-4 h-4 text-red-500" /> L-Band LEO
                             </div>
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-                                Iridium Certus®
+                                {t('services_space.tab_iridium_title')}
                             </h2>
                             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                                Iridium, %100 küresel kapsama alanına sahip tek uydu ağıdır. 
-                                L-band frekansı sayesinde hava koşullarından etkilenmez ve en zorlu şartlarda bile 
-                                iletişim imkanı sağlar. GMDSS (Küresel Denizde Tehlike ve Güvenlik Sistemi) sertifikalı 
-                                tek LEO ağı olarak deniz güvenliğinde standarttır.
+                                {t('services_space.tab_iridium_desc')}
                             </p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <FeatureItem icon={<Signal />} title="%100 Global Kapsama" />
@@ -169,7 +163,7 @@ export default function ServicesSpace() {
                                 <FeatureItem icon={<Radio />} title="L-Band Güvenilirliği" />
                             </div>
                             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-900">
-                                <Link href="/uzay-haberlesmesi/iridium">Iridium Detayları</Link>
+                                <Link href="/uzay-haberlesmesi/iridium">{t('common.examine')}</Link>
                             </Button>
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
@@ -191,15 +185,14 @@ export default function ServicesSpace() {
       <section className="py-24 bg-slate-950 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Hangi Uydu Çözümü Sizin İçin Uygun?
+            {t('services_space.cta_title')}
           </h2>
           <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-            Operasyonel ihtiyaçlarınıza, bütçenize ve kapsama alanı gereksinimlerinize göre 
-            en doğru uydu iletişim paketini birlikte belirleyelim.
+            {t('services_space.cta_desc')}
           </p>
           <Button asChild size="lg" className="text-lg px-10 h-14 bg-accent text-primary hover:bg-accent/90 font-bold">
             <Link href="/iletisim">
-              Uzmanlarımızla Görüşün
+              {t('services_space.btn_expert')}
             </Link>
           </Button>
         </div>

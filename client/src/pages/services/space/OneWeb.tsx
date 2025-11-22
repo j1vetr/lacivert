@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/eutelsat_oneweb_satellite_constellation_in_space.webp";
+import { useTranslation } from "react-i18next";
 
 export default function OneWebPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-blue-500/30">
       <SEO 
-        title="Eutelsat OneWeb" 
-        description="Kurumsal sınıf LEO uydu interneti. Garantili bant genişliği (CIR) ve SLA." 
+        title={t('sub_oneweb.title')} 
+        description={t('sub_oneweb.desc')} 
       />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
@@ -24,13 +27,13 @@ export default function OneWebPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
-              EUTELSAT <span className="text-blue-500">ONEWEB</span>
+              {t('sub_oneweb.hero_title_prefix')} <span className="text-blue-500">{t('sub_oneweb.hero_title_main')}</span>
             </h1>
             <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
-              Kurumsal sınıf LEO (Low Earth Orbit) uydu interneti. İşletmeniz için garantili bant genişliği (CIR) ve SLA destekli kesintisiz bağlantı.
+              {t('sub_oneweb.hero_desc')}
             </p>
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-14 px-8 rounded-full">
-                <Link href="/iletisim">Bilgi Alın</Link>
+                <Link href="/iletisim">{t('common.learn_more')}</Link>
             </Button>
           </div>
         </div>
@@ -40,25 +43,23 @@ export default function OneWebPage() {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 className="text-3xl font-bold text-white mb-6">Kurumsal Öncelikli Bağlantı</h2>
+                    <h2 className="text-3xl font-bold text-white mb-6">{t('sub_oneweb.section_priority_title')}</h2>
                     <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                        Eutelsat OneWeb, özellikle kritik iş uygulamaları için tasarlanmış bir LEO takımyıldızıdır. 
-                        Diğer uydu sistemlerinin aksine, "Committed Information Rate" (CIR) sunarak, 
-                        satın aldığınız hızın her zaman garanti altında olmasını sağlar.
+                        {t('sub_oneweb.section_priority_desc')}
                     </p>
                     <ul className="space-y-4">
-                        <FeatureItem text="Garantili Bant Genişliği (CIR)" />
-                        <FeatureItem text="Kurumsal SLA Desteği" />
-                        <FeatureItem text="Global Kapsama Alanı" />
-                        <FeatureItem text="Düşük Gecikme (<50ms)" />
+                        <FeatureItem text={t('sub_oneweb.feature_cir')} />
+                        <FeatureItem text={t('sub_oneweb.feature_sla')} />
+                        <FeatureItem text={t('sub_oneweb.feature_global')} />
+                        <FeatureItem text={t('sub_oneweb.feature_latency')} />
                     </ul>
                 </div>
                 <div className="bg-slate-900 p-8 rounded-2xl border border-white/10">
-                    <h3 className="text-xl font-bold text-white mb-6">Kullanım Alanları</h3>
+                    <h3 className="text-xl font-bold text-white mb-6">{t('sub_oneweb.use_cases_title')}</h3>
                     <div className="grid grid-cols-1 gap-4">
-                        <UseCaseCard title="Ticari Denizcilik" desc="Kargo gemileri ve tankerler için güvenilir ana hat." />
-                        <UseCaseCard title="Enerji & Petrol" desc="Offshore platformlar ve uzak sahalar." />
-                        <UseCaseCard title="Devlet & Savunma" desc="Kritik ve güvenli haberleşme ihtiyaçları." />
+                        <UseCaseCard title={t('sub_oneweb.use_case_maritime')} desc={t('sub_oneweb.use_case_maritime_desc')} />
+                        <UseCaseCard title={t('sub_oneweb.use_case_energy')} desc={t('sub_oneweb.use_case_energy_desc')} />
+                        <UseCaseCard title={t('sub_oneweb.use_case_gov')} desc={t('sub_oneweb.use_case_gov_desc')} />
                     </div>
                 </div>
             </div>

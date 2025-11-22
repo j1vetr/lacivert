@@ -4,13 +4,16 @@ import { Link } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
 import imgLand from "@assets/generated_images/futuristic_navy_blue_technology_network_background.webp"; // Placeholder
+import { useTranslation } from "react-i18next";
 
 export default function ServicesLand() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-background font-sans text-foreground">
       <SEO 
-        title="Kara Haberleşmesi" 
-        description="Peplink ve Teltonika ile 4G/5G mobil internet, SD-WAN ve yedekli bağlantı çözümleri." 
+        title={t('services_land.title')} 
+        description={t('services_land.desc')} 
       />
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
@@ -25,22 +28,21 @@ export default function ServicesLand() {
                 <div className="p-2 bg-accent/10 rounded-lg backdrop-blur-sm border border-accent/20">
                     <Wifi className="w-6 h-6 animate-pulse" />
                 </div>
-                <span className="font-mono tracking-[0.2em] uppercase text-sm font-semibold">Connectivity Everywhere</span>
+                <span className="font-mono tracking-[0.2em] uppercase text-sm font-semibold">{t('services_land.hero_badge')}</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-[0.9] tracking-tight">
-              KARA <br/>
+              {t('services_land.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 font-light">
-                HABERLEŞMESİ
+                {t('services_land.hero_title_main')}
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mb-10 leading-relaxed font-light">
-              Peplink SD-WAN teknolojisi ve Teltonika endüstriyel çözümleri ile 
-              zorlu sahalarda ve hareket halinde kesintisiz, güvenli ve yönetilebilir bağlantı altyapıları kuruyoruz.
+              {t('services_land.hero_desc')}
             </p>
             <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-accent text-primary hover:bg-cyan-400 font-bold h-14 px-10 rounded-full text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105">
                     <Link href="/iletisim">
-                    Proje Başlatın
+                    {t('services_land.btn_project')}
                     </Link>
                 </Button>
             </div>
@@ -73,13 +75,11 @@ export default function ServicesLand() {
                         <div className="lg:col-span-7 space-y-10">
                             <div>
                                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary dark:text-white mb-6">
-                                    Kesintisiz Bağlantı İçin <br/>
-                                    <span className="text-indigo-600 dark:text-indigo-400">SpeedFusion™ Teknolojisi</span>
+                                    {t('services_land.tab_peplink_title')} <br/>
+                                    <span className="text-indigo-600 dark:text-indigo-400">{t('services_land.tab_peplink_subtitle')}</span>
                                 </h2>
                                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Peplink, birden fazla internet kaynağını (Starlink, 4G/5G, VSAT, Fiber) birleştirerek 
-                                    tek bir "kırılmaz" (unbreakable) bağlantı oluşturur. SD-WAN yetenekleri ile 
-                                    trafik akışını optimize eder ve maliyetleri düşürür.
+                                    {t('services_land.tab_peplink_desc')}
                                 </p>
                             </div>
 
@@ -126,7 +126,7 @@ export default function ServicesLand() {
                                 <div className="mt-8 pt-8 border-t border-white/10 relative z-10">
                                     <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
                                         <Link href="/kara-haberlesmesi/peplink">
-                                            Peplink Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                            {t('common.examine_products')} <ArrowRight className="ml-2 w-4 h-4" />
                                         </Link>
                                     </Button>
                                 </div>
@@ -142,13 +142,11 @@ export default function ServicesLand() {
                          <div className="lg:col-span-7 space-y-10">
                             <div>
                                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary dark:text-white mb-6">
-                                    Endüstriyel IoT İçin <br/>
-                                    <span className="text-blue-600 dark:text-blue-400">Güvenilir Bağlantı</span>
+                                    {t('services_land.tab_teltonika_title')} <br/>
+                                    <span className="text-blue-600 dark:text-blue-400">{t('services_land.tab_teltonika_subtitle')}</span>
                                 </h2>
                                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Teltonika Networks; endüstriyel ortamlar için tasarlanmış, sağlam ve güvenilir 
-                                    4G/5G router, gateway ve switch çözümleri sunar. Zorlu koşullarda bile 
-                                    M2M ve IoT operasyonlarınızın sürekliliğini sağlar.
+                                    {t('services_land.tab_teltonika_desc')}
                                 </p>
                             </div>
 
@@ -185,7 +183,7 @@ export default function ServicesLand() {
                             <div className="bg-gradient-to-br from-slate-800 to-slate-950 rounded-3xl p-8 text-white shadow-2xl transform lg:translate-y-12 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
                                 
-                                <h3 className="text-2xl font-bold mb-6 relative z-10">Kullanım Alanları</h3>
+                                <h3 className="text-2xl font-bold mb-6 relative z-10">{t('common.use_cases')}</h3>
                                 <ul className="space-y-6 relative z-10">
                                     <PremiumListItem title="Akıllı Şehirler" desc="Trafik sistemleri, CCTV ve sensör ağları." />
                                     <PremiumListItem title="Enerji Santralleri" desc="SCADA sistemleri için güvenli uzaktan erişim." />
@@ -195,7 +193,7 @@ export default function ServicesLand() {
                                 <div className="mt-8 pt-8 border-t border-white/10 relative z-10">
                                     <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 h-12">
                                         <Link href="/kara-haberlesmesi/teltonika">
-                                            Teltonika Ürünlerini İncele <ArrowRight className="ml-2 w-4 h-4" />
+                                            {t('common.examine_products')} <ArrowRight className="ml-2 w-4 h-4" />
                                         </Link>
                                     </Button>
                                 </div>
@@ -211,8 +209,8 @@ export default function ServicesLand() {
       <section className="py-24 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-3xl font-heading font-bold text-primary dark:text-white mb-4">Teknik Özellikler & Karşılaştırma</h2>
-                <p className="text-muted-foreground">Projeniz için en doğru donanımı seçmenize yardımcı olalım.</p>
+                <h2 className="text-3xl font-heading font-bold text-primary dark:text-white mb-4">{t('services_land.specs_title')}</h2>
+                <p className="text-muted-foreground">{t('services_land.specs_desc')}</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -279,7 +277,7 @@ function SpecCard({ title, subtitle, features, highlight = false }: { title: str
                 ))}
             </ul>
             <Button variant={highlight ? "default" : "outline"} className={`w-full ${highlight ? 'bg-primary hover:bg-primary/90 text-white' : 'dark:text-white dark:border-slate-700 dark:hover:bg-slate-800'}`}>
-                Detaylı Bilgi
+                {highlight ? "Detaylı Bilgi" : "Detaylı Bilgi"}
             </Button>
         </div>
     )

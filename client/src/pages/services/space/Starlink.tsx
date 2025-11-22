@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/starlink_maritime_flat_high_performance_dish_on_a_luxury_yacht_at_sunset.webp";
+import { useTranslation } from "react-i18next";
 
 export default function StarlinkPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-background font-sans text-foreground selection:bg-cyan-500/30">
       <SEO 
-        title="Starlink Maritime" 
-        description="Starlink Maritime ile denizde fiber hızında internet. Yüksek hız, düşük gecikme." 
+        title={t('sub_starlink.title')} 
+        description={t('sub_starlink.desc')} 
       />
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-950">
@@ -24,22 +27,21 @@ export default function StarlinkPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight">
-              STARLINK <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">MARITIME</span>
+              {t('sub_starlink.hero_title_prefix')} <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">{t('sub_starlink.hero_title_main')}</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl font-light">
-              Denizlerin ortasında fiber hızında internet. Düşük gecikme, yüksek bant genişliği ve 
-              kesintisiz küresel kapsama alanı ile filonuzu dünyaya bağlayın.
+              {t('sub_starlink.hero_desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all hover:scale-105">
                     <Link href="/iletisim">
-                        Hemen Başvurun
+                        {t('sub_starlink.btn_apply')}
                     </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-16 px-10 rounded-full text-lg backdrop-blur-sm">
                     <Link href="#packages">
-                        Paketleri İncele
+                        {t('sub_starlink.btn_packages')}
                     </Link>
                 </Button>
             </div>
@@ -53,18 +55,18 @@ export default function StarlinkPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <FeatureCard 
                     icon={<Zap className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />}
-                    title="Düşük Gecikme (Latency)"
-                    desc="<20ms gecikme süresi ile gerçek zamanlı uygulamalar, video konferans ve oyun için ideal."
+                    title={t('sub_starlink.feature_latency')}
+                    desc={t('sub_starlink.feature_latency_desc')}
                 />
                 <FeatureCard 
                     icon={<Wifi className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />}
-                    title="Yüksek Hız"
-                    desc="220 Mbps'e varan indirme hızları ile denizde ofis konforunu yaşayın."
+                    title={t('sub_starlink.feature_speed')}
+                    desc={t('sub_starlink.feature_speed_desc')}
                 />
                 <FeatureCard 
                     icon={<Shield className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />}
-                    title="Zorlu Koşullara Dayanıklı"
-                    desc="IP56 sertifikalı Flat High Performance antenler ile fırtına, sıcak ve soğuğa karşı tam koruma."
+                    title={t('sub_starlink.feature_rugged')}
+                    desc={t('sub_starlink.feature_rugged_desc')}
                 />
             </div>
         </div>
@@ -76,11 +78,10 @@ export default function StarlinkPage() {
         <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
-                    Size Uygun <span className="text-cyan-600 dark:text-cyan-500">Starlink Paketi</span>
+                    {t('sub_starlink.section_packages_title_prefix')} <span className="text-cyan-600 dark:text-cyan-500">{t('sub_starlink.section_packages_title_suffix')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                    İhtiyacınıza göre optimize edilmiş maritime veri paketlerimiz. 
-                    Tüm paketlerde "Priority Data" ayrıcalığı.
+                    {t('sub_starlink.section_packages_desc')}
                 </p>
             </div>
 
@@ -88,22 +89,22 @@ export default function StarlinkPage() {
                 <PackageCard 
                     size="50 GB" 
                     type="Priority"
-                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
+                    features={[t('sub_starlink.pkg_download'), t('sub_starlink.pkg_upload')]}
                 />
                 <PackageCard 
                     size="100 GB" 
                     type="Priority"
-                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
+                    features={[t('sub_starlink.pkg_download'), t('sub_starlink.pkg_upload')]}
                 />
                 <PackageCard 
                     size="150 GB" 
                     type="Priority"
-                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
+                    features={[t('sub_starlink.pkg_download'), t('sub_starlink.pkg_upload')]}
                 />
                 <PackageCard 
                     size="250 GB" 
                     type="Priority"
-                    features={["225 Mbps İndirme Hızı", "25 Mbps Yükleme Hızı"]}
+                    features={[t('sub_starlink.pkg_download'), t('sub_starlink.pkg_upload')]}
                 />
             </div>
         </div>
@@ -114,39 +115,38 @@ export default function StarlinkPage() {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">Flat High Performance Kit</h3>
+                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">{t('sub_starlink.specs_title')}</h3>
                     <div className="space-y-6">
-                        <SpecRow label="Anten Tipi" value="Elektronik Faz Dizili (Electronic Phased Array)" />
-                        <SpecRow label="Görüş Alanı" value="140°" />
-                        <SpecRow label="Ağırlık" value="5.7 kg (13 lbs)" />
-                        <SpecRow label="Çevre Sertifikası" value="IP56" />
-                        <SpecRow label="Çalışma Sıcaklığı" value="-30°C to 50°C" />
-                        <SpecRow label="Rüzgar Dayanımı" value="280 km/h+" />
-                        <SpecRow label="Güç Tüketimi" value="110-150W Ort." />
+                        <SpecRow label={t('sub_starlink.spec_antenna')} value={t('sub_starlink.spec_antenna_val')} />
+                        <SpecRow label={t('sub_starlink.spec_fov')} value="140°" />
+                        <SpecRow label={t('sub_starlink.spec_weight')} value="5.7 kg (13 lbs)" />
+                        <SpecRow label={t('sub_starlink.spec_cert')} value="IP56" />
+                        <SpecRow label={t('sub_starlink.spec_temp')} value="-30°C to 50°C" />
+                        <SpecRow label={t('sub_starlink.spec_wind')} value="280 km/h+" />
+                        <SpecRow label={t('sub_starlink.spec_power')} value="110-150W Ort." />
                     </div>
                 </div>
                 <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-white/10 shadow-lg dark:shadow-none">
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Kurulum ve Destek</h4>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{t('sub_starlink.support_title')}</h4>
                     <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                        Lacivert Teknoloji olarak, Starlink kitlerinin temini, gemiye kurulumu ve 
-                        network entegrasyonu (Peplink/Firewall) konularında anahtar teslim hizmet sunuyoruz.
+                        {t('sub_starlink.support_desc')}
                     </p>
                     <ul className="space-y-4 mb-8">
                         <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
                             <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
-                            <span>Profesyonel Montaj</span>
+                            <span>{t('sub_starlink.support_install')}</span>
                         </li>
                         <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
                             <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
-                            <span>Network Entegrasyonu</span>
+                            <span>{t('sub_starlink.support_integration')}</span>
                         </li>
                         <li className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
                             <Check className="w-5 h-5 text-cyan-600 dark:text-cyan-500" />
-                            <span>7/24 Teknik Destek</span>
+                            <span>{t('sub_starlink.support_tech')}</span>
                         </li>
                     </ul>
                     <Button asChild className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold">
-                        <Link href="/iletisim">Teknik Bilgi Al</Link>
+                        <Link href="/iletisim">{t('common.technical_info')}</Link>
                     </Button>
                 </div>
             </div>
@@ -169,6 +169,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
 }
 
 function PackageCard({ size, type, features }: { size: string, type: string, features: string[] }) {
+    const { t } = useTranslation();
     return (
         <div className="relative p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 hover:border-cyan-500/30 shadow-lg dark:shadow-none">
             <div className="text-center mb-8">
@@ -184,7 +185,7 @@ function PackageCard({ size, type, features }: { size: string, type: string, fea
                 ))}
             </div>
             <Button asChild className="w-full font-bold bg-slate-900 dark:bg-white/10 hover:bg-slate-800 dark:hover:bg-white/20 text-white">
-                <Link href="/iletisim">Teklif İste</Link>
+                <Link href="/iletisim">{t('common.request_quote')}</Link>
             </Button>
         </div>
     )

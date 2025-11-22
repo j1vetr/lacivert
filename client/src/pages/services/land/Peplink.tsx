@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/peplink_5g_maritime_router_device.webp";
+import { useTranslation } from "react-i18next";
 
 export default function PeplinkPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-indigo-500/30">
       <SEO 
-        title="Peplink SD-WAN" 
-        description="SpeedFusion teknolojisi ile kesintisiz internet ve bant genişliği birleştirme." 
+        title={t('sub_peplink.title')} 
+        description={t('sub_peplink.desc')} 
       />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
@@ -24,14 +27,13 @@ export default function PeplinkPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
-              PEPLINK <span className="text-indigo-500">SD-WAN</span>
+              {t('sub_peplink.hero_title_prefix')} <span className="text-indigo-500">{t('sub_peplink.hero_title_main')}</span>
             </h1>
             <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
-              Starlink, 4G/5G ve VSAT bağlantılarınızı birleştirin. SpeedFusion teknolojisi ile 
-              kesintisiz (Unbreakable) internet deneyimi.
+              {t('sub_peplink.hero_desc')}
             </p>
             <Button asChild size="lg" className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-14 px-8 rounded-full">
-                <Link href="/iletisim">Projeye Başla</Link>
+                <Link href="/iletisim">{t('common.start_project')}</Link>
             </Button>
           </div>
         </div>
@@ -41,22 +43,20 @@ export default function PeplinkPage() {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 className="text-3xl font-bold text-white mb-6">SpeedFusion Teknolojisi</h2>
+                    <h2 className="text-3xl font-bold text-white mb-6">{t('sub_peplink.section_tech_title')}</h2>
                     <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                        Peplink'in patentli SpeedFusion teknolojisi, birden fazla internet kaynağını (WAN) 
-                        tek bir süper hızlı tünelde birleştirir. Bu sayede Starlink'te anlık kopma olsa bile 
-                        4G üzerinden görüşmeniz kesilmez (Hot Failover).
+                        {t('sub_peplink.section_tech_desc')}
                     </p>
                     <div className="grid grid-cols-1 gap-4">
-                         <TechCard title="Hot Failover" desc="Bağlantılar arası milisaniyelik geçiş, IP değişmeden." />
-                         <TechCard title="WAN Smoothing" desc="Veri paketlerini çoğaltarak %0 paket kaybı sağlar." />
-                         <TechCard title="Bandwidth Bonding" desc="Tüm hatların hızını birleştirerek maksimum hız." />
+                         <TechCard title={t('sub_peplink.tech_hotfailover')} desc={t('sub_peplink.tech_hotfailover_desc')} />
+                         <TechCard title={t('sub_peplink.tech_wansmoothing')} desc={t('sub_peplink.tech_wansmoothing_desc')} />
+                         <TechCard title={t('sub_peplink.tech_bonding')} desc={t('sub_peplink.tech_bonding_desc')} />
                     </div>
                 </div>
                 <div className="bg-slate-900 p-8 rounded-2xl border border-white/10">
                      <div className="flex items-center gap-4 mb-8">
                         <Server className="w-10 h-10 text-indigo-500" />
-                        <h3 className="text-2xl font-bold text-white">Maritime Router Serisi</h3>
+                        <h3 className="text-2xl font-bold text-white">{t('sub_peplink.router_series_title')}</h3>
                     </div>
                     <ul className="space-y-4 mb-8">
                         <FeatureItem text="Balance 20X / 310X / SDX" />
@@ -65,7 +65,7 @@ export default function PeplinkPage() {
                         <FeatureItem text="Rugged Metal Kasa" />
                     </ul>
                      <Button asChild variant="outline" className="w-full border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10">
-                        <Link href="/iletisim">Ürün Listesi İste</Link>
+                        <Link href="/iletisim">{t('sub_peplink.btn_list')}</Link>
                     </Button>
                 </div>
             </div>

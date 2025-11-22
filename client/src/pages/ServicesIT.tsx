@@ -4,13 +4,16 @@ import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import imgServer from "@assets/generated_images/modern_clean_server_room_with_blue_lighting.webp";
 import imgHardware from "@assets/generated_images/enterprise_it_hardware_and_server_equipment_with_blue_lighting.webp";
+import { useTranslation } from "react-i18next";
 
 export default function ServicesIT() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-background font-sans text-foreground selection:bg-blue-500/30">
       <SEO 
-        title="IT Destek & Bakım" 
-        description="Kurumsal sistem yönetimi, sunucu bakımı ve 7/24 teknik destek hizmetleri." 
+        title={t('services_it.title')} 
+        description={t('services_it.desc')} 
       />
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center overflow-hidden bg-slate-950">
@@ -24,22 +27,21 @@ export default function ServicesIT() {
         <div className="container mx-auto px-4 relative z-10 pt-40 md:pt-32">
           <div className="max-w-4xl animate-in slide-in-from-bottom-8 duration-700 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
-              Profesyonel <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400">IT DESTEK</span> Hizmetleri
+              {t('services_it.hero_title_prefix')} <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400">{t('services_it.hero_title_main')}</span> {t('services_it.hero_title_suffix')}
             </h1>
             <p className="text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl font-light border-l-4 border-blue-500 pl-6">
-              İşletmenizin dijital altyapısını uçtan uca yönetiyoruz. Sunucu bakımından donanım tedariğine, 
-              ağ güvenliğinden son kullanıcı desteğine kadar tek noktadan profesyonel çözüm.
+              {t('services_it.hero_desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-0">
                 <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white h-14 px-10 text-lg font-bold rounded-full shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all hover:scale-105">
                     <Link href="/iletisim">
-                    Hemen Teklif Alın
+                    {t('services_it.btn_quote')}
                     </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white h-14 px-10 text-lg font-medium rounded-full backdrop-blur-sm">
                     <Link href="#services">
-                    Hizmet Detayları
+                    {t('services_it.btn_details')}
                     </Link>
                 </Button>
             </div>
@@ -53,11 +55,10 @@ export default function ServicesIT() {
         <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-24">
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
-                    360° Teknoloji Yönetimi
+                    {t('services_it.section_360_title')}
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Siz işinize odaklanın, biz teknolojinize. Uzman ekibimiz ve proaktif yaklaşımımızla 
-                    sistemlerinizin kesintisiz ve yüksek performansta çalışmasını sağlıyoruz.
+                    {t('services_it.section_360_desc')}
                 </p>
             </div>
 
@@ -65,25 +66,25 @@ export default function ServicesIT() {
                 {/* Card 1: IT Support */}
                 <ServiceCard 
                     icon={<Headphones className="w-8 h-8 text-blue-400" />}
-                    title="Kurumsal Bakım & Destek"
-                    desc="Bilgisayar, sunucu ve çevre birimlerinizin periyodik bakımları ve arıza müdahaleleri. SLA garantili, yerinde ve uzaktan destek hizmetleri."
-                    features={["7/24 Helpdesk Desteği", "Periyodik Bakım Anlaşmaları", "Envanter Yönetimi", "Acil Müdahale Garantisi"]}
+                    title={t('services_it.card_support_title')}
+                    desc={t('services_it.card_support_desc')}
+                    features={["7/24 Helpdesk", "SLA", "Inventory", "Emergency"]}
                 />
 
                 {/* Card 2: Network */}
                 <ServiceCard 
                     icon={<Network className="w-8 h-8 text-sky-400" />}
-                    title="Ağ & Altyapı Çözümleri"
-                    desc="Kesintisiz ve güvenli ağ mimarisi kurulumu. Kablolamadan firewall yapılandırmasına kadar uçtan uca network yönetimi."
-                    features={["Switch & Router Kurulumu", "Firewall & VPN Çözümleri", "Wi-Fi Altyapı Sistemleri", "Yapısal Kablolama"]}
+                    title={t('services_it.card_network_title')}
+                    desc={t('services_it.card_network_desc')}
+                    features={["Switch & Router", "Firewall & VPN", "Wi-Fi", "Cabling"]}
                 />
 
                 {/* Card 3: Server & Cloud */}
                 <ServiceCard 
                     icon={<Server className="w-8 h-8 text-cyan-400" />}
-                    title="Sunucu & Bulut Sistemleri"
-                    desc="Verilerinizin güvenliği ve erişilebilirliği için modern sunucu çözümleri. Fiziksel, sanal ve bulut mimarilerin yönetimi."
-                    features={["Windows/Linux Sunucu Yönetimi", "Sanallaştırma (VMware/Hyper-V)", "Bulut Yedekleme & DR", "Active Directory Yapısı"]}
+                    title={t('services_it.card_server_title')}
+                    desc={t('services_it.card_server_desc')}
+                    features={["Windows/Linux", "VMware/Hyper-V", "Backup & DR", "Active Directory"]}
                 />
             </div>
         </div>
@@ -97,28 +98,26 @@ export default function ServicesIT() {
                 <div>
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-semibold mb-6">
                         <ShoppingCart className="w-4 h-4" />
-                        DONANIM TEDARİK HİZMETİ
+                        {t('services_it.hardware_badge')}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                        İhtiyacınız Olan <br/>
-                        <span className="text-emerald-400">Teknoloji Donanımları</span>
+                        {t('services_it.hardware_title_prefix')} <br/>
+                        <span className="text-emerald-400">{t('services_it.hardware_title_suffix')}</span>
                     </h2>
                     <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                        Sadece hizmet değil, donanım ihtiyaçlarınızda da yanınızdayız. Global markaların yetkili satıcısı olarak, 
-                        işletmeniz için en doğru donanımları en uygun maliyetlerle tedarik ediyoruz. Kurulum ve satış sonrası 
-                        destek garantisiyle anahtar teslim projeler sunuyoruz.
+                        {t('services_it.hardware_desc')}
                     </p>
                     
                     <div className="grid grid-cols-2 gap-6 mb-10">
-                        <HardwareItem icon={<Laptop className="w-5 h-5" />} title="PC & Laptop" desc="Kurumsal serisi iş bilgisayarları ve workstation çözümleri." />
-                        <HardwareItem icon={<Server className="w-5 h-5" />} title="Sunucu & Storage" desc="Rack/Tower sunucular ve veri depolama üniteleri." />
-                        <HardwareItem icon={<Network className="w-5 h-5" />} title="Ağ Cihazları" desc="Switch, Router, Access Point ve Firewall donanımları." />
-                        <HardwareItem icon={<Monitor className="w-5 h-5" />} title="Çevre Birimleri" desc="Yazıcı, monitör ve projeksiyon sistemleri." />
+                        <HardwareItem icon={<Laptop className="w-5 h-5" />} title={t('services_it.hardware_pc')} desc={t('services_it.hardware_pc_desc')} />
+                        <HardwareItem icon={<Server className="w-5 h-5" />} title={t('services_it.hardware_server')} desc={t('services_it.hardware_server_desc')} />
+                        <HardwareItem icon={<Network className="w-5 h-5" />} title={t('services_it.hardware_network')} desc={t('services_it.hardware_network_desc')} />
+                        <HardwareItem icon={<Monitor className="w-5 h-5" />} title={t('services_it.hardware_monitor')} desc={t('services_it.hardware_monitor_desc')} />
                     </div>
 
                     <Button asChild className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold h-14 px-8 rounded-full">
                         <Link href="/iletisim">
-                            Donanım Teklifi İste
+                            {t('services_it.btn_hardware_quote')}
                         </Link>
                     </Button>
                 </div>
@@ -138,8 +137,8 @@ export default function ServicesIT() {
                                     <Cpu className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
-                                    <div className="text-white font-bold text-lg">Orijinal Ürün Garantisi</div>
-                                    <div className="text-slate-300 text-sm">Yetkili Distribütör Garantili</div>
+                                    <div className="text-white font-bold text-lg">{t('services_it.guarantee_title')}</div>
+                                    <div className="text-slate-300 text-sm">{t('services_it.guarantee_desc')}</div>
                                 </div>
                             </div>
                         </div>
@@ -152,13 +151,13 @@ export default function ServicesIT() {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-b from-slate-950 to-blue-950/30 relative overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-8">Teknolojinizi Yenilemeye Hazır mısınız?</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-8">{t('services_it.cta_title')}</h2>
             <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
-                Ücretsiz keşif hizmetimizden yararlanın, mevcut altyapınızı analiz edelim ve size en uygun yol haritasını çıkaralım.
+                {t('services_it.cta_desc')}
             </p>
             <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-50 font-bold h-16 px-12 rounded-full text-lg shadow-xl">
                 <Link href="/iletisim">
-                    Ücretsiz Keşif Talep Et
+                    {t('services_it.btn_discovery')}
                 </Link>
             </Button>
         </div>

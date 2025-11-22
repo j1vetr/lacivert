@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/iridium_certus_maritime_satellite_terminal_on_a_ship.webp";
+import { useTranslation } from "react-i18next";
 
 export default function IridiumPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-slate-950 font-sans text-slate-200 selection:bg-gray-500/30">
       <SEO 
-        title="Iridium Certus" 
-        description="Küresel kapsama alanı ve L-Band güvenilirliği ile Iridium Certus hizmetleri." 
+        title={t('sub_iridium.title')} 
+        description={t('sub_iridium.desc')} 
       />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden">
@@ -24,14 +27,13 @@ export default function IridiumPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
-              IRIDIUM <span className="text-gray-400">CERTUS</span>
+              {t('sub_iridium.hero_title_prefix')} <span className="text-gray-400">{t('sub_iridium.hero_title_main')}</span>
             </h1>
             <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
-              Kutup noktaları dahil %100 küresel kapsama. L-Band teknolojisi ile en zorlu hava koşullarında bile 
-              kesintisiz iletişim ve GMDSS güvenlik standartları.
+              {t('sub_iridium.hero_desc')}
             </p>
             <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-gray-200 font-bold h-14 px-8 rounded-full">
-                <Link href="/iletisim">Bilgi Alın</Link>
+                <Link href="/iletisim">{t('common.learn_more')}</Link>
             </Button>
           </div>
         </div>
@@ -41,17 +43,15 @@ export default function IridiumPage() {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 className="text-3xl font-bold text-white mb-6">En Güvenilir Yedek Hat</h2>
+                    <h2 className="text-3xl font-bold text-white mb-6">{t('sub_iridium.section_backup_title')}</h2>
                     <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                        Yağmur, kar veya fırtınadan etkilenmeyen L-Band frekansı sayesinde Iridium, 
-                        denizcilik sektörünün en güvenilir iletişim standardıdır. Starlink veya VSAT sistemlerinizin 
-                        yanında "Companion" (Yedek) olarak kullanıldığında kesintisiz operasyon sağlar.
+                        {t('sub_iridium.section_backup_desc')}
                     </p>
                     <ul className="space-y-4">
-                        <FeatureItem text="GMDSS (Global Maritime Distress and Safety System)" />
-                        <FeatureItem text="%100 Global Kapsama (Kutuplar Dahil)" />
-                        <FeatureItem text="Hava Koşullarından Etkilenmez" />
-                        <FeatureItem text="Iridium Certus 700/200 Desteği" />
+                        <FeatureItem text={t('sub_iridium.feature_gmdss')} />
+                        <FeatureItem text={t('sub_iridium.feature_global')} />
+                        <FeatureItem text={t('sub_iridium.feature_weather')} />
+                        <FeatureItem text={t('sub_iridium.feature_certus')} />
                     </ul>
                 </div>
                 <div className="bg-slate-900 p-8 rounded-2xl border border-white/10">
@@ -60,13 +60,12 @@ export default function IridiumPage() {
                             <AlertTriangle className="w-8 h-8" />
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-white">Acil Durum İletişimi</h3>
+                            <h3 className="text-xl font-bold text-white">{t('sub_iridium.section_emergency_title')}</h3>
                             <p className="text-sm text-slate-400">Safety of Life at Sea (SOLAS)</p>
                         </div>
                     </div>
                     <p className="text-slate-400 mb-6 text-sm">
-                        Geminizdeki ana iletişim sistemleri çökse bile Iridium çalışmaya devam eder. 
-                        Güvenlik ve acil durumlar için vazgeçilmezdir.
+                        {t('sub_iridium.section_emergency_desc')}
                     </p>
                 </div>
             </div>

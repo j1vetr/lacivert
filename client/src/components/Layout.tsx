@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/components/theme-provider";
+import { useTranslation } from "react-i18next";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -28,6 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +40,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans text-foreground">
@@ -60,9 +66,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex items-center gap-4">
                      <ThemeToggle />
-                     <a href="#" className="hover:text-white transition-colors">TR</a>
+                     <button 
+                        onClick={() => changeLanguage('tr')} 
+                        className={`transition-colors ${i18n.language === 'tr' ? 'text-white font-bold' : 'hover:text-white'}`}
+                     >
+                        TR
+                     </button>
                      <span className="w-px h-3 bg-white/20"></span>
-                     <a href="#" className="hover:text-white transition-colors">EN</a>
+                     <button 
+                        onClick={() => changeLanguage('en')} 
+                        className={`transition-colors ${i18n.language === 'en' ? 'text-white font-bold' : 'hover:text-white'}`}
+                     >
+                        EN
+                     </button>
                 </div>
             </div>
         </div>
@@ -92,63 +108,63 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
                             <Link href="/" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[active]:bg-white/10 cursor-pointer`}>
-                                Ana Sayfa
+                                {t('nav.home')}
                             </Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">Hizmetlerimiz</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">{t('nav.services')}</NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <div className="flex flex-row p-6 w-[900px] bg-slate-950 border border-slate-800 shadow-2xl gap-8">
                                 
                                 {/* Col 1: Main Services */}
                                 <div className="flex flex-col gap-2 w-1/3">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Ana Hizmetler</div>
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">{t('nav.main_services')}</div>
                                     <Link href="/it-hizmetleri" className="group block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-900 hover:text-accent-foreground focus:bg-slate-900 focus:text-accent-foreground">
-                                        <div className="text-base font-bold text-white group-hover:text-blue-400 mb-1">IT Destek & Bakım</div>
+                                        <div className="text-base font-bold text-white group-hover:text-blue-400 mb-1">{t('nav.it_support')}</div>
                                         <p className="line-clamp-2 text-sm leading-snug text-slate-400 group-hover:text-slate-300">
-                                            Kurumsal sistem yönetimi ve 7/24 teknik destek.
+                                            {t('home.card_it_desc')}
                                         </p>
                                     </Link>
                                     <Link href="/siber-guvenlik" className="group block select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-900 hover:text-accent-foreground focus:bg-slate-900 focus:text-accent-foreground">
-                                        <div className="text-base font-bold text-white group-hover:text-emerald-400 mb-1">Siber Güvenlik</div>
+                                        <div className="text-base font-bold text-white group-hover:text-emerald-400 mb-1">{t('nav.cyber_security')}</div>
                                         <p className="line-clamp-2 text-sm leading-snug text-slate-400 group-hover:text-slate-300">
-                                            IMO uyumlu ağ güvenliği ve SOC hizmetleri.
+                                            {t('home.card_cyber_desc')}
                                         </p>
                                     </Link>
                                 </div>
 
                                 {/* Col 2: Space Communication */}
                                 <div className="flex flex-col gap-2 w-1/3">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Uzay Haberleşmesi</div>
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">{t('nav.space_comm')}</div>
                                     <Link href="/uzay-haberlesmesi" className="group block select-none rounded-md px-4 py-3 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-bold text-white group-hover:text-cyan-400">Genel Bakış</div>
+                                        <div className="text-sm font-bold text-white group-hover:text-cyan-400">{t('nav.overview')}</div>
                                     </Link>
                                     <div className="h-px bg-slate-800 mx-4 my-1"></div>
                                     <Link href="/uzay-haberlesmesi/starlink" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Starlink Maritime</div>
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.starlink')}</div>
                                     </Link>
                                     <Link href="/uzay-haberlesmesi/oneweb" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Eutelsat OneWeb</div>
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.oneweb')}</div>
                                     </Link>
                                     <Link href="/uzay-haberlesmesi/iridium" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Iridium Certus</div>
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.iridium')}</div>
                                     </Link>
                                 </div>
 
                                 {/* Col 3: Land Communication */}
                                 <div className="flex flex-col gap-2 w-1/3">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Kara Haberleşmesi</div>
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">{t('nav.land_comm')}</div>
                                     <Link href="/kara-haberlesmesi" className="group block select-none rounded-md px-4 py-3 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-bold text-white group-hover:text-emerald-400">Genel Bakış</div>
+                                        <div className="text-sm font-bold text-white group-hover:text-emerald-400">{t('nav.overview')}</div>
                                     </Link>
                                     <div className="h-px bg-slate-800 mx-4 my-1"></div>
                                     <Link href="/kara-haberlesmesi/peplink" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Peplink SD-WAN</div>
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.peplink')}</div>
                                     </Link>
                                     <Link href="/kara-haberlesmesi/teltonika" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">Teltonika Networks</div>
+                                        <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.teltonika')}</div>
                                     </Link>
                                 </div>
 
@@ -159,7 +175,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
                             <Link href="/hakkimizda" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
-                                Hakkımızda
+                                {t('nav.about')}
                             </Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -167,7 +183,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
                             <Link href="/iletisim" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
-                                İletişim
+                                {t('nav.contact')}
                             </Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -181,7 +197,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 border-0"
                 >
                 <Link href="/iletisim">
-                    Teklif Al
+                    {t('nav.get_quote')}
                 </Link>
                 </Button>
            </div>
@@ -196,68 +212,68 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-950 border-slate-800 text-white overflow-y-auto">
                 <div className="flex flex-col gap-6 mt-10">
-                    <Link href="/" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">Ana Sayfa</Link>
+                    <Link href="/" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.home')}</Link>
                     
                     <div className="space-y-4">
-                        <div className="text-xl font-medium text-slate-400">Hizmetlerimiz</div>
+                        <div className="text-xl font-medium text-slate-400">{t('nav.services')}</div>
                         
                         <Accordion type="single" collapsible className="w-full border-none">
                             <AccordionItem value="it" className="border-none">
                                 <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
-                                    IT Destek & Bakım
+                                    {t('nav.it_support')}
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
-                                        <Link href="/it-hizmetleri" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                        <Link href="/it-hizmetleri" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.overview')}</Link>
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>
 
                             <AccordionItem value="cyber" className="border-none">
                                 <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
-                                    Siber Güvenlik
+                                    {t('nav.cyber_security')}
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
-                                        <Link href="/siber-guvenlik" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
+                                        <Link href="/siber-guvenlik" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.overview')}</Link>
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>
 
                             <AccordionItem value="space" className="border-none">
                                 <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
-                                    Uzay Haberleşmesi
+                                    {t('nav.space_comm')}
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
-                                        <Link href="/uzay-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
-                                        <Link href="/uzay-haberlesmesi/starlink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Starlink Maritime</Link>
-                                        <Link href="/uzay-haberlesmesi/oneweb" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Eutelsat OneWeb</Link>
-                                        <Link href="/uzay-haberlesmesi/iridium" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Iridium Certus</Link>
+                                        <Link href="/uzay-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.overview')}</Link>
+                                        <Link href="/uzay-haberlesmesi/starlink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.starlink')}</Link>
+                                        <Link href="/uzay-haberlesmesi/oneweb" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.oneweb')}</Link>
+                                        <Link href="/uzay-haberlesmesi/iridium" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.iridium')}</Link>
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>
 
                             <AccordionItem value="land" className="border-none">
                                 <AccordionTrigger className="py-2 text-lg hover:text-blue-400 hover:no-underline">
-                                    Kara Haberleşmesi
+                                    {t('nav.land_comm')}
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-1">
-                                        <Link href="/kara-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Genel Bakış</Link>
-                                        <Link href="/kara-haberlesmesi/peplink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Peplink SD-WAN</Link>
-                                        <Link href="/kara-haberlesmesi/teltonika" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">Teltonika Networks</Link>
+                                        <Link href="/kara-haberlesmesi" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.overview')}</Link>
+                                        <Link href="/kara-haberlesmesi/peplink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.peplink')}</Link>
+                                        <Link href="/kara-haberlesmesi/teltonika" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.teltonika')}</Link>
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>
                     </div>
 
-                    <Link href="/hakkimizda" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">Hakkımızda</Link>
-                    <Link href="/iletisim" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">İletişim</Link>
+                    <Link href="/hakkimizda" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.about')}</Link>
+                    <Link href="/iletisim" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.contact')}</Link>
                     
                   <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white">
-                    <Link href="/iletisim" onClick={closeMobileMenu}>Teklif Al</Link>
+                    <Link href="/iletisim" onClick={closeMobileMenu}>{t('nav.get_quote')}</Link>
                   </Button>
                 </div>
               </SheetContent>
@@ -294,8 +310,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <img src={logoWhite} alt="Lacivert Teknoloji" className="h-12 object-contain mb-4" />
               </Link>
               <p className="text-slate-400 leading-relaxed">
-                İşletmenizin teknoloji altyapısını güvenli, hızlı ve sürdürülebilir hale getiriyoruz. 
-                Denizcilikten kurumsal ofislere kadar geniş bir yelpazede profesyonel çözümler sunuyoruz.
+                {t('nav.footer_desc')}
               </p>
               <div className="flex gap-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors">
@@ -312,28 +327,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-heading font-bold mb-6">Hızlı Bağlantılar</h4>
+              <h4 className="text-lg font-heading font-bold mb-6">{t('nav.quick_links')}</h4>
               <ul className="space-y-4">
-                  <li><Link href="/" className="text-slate-400 hover:text-blue-400 transition-colors block">Ana Sayfa</Link></li>
-                  <li><Link href="/hakkimizda" className="text-slate-400 hover:text-blue-400 transition-colors block">Hakkımızda</Link></li>
-                  <li><Link href="/iletisim" className="text-slate-400 hover:text-blue-400 transition-colors block">İletişim</Link></li>
+                  <li><Link href="/" className="text-slate-400 hover:text-blue-400 transition-colors block">{t('nav.home')}</Link></li>
+                  <li><Link href="/hakkimizda" className="text-slate-400 hover:text-blue-400 transition-colors block">{t('nav.about')}</Link></li>
+                  <li><Link href="/iletisim" className="text-slate-400 hover:text-blue-400 transition-colors block">{t('nav.contact')}</Link></li>
               </ul>
             </div>
 
             {/* Services */}
             <div>
-              <h4 className="text-lg font-heading font-bold mb-6">Hizmetlerimiz</h4>
+              <h4 className="text-lg font-heading font-bold mb-6">{t('nav.services')}</h4>
               <ul className="space-y-4 text-slate-400">
-                <li><Link href="/it-hizmetleri" className="hover:text-blue-400 transition-colors block">IT Destek & Bakım</Link></li>
-                <li><Link href="/uzay-haberlesmesi" className="hover:text-blue-400 transition-colors block">Uzay Haberleşmesi</Link></li>
-                <li><Link href="/kara-haberlesmesi" className="hover:text-blue-400 transition-colors block">Kara Haberleşmesi</Link></li>
-                <li><Link href="/siber-guvenlik" className="hover:text-blue-400 transition-colors block">Siber Güvenlik</Link></li>
+                <li><Link href="/it-hizmetleri" className="hover:text-blue-400 transition-colors block">{t('nav.it_support')}</Link></li>
+                <li><Link href="/uzay-haberlesmesi" className="hover:text-blue-400 transition-colors block">{t('nav.space_comm')}</Link></li>
+                <li><Link href="/kara-haberlesmesi" className="hover:text-blue-400 transition-colors block">{t('nav.land_comm')}</Link></li>
+                <li><Link href="/siber-guvenlik" className="hover:text-blue-400 transition-colors block">{t('nav.cyber_security')}</Link></li>
               </ul>
             </div>
 
             {/* Contact Info */}
             <div>
-              <h4 className="text-lg font-heading font-bold mb-6">İletişim</h4>
+              <h4 className="text-lg font-heading font-bold mb-6">{t('nav.contact_info')}</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-slate-400">
                   <MapPin className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
@@ -353,14 +368,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
             <div className="flex flex-col md:flex-row items-center gap-4">
-                <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. Tüm Hakları Saklıdır.</p>
+                <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. {t('nav.rights_reserved')}</p>
                 <a href="https://toov.com.tr" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-cyan-400 transition-colors flex items-center gap-1">
-                    Tasarım: TOOV <span className="text-red-500/80">♥</span> tarafından yapıldı
+                    {t('nav.designed_by')} <span className="text-red-500/80">♥</span>
                 </a>
             </div>
             <div className="flex gap-8">
-              <Link href="/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
-              <Link href="/kullanim-sartlari" className="hover:text-white transition-colors">Kullanım Şartları</Link>
+              <Link href="/gizlilik-politikasi" className="hover:text-white transition-colors">{t('nav.privacy')}</Link>
+              <Link href="/kullanim-sartlari" className="hover:text-white transition-colors">{t('nav.terms')}</Link>
             </div>
           </div>
         </div>

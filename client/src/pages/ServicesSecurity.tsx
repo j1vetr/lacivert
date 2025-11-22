@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.webp";
+import { useTranslation } from "react-i18next";
 
 export default function ServicesSecurity() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
       <SEO 
-        title="Siber Güvenlik" 
-        description="IMO uyumlu ağ güvenliği, SOC hizmetleri ve siber savunma çözümleri." 
+        title={t('services_security.title')} 
+        description={t('services_security.desc')} 
       />
       {/* Hero Section - Dark & Cyber */}
       <section className="relative h-[85vh] flex items-center overflow-hidden">
@@ -30,24 +33,23 @@ export default function ServicesSecurity() {
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tighter">
-              SİBER <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">GÜVENLİK</span>
+              {t('services_security.hero_title_prefix')} <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">{t('services_security.hero_title_main')}</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mb-12 leading-relaxed font-light border-l-4 border-cyan-500 pl-6">
-              Denizcilik ve kurumsal ağlarınız için ileri teknoloji, yapay zeka destekli
-              ve IMO regülasyonlarına tam uyumlu yeni nesil siber savunma hattı.
+              {t('services_security.hero_desc')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 mb-16">
-                <Button asChild size="lg" className="bg-cyan-600 text-white hover:bg-cyan-500 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0">
+                <Button asChild size="lg" className="bg-cyan-600 text-white hover:bg-cyan-50 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0">
                     <Link href="/iletisim">
-                        Güvenlik Analizi Başlat
+                        {t('services_security.btn_analysis')}
                     </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white font-medium h-16 px-10 rounded-full text-lg backdrop-blur-sm">
                     <Link href="#solutions">
-                        Çözümleri Keşfet
+                        {t('services_security.btn_solutions')}
                     </Link>
                 </Button>
             </div>
@@ -61,19 +63,19 @@ export default function ServicesSecurity() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
                 <div>
                     <div className="text-3xl font-bold text-white mb-1">7/24</div>
-                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">SOC İzleme</div>
+                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">{t('services_security.stats_soc')}</div>
                 </div>
                 <div>
                     <div className="text-3xl font-bold text-white mb-1">IMO 2021</div>
-                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">Tam Uyum</div>
+                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">{t('services_security.stats_compliance')}</div>
                 </div>
                 <div>
                     <div className="text-3xl font-bold text-white mb-1">%100</div>
-                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">Tehdit Algılama</div>
+                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">{t('services_security.stats_detection')}</div>
                 </div>
                 <div>
                     <div className="text-3xl font-bold text-white mb-1">NGAV</div>
-                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">Yapay Zeka</div>
+                    <div className="text-sm text-slate-500 uppercase tracking-wider font-mono">{t('services_security.stats_ai')}</div>
                 </div>
             </div>
         </div>
@@ -86,13 +88,11 @@ export default function ServicesSecurity() {
             {/* Section Header */}
             <div className="mb-20 max-w-3xl">
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6">
-                    Çok Katmanlı <br/>
-                    <span className="text-cyan-600 dark:text-cyan-500">Savunma Mimarisi</span>
+                    {t('services_security.section_arch_prefix')} <br/>
+                    <span className="text-cyan-600 dark:text-cyan-500">{t('services_security.section_arch_suffix')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Lacivert Teknoloji, sadece bir antivirüs değil, ağınızın her noktasına nüfuz eden 
-                    bütünleşik bir güvenlik ekosistemi sunar. Gelişmiş altyapımız ile özellikle 
-                    uydu iletişimi kullanan gemiler için optimize edilmiştir.
+                    {t('services_security.section_arch_desc')}
                 </p>
             </div>
 
@@ -109,10 +109,9 @@ export default function ServicesSecurity() {
                         <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-8 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-500/20">
                             <Activity className="w-8 h-8" />
                         </div>
-                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Yüksek Bant Genişliği (EDR)</h3>
+                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('services_security.card_high_bw_title')}</h3>
                         <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
-                            Gelişmiş yapay zeka teknolojisi ile güçlendirilmiş, imza tabanlı olmayan yeni nesil koruma. 
-                            VSAT ve Starlink kullanan gemiler ve kurumsal ofisler için davranışsal analiz yapan yapay zeka motoru.
+                            {t('services_security.card_high_bw_desc')}
                         </p>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -129,10 +128,9 @@ export default function ServicesSecurity() {
                     <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-8 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20">
                         <Signal className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Düşük Bant Genişliği</h3>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{t('services_security.card_low_bw_title')}</h3>
                     <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                        L-Band (Iridium/Inmarsat) kullanan veya kotalı sistemler için kaynak optimizasyonlu, 
-                        ultra düşük veri tüketen özel paketler.
+                        {t('services_security.card_low_bw_desc')}
                     </p>
                     <ul className="space-y-4">
                         <PremiumListItem text="Optimize Güncellemeler" small />
@@ -146,10 +144,9 @@ export default function ServicesSecurity() {
                      <div className="w-16 h-16 bg-rose-100 dark:bg-rose-500/20 rounded-2xl flex items-center justify-center mb-8 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-500/20">
                         <Eye className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">7/24 SOC Hizmeti</h3>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{t('services_security.card_soc_title')}</h3>
                     <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                        Sistemlerinizi 7 gün 24 saat izleyen uzman güvenlik analistleri. 
-                        Alarm oluştuğunda anında müdahale.
+                        {t('services_security.card_soc_desc')}
                     </p>
                      <ul className="space-y-4">
                         <PremiumListItem text="Sürekli İzleme" small />
@@ -167,10 +164,9 @@ export default function ServicesSecurity() {
                         <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-8 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
                             <Shield className="w-8 h-8" />
                         </div>
-                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">IMO & Regülasyon Uyumu</h3>
+                        <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('services_security.card_imo_title')}</h3>
                         <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
-                            Uluslararası Denizcilik Örgütü (IMO) 2021 siber güvenlik kararlarına tam uyumluluk sağlayın. 
-                            Denetimler için gerekli tüm raporlama ve loglama altyapısını kuruyoruz.
+                            {t('services_security.card_imo_desc')}
                         </p>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -189,13 +185,13 @@ export default function ServicesSecurity() {
       <section className="py-24 bg-cyan-950 relative overflow-hidden">
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-8">Güvenliğinizi Şansa Bırakmayın</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-8">{t('services_security.cta_title')}</h2>
             <p className="text-cyan-200 text-xl mb-12 max-w-2xl mx-auto">
-                Hemen bir güvenlik analizi talep edin, ağınızdaki zafiyetleri raporlayalım ve size özel koruma planını oluşturalım.
+                {t('services_security.cta_desc')}
             </p>
             <Button asChild size="lg" className="bg-white text-cyan-950 hover:bg-cyan-50 font-bold h-16 px-12 rounded-full text-lg shadow-xl">
                 <Link href="/iletisim">
-                    Hemen İletişime Geçin
+                    {t('services_security.btn_contact')}
                 </Link>
             </Button>
          </div>

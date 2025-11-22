@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   name: z.string().min(2, "İsim en az 2 karakter olmalıdır."),
@@ -27,6 +28,7 @@ const formSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
+  const { t } = useTranslation();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,8 +44,8 @@ export default function Contact() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: "Mesajınız Gönderildi",
-      description: "En kısa sürede sizinle iletişime geçeceğiz.",
+      title: t('contact.toast_title'),
+      description: t('contact.toast_desc'),
     });
     form.reset();
   }
@@ -51,15 +53,15 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-blue-500/30">
       <SEO 
-        title="İletişim" 
-        description="Projeleriniz için bize ulaşın. Adres, telefon ve e-posta bilgileri." 
+        title={t('contact.title')} 
+        description={t('contact.desc')} 
       />
       {/* Header */}
       <section className="bg-slate-900 text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">İletişim</h1>
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">{t('contact.hero_title')}</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Sorularınız, projeleriniz ve teklif talepleriniz için bizimle iletişime geçin.
+            {t('contact.hero_desc')}
           </p>
         </div>
       </section>
@@ -70,7 +72,7 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-8">
               <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-800">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">İletişim Bilgileri</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">{t('contact.info_title')}</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -78,7 +80,7 @@ export default function Contact() {
                       <MapPin className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">Adres</h3>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">{t('contact.address_title')}</h3>
                       <p className="text-slate-600 dark:text-slate-400">
                         Gürsel Mah. İmrahor Cad. Premier Kampüs Ofis No: 29/A Kat:6 Ofis:217 <br/> Kağıthane / İstanbul
                       </p>
@@ -90,7 +92,7 @@ export default function Contact() {
                       <Phone className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">Telefon</h3>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">{t('contact.phone_title')}</h3>
                       <p className="text-slate-600 dark:text-slate-400">0532 503 34 17</p>
                     </div>
                   </div>
@@ -100,7 +102,7 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">E-posta</h3>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-1">{t('contact.email_title')}</h3>
                       <p className="text-slate-600 dark:text-slate-400">info@lacivertteknoloji.com</p>
                     </div>
                   </div>
@@ -125,7 +127,7 @@ export default function Contact() {
             <div className="lg:col-span-2">
               <Card className="border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none bg-white dark:bg-slate-900">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Hızlı İletişim Formu</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('contact.form_title')}</h2>
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -134,9 +136,9 @@ export default function Contact() {
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-slate-900 dark:text-white">Ad Soyad</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">{t('contact.form_name')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="Adınız Soyadınız" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
+                                <Input placeholder={t('contact.form_name_ph')} className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -147,9 +149,9 @@ export default function Contact() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-slate-900 dark:text-white">Telefon</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">{t('contact.form_phone')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="05XX XXX XX XX" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
+                                <Input placeholder={t('contact.form_phone_ph')} className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -163,9 +165,9 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-slate-900 dark:text-white">E-posta</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">{t('contact.form_email')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="ornek@sirket.com" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
+                                <Input placeholder={t('contact.form_email_ph')} className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -176,9 +178,9 @@ export default function Contact() {
                           name="subject"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-slate-900 dark:text-white">Konu</FormLabel>
+                              <FormLabel className="text-slate-900 dark:text-white">{t('contact.form_subject')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="Mesajınızın konusu" className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
+                                <Input placeholder={t('contact.form_subject_ph')} className="h-12 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -191,9 +193,9 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-slate-900 dark:text-white">Mesajınız</FormLabel>
+                            <FormLabel className="text-slate-900 dark:text-white">{t('contact.form_message')}</FormLabel>
                             <FormControl>
-                              <Textarea placeholder="Talebinizi detaylı olarak yazınız..." className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 resize-none" {...field} />
+                              <Textarea placeholder={t('contact.form_message_ph')} className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 resize-none" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -202,7 +204,7 @@ export default function Contact() {
 
                       <Button type="submit" size="lg" className="w-full md:w-auto px-8 h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 font-bold">
                         <Send className="w-4 h-4 mr-2" />
-                        Mesajı Gönder
+                        {t('contact.btn_send')}
                       </Button>
                     </form>
                   </Form>
