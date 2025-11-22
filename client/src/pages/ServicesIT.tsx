@@ -20,7 +20,7 @@ export default function ServicesIT() {
           <div className="max-w-4xl animate-in slide-in-from-bottom-8 duration-700 fade-in">
             <h1 className="text-6xl md:text-8xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
               Profesyonel <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">IT DESTEK</span> Hizmetleri
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400">IT DESTEK</span> Hizmetleri
             </h1>
             <p className="text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl font-light border-l-4 border-blue-500 pl-6">
               İşletmenizin dijital altyapısını uçtan uca yönetiyoruz. Sunucu bakımından donanım tedariğine, 
@@ -67,7 +67,7 @@ export default function ServicesIT() {
 
                 {/* Card 2: Network */}
                 <ServiceCard 
-                    icon={<Network className="w-8 h-8 text-indigo-400" />}
+                    icon={<Network className="w-8 h-8 text-sky-400" />}
                     title="Ağ & Altyapı Çözümleri"
                     desc="Kesintisiz ve güvenli ağ mimarisi kurulumu. Kablolamadan firewall yapılandırmasına kadar uçtan uca network yönetimi."
                     features={["Switch & Router Kurulumu", "Firewall & VPN Çözümleri", "Wi-Fi Altyapı Sistemleri", "Yapısal Kablolama"]}

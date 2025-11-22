@@ -114,7 +114,7 @@ export default function Home() {
 
                 {/* Card 3: Space Comm */}
                 <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
-                    <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6 border border-purple-200 dark:border-purple-500/20">
+                    <div className="w-14 h-14 rounded-2xl bg-sky-100 dark:bg-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 border border-sky-200 dark:border-sky-500/20">
                         <Satellite className="w-7 h-7" />
                     </div>
                     <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Uzay Haberleşmesi</h4>
@@ -122,7 +122,7 @@ export default function Home() {
                         Starlink, OneWeb ve Iridium sistemleri ile okyanus ortasında bile fiber hızında internet.
                     </p>
                     <Link href="/uzay-haberlesmesi">
-                        <a className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-500 dark:hover:text-purple-300 transition-colors">
+                        <a className="inline-flex items-center text-sky-600 dark:text-sky-400 font-semibold hover:text-sky-500 dark:hover:text-sky-300 transition-colors">
                             Keşfet <ArrowRight className="ml-2 w-4 h-4" />
                         </a>
                     </Link>
@@ -130,7 +130,7 @@ export default function Home() {
 
                 {/* Card 4: Land Comm */}
                 <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
-                    <div className="w-14 h-14 rounded-2xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 mb-6 border border-orange-200 dark:border-orange-500/20">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-700/30 flex items-center justify-center text-slate-600 dark:text-slate-300 mb-6 border border-slate-200 dark:border-slate-600/30">
                         <Radio className="w-7 h-7" />
                     </div>
                     <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Kara Haberleşmesi</h4>
@@ -138,7 +138,7 @@ export default function Home() {
                         Peplink ve Teltonika ile kesintisiz 4G/5G mobil internet ve SD-WAN çözümleri.
                     </p>
                     <Link href="/kara-haberlesmesi">
-                        <a className="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-500 dark:hover:text-orange-300 transition-colors">
+                        <a className="inline-flex items-center text-slate-600 dark:text-slate-400 font-semibold hover:text-slate-500 dark:hover:text-slate-300 transition-colors">
                             Keşfet <ArrowRight className="ml-2 w-4 h-4" />
                         </a>
                     </Link>

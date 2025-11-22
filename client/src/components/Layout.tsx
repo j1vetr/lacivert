@@ -45,7 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <a href="mailto:info@lacivertteknoloji.com" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
                         <Mail className="w-3 h-3" /> info@lacivertteknoloji.com
                     </a>
-                    <a href="tel:05325033417" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                    <a href="tel:05325033417" className="hidden md:flex items-center gap-2 hover:text-cyan-400 transition-colors">
                         <Phone className="w-3 h-3" /> 0532 503 34 17
                     </a>
                 </div>
@@ -132,7 +132,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                                 <div className="flex flex-col gap-2 w-1/3">
                                     <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-4 mb-2">Kara Haberleşmesi</div>
                                     <Link href="/kara-haberlesmesi" className="group block select-none rounded-md px-4 py-3 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
-                                        <div className="text-sm font-bold text-white group-hover:text-indigo-400">Genel Bakış</div>
+                                        <div className="text-sm font-bold text-white group-hover:text-emerald-400">Genel Bakış</div>
                                     </Link>
                                     <div className="h-px bg-slate-800 mx-4 my-1"></div>
                                     <Link href="/kara-haberlesmesi/peplink" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
@@ -285,7 +285,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. Tüm hakları saklıdır.</p>
+            <div className="flex flex-col md:flex-row items-center gap-4">
+                <p>&copy; {new Date().getFullYear()} Lacivert Teknoloji. Tüm hakları saklıdır.</p>
+                <a href="https://toov.com.tr" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    Tasarım: TOOV <span className="text-red-500/80">♥</span> tarafından yapıldı
+                </a>
+            </div>
             <div className="flex gap-8">
               <Link href="/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
               <Link href="/kullanim-sartlari" className="hover:text-white transition-colors">Kullanım Şartları</Link>
