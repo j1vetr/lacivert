@@ -1,4 +1,4 @@
-import { Shield, Lock, Eye, FileWarning, Server, Activity, CheckCircle, Globe, Cpu, Network, Zap, AlertTriangle, ArrowRight, Fingerprint, ScanLine } from "lucide-react";
+import { Shield, Lock, Eye, FileWarning, Server, Activity, CheckCircle, Globe, Cpu, Network, Zap, AlertTriangle, ArrowRight, Fingerprint, ScanLine, Signal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroBg from "@assets/generated_images/abstract_cybersecurity_digital_shield_concept.png";
