@@ -58,11 +58,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <NavigationMenu>
                 <NavigationMenuList className="gap-2">
                     <NavigationMenuItem>
-                        <Link href="/">
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[active]:bg-white/10`}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[active]:bg-white/10 cursor-pointer`}>
                                 Ana Sayfa
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
@@ -70,8 +70,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         <NavigationMenuContent>
                             <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-slate-950 border border-slate-800">
                                 <div className="row-span-3">
-                                    <Link href="/it-hizmetleri">
-                                        <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-slate-900 to-slate-800 p-6 no-underline outline-none focus:shadow-md hover:bg-slate-800 transition-colors border border-slate-800">
+                                    <NavigationMenuLink asChild>
+                                        <Link href="/it-hizmetleri" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-slate-900 to-slate-800 p-6 no-underline outline-none focus:shadow-md hover:bg-slate-800 transition-colors border border-slate-800 cursor-pointer">
                                             <Server className="h-6 w-6 text-blue-400" />
                                             <div className="mb-2 mt-4 text-lg font-medium text-white">
                                                 IT Destek & Bakım
@@ -79,8 +79,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                                             <p className="text-sm leading-tight text-slate-400">
                                                 Kurumsal sistem yönetimi, donanım tedariği ve 7/24 teknik destek çözümleri.
                                             </p>
-                                        </a>
-                                    </Link>
+                                        </Link>
+                                    </NavigationMenuLink>
                                 </div>
                                 <div className="flex flex-col gap-3">
                                     <ListItem href="/uzay-haberlesmesi" title="Uzay Haberleşmesi" icon={<Satellite className="w-4 h-4 text-cyan-400" />}>
@@ -98,19 +98,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <Link href="/hakkimizda">
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white`}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/hakkimizda" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
                                 Hakkımızda
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <Link href="/iletisim">
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white`}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/iletisim" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
                                 İletişim
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
@@ -249,19 +249,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 const ListItem = ({ className, title, children, href, icon, ...props }: any) => {
   return (
-    <Link href={href}>
-      <a
-        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-800 hover:text-accent-foreground focus:bg-slate-800 focus:text-accent-foreground ${className}`}
-        {...props}
-      >
-        <div className="flex items-center gap-2 text-sm font-medium leading-none text-slate-200">
-            {icon}
-            {title}
-        </div>
-        <p className="line-clamp-2 text-sm leading-snug text-slate-500 mt-1.5">
-          {children}
-        </p>
-      </a>
-    </Link>
+    <NavigationMenuLink asChild>
+        <Link href={href} className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-800 hover:text-accent-foreground focus:bg-slate-800 focus:text-accent-foreground cursor-pointer ${className}`} {...props}>
+            <div className="flex items-center gap-2 text-sm font-medium leading-none text-slate-200">
+                {icon}
+                {title}
+            </div>
+            <p className="line-clamp-2 text-sm leading-snug text-slate-500 mt-1.5">
+            {children}
+            </p>
+        </Link>
+    </NavigationMenuLink>
   )
 }
