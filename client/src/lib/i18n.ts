@@ -49,6 +49,11 @@ const resources = {
         "rights_reserved": "Tüm Hakları Saklıdır.",
         "designed_by": "Tasarım: TOOV"
       },
+      "not_found": {
+        "title": "Sayfa Bulunamadı",
+        "desc": "Aradığınız sayfa mevcut değil veya taşınmış olabilir. Ana sayfaya dönerek devam edebilirsiniz.",
+        "btn_home": "Ana Sayfaya Dön"
+      },
       "home": {
         "hero_badge": "Profesyonel Teknoloji Çözümleri",
         "hero_title_prefix": "İşletmeniz için",
@@ -395,6 +400,11 @@ const resources = {
         "contact_info": "Contact Info",
         "rights_reserved": "All Rights Reserved.",
         "designed_by": "Design: TOOV"
+      },
+      "not_found": {
+        "title": "Page Not Found",
+        "desc": "The page you are looking for does not exist or may have been moved. You can continue by returning to the home page.",
+        "btn_home": "Back to Home"
       },
       "home": {
         "hero_badge": "Professional Technology Solutions",
