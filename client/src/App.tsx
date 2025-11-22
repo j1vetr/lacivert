@@ -16,6 +16,13 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfUse from "@/pages/TermsOfUse";
 import ScrollToTop from "@/components/ScrollToTop";
 
+// Sub-service pages
+import StarlinkPage from "@/pages/services/space/Starlink";
+import OneWebPage from "@/pages/services/space/OneWeb";
+import IridiumPage from "@/pages/services/space/Iridium";
+import PeplinkPage from "@/pages/services/land/Peplink";
+import TeltonikaPage from "@/pages/services/land/Teltonika";
+
 function Router() {
   return (
     <Layout>
@@ -27,6 +34,16 @@ function Router() {
         <Route path="/siber-guvenlik" component={ServicesSecurity} />
         <Route path="/uzay-haberlesmesi" component={ServicesSpace} />
         <Route path="/kara-haberlesmesi" component={ServicesLand} />
+        
+        {/* Space Sub-services */}
+        <Route path="/uzay-haberlesmesi/starlink" component={StarlinkPage} />
+        <Route path="/uzay-haberlesmesi/oneweb" component={OneWebPage} />
+        <Route path="/uzay-haberlesmesi/iridium" component={IridiumPage} />
+
+        {/* Land Sub-services */}
+        <Route path="/kara-haberlesmesi/peplink" component={PeplinkPage} />
+        <Route path="/kara-haberlesmesi/teltonika" component={TeltonikaPage} />
+
         <Route path="/iletisim" component={Contact} />
         <Route path="/gizlilik-politikasi" component={PrivacyPolicy} />
         <Route path="/kullanim-sartlari" component={TermsOfUse} />

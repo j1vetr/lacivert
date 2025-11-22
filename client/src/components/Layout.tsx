@@ -95,11 +95,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                                 </div>
 
                                 <div className="flex flex-col gap-2">
-                                    <ListItem href="/uzay-haberlesmesi" title="Uzay Haberleşmesi" icon={<Satellite className="w-5 h-5 text-cyan-400" />}>
-                                        Starlink, OneWeb ve VSAT sistemleri kurulum ve yönetimi.
+                                    <ListItem href="/uzay-haberlesmesi/starlink" title="Starlink Maritime" icon={<Satellite className="w-5 h-5 text-cyan-400" />}>
+                                        Yüksek hızlı ve düşük gecikmeli LEO uydu interneti.
                                     </ListItem>
-                                    <ListItem href="/kara-haberlesmesi" title="Kara Haberleşmesi" icon={<Radio className="w-5 h-5 text-indigo-400" />}>
-                                        Peplink & Teltonika ile kesintisiz mobil internet çözümleri.
+                                    <ListItem href="/kara-haberlesmesi/peplink" title="Peplink SD-WAN" icon={<Radio className="w-5 h-5 text-indigo-400" />}>
+                                        Kesintisiz 4G/5G ve uydu birleştirme teknolojileri.
                                     </ListItem>
                                      <ListItem href="/siber-guvenlik" title="Siber Güvenlik" icon={<Shield className="w-5 h-5 text-emerald-400" />}>
                                         IMO uyumlu ağ güvenliği, EDR ve SOC hizmetleri.
