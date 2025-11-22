@@ -104,10 +104,6 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10 pt-20">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 fade-in duration-1000">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/90 text-sm font-medium mb-8 backdrop-blur-md">
-              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
-              {t('home.hero_badge')}
-            </div>
             
             <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight">
               <span className="block text-slate-400 text-4xl sm:text-5xl md:text-6xl font-light tracking-normal mb-2">{t('home.hero_title_prefix')}</span>
