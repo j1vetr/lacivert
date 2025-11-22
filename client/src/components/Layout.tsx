@@ -1,20 +1,19 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Shield, Server, Wifi, Radio, Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Menu, X, Shield, Server, Wifi, Radio, Mail, Phone, MapPin, Linkedin, Instagram, Facebook, ChevronDown, Globe, Satellite } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import logoWhite from "@assets/lacivert light logo_1763796346759.png";
 import logoDark from "@assets/lacivert dark logo_1763796405911.png";
-
-const navLinks = [
-  { name: "Ana Sayfa", href: "/" },
-  { name: "IT Destek", href: "/it-hizmetleri" },
-  { name: "Siber Güvenlik", href: "/siber-guvenlik" },
-  { name: "Uzay Haberleşmesi", href: "/uzay-haberlesmesi" },
-  { name: "Kara Haberleşmesi", href: "/kara-haberlesmesi" },
-  { name: "Hakkımızda", href: "/hakkimizda" },
-  { name: "İletişim", href: "/iletisim" },
-];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -33,106 +32,127 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Navigation */}
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-background/95 backdrop-blur-md shadow-md py-3 border-b border-border/10" : "bg-transparent py-6"
+          scrolled ? "bg-slate-950/95 backdrop-blur-md shadow-md py-3 border-b border-white/10" : "bg-transparent py-6"
         }`}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2 group relative">
-            {/* 
-              If scrolled (white bg), we ideally need the dark logo. 
-              If not scrolled (dark bg), we use the white logo.
-              Since we only have the white logo (logoWhite) for now, we use it when not scrolled.
-              For scrolled state, we can fallback to text or use the white logo with filter (if needed) 
-              but standard practice is waiting for the dark logo. 
-              For now, I'll keep using the text/icon for scrolled state if logo is missing for that mode, 
-              OR just use the white logo if the user accepts it (but white on white won't work).
-              
-              Let's use the Image when NOT scrolled.
-              Let's use the Text/Icon when scrolled (until we get the dark logo).
-            */}
-            {!scrolled ? (
-               <div className="relative px-4 py-2">
-                  {/* Animated Border Container */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-                    <rect 
-                      x="0" y="0" width="100%" height="100%" 
-                      rx="8" ry="8" 
-                      fill="none" 
-                      stroke="hsl(189, 94%, 43%)" /* Accent Cyan */
-                      strokeWidth="2" 
-                      className="animate-logo-border opacity-80 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]"
-                    />
-                  </svg>
-                  <img src={logoWhite} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
-               </div>
-            ) : (
-               <div className="relative px-4 py-2">
-                 {/* Animated Border Container Dark */}
-                 <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-                    <rect 
-                      x="0" y="0" width="100%" height="100%" 
-                      rx="8" ry="8" 
-                      fill="none" 
-                      stroke="hsl(222, 47%, 11%)" /* Primary Navy */
-                      strokeWidth="2" 
-                      className="animate-logo-border opacity-80"
-                    />
-                  </svg>
-                 <img src={logoDark} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
-               </div>
-            )}
+            <div className="relative px-4 py-2">
+              {/* Animated Border Container */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                <rect 
+                  x="0" y="0" width="100%" height="100%" 
+                  rx="8" ry="8" 
+                  fill="none" 
+                  stroke={scrolled ? "hsl(222, 47%, 41%)" : "hsl(189, 94%, 43%)"} 
+                  strokeWidth="2" 
+                  className="animate-logo-border opacity-80"
+                />
+              </svg>
+              <img src={logoWhite} alt="Lacivert Teknoloji" className="h-16 object-contain relative z-10" />
+            </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href}
-                className={`text-base font-medium transition-colors duration-200 hover:text-accent ${
-                  location === link.href
-                    ? "text-accent"
-                    : scrolled
-                    ? "text-foreground"
-                    : "text-white/90"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Button 
-              asChild
-              variant={scrolled ? "default" : "secondary"} 
-              className={!scrolled ? "bg-white text-primary hover:bg-white/90" : ""}
-            >
-              <Link href="/iletisim">
-                Teklif Al
-              </Link>
-            </Button>
-          </nav>
+          {/* Desktop Nav - Mega Menu */}
+          <div className="hidden lg:block">
+            <NavigationMenu>
+                <NavigationMenuList className="gap-2">
+                    <NavigationMenuItem>
+                        <Link href="/">
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[active]:bg-white/10`}>
+                                Ana Sayfa
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">Hizmetlerimiz</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-slate-950 border border-slate-800">
+                                <div className="row-span-3">
+                                    <Link href="/it-hizmetleri">
+                                        <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-slate-900 to-slate-800 p-6 no-underline outline-none focus:shadow-md hover:bg-slate-800 transition-colors border border-slate-800">
+                                            <Server className="h-6 w-6 text-blue-400" />
+                                            <div className="mb-2 mt-4 text-lg font-medium text-white">
+                                                IT Destek & Bakım
+                                            </div>
+                                            <p className="text-sm leading-tight text-slate-400">
+                                                Kurumsal sistem yönetimi, donanım tedariği ve 7/24 teknik destek çözümleri.
+                                            </p>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className="flex flex-col gap-3">
+                                    <ListItem href="/uzay-haberlesmesi" title="Uzay Haberleşmesi" icon={<Satellite className="w-4 h-4 text-cyan-400" />}>
+                                        Starlink, OneWeb ve VSAT sistemleri kurulum ve yönetimi.
+                                    </ListItem>
+                                    <ListItem href="/kara-haberlesmesi" title="Kara Haberleşmesi" icon={<Radio className="w-4 h-4 text-indigo-400" />}>
+                                        Peplink & Teltonika ile kesintisiz mobil internet çözümleri.
+                                    </ListItem>
+                                     <ListItem href="/siber-guvenlik" title="Siber Güvenlik" icon={<Shield className="w-4 h-4 text-emerald-400" />}>
+                                        IMO uyumlu ağ güvenliği, EDR ve SOC hizmetleri.
+                                    </ListItem>
+                                </div>
+                            </div>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <Link href="/hakkimizda">
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white`}>
+                                Hakkımızda
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <Link href="/iletisim">
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white`}>
+                                İletişim
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+
+           <div className="hidden lg:block">
+                <Button 
+                asChild
+                className="bg-white text-slate-950 hover:bg-white/90 font-bold"
+                >
+                <Link href="/iletisim">
+                    Teklif Al
+                </Link>
+                </Button>
+           </div>
 
           {/* Mobile Nav */}
           <div className="lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className={scrolled ? "text-foreground" : "text-white"}>
+                <Button variant="ghost" size="icon" className="text-white">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-950 border-slate-800 text-white">
                 <div className="flex flex-col gap-8 mt-10">
-                  {navLinks.map((link) => (
-                    <Link 
-                      key={link.href} 
-                      href={link.href}
-                      className={`text-xl font-medium transition-colors hover:text-accent ${
-                        location === link.href ? "text-accent" : "text-foreground"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                  <Button asChild className="w-full mt-4">
+                    <Link href="/" className="text-xl font-medium hover:text-blue-400">Ana Sayfa</Link>
+                    
+                    <div className="space-y-4">
+                        <div className="text-xl font-medium text-slate-400">Hizmetlerimiz</div>
+                        <div className="pl-4 flex flex-col gap-4 border-l border-slate-800">
+                            <Link href="/it-hizmetleri" className="text-lg hover:text-blue-400">IT Destek</Link>
+                            <Link href="/uzay-haberlesmesi" className="text-lg hover:text-blue-400">Uzay Haberleşmesi</Link>
+                            <Link href="/kara-haberlesmesi" className="text-lg hover:text-blue-400">Kara Haberleşmesi</Link>
+                            <Link href="/siber-guvenlik" className="text-lg hover:text-blue-400">Siber Güvenlik</Link>
+                        </div>
+                    </div>
+
+                    <Link href="/hakkimizda" className="text-xl font-medium hover:text-blue-400">Hakkımızda</Link>
+                    <Link href="/iletisim" className="text-xl font-medium hover:text-blue-400">İletişim</Link>
+                    
+                  <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white">
                     <Link href="/iletisim">Teklif Al</Link>
                   </Button>
                 </div>
@@ -161,13 +181,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 Denizcilikten kurumsal ofislere kadar geniş bir yelpazede profesyonel çözümler sunuyoruz.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors">
                   <Facebook className="w-5 h-5" />
                 </a>
               </div>
@@ -177,16 +197,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="text-lg font-heading font-bold mb-6">Hızlı Bağlantılar</h4>
               <ul className="space-y-4">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link 
-                      href={link.href}
-                      className="text-slate-400 hover:text-accent transition-colors block"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                  <li><Link href="/" className="text-slate-400 hover:text-blue-400 transition-colors block">Ana Sayfa</Link></li>
+                  <li><Link href="/hakkimizda" className="text-slate-400 hover:text-blue-400 transition-colors block">Hakkımızda</Link></li>
+                  <li><Link href="/iletisim" className="text-slate-400 hover:text-blue-400 transition-colors block">İletişim</Link></li>
               </ul>
             </div>
 
@@ -194,12 +207,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="text-lg font-heading font-bold mb-6">Hizmetlerimiz</h4>
               <ul className="space-y-4 text-slate-400">
-                <li className="hover:text-accent cursor-pointer transition-colors">IT Destek & Bakım</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Siber Güvenlik</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Starlink Kurulum</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Network & Firewall</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Bulut Çözümleri</li>
-                <li className="hover:text-accent cursor-pointer transition-colors">Kamera Sistemleri</li>
+                <li><Link href="/it-hizmetleri" className="hover:text-blue-400 transition-colors block">IT Destek & Bakım</Link></li>
+                <li><Link href="/uzay-haberlesmesi" className="hover:text-blue-400 transition-colors block">Uzay Haberleşmesi</Link></li>
+                <li><Link href="/kara-haberlesmesi" className="hover:text-blue-400 transition-colors block">Kara Haberleşmesi</Link></li>
+                <li><Link href="/siber-guvenlik" className="hover:text-blue-400 transition-colors block">Siber Güvenlik</Link></li>
               </ul>
             </div>
 
@@ -208,15 +219,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="text-lg font-heading font-bold mb-6">İletişim</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-slate-400">
-                  <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
+                  <MapPin className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
                   <span>Gürsel Mah. İmrahor Cad. Premier Kampüs Ofis No: 29/A Kat:6 Ofis:217<br />Kağıthane / İstanbul</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
-                  <Phone className="w-5 h-5 text-accent shrink-0" />
+                  <Phone className="w-5 h-5 text-blue-500 shrink-0" />
                   <span>0532 503 34 17</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
-                  <Mail className="w-5 h-5 text-accent shrink-0" />
+                  <Mail className="w-5 h-5 text-blue-500 shrink-0" />
                   <span>info@lacivertteknoloji.com</span>
                 </li>
               </ul>
@@ -234,4 +245,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </footer>
     </div>
   );
+}
+
+const ListItem = ({ className, title, children, href, icon, ...props }: any) => {
+  return (
+    <Link href={href}>
+      <a
+        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-800 hover:text-accent-foreground focus:bg-slate-800 focus:text-accent-foreground ${className}`}
+        {...props}
+      >
+        <div className="flex items-center gap-2 text-sm font-medium leading-none text-slate-200">
+            {icon}
+            {title}
+        </div>
+        <p className="line-clamp-2 text-sm leading-snug text-slate-500 mt-1.5">
+          {children}
+        </p>
+      </a>
+    </Link>
+  )
 }
