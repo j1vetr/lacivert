@@ -55,7 +55,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Desktop Nav - Mega Menu */}
           <div className="hidden lg:block">
-            <NavigationMenu>
+            <NavigationMenu delayDuration={0}>
                 <NavigationMenuList className="gap-2">
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
@@ -68,28 +68,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10">Hizmetlerimiz</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-slate-950 border border-slate-800">
-                                <div className="row-span-3">
+                            <div className="grid gap-3 p-6 md:w-[500px] lg:w-[600px] lg:grid-cols-[1fr_1fr] bg-slate-950 border border-slate-800 shadow-2xl">
+                                <div className="row-span-3 flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-950 via-slate-900 to-slate-900 p-6 border border-blue-900/30 relative overflow-hidden group">
+                                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+                                    <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-all duration-500"></div>
+                                    
+                                    <div className="relative z-10">
+                                        <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 border border-blue-500/20 text-blue-400">
+                                            <Server className="h-6 w-6" />
+                                        </div>
+                                        <div className="mb-2 text-xl font-bold text-white">
+                                            IT Destek & Bakım
+                                        </div>
+                                        <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                                            Kurumsal sistem yönetimi, donanım tedariği ve 7/24 teknik destek çözümleri ile iş sürekliliğinizi garanti altına alın.
+                                        </p>
+                                    </div>
+                                    
                                     <NavigationMenuLink asChild>
-                                        <Link href="/it-hizmetleri" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-slate-900 to-slate-800 p-6 no-underline outline-none focus:shadow-md hover:bg-slate-800 transition-colors border border-slate-800 cursor-pointer">
-                                            <Server className="h-6 w-6 text-blue-400" />
-                                            <div className="mb-2 mt-4 text-lg font-medium text-white">
-                                                IT Destek & Bakım
-                                            </div>
-                                            <p className="text-sm leading-tight text-slate-400">
-                                                Kurumsal sistem yönetimi, donanım tedariği ve 7/24 teknik destek çözümleri.
-                                            </p>
+                                        <Link href="/it-hizmetleri" className="relative z-10 inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors mt-auto cursor-pointer group-hover:translate-x-1 duration-300">
+                                            Detayları İncele <ChevronDown className="ml-1 h-4 w-4 -rotate-90" />
                                         </Link>
                                     </NavigationMenuLink>
                                 </div>
-                                <div className="flex flex-col gap-3">
-                                    <ListItem href="/uzay-haberlesmesi" title="Uzay Haberleşmesi" icon={<Satellite className="w-4 h-4 text-cyan-400" />}>
+
+                                <div className="flex flex-col gap-2">
+                                    <ListItem href="/uzay-haberlesmesi" title="Uzay Haberleşmesi" icon={<Satellite className="w-5 h-5 text-cyan-400" />}>
                                         Starlink, OneWeb ve VSAT sistemleri kurulum ve yönetimi.
                                     </ListItem>
-                                    <ListItem href="/kara-haberlesmesi" title="Kara Haberleşmesi" icon={<Radio className="w-4 h-4 text-indigo-400" />}>
+                                    <ListItem href="/kara-haberlesmesi" title="Kara Haberleşmesi" icon={<Radio className="w-5 h-5 text-indigo-400" />}>
                                         Peplink & Teltonika ile kesintisiz mobil internet çözümleri.
                                     </ListItem>
-                                     <ListItem href="/siber-guvenlik" title="Siber Güvenlik" icon={<Shield className="w-4 h-4 text-emerald-400" />}>
+                                     <ListItem href="/siber-guvenlik" title="Siber Güvenlik" icon={<Shield className="w-5 h-5 text-emerald-400" />}>
                                         IMO uyumlu ağ güvenliği, EDR ve SOC hizmetleri.
                                     </ListItem>
                                 </div>
@@ -250,12 +260,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const ListItem = ({ className, title, children, href, icon, ...props }: any) => {
   return (
     <NavigationMenuLink asChild>
-        <Link href={href} className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-800 hover:text-accent-foreground focus:bg-slate-800 focus:text-accent-foreground cursor-pointer ${className}`} {...props}>
-            <div className="flex items-center gap-2 text-sm font-medium leading-none text-slate-200">
-                {icon}
+        <Link href={href} className={`block select-none space-y-1 rounded-xl p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-slate-800/80 hover:text-accent-foreground focus:bg-slate-800 focus:text-accent-foreground cursor-pointer border border-transparent hover:border-slate-700 group ${className}`} {...props}>
+            <div className="flex items-center gap-3 text-base font-bold leading-none text-slate-200 group-hover:text-white transition-colors">
+                <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 group-hover:border-slate-700 group-hover:bg-slate-800 transition-colors">
+                    {icon}
+                </div>
                 {title}
             </div>
-            <p className="line-clamp-2 text-sm leading-snug text-slate-500 mt-1.5">
+            <p className="line-clamp-2 text-sm leading-snug text-slate-500 mt-2 pl-[3.25rem] group-hover:text-slate-400 transition-colors">
             {children}
             </p>
         </Link>
