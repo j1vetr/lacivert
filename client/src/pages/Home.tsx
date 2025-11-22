@@ -35,7 +35,7 @@ function TypewriterText({ text, delay = 500 }: { text: string, delay?: number })
   }, [text, started]);
 
   return (
-    <span className="inline-block">
+    <span>
       {displayedText}
       <span className="animate-pulse text-cyan-400">|</span>
     </span>
