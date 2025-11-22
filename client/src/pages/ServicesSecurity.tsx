@@ -11,7 +11,7 @@ import imgSecurity from "@assets/generated_images/abstract_cybersecurity_digital
 
 export default function ServicesSecurity() {
   return (
-    <div className="pt-20">
+    <div>
        {/* Hero */}
        <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div 

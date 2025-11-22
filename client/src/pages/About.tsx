@@ -4,9 +4,9 @@ import imgCloud from "@assets/generated_images/abstract_cloud_computing_network_
 
 export default function About() {
   return (
-    <div className="pt-20">
+    <div>
       {/* Header */}
-      <section className="bg-primary text-white py-20">
+      <section className="bg-primary text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 animate-in fade-in slide-in-from-bottom-4">Hakkımızda</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">

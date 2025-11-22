@@ -48,9 +48,9 @@ export default function Contact() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <section className="bg-primary text-white py-20">
+      <section className="bg-primary text-white pt-32 pb-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">İletişim</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">

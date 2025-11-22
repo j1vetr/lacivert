@@ -2,9 +2,9 @@ import { FileText, Scale } from "lucide-react";
 
 export default function TermsOfUse() {
   return (
-    <div className="pt-20">
+    <div>
       {/* Header */}
-      <section className="bg-slate-950 text-white py-16">
+      <section className="bg-slate-950 text-white pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">
           <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
             <Scale className="w-8 h-8 text-accent" />

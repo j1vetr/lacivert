@@ -19,7 +19,7 @@ import imgStarlink from "@assets/generated_images/starlink_satellite_dish_on_a_m
 
 export default function ServicesStarlink() {
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero */}
       <section className="relative h-[80vh] flex items-center overflow-hidden">
         <div 

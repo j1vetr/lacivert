@@ -5,7 +5,7 @@ import imgServer from "@assets/generated_images/modern_clean_server_room_with_bl
 
 export default function ServicesIT() {
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <div 
