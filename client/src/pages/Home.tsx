@@ -77,7 +77,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl font-light border-l-4 border-cyan-500 pl-6">
-              Lacivert Teknoloji; IT hizmetleri, siber güvenlik, Starlink uydu interneti ve bulut çözümleri ile işletmenizi geleceğe taşıyor.
+              IT hizmetleri, siber güvenlik, Starlink uydu interneti ve bulut çözümleri ile işletmenizi geleceğe taşıyoruz.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-5">
