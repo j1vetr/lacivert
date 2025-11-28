@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as d3 from 'd3-geo';
 import { feature } from 'topojson-client';
 import { Globe, Map as MapIcon, Info } from 'lucide-react';
+import { zoom, zoomIdentity } from 'd3-zoom';
+import { select } from 'd3-selection';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -25,6 +27,8 @@ const waitlistCountries = [
 export function StarlinkMap() {
   const { t } = useTranslation();
   const [geography, setGeography] = useState<any[]>([]);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const gRef = useRef<SVGGElement>(null);
 
   useEffect(() => {
     fetch(geoUrl)
@@ -34,6 +38,23 @@ export function StarlinkMap() {
         setGeography((countries as any).features);
       });
   }, []);
+
+  // Zoom Setup
+  useEffect(() => {
+    if (!svgRef.current || !gRef.current) return;
+
+    const svg = select(svgRef.current);
+    const g = select(gRef.current);
+
+    const zoomBehavior = zoom<SVGSVGElement, unknown>()
+      .scaleExtent([1, 8]) // Zoom limits
+      .translateExtent([[0, 0], [800, 450]]) // Pan limits matching viewBox
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform);
+      });
+
+    svg.call(zoomBehavior);
+  }, [geography]); // Re-attach if geography loads (though mainly just needs svg/g refs)
 
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
@@ -72,9 +93,9 @@ export function StarlinkMap() {
 
         <div className="relative w-full max-w-5xl mx-auto bg-slate-900/50 rounded-3xl border border-white/5 p-4 md:p-8 shadow-2xl overflow-hidden">
           {/* Map SVG */}
-          <div className="w-full aspect-[1.6/1] relative select-none">
-             <svg viewBox="0 0 800 450" className="w-full h-full">
-                <g>
+          <div className="w-full aspect-[1.6/1] relative select-none overflow-hidden cursor-grab active:cursor-grabbing">
+             <svg ref={svgRef} viewBox="0 0 800 450" className="w-full h-full">
+                <g ref={gRef}>
                   {geography.map((geo) => {
                     const id = String(geo.id);
                     let fill = "#1e293b"; // default slate-800 (Rest of World)
@@ -154,7 +175,7 @@ export function StarlinkMap() {
                 
                 {/* Legend Overlay - Updated to match image logic */}
                 <foreignObject x="20" y="380" width="300" height="100">
-                    <div className="flex flex-col gap-2 bg-slate-950/80 p-3 rounded-lg border border-white/10 backdrop-blur-sm text-xs shadow-xl">
+                    <div className="flex flex-col gap-2 bg-slate-950/80 p-3 rounded-lg border border-white/10 backdrop-blur-sm text-xs shadow-xl pointer-events-none">
                         <div className="flex items-center gap-2 text-slate-300">
                             <div className="w-3 h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
                             {t('home.map_legend_active')}
