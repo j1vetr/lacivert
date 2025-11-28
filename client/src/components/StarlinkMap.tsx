@@ -46,6 +46,16 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     const svg = select(svgRef.current);
     const g = select(gRef.current);
 
+    // Calculate better initial scale/translate for mobile
+    const isMobile = window.innerWidth < 768;
+    
+    // Start more zoomed in, especially on mobile
+    const initialScale = isMobile ? 2.5 : 1.2;
+    
+    // Center on Europe/Middle East roughly
+    const initialX = isMobile ? -280 : -50; 
+    const initialY = isMobile ? -150 : 0;
+
     const zoomBehavior = zoom<SVGSVGElement, unknown>()
       .scaleExtent([1, 8]) // Zoom limits
       .translateExtent([[0, 0], [800, 450]]) // Pan limits matching viewBox
@@ -53,7 +63,9 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
         g.attr('transform', event.transform);
       });
 
-    svg.call(zoomBehavior);
+    // Apply initial transform
+    svg.call(zoomBehavior)
+       .call(zoomBehavior.transform, d3.zoomIdentity.translate(initialX, initialY).scale(initialScale));
     
     // Store zoom behavior on svg node for button access
     (svg.node() as any).__zoomBehavior = zoomBehavior;
@@ -89,13 +101,13 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Removed tooltip state as we are showing labels directly
 
   return (
-    <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[calc(100vh-5rem)] mt-20 flex flex-col' : 'py-20'}`}>
+    <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-20 pb-0 flex flex-col' : 'py-20'}`}>
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
       
-      <div className={`container mx-auto px-4 relative z-10 ${fullScreen ? 'h-full flex flex-col' : ''}`}>
+      <div className={`container mx-auto px-0 md:px-4 relative z-10 ${fullScreen ? 'h-full flex flex-col' : ''}`}>
         
         {!fullScreen && (
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 px-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-4 uppercase tracking-wider">
                 <Globe className="w-3 h-3" /> Global Coverage
             </div>
@@ -108,7 +120,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
             </div>
         )}
 
-        <div className={`relative w-full mx-auto bg-slate-900/50 rounded-3xl border border-white/5 shadow-2xl overflow-hidden ${fullScreen ? 'flex-grow flex flex-col h-full' : 'max-w-5xl p-4 md:p-8'}`}>
+        <div className={`relative w-full mx-auto bg-slate-900/50 md:rounded-3xl border-y md:border border-white/5 shadow-2xl overflow-hidden ${fullScreen ? 'flex-grow flex flex-col h-full' : 'max-w-5xl p-4 md:p-8'}`}>
           {/* Map SVG */}
           <div className={`w-full relative select-none overflow-hidden cursor-grab active:cursor-grabbing ${fullScreen ? 'h-full' : 'aspect-[1.6/1]'}`}>
              <svg ref={svgRef} viewBox="0 0 800 450" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
@@ -210,30 +222,30 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
              </svg>
 
              {/* Zoom Controls */}
-             <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+             <div className="absolute bottom-20 md:bottom-4 right-4 flex flex-col gap-3 z-50">
                 <button 
                     onClick={() => handleZoom(1.3)}
-                    className="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-white rounded flex items-center justify-center border border-white/10 shadow-lg transition-colors"
+                    className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
                     aria-label="Zoom In"
                 >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-5 h-5" />
                 </button>
                 <button 
                     onClick={() => handleZoom(0.77)}
-                    className="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-white rounded flex items-center justify-center border border-white/10 shadow-lg transition-colors"
+                    className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
                     aria-label="Zoom Out"
                 >
-                    <Minus className="w-4 h-4" />
+                    <Minus className="w-5 h-5" />
                 </button>
              </div>
           </div>
           
           {/* Maritime Coverage Note */}
-          <div className={`flex items-start gap-3 p-4 bg-fuchsia-500/10 border border-fuchsia-500/20 ${fullScreen ? 'absolute bottom-4 left-4 max-w-md rounded-xl backdrop-blur-sm bg-slate-950/80' : 'mt-6 rounded-xl'}`}>
+          <div className={`flex items-start gap-3 p-4 bg-fuchsia-500/10 border border-fuchsia-500/20 ${fullScreen ? 'relative md:absolute bottom-0 md:bottom-4 left-0 md:left-4 w-full md:max-w-md md:rounded-xl backdrop-blur-sm bg-slate-950/90 border-t md:border border-fuchsia-500/20 z-40' : 'mt-6 rounded-xl'}`}>
             <Info className="w-5 h-5 text-fuchsia-400 flex-shrink-0 mt-0.5" />
             <div>
                 <h4 className="text-fuchsia-400 font-bold text-sm mb-1">Geofenced Regions Note</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
                     "Geofenced" bölgelerde (Türkiye dahil) karasal Starlink hizmeti kısıtlı olabilir, ancak <strong>Maritime (Denizcilik)</strong> hizmeti kıyıdan ülkeye göre değişkenlik gösteren (2 - 10 deniz mili) mesafeden sonra uluslararası sularda sorunsuz çalışmaktadır.
                 </p>
             </div>
