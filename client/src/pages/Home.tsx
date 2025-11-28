@@ -160,10 +160,8 @@ export default function Home() {
                             <Badge text={t('home.badges.helpdesk')} />
                             <Badge text={t('home.badges.hardware_supply')} />
                         </div>
-                        <Link href="/it-hizmetleri">
-                            <a className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
-                                {t('home.btn_examine')} <ArrowRight className="ml-2 w-5 h-5" />
-                            </a>
+                        <Link href="/it-hizmetleri" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+                            {t('home.btn_examine')} <ArrowRight className="ml-2 w-5 h-5" />
                         </Link>
                     </div>
                 </div>
@@ -200,10 +198,8 @@ export default function Home() {
                     <p className="text-slate-600 dark:text-slate-400 mb-6">
                         {t('home.card_space_desc')}
                     </p>
-                    <Link href="/uzay-haberlesmesi">
-                        <a className="inline-flex items-center text-sky-600 dark:text-sky-400 font-semibold hover:text-sky-500 dark:hover:text-sky-300 transition-colors">
-                            {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
-                        </a>
+                    <Link href="/uzay-haberlesmesi" className="inline-flex items-center text-sky-600 dark:text-sky-400 font-semibold hover:text-sky-500 dark:hover:text-sky-300 transition-colors">
+                        {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                 </div>
 
@@ -216,10 +212,8 @@ export default function Home() {
                     <p className="text-slate-600 dark:text-slate-400 mb-6">
                         {t('home.card_land_desc')}
                     </p>
-                    <Link href="/kara-haberlesmesi">
-                        <a className="inline-flex items-center text-slate-600 dark:text-slate-400 font-semibold hover:text-slate-500 dark:hover:text-slate-300 transition-colors">
-                            {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
-                        </a>
+                    <Link href="/kara-haberlesmesi" className="inline-flex items-center text-slate-600 dark:text-slate-400 font-semibold hover:text-slate-500 dark:hover:text-slate-300 transition-colors">
+                        {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                 </div>
 

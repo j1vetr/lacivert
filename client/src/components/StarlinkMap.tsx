@@ -159,7 +159,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                     const showLabel = isColored && name && !isNaN(centroid[0]);
 
                     return (
-                      <g key={geo.rsmKey || id}>
+                      <g key={geo.id || `geo-${Math.random()}`}>
                           <path
                             d={pathGenerator(geo) || undefined}
                             fill={fill}
