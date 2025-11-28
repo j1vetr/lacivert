@@ -22,6 +22,7 @@ import OneWebPage from "@/pages/services/space/OneWeb";
 import IridiumPage from "@/pages/services/space/Iridium";
 import PeplinkPage from "@/pages/services/land/Peplink";
 import TeltonikaPage from "@/pages/services/land/Teltonika";
+import StarlinkMapPage from "@/pages/StarlinkMapPage";
 
 function Router() {
   return (
