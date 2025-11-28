@@ -100,6 +100,24 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   const pathGenerator = d3.geoPath().projection(projection);
   // Removed tooltip state as we are showing labels directly
 
+  // Ocean/Sea Labels
+  const oceanLabels = [
+    { name: "North Atlantic Ocean", coords: [-40, 35] },
+    { name: "South Atlantic Ocean", coords: [-20, -25] },
+    { name: "North Pacific Ocean", coords: [-160, 35] },
+    { name: "South Pacific Ocean", coords: [-130, -25] },
+    { name: "Indian Ocean", coords: [80, -15] },
+    { name: "Southern Ocean", coords: [0, -65] },
+    { name: "Arctic Ocean", coords: [0, 85] },
+    { name: "Mediterranean Sea", coords: [18, 35], fontSize: "4px" },
+    { name: "Caribbean Sea", coords: [-75, 15], fontSize: "4px" },
+    { name: "Gulf of Mexico", coords: [-90, 25], fontSize: "4px" },
+    { name: "Arabian Sea", coords: [65, 15], fontSize: "4px" },
+    { name: "Bay of Bengal", coords: [90, 15], fontSize: "4px" },
+    { name: "South China Sea", coords: [115, 12], fontSize: "4px" },
+    { name: "Sea of Japan", coords: [135, 40], fontSize: "4px" },
+  ];
+
   return (
     <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-40 pb-0 flex flex-col' : 'py-20'}`}>
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
@@ -125,6 +143,30 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
           <div className={`w-full relative select-none overflow-hidden cursor-grab active:cursor-grabbing ${fullScreen ? 'h-full' : 'aspect-[1.6/1]'}`}>
              <svg ref={svgRef} viewBox="0 0 800 450" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                 <g ref={gRef}>
+                  {/* Ocean Labels Layer - Behind countries? No, on top of background but behind countries usually. 
+                      Since countries are drawn on top, let's draw oceans first if we want them 'under' the land 
+                      but visible on water. The background is water. */}
+                  {oceanLabels.map((ocean, idx) => {
+                      const [x, y] = projection(ocean.coords as [number, number]) || [0, 0];
+                      if (!x || !y) return null;
+                      return (
+                          <text
+                              key={`ocean-${idx}`}
+                              x={x}
+                              y={y}
+                              textAnchor="middle"
+                              alignmentBaseline="middle"
+                              fill="#475569" // slate-600
+                              fontSize={ocean.fontSize || "8px"}
+                              fontWeight="bold"
+                              className="pointer-events-none select-none opacity-40 tracking-widest uppercase"
+                              style={{ letterSpacing: '0.1em' }}
+                          >
+                              {ocean.name}
+                          </text>
+                      );
+                  })}
+
                   {geography.map((geo) => {
                     const id = String(geo.id);
                     let fill = "#1e293b"; // default slate-800 (Rest of World)
