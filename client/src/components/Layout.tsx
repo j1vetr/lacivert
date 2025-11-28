@@ -151,6 +151,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                                     <Link href="/uzay-haberlesmesi/iridium" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
                                         <div className="text-sm font-medium text-slate-300 group-hover:text-white">{t('nav.iridium')}</div>
                                     </Link>
+                                    <div className="h-px bg-slate-800 mx-4 my-1"></div>
+                                    <Link href="/starlink-haritasi" className="group block select-none rounded-md px-4 py-2 leading-none no-underline outline-none hover:bg-slate-900 transition-colors">
+                                        <div className="text-sm font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-2">
+                                            <Globe className="w-3 h-3" /> Starlink Map
+                                        </div>
+                                    </Link>
                                 </div>
 
                                 {/* Col 3: Land Communication */}
@@ -250,6 +256,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                                         <Link href="/uzay-haberlesmesi/starlink" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.starlink')}</Link>
                                         <Link href="/uzay-haberlesmesi/oneweb" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.oneweb')}</Link>
                                         <Link href="/uzay-haberlesmesi/iridium" onClick={closeMobileMenu} className="text-slate-300 hover:text-white py-1">{t('nav.iridium')}</Link>
+                                        <Link href="/starlink-haritasi" onClick={closeMobileMenu} className="text-cyan-400 hover:text-white py-1 font-bold">Starlink Map</Link>
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>

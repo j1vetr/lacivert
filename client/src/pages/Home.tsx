@@ -6,7 +6,6 @@ import heroBg from "@assets/generated_images/futuristic_navy_blue_technology_net
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import { useTranslation } from "react-i18next";
-import { StarlinkMap } from "@/components/StarlinkMap";
 
 import { useEffect, useState } from "react";
 
@@ -227,9 +226,6 @@ export default function Home() {
             </div>
         </div>
       </section>
-
-      {/* Starlink Coverage Map - NEW SECTION */}
-      <StarlinkMap />
 
       {/* Global Connectivity / Why Us */}
       <section className="py-32 relative overflow-hidden bg-slate-950">

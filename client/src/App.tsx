@@ -44,6 +44,9 @@ function Router() {
         <Route path="/kara-haberlesmesi/peplink" component={PeplinkPage} />
         <Route path="/kara-haberlesmesi/teltonika" component={TeltonikaPage} />
 
+        {/* Full Screen Map */}
+        <Route path="/starlink-haritasi" component={StarlinkMapPage} />
+
         <Route path="/iletisim" component={Contact} />
         <Route path="/gizlilik-politikasi" component={PrivacyPolicy} />
         <Route path="/kullanim-sartlari" component={TermsOfUse} />
