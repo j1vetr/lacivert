@@ -49,11 +49,6 @@ const resources = {
         "rights_reserved": "Tüm Hakları Saklıdır.",
         "designed_by": "Tasarım: TOOV"
       },
-      "not_found": {
-        "title": "Sayfa Bulunamadı",
-        "desc": "Aradığınız sayfa mevcut değil veya taşınmış olabilir. Ana sayfaya dönerek devam edebilirsiniz.",
-        "btn_home": "Ana Sayfaya Dön"
-      },
       "home": {
         "hero_badge": "Profesyonel Teknoloji Çözümleri",
         "hero_title_prefix": "İşletmeniz için",
@@ -105,7 +100,12 @@ const resources = {
             "soc": "7/24 SOC İzleme",
             "pentest": "Penetrasyon Testleri",
             "ir": "Olay Müdahalesi (IR)"
-        }
+        },
+        "map_section_title": "Starlink Kapsama Haritası",
+        "map_section_desc": "Dünya genelinde Starlink hizmetinin aktif olduğu bölgeleri keşfedin. Okyanuslar ve kıtalar arası kesintisiz bağlantı.",
+        "map_legend_active": "Hizmet Aktif",
+        "map_legend_waitlist": "Bekleme Listesi / Yakında",
+        "map_legend_inactive": "Hizmet Dışı"
       },
       "services_it": {
         "title": "IT Destek & Bakım",
@@ -352,6 +352,11 @@ const resources = {
         "rms_update_desc": "Binlerce cihazın firmware'ini tek tıkla güncelleyin.",
         "rms_report": "Raporlama",
         "rms_report_desc": "Veri kullanımı ve sinyal kalitesi raporları."
+      },
+      "not_found": {
+        "title": "Sayfa Bulunamadı",
+        "desc": "Aradığınız sayfa mevcut değil veya taşınmış olabilir. Ana sayfaya dönerek devam edebilirsiniz.",
+        "btn_home": "Ana Sayfaya Dön"
       }
     }
   },
@@ -400,11 +405,6 @@ const resources = {
         "contact_info": "Contact Info",
         "rights_reserved": "All Rights Reserved.",
         "designed_by": "Design: TOOV"
-      },
-      "not_found": {
-        "title": "Page Not Found",
-        "desc": "The page you are looking for does not exist or may have been moved. You can continue by returning to the home page.",
-        "btn_home": "Back to Home"
       },
       "home": {
         "hero_badge": "Professional Technology Solutions",
@@ -457,7 +457,12 @@ const resources = {
             "soc": "24/7 SOC Monitoring",
             "pentest": "Penetration Tests",
             "ir": "Incident Response (IR)"
-        }
+        },
+        "map_section_title": "Starlink Coverage Map",
+        "map_section_desc": "Discover where Starlink service is active globally. Uninterrupted connectivity across oceans and continents.",
+        "map_legend_active": "Service Active",
+        "map_legend_waitlist": "Waitlist / Coming Soon",
+        "map_legend_inactive": "Inactive"
       },
       "services_it": {
         "title": "IT Support & Maintenance",
@@ -556,154 +561,10 @@ const resources = {
         "specs_title": "Technical Specs & Comparison",
         "specs_desc": "Let us help you choose the right hardware for your project."
       },
-      "about": {
-        "title": "About Us",
-        "desc": "About Lacivert Technology, our vision, mission, and expert team.",
-        "hero_title": "About Us",
-        "hero_desc": "Your reliable, innovative, and solution-oriented partner in the technology world.",
-        "mission_title": "Our Mission",
-        "mission_desc": "To make businesses' technology infrastructures secure, fast, and sustainable. To simplify complex IT processes, enabling our customers to focus on their own business.",
-        "vision_title": "Our Vision",
-        "vision_desc": "For all businesses to experience uninterrupted connectivity and secure technology. To position technology not as an obstacle, but as a tool for growth.",
-        "approach_title": "Our Approach",
-        "approach_desc": "We are not just a service provider, but your long-term technology partner.",
-        "approach_solution_title": "Solution Oriented",
-        "approach_solution_desc": "We focus on permanent solutions, not problems. We prevent problems before they occur with our proactive approach.",
-        "approach_transparency_title": "Transparent Communication",
-        "approach_transparency_desc": "We inform you at every step, present understandable reports, and establish a trust-based relationship.",
-        "approach_partnership_title": "Technical Partnership",
-        "approach_partnership_desc": "We aim for a sustainable and developing technology partnership, not one-off projects.",
-        "sectors_title": "Sectors We Serve"
-      },
-      "contact": {
-        "title": "Contact",
-        "desc": "Contact us for your projects. Address, phone, and email information.",
-        "hero_title": "Contact",
-        "hero_desc": "Contact us for your questions, projects, and quote requests.",
-        "info_title": "Contact Info",
-        "address_title": "Address",
-        "phone_title": "Phone",
-        "email_title": "Email",
-        "form_title": "Quick Contact Form",
-        "form_name": "Name Surname",
-        "form_name_ph": "Your Name Surname",
-        "form_phone": "Phone",
-        "form_phone_ph": "05XX XXX XX XX",
-        "form_email": "Email",
-        "form_email_ph": "example@company.com",
-        "form_subject": "Subject",
-        "form_subject_ph": "Subject of your message",
-        "form_message": "Message",
-        "form_message_ph": "Write your request in detail...",
-        "btn_send": "Send Message",
-        "toast_title": "Message Sent",
-        "toast_desc": "We will contact you as soon as possible."
-      },
-      "sub_starlink": {
-        "title": "Starlink Maritime",
-        "desc": "Fiber-speed internet at sea with Starlink Maritime. High speed, low latency.",
-        "hero_title_prefix": "STARLINK",
-        "hero_title_main": "MARITIME",
-        "hero_desc": "Fiber-speed internet in the middle of the seas. Connect your fleet to the world with low latency, high bandwidth, and uninterrupted global coverage.",
-        "btn_apply": "Apply Now",
-        "btn_packages": "View Packages",
-        "section_packages_title_prefix": "The Right",
-        "section_packages_title_suffix": "Starlink Package For You",
-        "section_packages_desc": "Our maritime data packages optimized for your needs. \"Priority Data\" privilege in all packages.",
-        "specs_title": "Flat High Performance Kit",
-        "support_title": "Installation and Support",
-        "support_desc": "As Lacivert Technology, we offer turnkey services for the supply of Starlink kits, installation on the ship, and network integration (Peplink/Firewall).",
-        "feature_latency": "Low Latency",
-        "feature_latency_desc": "<20ms latency ideal for real-time applications, video conferencing, and gaming.",
-        "feature_speed": "High Speed",
-        "feature_speed_desc": "Experience office comfort at sea with download speeds up to 220 Mbps.",
-        "feature_rugged": "Rugged Durability",
-        "feature_rugged_desc": "Full protection against storms, heat, and cold with IP56 certified Flat High Performance antennas.",
-        "spec_antenna": "Antenna Type",
-        "spec_fov": "Field of View",
-        "spec_weight": "Weight",
-        "spec_cert": "Environmental Rating",
-        "spec_temp": "Operating Temperature",
-        "spec_wind": "Wind Rating",
-        "spec_power": "Power Consumption",
-        "support_install": "Professional Installation",
-        "support_integration": "Network Integration",
-        "support_tech": "24/7 Technical Support",
-        "pkg_download": "225 Mbps Download Speed",
-        "pkg_upload": "25 Mbps Upload Speed",
-        "spec_antenna_val": "Electronic Phased Array"
-      },
-      "sub_oneweb": {
-        "title": "Eutelsat OneWeb",
-        "desc": "Enterprise-class LEO satellite internet. Guaranteed bandwidth (CIR) and SLA.",
-        "hero_title_prefix": "EUTELSAT",
-        "hero_title_main": "ONEWEB",
-        "hero_desc": "Enterprise-class LEO (Low Earth Orbit) satellite internet. Uninterrupted connectivity with guaranteed bandwidth (CIR) and SLA support for your business.",
-        "section_priority_title": "Enterprise Priority Connectivity",
-        "section_priority_desc": "Eutelsat OneWeb is a LEO constellation designed specifically for critical business applications. Unlike other satellite systems, it offers \"Committed Information Rate\" (CIR), ensuring that the speed you purchase is always guaranteed.",
-        "use_cases_title": "Use Cases",
-        "feature_cir": "Guaranteed Bandwidth (CIR)",
-        "feature_sla": "Enterprise SLA Support",
-        "feature_global": "Global Coverage",
-        "feature_latency": "Low Latency (<50ms)",
-        "use_case_maritime": "Commercial Maritime",
-        "use_case_maritime_desc": "Reliable main line for cargo ships and tankers.",
-        "use_case_energy": "Energy & Oil",
-        "use_case_energy_desc": "Offshore platforms and remote sites.",
-        "use_case_gov": "Government & Defense",
-        "use_case_gov_desc": "Critical and secure communication needs."
-      },
-      "sub_iridium": {
-        "title": "Iridium Certus",
-        "desc": "Iridium Certus services with global coverage and L-Band reliability.",
-        "hero_title_prefix": "IRIDIUM",
-        "hero_title_main": "CERTUS",
-        "hero_desc": "100% global coverage including polar points. Uninterrupted communication and GMDSS safety standards even in the harshest weather conditions with L-Band technology.",
-        "section_backup_title": "Most Reliable Backup Line",
-        "section_backup_desc": "Thanks to L-Band frequency unaffected by rain, snow, or storms, Iridium is the maritime industry's most reliable communication standard. Provides uninterrupted operation when used as a \"Companion\" (Backup) alongside your Starlink or VSAT systems.",
-        "section_emergency_title": "Emergency Communication",
-        "section_emergency_desc": "Iridium continues to work even if the main communication systems on your ship fail. Indispensable for safety and emergencies.",
-        "feature_gmdss": "GMDSS (Global Maritime Distress and Safety System)",
-        "feature_global": "100% Global Coverage (Including Poles)",
-        "feature_weather": "Unaffected by Weather Conditions",
-        "feature_certus": "Iridium Certus 700/200 Support"
-      },
-      "sub_peplink": {
-        "title": "Peplink SD-WAN",
-        "desc": "Uninterrupted internet and bandwidth bonding with SpeedFusion technology.",
-        "hero_title_prefix": "PEPLINK",
-        "hero_title_main": "SD-WAN",
-        "hero_desc": "Combine your Starlink, 4G/5G, and VSAT connections. Uninterrupted internet experience with SpeedFusion technology.",
-        "section_tech_title": "SpeedFusion Technology",
-        "section_tech_desc": "Peplink's patented SpeedFusion technology combines multiple internet sources (WAN) into a single super-fast tunnel. This ensures your call over 4G is not interrupted even if there is a momentary drop in Starlink (Hot Failover).",
-        "router_series_title": "Maritime Router Series",
-        "btn_list": "Request Product List",
-        "tech_hotfailover": "Hot Failover",
-        "tech_hotfailover_desc": "Millisecond switching between connections, without IP change.",
-        "tech_wansmoothing": "WAN Smoothing",
-        "tech_wansmoothing_desc": "Redundant packets for 0% packet loss.",
-        "tech_bonding": "Bandwidth Bonding",
-        "tech_bonding_desc": "Combine speed of all connections."
-      },
-      "sub_teltonika": {
-        "title": "Teltonika Networks",
-        "desc": "Industrial 4G/5G router and IoT gateway solutions.",
-        "hero_title_prefix": "TELTONIKA",
-        "hero_title_main": "NETWORKS",
-        "hero_desc": "Industrial IoT and in-vehicle connectivity solutions. Manage thousands of devices from a single screen with Remote Management System (RMS).",
-        "section_robust_title": "Industrial Robustness",
-        "section_robust_desc": "Teltonika router and gateway devices are designed to work in harsh industrial conditions (temperature, vibration, humidity). Your connection never drops with dual SIM card support and automatic failover features.",
-        "section_rms_title": "RMS Advantages",
-        "feature_rutx50": "RUTX50 5G Industrial Router",
-        "feature_rms": "RMS (Remote Management System)",
-        "feature_din": "DIN Rail Mounting Compliance",
-        "feature_protocols": "Industrial Protocol Support (Modbus, MQTT)",
-        "rms_remote": "Remote Access",
-        "rms_remote_desc": "Access your devices from anywhere via secure VPN tunnels.",
-        "rms_update": "Bulk Update",
-        "rms_update_desc": "Update firmware of thousands of devices with a single click.",
-        "rms_report": "Reporting",
-        "rms_report_desc": "Data usage and signal quality reports."
+      "not_found": {
+        "title": "Page Not Found",
+        "desc": "The page you are looking for does not exist or has been moved. You can return to the home page.",
+        "btn_home": "Back to Home"
       }
     }
   }
