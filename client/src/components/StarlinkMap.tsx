@@ -35,16 +35,24 @@ export function StarlinkMap() {
       });
   }, []);
 
+  // Country ID to Name Mapping
+  const countryNames: Record<string, string> = {
+    "840": "USA", "124": "Canada", "484": "Mexico",
+    "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "218": "Ecuador", "600": "Paraguay", "604": "Peru", "858": "Uruguay", "862": "Venezuela",
+    "826": "UK", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "203": "Czechia", "616": "Poland", "578": "Norway", "752": "Sweden", "246": "Finland", "352": "Iceland", "372": "Ireland", "428": "Latvia", "440": "Lithuania", "233": "Estonia", "417": "Kyrgyzstan",
+    "036": "Australia", "554": "New Zealand",
+    "392": "Japan", "608": "Philippines", "458": "Malaysia",
+    "643": "Russia", "112": "Belarus", "156": "China", "356": "India", "586": "Pakistan", "792": "Turkey", "682": "Saudi Arabia", "364": "Iran", "368": "Iraq", "818": "Egypt", "710": "South Africa", "024": "Angola", "784": "UAE", "408": "North Korea",
+    "360": "Indonesia", "418": "Laos", "434": "Libya", "450": "Madagascar", "454": "Malawi", "480": "Mauritius", "504": "Morocco", "624": "Guinea-Bissau", "728": "South Sudan", "760": "Syria", "887": "Yemen"
+  };
+
   const projection = d3.geoMercator()
     .scale(140)
     .translate([400, 280]);
 
   const pathGenerator = d3.geoPath().projection(projection);
-  const [tooltip, setTooltip] = useState<{x: number, y: number, content: string} | null>(null);
+  // Removed tooltip state as we are showing labels directly
 
-  // Updated styling to match the "Geofenced" concept from the user's image
-  // but keeping the dark theme of the website.
-  
   return (
     <div className="bg-slate-950 py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
@@ -65,21 +73,13 @@ export function StarlinkMap() {
         <div className="relative w-full max-w-5xl mx-auto bg-slate-900/50 rounded-3xl border border-white/5 p-4 md:p-8 shadow-2xl overflow-hidden">
           {/* Map SVG */}
           <div className="w-full aspect-[1.6/1] relative select-none">
-             {tooltip && (
-                <div 
-                    className="absolute z-50 px-3 py-1.5 bg-slate-900/90 text-white text-xs rounded border border-white/10 pointer-events-none transform -translate-x-1/2 -translate-y-full -mt-2 backdrop-blur-sm shadow-xl whitespace-nowrap"
-                    style={{ left: tooltip.x, top: tooltip.y }}
-                >
-                    {tooltip.content}
-                </div>
-             )}
              <svg viewBox="0 0 800 450" className="w-full h-full">
                 <g>
                   {geography.map((geo) => {
                     const id = String(geo.id);
                     let fill = "#1e293b"; // default slate-800 (Rest of World)
                     let opacity = 0.5;
-                    let name = geo.properties?.name || "Region";
+                    let name = countryNames[id] || ""; // Use mapped name or empty
                     let stroke = "#334155";
 
                     // ID Mapping (ISO 3166-1 numeric approx) based on common world-atlas usage
@@ -102,38 +102,52 @@ export function StarlinkMap() {
                         "392", "608", "458" // Asia (JPN, PHL, MYS)
                     ];
 
+                    let isColored = false;
+
                     if (geofencedIds.includes(id)) {
                         fill = "#d946ef"; // fuchsia-500 (Geofenced/Pink)
                         opacity = 0.9;
-                        name = `${name} (Geofenced Region)`;
+                        isColored = true;
                     } else if (activeIds.includes(id)) {
                         fill = "#0ea5e9"; // sky-500 (Active/Blue)
                         opacity = 0.8;
-                        name = `${name} (Active)`;
+                        isColored = true;
                     }
 
+                    const centroid = pathGenerator.centroid(geo);
+                    // Only show label if it's a colored country AND we have a name AND it's large enough (simple heuristic using centroid validity)
+                    // We can also check d3.geoArea(geo) but let's trust the lists for now.
+                    // To prevent clutter, we might skip small countries if we had area data, but for now let's try to show all in our lists.
+                    const showLabel = isColored && name && !isNaN(centroid[0]);
+
                     return (
-                      <path
-                        key={geo.rsmKey || Math.random()}
-                        d={pathGenerator(geo) || undefined}
-                        fill={fill}
-                        stroke={stroke}
-                        strokeWidth="0.5"
-                        style={{ transition: "all 0.3s" }}
-                        className="hover:brightness-125 cursor-pointer"
-                        onMouseEnter={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect();
-                            const parentRect = e.currentTarget.closest('div')?.getBoundingClientRect();
-                            if (parentRect) {
-                                setTooltip({
-                                    x: rect.left + rect.width / 2 - parentRect.left,
-                                    y: rect.top - parentRect.top,
-                                    content: name
-                                });
-                            }
-                        }}
-                        onMouseLeave={() => setTooltip(null)}
-                      />
+                      <g key={geo.rsmKey || id}>
+                          <path
+                            d={pathGenerator(geo) || undefined}
+                            fill={fill}
+                            stroke={stroke}
+                            strokeWidth="0.5"
+                            style={{ transition: "all 0.3s" }}
+                            className="hover:brightness-125"
+                          />
+                          {showLabel && (
+                              <text
+                                x={centroid[0]}
+                                y={centroid[1]}
+                                textAnchor="middle"
+                                alignmentBaseline="middle"
+                                fill="white"
+                                fontSize="6px"
+                                fontWeight="bold"
+                                style={{ 
+                                    pointerEvents: 'none', 
+                                    textShadow: '0px 0px 2px #000' 
+                                }}
+                              >
+                                {name}
+                              </text>
+                          )}
+                      </g>
                     );
                   })}
                 </g>
