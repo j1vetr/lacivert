@@ -69,6 +69,29 @@ export default function StarlinkPage() {
                     desc={t('sub_starlink.feature_rugged_desc')}
                 />
             </div>
+            
+            {/* Map CTA */}
+            <div className="mt-16 text-center">
+                <div className="inline-flex flex-col md:flex-row items-center gap-6 p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 border border-white/10 shadow-2xl max-w-4xl mx-auto relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+                    <div className="absolute right-0 top-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-500"></div>
+                    
+                    <div className="relative z-10 flex-shrink-0 p-4 bg-cyan-500/20 rounded-full">
+                        <Globe className="w-8 h-8 text-cyan-400" />
+                    </div>
+                    
+                    <div className="relative z-10 text-left flex-grow">
+                        <h3 className="text-xl font-bold text-white mb-2">Starlink Kapsama Haritası</h3>
+                        <p className="text-slate-300 text-sm">Dünya genelindeki aktif ve planlanan kapsama alanlarını interaktif haritamız üzerinden inceleyin.</p>
+                    </div>
+                    
+                    <Button asChild className="relative z-10 bg-cyan-500 hover:bg-cyan-400 text-white font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all whitespace-nowrap">
+                        <Link href="/starlink-haritasi">
+                            Haritayı İncele <ArrowRight className="ml-2 w-4 h-4" />
+                        </Link>
+                    </Button>
+                </div>
+            </div>
         </div>
       </section>
 
