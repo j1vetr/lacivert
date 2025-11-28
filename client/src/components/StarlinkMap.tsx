@@ -65,7 +65,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
     // Apply initial transform
     svg.call(zoomBehavior)
-       .call(zoomBehavior.transform, d3.zoomIdentity.translate(initialX, initialY).scale(initialScale));
+       .call(zoomBehavior.transform, zoomIdentity.translate(initialX, initialY).scale(initialScale));
     
     // Store zoom behavior on svg node for button access
     (svg.node() as any).__zoomBehavior = zoomBehavior;
