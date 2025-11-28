@@ -37,10 +37,11 @@ export function StarlinkMap() {
 
   // Projection setup
   const projection = d3.geoMercator()
-    .scale(100)
-    .translate([400, 250]); // Simplified center for this SVG viewbox
+    .scale(130) // Zoomed in from 100
+    .translate([400, 280]); // Adjusted center
 
   const pathGenerator = d3.geoPath().projection(projection);
+  const [tooltip, setTooltip] = useState<{x: number, y: number, content: string} | null>(null);
 
   return (
     <div className="bg-slate-950 py-20 relative overflow-hidden">
@@ -62,6 +63,14 @@ export function StarlinkMap() {
         <div className="relative w-full max-w-5xl mx-auto bg-slate-900/50 rounded-3xl border border-white/5 p-4 md:p-8 shadow-2xl overflow-hidden">
           {/* Map SVG */}
           <div className="w-full aspect-[1.6/1] relative">
+             {tooltip && (
+                <div 
+                    className="absolute z-50 px-3 py-1.5 bg-slate-900/90 text-white text-xs rounded border border-white/10 pointer-events-none transform -translate-x-1/2 -translate-y-full -mt-2 backdrop-blur-sm shadow-xl"
+                    style={{ left: tooltip.x, top: tooltip.y }}
+                >
+                    {tooltip.content}
+                </div>
+             )}
              <svg viewBox="0 0 800 450" className="w-full h-full">
                 <g>
                   {geography.map((geo) => {
@@ -88,6 +97,7 @@ export function StarlinkMap() {
                     const id = geo.id;
                     let fill = "#1e293b"; // default slate-800
                     let opacity = 0.5;
+                    let name = geo.properties?.name || "Region";
 
                     // Rough manual mapping for demo
                     const activeIds = ["840", "124", "826", "276", "250", "392", "036", "554", "752", "578", "246", "352", "372", "428", "440", "616", "620", "724"]; // US, CA, UK, DE, FR, JP, AU, NZ, SE, NO, FI, IS, IE, LV, LT, PL, PT, ES
@@ -99,9 +109,12 @@ export function StarlinkMap() {
                     if (activeIds.includes(strId)) {
                         fill = "#0ea5e9"; // sky-500
                         opacity = 0.8;
+                        if (!name || name === "Region") name = "Starlink Active";
                     } else if (waitlistIds.includes(strId)) {
                         fill = "#f59e0b"; // amber-500
                         opacity = 0.8;
+                        if (strId === "792") name = "Turkey (Coming Soon)";
+                        if (strId === "356") name = "India (Waitlist)";
                     }
 
                     // Override for a cool "grid" look
@@ -119,7 +132,19 @@ export function StarlinkMap() {
                         stroke="#334155"
                         strokeWidth="0.5"
                         style={{ transition: "all 0.3s" }}
-                        className="hover:fill-cyan-900/50"
+                        className="hover:fill-cyan-900/50 cursor-pointer"
+                        onMouseEnter={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const parentRect = e.currentTarget.closest('div')?.getBoundingClientRect();
+                            if (parentRect) {
+                                setTooltip({
+                                    x: rect.left + rect.width / 2 - parentRect.left,
+                                    y: rect.top - parentRect.top,
+                                    content: name
+                                });
+                            }
+                        }}
+                        onMouseLeave={() => setTooltip(null)}
                       />
                     );
                   })}
