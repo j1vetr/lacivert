@@ -93,7 +93,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 dark:text-white mb-1">{t('contact.phone_title')}</h3>
-                      <p className="text-slate-600 dark:text-slate-400">0532 503 34 17</p>
+                      <p className="text-slate-600 dark:text-slate-400">0 535 024 69 77</p>
                     </div>
                   </div>
 

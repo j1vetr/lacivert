@@ -60,8 +60,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <a href="mailto:info@lacivertteknoloji.com" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
                         <Mail className="w-3 h-3" /> info@lacivertteknoloji.com
                     </a>
-                    <a href="tel:05325033417" className="hidden md:flex items-center gap-2 hover:text-cyan-400 transition-colors">
-                        <Phone className="w-3 h-3" /> 0532 503 34 17
+                    <a href="tel:05350246977" className="hidden md:flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                        <Phone className="w-3 h-3" /> 0 535 024 69 77
                     </a>
                 </div>
                 <div className="flex items-center gap-4">
@@ -296,7 +296,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/905325033417"
+        href="https://wa.me/905350246977"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 md:p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all hover:scale-110 flex items-center justify-center animate-in fade-in zoom-in duration-500"
@@ -363,7 +363,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Phone className="w-5 h-5 text-blue-500 shrink-0" />
-                  <span>0532 503 34 17</span>
+                  <span>0 535 024 69 77</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Mail className="w-5 h-5 text-blue-500 shrink-0" />
