@@ -101,7 +101,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Removed tooltip state as we are showing labels directly
 
   return (
-    <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-32 pb-0 flex flex-col' : 'py-20'}`}>
+    <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-40 pb-0 flex flex-col' : 'py-20'}`}>
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
       
       <div className={`container mx-auto px-0 md:px-4 relative z-10 ${fullScreen ? 'h-full flex flex-col' : ''}`}>
