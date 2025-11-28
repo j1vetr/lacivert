@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as d3 from 'd3-geo';
 import { feature } from 'topojson-client';
-import { Globe, Map as MapIcon, Info } from 'lucide-react';
+import { Globe, Map as MapIcon, Info, Plus, Minus } from 'lucide-react';
 import { zoom, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 
@@ -54,7 +54,21 @@ export function StarlinkMap() {
       });
 
     svg.call(zoomBehavior);
+    
+    // Store zoom behavior on svg node for button access
+    (svg.node() as any).__zoomBehavior = zoomBehavior;
+
   }, [geography]); // Re-attach if geography loads (though mainly just needs svg/g refs)
+
+  const handleZoom = (factor: number) => {
+     if (!svgRef.current) return;
+     const svg = select(svgRef.current);
+     const zoomBehavior = (svg.node() as any).__zoomBehavior;
+     if (zoomBehavior) {
+         svg.transition().duration(300).call(zoomBehavior.scaleBy, factor);
+     }
+  };
+
 
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
@@ -191,6 +205,24 @@ export function StarlinkMap() {
                     </div>
                 </foreignObject>
              </svg>
+
+             {/* Zoom Controls */}
+             <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+                <button 
+                    onClick={() => handleZoom(1.3)}
+                    className="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-white rounded flex items-center justify-center border border-white/10 shadow-lg transition-colors"
+                    aria-label="Zoom In"
+                >
+                    <Plus className="w-4 h-4" />
+                </button>
+                <button 
+                    onClick={() => handleZoom(0.77)}
+                    className="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-white rounded flex items-center justify-center border border-white/10 shadow-lg transition-colors"
+                    aria-label="Zoom Out"
+                >
+                    <Minus className="w-4 h-4" />
+                </button>
+             </div>
           </div>
           
           {/* Maritime Coverage Note */}
@@ -199,7 +231,7 @@ export function StarlinkMap() {
             <div>
                 <h4 className="text-fuchsia-400 font-bold text-sm mb-1">Geofenced Regions Note</h4>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                    "Geofenced" bölgelerde (Türkiye dahil) karasal Starlink hizmeti kısıtlı olabilir, ancak <strong>Maritime (Denizcilik)</strong> hizmeti kıyıdan 12 deniz mili (Nautical Miles) açıldıktan sonra uluslararası sularda sorunsuz çalışmaktadır.
+                    "Geofenced" bölgelerde (Türkiye dahil) karasal Starlink hizmeti kısıtlı olabilir, ancak <strong>Maritime (Denizcilik)</strong> hizmeti kıyıdan ülkeye göre değişkenlik gösteren (2 - 10 deniz mili) mesafeden sonra uluslararası sularda sorunsuz çalışmaktadır.
                 </p>
             </div>
           </div>
