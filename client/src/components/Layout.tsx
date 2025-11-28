@@ -363,11 +363,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Phone className="w-5 h-5 text-blue-500 shrink-0" />
-                  <span>0 535 024 69 77</span>
+                  <a href="tel:05350246977" className="hover:text-white transition-colors">0 535 024 69 77</a>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Mail className="w-5 h-5 text-blue-500 shrink-0" />
-                  <span>info@lacivertteknoloji.com</span>
+                  <a href="mailto:info@lacivertteknoloji.com" className="hover:text-white transition-colors">info@lacivertteknoloji.com</a>
                 </li>
               </ul>
             </div>
