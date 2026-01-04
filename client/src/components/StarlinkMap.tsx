@@ -95,12 +95,12 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
-    // North America
-    "840": "USA", "124": "Canada", "484": "Mexico", "044": "Bahamas", "308": "Grenada", "388": "Jamaica", "630": "Puerto Rico", "850": "US Virgin Islands", "214": "Dominican Rep.",
+    // North America & Central America
+    "840": "USA", "124": "Canada", "484": "Mexico", "044": "Bahamas", "308": "Grenada", "388": "Jamaica", "630": "Puerto Rico", "850": "US Virgin Islands", "214": "Dominican Rep.", "320": "Guatemala", "188": "Costa Rica", "558": "Nicaragua", "192": "Cuba",
     // South America
     "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "604": "Peru", "218": "Ecuador", "600": "Paraguay", "858": "Uruguay", "068": "Bolivia", "328": "Guyana", "254": "French Guiana", "740": "Suriname", "862": "Venezuela",
     // Europe
-    "826": "UK", "372": "Ireland", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "616": "Poland", "203": "Czechia", "703": "Slovakia", "348": "Hungary", "642": "Romania", "100": "Bulgaria", "300": "Greece", "752": "Sweden", "578": "Norway", "246": "Finland", "208": "Denmark", "233": "Estonia", "428": "Latvia", "440": "Lithuania", "352": "Iceland", "191": "Croatia", "705": "Slovenia", "498": "Moldova", "804": "Ukraine", "268": "Georgia", "499": "Montenegro", "807": "Macedonia", "492": "Monaco", "470": "Malta", "008": "Albania",
+    "826": "UK", "372": "Ireland", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "616": "Poland", "203": "Czechia", "703": "Slovakia", "348": "Hungary", "642": "Romania", "100": "Bulgaria", "300": "Greece", "752": "Sweden", "578": "Norway", "246": "Finland", "208": "Denmark", "233": "Estonia", "428": "Latvia", "440": "Lithuania", "352": "Iceland", "191": "Croatia", "705": "Slovenia", "498": "Moldova", "804": "Ukraine", "268": "Georgia", "499": "Montenegro", "807": "Macedonia", "492": "Monaco", "470": "Malta", "008": "Albania", "196": "Cyprus",
     // Asia / Oceania
     "392": "Japan", "608": "Philippines", "360": "Indonesia", "036": "Australia", "554": "New Zealand", "458": "Malaysia", "702": "Singapore", "496": "Mongolia", "242": "Fiji", "598": "Papua New Guinea", "090": "Solomon Is.", "548": "Vanuatu", "882": "Samoa", "776": "Tonga", "050": "Bangladesh",
     // Africa
@@ -117,12 +117,12 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   // Active/Available (Blue)
   const activeIds = [
-    // North America
-    "840", "124", "484", "044", "214", "308", "388", "630", "850", // USA, CAN, MEX, BHS, DOM, JAM, PRI, GRD, VIR
+    // North America & Central America
+    "840", "124", "484", "044", "214", "308", "388", "630", "850", "320", "188", // USA, CAN, MEX, BHS, DOM, JAM, PRI, GRD, VIR, GTM, CRI
     // South America
     "076", "032", "152", "170", "604", "218", "600", "858", "328", "254", "740", // BRA, ARG, CHL, COL, PER, ECU, PRY, URY, GUY, GUF, SUR
-    // Europe (Nearly all)
-    "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", "191", "705", "498", "804", "268", "499", "807", "492", "470", "008", // UK, IRL, FRA, DEU, ITA, ESP, PRT, NLD, BEL, CHE, AUT, POL, CZE, SVK, HUN, ROU, BGR, GRC, SWE, NOR, FIN, DNK, EST, LVA, LTU, ISL, HRV, SVN, MDA, UKR, GEO, MNE, MKD, MCO, MLT, ALB
+    // Europe (Nearly all + Cyprus)
+    "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", "191", "705", "498", "804", "268", "499", "807", "492", "470", "008", "196", // UK, IRL, FRA, DEU, ITA, ESP, PRT, NLD, BEL, CHE, AUT, POL, CZE, SVK, HUN, ROU, BGR, GRC, SWE, NOR, FIN, DNK, EST, LVA, LTU, ISL, HRV, SVN, MDA, UKR, GEO, MNE, MKD, MCO, MLT, ALB, CYP
     // Asia / Oceania
     "392", "608", "458", "702", "496", "036", "554", "242", "598", "090", "548", "882", "776", "050", // JPN, PHL, MYS, SGP, MNG, AUS, NZL, FJI, PNG, SLB, VUT, WSM, TON, BGD
     // Africa
@@ -134,11 +134,11 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Waitlist / Coming Soon (Orange/Gold - Restricted/Pending)
   const geofencedIds = [
     // Middle East & Asia
-    "792", "356", "586", "144", "524", "004", "364", "368", "760", "422", "682", "784", "634", "414", "512", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, SYR, LBN, SAU, UAE, QAT, KWT, OMN, THA, VNM, LAO, KHM, MMR, KOR, IDN
+    "792", "356", "586", "144", "524", "004", "364", "368", "422", "682", "784", "634", "414", "512", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, LBN, SAU, UAE, QAT, KWT, OMN, THA, VNM, LAO, KHM, MMR, KOR, IDN
     // Africa
     "710", "818", "012", "504", "788", "434", "729", "231", "706", "120", "266", "232", "324", "466", "478", "516", "566", "686", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, SOM, CMR, GAB, ERI, GIN, MLI, MRT, NAM, SEN, TGO, UGA, TZA
-    // Others
-    "156", "643", "112", "398", "795", "860", "762", "417", "068", "408", "192", "862" // CHN, RUS, BLR, KAZ, TKM, UZB, TJK, KGZ, BOL, PRK, CUB, VEN
+    // Others (Inactive/Blocked/Service Unavailable)
+    "156", "643", "112", "398", "795", "860", "762", "417", "068", "408", "760", "192", "558", "862" // CHN, RUS, BLR, KAZ, TKM, UZB, TJK, KGZ, BOL, PRK, SYR, CUB, NIC, VEN
   ];
 
   // Calculate centroids for country labels when geography loads
@@ -263,7 +263,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
           )}
 
              {/* System HUD */}
-             <div className="absolute top-24 left-6 z-40 pointer-events-none hidden md:block">
+             <div className="absolute top-1/2 -translate-y-1/2 left-6 z-40 pointer-events-none hidden md:block">
                  <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
                     <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
                         <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
