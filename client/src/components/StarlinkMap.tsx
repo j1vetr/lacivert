@@ -185,7 +185,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   };
 
   return (
-    <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-0 pb-0 flex flex-col' : 'py-20'}`}>
+    <div className={`bg-black relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-0 pb-0 flex flex-col' : 'py-20'}`}>
       
       <div className={`relative z-10 w-full ${fullScreen ? 'h-full' : ''}`}>
         
@@ -213,7 +213,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 width={dimensions.width}
                 height={dimensions.height}
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                backgroundColor="#020617" // Slate-950 to match theme
+                backgroundColor="#000000" // Pure Black
                 
                 // Polygons (Countries)
                 polygonsData={geography}
