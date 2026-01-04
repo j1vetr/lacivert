@@ -6,6 +6,7 @@ import { Globe as GlobeIcon, Plus, Minus, Info, Maximize2, Minimize2 } from 'luc
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Button } from '@/components/ui/button';
 import * as THREE from 'three';
+import starfieldBg from '@assets/generated_images/deep_space_starfield_background.png';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -149,8 +150,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
         const id = String(geo.id);
         const name = countryNames[id];
         
-        // Only label relevant countries
-        if ((activeIds.includes(id) || geofencedIds.includes(id)) && name) {
+        // Label all countries that have a name
+        if (name) {
             const centroid = d3.geoCentroid(geo);
             // Centroid is [lng, lat]
             labels.push({
@@ -186,9 +187,6 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   return (
     <div className={`bg-slate-950 relative overflow-hidden ${fullScreen ? 'h-[100dvh] pt-0 pb-0 flex flex-col' : 'py-20'}`}>
-      {!fullScreen && (
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none z-0"></div>
-      )}
       
       <div className={`relative z-10 w-full ${fullScreen ? 'h-full' : ''}`}>
         
@@ -216,7 +214,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 width={dimensions.width}
                 height={dimensions.height}
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+                backgroundImageUrl={starfieldBg}
                 
                 // Polygons (Countries)
                 polygonsData={geography}
