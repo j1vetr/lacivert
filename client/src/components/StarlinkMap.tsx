@@ -169,13 +169,18 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   const getPolygonColor = (d: any) => {
     const id = String(d.id);
-    if (geofencedIds.includes(id)) return '#f59e0b'; // Amber-500 (Waitlist/Coming Soon)
-    if (activeIds.includes(id)) return '#0ea5e9'; // Blue
-    return '#1e293b'; // Default Dark
+    if (geofencedIds.includes(id)) return 'rgba(245, 158, 11, 0.3)'; // Amber with transparency
+    if (activeIds.includes(id)) return 'rgba(14, 165, 233, 0.3)'; // Cyan with transparency
+    return 'rgba(2, 6, 23, 0.8)'; // Dark slate with transparency
   };
 
-  const getPolygonSideColor = () => 'rgba(0,0,0,0)'; // Transparent sides
-  const getPolygonStrokeColor = () => '#334155'; // Slate borders
+  const getPolygonSideColor = () => 'rgba(0,0,0,0)'; 
+  const getPolygonStrokeColor = (d: any) => {
+    const id = String(d.id);
+    if (geofencedIds.includes(id)) return '#fbbf24'; // Bright Amber
+    if (activeIds.includes(id)) return '#38bdf8'; // Bright Cyan
+    return '#1e293b'; // Slate
+  };
 
   const handleZoom = (factor: number) => {
     if (globeEl.current) {
@@ -244,8 +249,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 )}
                 
                 // Atmosphere
-                atmosphereColor="#0ea5e9"
-                atmosphereAltitude={0.15}
+                atmosphereColor="#3b82f6"
+                atmosphereAltitude={0.25}
                 
                 // Interaction
                 onPolygonHover={(polygon: any) => {
@@ -253,6 +258,41 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 }}
               />
           )}
+
+             {/* System HUD */}
+             <div className="absolute top-6 left-6 z-50 pointer-events-none hidden md:block">
+                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                    <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
+                        <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
+                        <div className="flex items-center gap-2">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <span className="text-emerald-400 font-mono text-xs font-bold">ONLINE</span>
+                        </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
+                            <div className="text-white font-mono text-lg font-bold">6,420</div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
+                            <div className="text-white font-mono text-lg font-bold">28<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
+                            <div className="text-white font-mono text-lg font-bold">248<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Coverage</div>
+                            <div className="text-white font-mono text-lg font-bold">98.4<span className="text-xs text-slate-500 ml-1">%</span></div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
 
              {/* Legend Overlay */}
              <div className="absolute bottom-6 left-6 z-50 pointer-events-none">
