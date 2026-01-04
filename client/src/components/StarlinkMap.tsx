@@ -6,7 +6,6 @@ import { Globe as GlobeIcon, Plus, Minus, Info, Maximize2, Minimize2 } from 'luc
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Button } from '@/components/ui/button';
 import * as THREE from 'three';
-import starfieldBg from '@assets/stock_images/high_resolution_deep_7bfa61cf.jpg';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -214,7 +213,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 width={dimensions.width}
                 height={dimensions.height}
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                backgroundImageUrl={starfieldBg}
+                backgroundColor="#020617" // Slate-950 to match theme
                 
                 // Polygons (Countries)
                 polygonsData={geography}
