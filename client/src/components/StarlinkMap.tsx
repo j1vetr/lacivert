@@ -6,7 +6,7 @@ import { Globe as GlobeIcon, Plus, Minus, Info, Maximize2, Minimize2 } from 'luc
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Button } from '@/components/ui/button';
 import * as THREE from 'three';
-import starfieldBg from '@assets/generated_images/deep_space_starfield_background.png';
+import starfieldBg from '@assets/stock_images/high_resolution_deep_7bfa61cf.jpg';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
