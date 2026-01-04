@@ -96,20 +96,23 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
     // North America
-    "840": "USA", "124": "Canada", "484": "Mexico",
+    "840": "USA", "124": "Canada", "484": "Mexico", "044": "Bahamas", "308": "Grenada", "388": "Jamaica", "630": "Puerto Rico", "850": "US Virgin Islands", "214": "Dominican Rep.",
     // South America
-    "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "604": "Peru", "218": "Ecuador", "600": "Paraguay", "858": "Uruguay", "068": "Bolivia",
+    "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "604": "Peru", "218": "Ecuador", "600": "Paraguay", "858": "Uruguay", "068": "Bolivia", "328": "Guyana", "254": "French Guiana", "740": "Suriname", "862": "Venezuela",
     // Europe
-    "826": "UK", "372": "Ireland", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "616": "Poland", "203": "Czechia", "703": "Slovakia", "348": "Hungary", "642": "Romania", "100": "Bulgaria", "300": "Greece", "752": "Sweden", "578": "Norway", "246": "Finland", "208": "Denmark", "233": "Estonia", "428": "Latvia", "440": "Lithuania", "352": "Iceland",
+    "826": "UK", "372": "Ireland", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "616": "Poland", "203": "Czechia", "703": "Slovakia", "348": "Hungary", "642": "Romania", "100": "Bulgaria", "300": "Greece", "752": "Sweden", "578": "Norway", "246": "Finland", "208": "Denmark", "233": "Estonia", "428": "Latvia", "440": "Lithuania", "352": "Iceland", "191": "Croatia", "705": "Slovenia", "498": "Moldova", "804": "Ukraine", "268": "Georgia", "499": "Montenegro", "807": "Macedonia", "492": "Monaco", "470": "Malta", "008": "Albania",
     // Asia / Oceania
-    "392": "Japan", "608": "Philippines", "360": "Indonesia", "036": "Australia", "554": "New Zealand",
+    "392": "Japan", "608": "Philippines", "360": "Indonesia", "036": "Australia", "554": "New Zealand", "458": "Malaysia", "702": "Singapore", "496": "Mongolia", "242": "Fiji", "598": "Papua New Guinea", "090": "Solomon Is.", "548": "Vanuatu", "882": "Samoa", "776": "Tonga", "050": "Bangladesh",
     // Africa
-    "566": "Nigeria", "288": "Ghana", "404": "Kenya", "646": "Rwanda", "508": "Mozambique", "454": "Malawi", "894": "Zambia", "716": "Zimbabwe", "072": "Botswana", "748": "Eswatini", "450": "Madagascar", "694": "Sierra Leone", "430": "Liberia", "562": "Niger", "180": "DR Congo", "710": "South Africa",
-    // Waitlist / Coming Soon (Geofenced/Inactive)
-    "792": "Turkey", "356": "India", "586": "Pakistan", "050": "Bangladesh", "144": "Sri Lanka", "524": "Nepal", "004": "Afghanistan", "364": "Iran", "368": "Iraq", "760": "Syria", "422": "Lebanon", "400": "Jordan", "682": "Saudi Arabia", "784": "UAE", "634": "Qatar", "414": "Kuwait", "512": "Oman", "887": "Yemen",
-    "156": "China", "643": "Russia", "112": "Belarus", "804": "Ukraine", "398": "Kazakhstan", "795": "Turkmenistan", "860": "Uzbekistan", "762": "Tajikistan", "417": "Kyrgyzstan",
-    "764": "Thailand", "704": "Vietnam", "418": "Laos", "116": "Cambodia", "104": "Myanmar", "458": "Malaysia", "702": "Singapore", "410": "South Korea", "408": "North Korea",
-    "818": "Egypt", "012": "Algeria", "504": "Morocco", "788": "Tunisia", "434": "Libya", "729": "Sudan", "231": "Ethiopia", "706": "Somalia"
+    "566": "Nigeria", "288": "Ghana", "404": "Kenya", "646": "Rwanda", "508": "Mozambique", "454": "Malawi", "894": "Zambia", "716": "Zimbabwe", "072": "Botswana", "748": "Eswatini", "450": "Madagascar", "694": "Sierra Leone", "430": "Liberia", "562": "Niger", "180": "DR Congo", "710": "South Africa", "148": "Chad", "204": "Benin",
+    // Middle East
+    "400": "Jordan", "887": "Yemen", "376": "Israel", "792": "Turkey", "364": "Iran", "368": "Iraq", "760": "Syria", "422": "Lebanon", "682": "Saudi Arabia", "784": "UAE", "634": "Qatar", "414": "Kuwait", "512": "Oman",
+    // Others (Geofenced/Waitlist/Etc)
+    "356": "India", "586": "Pakistan", "144": "Sri Lanka", "524": "Nepal", "004": "Afghanistan",
+    "156": "China", "643": "Russia", "112": "Belarus", "398": "Kazakhstan", "795": "Turkmenistan", "860": "Uzbekistan", "762": "Tajikistan", "417": "Kyrgyzstan",
+    "764": "Thailand", "704": "Vietnam", "418": "Laos", "116": "Cambodia", "104": "Myanmar", "410": "South Korea", "408": "North Korea",
+    "818": "Egypt", "012": "Algeria", "504": "Morocco", "788": "Tunisia", "434": "Libya", "729": "Sudan", "231": "Ethiopia", "706": "Somalia",
+    "120": "Cameroon", "266": "Gabon", "232": "Eritrea", "324": "Guinea", "466": "Mali", "478": "Mauritania", "516": "Namibia", "686": "Senegal", "768": "Togo", "800": "Uganda", "834": "Tanzania", "854": "Burkina Faso"
   };
 
   // Active/Available (Blue)
@@ -125,7 +128,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     // Africa
     "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "148", "204", "180", // NGA, GHA, KEN, RWA, MOZ, MWI, ZMB, ZWE, BWA, SWZ, MDG, SLE, LBR, NER, TCD, BEN, COD
     // Middle East
-    "400", "887" // JOR, YEM
+    "400", "887", "376" // JOR, YEM, ISR (Added Israel as Active)
   ];
 
   // Waitlist / Coming Soon (Orange/Gold - Restricted/Pending)
@@ -260,7 +263,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
           )}
 
              {/* System HUD */}
-             <div className="absolute top-6 left-6 z-50 pointer-events-none hidden md:block">
+             <div className="absolute top-24 left-6 z-40 pointer-events-none hidden md:block">
                  <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
                     <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
                         <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
