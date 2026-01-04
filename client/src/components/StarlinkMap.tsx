@@ -259,11 +259,11 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 <div className="flex flex-col gap-2 bg-slate-950/80 p-4 rounded-xl border border-white/10 backdrop-blur-md text-xs shadow-2xl">
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-3 h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
-                        <span className="font-bold">Mavi: Kapsama Alanında</span>
+                        <span className="font-bold">Kapsama Alanında</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
-                        <span className="font-bold">Sarı: Yakında Gelecek</span>
+                        <span className="font-bold">Yakında Gelecek</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-500">
                         <div className="w-3 h-3 rounded-full bg-slate-800 border border-slate-600"></div>
@@ -272,18 +272,6 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 </div>
              </div>
 
-             {/* Maritime Note */}
-             <div className={`absolute ${fullScreen ? 'top-32 right-6 max-w-sm' : 'top-6 right-6 max-w-xs'} z-40`}>
-                 <div className="flex items-start gap-3 p-4 bg-slate-950/80 backdrop-blur-md border border-amber-500/20 rounded-xl shadow-2xl">
-                    <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                        <h4 className="text-amber-400 font-bold text-xs uppercase tracking-wider mb-1">Maritime Coverage</h4>
-                        <p className="text-slate-300 text-xs leading-relaxed">
-                            Global maritime coverage available even in geofenced regions (2-10nm offshore).
-                        </p>
-                    </div>
-                 </div>
-             </div>
 
              {/* Zoom Controls */}
              <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50">
