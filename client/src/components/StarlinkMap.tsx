@@ -5,6 +5,7 @@ import { feature } from 'topojson-client';
 import { Globe as GlobeIcon, Plus, Minus, Info, Maximize2, Minimize2 } from 'lucide-react';
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Button } from '@/components/ui/button';
+import * as THREE from 'three';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -33,6 +34,9 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const [mounted, setMounted] = useState(false);
+  
+  // Use a ref to store country labels to avoid re-calculating on every render
+  const [countryLabels, setCountryLabels] = useState<any[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -76,16 +80,18 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   }, [mounted]);
 
   // Generate Satellites (Random Points)
+  // Instead of pointsData, we'll use customLayer for better control (spheres)
   const satellites = useMemo(() => {
-    const N = 4000;
+    const N = 3000;
     return Array.from({ length: N }).map(() => ({
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
-      alt: Math.random() * 0.4 + 0.1, // 0.1 to 0.5 altitude
-      color: Math.random() > 0.1 ? '#ffffff' : '#0ea5e9', // Mostly white, some blue
-      size: Math.random() * 0.5
+      alt: Math.random() * 0.5 + 0.1, // Altitude
+      color: Math.random() > 0.1 ? '#ffffff' : '#0ea5e9',
+      size: Math.random() * 0.5 + 0.2
     }));
   }, []);
+
 
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
@@ -122,6 +128,35 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     "764", "704", "418", "116", "104", "458", "702", "410", "408",
     "818", "012", "504", "788", "434", "729", "231", "706"
   ];
+
+  // Calculate centroids for country labels when geography loads
+  useEffect(() => {
+    if (geography.length === 0) return;
+
+    const labels: any[] = [];
+    // Projection for calculating 2D centroid to map back to lat/lng? 
+    // Actually d3.geoCentroid is spherical.
+    geography.forEach((geo) => {
+        const id = String(geo.id);
+        const name = countryNames[id];
+        
+        // Only label relevant countries
+        if ((activeIds.includes(id) || geofencedIds.includes(id)) && name) {
+            const centroid = d3.geoCentroid(geo);
+            // Centroid is [lng, lat]
+            labels.push({
+                name: name,
+                lat: centroid[1],
+                lng: centroid[0],
+                size: 0.6, // Slightly larger than oceans
+                color: 'white'
+            });
+        }
+    });
+
+    setCountryLabels(labels);
+  }, [geography]);
+
 
   const getPolygonColor = (d: any) => {
     const id = String(d.id);
@@ -181,25 +216,26 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 polygonStrokeColor={getPolygonStrokeColor}
                 polygonAltitude={0.01}
                 
-                // Labels (Oceans)
-                labelsData={oceanLabels}
+                // Labels (Countries + Oceans)
+                labelsData={[...oceanLabels, ...countryLabels]}
                 labelLat={d => (d as any).lat}
                 labelLng={d => (d as any).lng}
                 labelText={d => (d as any).name}
                 labelSize={d => (d as any).size || 1}
                 labelDotRadius={0}
-                labelColor={() => 'rgba(255, 255, 255, 0.4)'}
+                labelColor={d => (d as any).color || 'rgba(255, 255, 255, 0.4)'}
                 labelResolution={2}
                 labelAltitude={0.02}
 
-                // Points (Satellites)
-                pointsData={satellites}
-                pointLat={d => (d as any).lat}
-                pointLng={d => (d as any).lng}
-                pointAltitude={d => (d as any).alt}
-                pointColor={d => (d as any).color}
-                pointRadius={d => (d as any).size}
-                pointsMerge={true} // Performance optimization for thousands of points
+                // Objects (Satellites as Spheres instead of Points to avoid "Bars")
+                objectsData={satellites}
+                objectLat={d => (d as any).lat}
+                objectLng={d => (d as any).lng}
+                objectAltitude={d => (d as any).alt}
+                objectThreeObject={d => new THREE.Mesh(
+                    new THREE.SphereGeometry((d as any).size),
+                    new THREE.MeshBasicMaterial({ color: (d as any).color })
+                )}
                 
                 // Atmosphere
                 atmosphereColor="#0ea5e9"
