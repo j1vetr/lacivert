@@ -86,9 +86,9 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     return Array.from({ length: N }).map(() => ({
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
-      alt: Math.random() * 0.5 + 0.1, // Altitude
-      color: Math.random() > 0.1 ? '#ffffff' : '#0ea5e9',
-      size: Math.random() * 0.5 + 0.2
+      alt: 0.1, // Fixed Altitude for all satellites (Low Earth Orbit)
+      color: Math.random() > 0.3 ? '#f59e0b' : '#ffffff', // Orange/Gold hue mixed with white
+      size: Math.random() * 0.15 + 0.05 // Smaller, uniform dots
     }));
   }, []);
 

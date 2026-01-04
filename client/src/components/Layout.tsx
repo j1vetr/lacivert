@@ -50,11 +50,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Navigation */}
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-slate-950/95 backdrop-blur-md shadow-md border-b border-white/10" : "bg-transparent"
+          scrolled || window.location.pathname === '/starlink-haritasi' ? "bg-slate-950/95 backdrop-blur-md shadow-md border-b border-white/10" : "bg-transparent"
         }`}
       >
         {/* Info Box (Top Bar) */}
-        <div className={`w-full border-b border-white/10 bg-slate-950/50 backdrop-blur-sm transition-all duration-300 ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-10'}`}>
+        <div className={`w-full border-b border-white/10 bg-slate-950/50 backdrop-blur-sm transition-all duration-300 ${scrolled || window.location.pathname === '/starlink-haritasi' ? 'h-0 opacity-0 overflow-hidden' : 'h-10'}`}>
             <div className="container mx-auto px-4 h-full flex justify-between items-center text-xs text-slate-400">
                 <div className="flex items-center gap-6">
                     <a href="mailto:info@lacivertteknoloji.com" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
