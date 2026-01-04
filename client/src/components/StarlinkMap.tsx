@@ -259,15 +259,15 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 <div className="flex flex-col gap-2 bg-slate-950/80 p-4 rounded-xl border border-white/10 backdrop-blur-md text-xs shadow-2xl">
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-3 h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
-                        <span className="font-bold">{t('home.map_legend_active')}</span>
+                        <span className="font-bold">Mavi: Kapsama Alanında</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
-                        <span className="font-bold">Waitlist / Coming Soon</span>
+                        <span className="font-bold">Sarı: Yakında Gelecek</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-500">
                         <div className="w-3 h-3 rounded-full bg-slate-800 border border-slate-600"></div>
-                        {t('home.map_legend_inactive')}
+                        <span>Kapsama Dışı</span>
                     </div>
                 </div>
              </div>
