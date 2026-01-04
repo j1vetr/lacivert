@@ -276,22 +276,22 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                         </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
-                            <div className="text-white font-mono text-lg font-bold">6,420</div>
+                            <div className="text-white font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
-                            <div className="text-white font-mono text-lg font-bold">28<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">48<span className="text-xs text-slate-500 ml-1">ms</span></div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
-                            <div className="text-white font-mono text-lg font-bold">248<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">150<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                         <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Coverage</div>
-                            <div className="text-white font-mono text-lg font-bold">98.4<span className="text-xs text-slate-500 ml-1">%</span></div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
+                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">40<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                     </div>
                  </div>
