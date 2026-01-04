@@ -63,34 +63,34 @@ const SystemHUD = () => {
 
   return (
              <div className="absolute z-40 pointer-events-none md:top-1/2 md:-translate-y-1/2 md:left-6 bottom-6 right-6 md:right-auto md:bottom-auto">
-                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)] max-w-[280px] md:max-w-none">
-                    <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
-                        <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
-                        <div className="flex items-center gap-2">
-                            <span className="relative flex h-2 w-2">
+                 <div className="flex flex-col gap-1 bg-slate-950/80 p-2 md:p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)] max-w-[170px] md:max-w-none">
+                    <div className="flex items-center justify-between gap-4 md:gap-8 mb-1 md:mb-2 pb-1 md:pb-2 border-b border-white/10">
+                        <span className="text-blue-400 font-mono text-[10px] md:text-xs tracking-widest font-bold">SYSTEM</span>
+                        <div className="flex items-center gap-1.5 md:gap-2">
+                            <span className="relative flex h-1.5 w-1.5 md:h-2 md:w-2">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 md:h-2 md:w-2 bg-emerald-500"></span>
                             </span>
-                            <span className="text-emerald-400 font-mono text-xs font-bold">ONLINE</span>
+                            <span className="text-emerald-400 font-mono text-[10px] md:text-xs font-bold">ONLINE</span>
                         </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-x-4 md:gap-x-8 gap-y-2 md:gap-y-4">
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
-                            <div className="text-white font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
+                    <div className="grid grid-cols-2 gap-x-2 md:gap-x-8 gap-y-2 md:gap-y-4">
+                        <div className="col-span-2 md:col-span-1">
+                            <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Satellites</div>
+                            <div className="text-white font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
+                        </div>
+                        <div className="col-span-2 md:col-span-1">
+                            <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Latency</div>
+                            <div className="text-emerald-400 font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-[8px] md:text-xs text-slate-500 ml-0.5 md:ml-1">ms</span></div>
                         </div>
                         <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
-                            <div className="text-emerald-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                            <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Downlink</div>
+                            <div className="text-blue-400 font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-[8px] md:text-xs text-slate-500 ml-0.5 md:ml-1">Mb</span></div>
                         </div>
                         <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
-                            <div className="text-blue-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
-                        </div>
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
-                            <div className="text-purple-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Upload</div>
+                            <div className="text-purple-400 font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-[8px] md:text-xs text-slate-500 ml-0.5 md:ml-1">Mb</span></div>
                         </div>
                     </div>
                  </div>
@@ -337,18 +337,18 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
              <SystemHUD />
 
              {/* Legend Overlay */}
-             <div className="absolute bottom-6 left-6 z-50 pointer-events-none">
-                <div className="flex flex-col gap-2 bg-slate-950/80 p-4 rounded-xl border border-white/10 backdrop-blur-md text-xs shadow-2xl">
+             <div className="absolute bottom-6 left-6 z-50 pointer-events-none max-w-[140px] md:max-w-none">
+                <div className="flex flex-col gap-1.5 md:gap-2 bg-slate-950/80 p-3 md:p-4 rounded-xl border border-white/10 backdrop-blur-md text-[10px] md:text-xs shadow-2xl">
                     <div className="flex items-center gap-2 text-slate-300">
-                        <div className="w-3 h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
                         <span className="font-bold">Kapsama Alanında</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-300">
-                        <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
                         <span className="font-bold">Yakında Gelecek</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-500">
-                        <div className="w-3 h-3 rounded-full bg-slate-800 border border-slate-600"></div>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-800 border border-slate-600"></div>
                         <span>Kapsama Dışı</span>
                     </div>
                 </div>
@@ -356,7 +356,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
 
              {/* Zoom Controls */}
-             <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50 md:bottom-6 md:right-6 bottom-48 right-6">
+             <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50 md:bottom-6 md:right-6 bottom-56 right-6">
                 <button 
                     onClick={() => handleZoom(0.7)}
                     className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
