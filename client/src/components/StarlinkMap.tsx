@@ -78,7 +78,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Generate Satellites (Random Points)
   const satellites = useMemo(() => {
     const N = 4000;
-    return [...Array(N).keys()].map(() => ({
+    return Array.from({ length: N }).map(() => ({
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
       alt: Math.random() * 0.4 + 0.1, // 0.1 to 0.5 altitude
