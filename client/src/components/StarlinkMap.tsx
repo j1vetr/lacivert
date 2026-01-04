@@ -114,19 +114,28 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   // Active/Available (Blue)
   const activeIds = [
-    "840", "124", "484", // NA
-    "076", "032", "152", "170", "604", "218", "600", "858", "068", // SA
-    "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", // EU
-    "392", "608", "360", "036", "554", // Asia/Oceania
-    "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "180", "710" // Africa
+    // North America
+    "840", "124", "484", "044", "214", "308", "388", "630", "850", // USA, CAN, MEX, BHS, DOM, JAM, PRI, GRD, VIR
+    // South America
+    "076", "032", "152", "170", "604", "218", "600", "858", "328", "254", "740", // BRA, ARG, CHL, COL, PER, ECU, PRY, URY, GUY, GUF, SUR
+    // Europe (Nearly all)
+    "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", "191", "705", "498", "804", "268", "499", "807", "492", "470", "008", // UK, IRL, FRA, DEU, ITA, ESP, PRT, NLD, BEL, CHE, AUT, POL, CZE, SVK, HUN, ROU, BGR, GRC, SWE, NOR, FIN, DNK, EST, LVA, LTU, ISL, HRV, SVN, MDA, UKR, GEO, MNE, MKD, MCO, MLT, ALB
+    // Asia / Oceania
+    "392", "608", "458", "702", "496", "036", "554", "242", "598", "090", "548", "882", "776", "050", // JPN, PHL, MYS, SGP, MNG, AUS, NZL, FJI, PNG, SLB, VUT, WSM, TON, BGD
+    // Africa
+    "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "148", "204", "180", // NGA, GHA, KEN, RWA, MOZ, MWI, ZMB, ZWE, BWA, SWZ, MDG, SLE, LBR, NER, TCD, BEN, COD
+    // Middle East
+    "400", "887" // JOR, YEM
   ];
 
-  // Geofenced/Waitlist (Pink/Fuchsia - Restricted/Coming Soon)
+  // Waitlist / Coming Soon (Orange/Gold - Restricted/Pending)
   const geofencedIds = [
-    "792", "356", "586", "050", "144", "524", "004", "364", "368", "760", "422", "400", "682", "784", "634", "414", "512", "887",
-    "156", "643", "112", "804", "398", "795", "860", "762", "417",
-    "764", "704", "418", "116", "104", "458", "702", "410", "408",
-    "818", "012", "504", "788", "434", "729", "231", "706"
+    // Middle East & Asia
+    "792", "356", "586", "144", "524", "004", "364", "368", "760", "422", "682", "784", "634", "414", "512", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, SYR, LBN, SAU, UAE, QAT, KWT, OMN, THA, VNM, LAO, KHM, MMR, KOR, IDN
+    // Africa
+    "710", "818", "012", "504", "788", "434", "729", "231", "706", "120", "266", "232", "324", "466", "478", "516", "566", "686", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, SOM, CMR, GAB, ERI, GIN, MLI, MRT, NAM, SEN, TGO, UGA, TZA
+    // Others
+    "156", "643", "112", "398", "795", "860", "762", "417", "068", "408", "192", "862" // CHN, RUS, BLR, KAZ, TKM, UZB, TJK, KGZ, BOL, PRK, CUB, VEN
   ];
 
   // Calculate centroids for country labels when geography loads
@@ -160,7 +169,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   const getPolygonColor = (d: any) => {
     const id = String(d.id);
-    if (geofencedIds.includes(id)) return '#d946ef'; // Pink
+    if (geofencedIds.includes(id)) return '#f59e0b'; // Amber-500 (Waitlist/Coming Soon)
     if (activeIds.includes(id)) return '#0ea5e9'; // Blue
     return '#1e293b'; // Default Dark
   };
@@ -256,8 +265,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                         <span className="font-bold">{t('home.map_legend_active')}</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-300">
-                        <div className="w-3 h-3 rounded-full bg-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.5)]"></div>
-                        <span className="font-bold">Waitlist / Restricted</span>
+                        <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
+                        <span className="font-bold">Waitlist / Coming Soon</span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-500">
                         <div className="w-3 h-3 rounded-full bg-slate-800 border border-slate-600"></div>
@@ -268,10 +277,10 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
              {/* Maritime Note */}
              <div className={`absolute ${fullScreen ? 'top-32 right-6 max-w-sm' : 'top-6 right-6 max-w-xs'} z-40`}>
-                 <div className="flex items-start gap-3 p-4 bg-slate-950/80 backdrop-blur-md border border-fuchsia-500/20 rounded-xl shadow-2xl">
-                    <Info className="w-5 h-5 text-fuchsia-400 flex-shrink-0 mt-0.5" />
+                 <div className="flex items-start gap-3 p-4 bg-slate-950/80 backdrop-blur-md border border-amber-500/20 rounded-xl shadow-2xl">
+                    <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                     <div>
-                        <h4 className="text-fuchsia-400 font-bold text-xs uppercase tracking-wider mb-1">Maritime Coverage</h4>
+                        <h4 className="text-amber-400 font-bold text-xs uppercase tracking-wider mb-1">Maritime Coverage</h4>
                         <p className="text-slate-300 text-xs leading-relaxed">
                             Global maritime coverage available even in geofenced regions (2-10nm offshore).
                         </p>
