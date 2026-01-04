@@ -38,6 +38,39 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Use a ref to store country labels to avoid re-calculating on every render
   const [countryLabels, setCountryLabels] = useState<any[]>([]);
 
+  // Simulation State
+  const [downlink, setDownlink] = useState(150);
+  const [upload, setUpload] = useState(40);
+  const [latency, setLatency] = useState(48);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        // Downlink: 150 - 200
+        setDownlink(prev => {
+            const change = (Math.random() - 0.5) * 10;
+            const newVal = Math.max(150, Math.min(200, prev + change));
+            return Math.round(newVal);
+        });
+
+        // Upload: 40 - 50
+        setUpload(prev => {
+            const change = (Math.random() - 0.5) * 5;
+            const newVal = Math.max(40, Math.min(50, prev + change));
+            return Math.round(newVal);
+        });
+
+        // Latency: 35 - 60
+        setLatency(prev => {
+            const change = (Math.random() - 0.5) * 8;
+            const newVal = Math.max(35, Math.min(60, prev + change));
+            return Math.round(newVal);
+        });
+
+    }, 800); // Updates every 800ms
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     fetch(geoUrl)
@@ -283,15 +316,15 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
-                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">48<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
-                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">150<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
-                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">40<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                     </div>
                  </div>
