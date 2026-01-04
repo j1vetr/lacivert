@@ -84,14 +84,39 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   // Country ID to Name Mapping
   const countryNames: Record<string, string> = {
+    // North America
     "840": "USA", "124": "Canada", "484": "Mexico",
-    "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "218": "Ecuador", "600": "Paraguay", "604": "Peru", "858": "Uruguay", "862": "Venezuela",
-    "826": "UK", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "203": "Czechia", "616": "Poland", "578": "Norway", "752": "Sweden", "246": "Finland", "352": "Iceland", "372": "Ireland", "428": "Latvia", "440": "Lithuania", "233": "Estonia", "417": "Kyrgyzstan",
-    "036": "Australia", "554": "New Zealand",
-    "392": "Japan", "608": "Philippines", "458": "Malaysia",
-    "643": "Russia", "112": "Belarus", "156": "China", "356": "India", "586": "Pakistan", "792": "Turkey", "682": "Saudi Arabia", "364": "Iran", "368": "Iraq", "818": "Egypt", "710": "South Africa", "024": "Angola", "784": "UAE", "408": "North Korea",
-    "360": "Indonesia", "418": "Laos", "434": "Libya", "450": "Madagascar", "454": "Malawi", "480": "Mauritius", "504": "Morocco", "624": "Guinea-Bissau", "728": "South Sudan", "760": "Syria", "887": "Yemen"
+    // South America
+    "076": "Brazil", "032": "Argentina", "152": "Chile", "170": "Colombia", "604": "Peru", "218": "Ecuador", "600": "Paraguay", "858": "Uruguay", "068": "Bolivia",
+    // Europe
+    "826": "UK", "372": "Ireland", "250": "France", "276": "Germany", "380": "Italy", "724": "Spain", "620": "Portugal", "528": "Netherlands", "056": "Belgium", "756": "Switzerland", "040": "Austria", "616": "Poland", "203": "Czechia", "703": "Slovakia", "348": "Hungary", "642": "Romania", "100": "Bulgaria", "300": "Greece", "752": "Sweden", "578": "Norway", "246": "Finland", "208": "Denmark", "233": "Estonia", "428": "Latvia", "440": "Lithuania", "352": "Iceland",
+    // Asia / Oceania
+    "392": "Japan", "608": "Philippines", "360": "Indonesia", "036": "Australia", "554": "New Zealand",
+    // Africa
+    "566": "Nigeria", "288": "Ghana", "404": "Kenya", "646": "Rwanda", "508": "Mozambique", "454": "Malawi", "894": "Zambia", "716": "Zimbabwe", "072": "Botswana", "748": "Eswatini", "450": "Madagascar", "694": "Sierra Leone", "430": "Liberia", "562": "Niger", "180": "DR Congo", "710": "South Africa",
+    // Waitlist / Coming Soon (Geofenced/Inactive)
+    "792": "Turkey", "356": "India", "586": "Pakistan", "050": "Bangladesh", "144": "Sri Lanka", "524": "Nepal", "004": "Afghanistan", "364": "Iran", "368": "Iraq", "760": "Syria", "422": "Lebanon", "400": "Jordan", "682": "Saudi Arabia", "784": "UAE", "634": "Qatar", "414": "Kuwait", "512": "Oman", "887": "Yemen",
+    "156": "China", "643": "Russia", "112": "Belarus", "804": "Ukraine", "398": "Kazakhstan", "795": "Turkmenistan", "860": "Uzbekistan", "762": "Tajikistan", "417": "Kyrgyzstan",
+    "764": "Thailand", "704": "Vietnam", "418": "Laos", "116": "Cambodia", "104": "Myanmar", "458": "Malaysia", "702": "Singapore", "410": "South Korea", "408": "North Korea",
+    "818": "Egypt", "012": "Algeria", "504": "Morocco", "788": "Tunisia", "434": "Libya", "729": "Sudan", "231": "Ethiopia", "706": "Somalia"
   };
+
+  // Active/Available (Blue)
+  const activeIds = [
+    "840", "124", "484", // NA
+    "076", "032", "152", "170", "604", "218", "600", "858", "068", // SA
+    "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", // EU
+    "392", "608", "360", "036", "554", // Asia/Oceania
+    "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "180", "710" // Africa
+  ];
+
+  // Geofenced/Waitlist (Pink/Fuchsia - Restricted/Coming Soon)
+  const geofencedIds = [
+    "792", "356", "586", "050", "144", "524", "004", "364", "368", "760", "422", "400", "682", "784", "634", "414", "512", "887",
+    "156", "643", "112", "804", "398", "795", "860", "762", "417",
+    "764", "704", "418", "116", "104", "458", "702", "410", "408",
+    "818", "012", "504", "788", "434", "729", "231", "706"
+  ];
 
   const projection = d3.geoMercator()
     .scale(140)
@@ -171,33 +196,13 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                     const id = String(geo.id);
                     let fill = "#1e293b"; // default slate-800 (Rest of World)
                     let opacity = 0.5;
-                    let name = countryNames[id] || ""; // Use mapped name or empty
+                    let name = countryNames[id] || ""; 
                     let stroke = "#334155";
-
-                    // ID Mapping (ISO 3166-1 numeric approx) based on common world-atlas usage
-                    // Geofenced List (Pink/Purple in image): 
-                    // Russia(643), Belarus(112), China(156), India(356), Pakistan(586), 
-                    // Turkey(792), Saudi Arabia(682), Iran(364), Iraq(368), Egypt(818), 
-                    // South Africa(710), Angola(024), UAE(784), North Korea(408)
-                    const geofencedIds = [
-                        "643", "112", "156", "356", "586", "792", "682", "364", "368", 
-                        "818", "710", "024", "784", "408", "104", "360", "418", "434", "450", "454", "480", "504", "624", "728", "760", "887"
-                    ];
-
-                    // Active/Available (Blue in image):
-                    // North America, South America, Europe, Australia, Japan
-                    const activeIds = [
-                        "840", "124", "484", // NA (USA, CAN, MEX)
-                        "076", "032", "152", "170", "218", "600", "604", "858", "862", // South America (BRA, ARG, CHL, COL, ECU, PRY, PER, URY, VEN)
-                        "826", "250", "276", "380", "724", "620", "528", "056", "756", "040", "203", "616", "578", "752", "246", "352", "372", "428", "440", "233", "417", // Europe (UK, FR, DE, IT, ES, PT, NL, BE, CH, AT, CZ, PL, NO, SE, FI, IS, IE, LV, LT, EE, KG)
-                        "036", "554", // Oceania (AUS, NZL)
-                        "392", "608", "458" // Asia (JPN, PHL, MYS)
-                    ];
 
                     let isColored = false;
 
                     if (geofencedIds.includes(id)) {
-                        fill = "#d946ef"; // fuchsia-500 (Geofenced/Pink)
+                        fill = "#d946ef"; // fuchsia-500 (Waitlist/Geofenced)
                         opacity = 0.9;
                         isColored = true;
                     } else if (activeIds.includes(id)) {
@@ -207,9 +212,6 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                     }
 
                     const centroid = pathGenerator.centroid(geo);
-                    // Only show label if it's a colored country AND we have a name AND it's large enough (simple heuristic using centroid validity)
-                    // We can also check d3.geoArea(geo) but let's trust the lists for now.
-                    // To prevent clutter, we might skip small countries if we had area data, but for now let's try to show all in our lists.
                     const showLabel = isColored && name && !isNaN(centroid[0]);
 
                     return (
