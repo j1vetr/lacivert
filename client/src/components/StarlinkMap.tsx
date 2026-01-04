@@ -6,6 +6,7 @@ import { Globe as GlobeIcon, Plus, Minus, Info, Maximize2, Minimize2 } from 'luc
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Button } from '@/components/ui/button';
 import * as THREE from 'three';
+import logoWhite from "@assets/lacivert light logo_1763796346759.png";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -105,6 +106,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Use a ref to store country labels to avoid re-calculating on every render
   const [countryLabels, setCountryLabels] = useState<any[]>([]);
@@ -116,6 +118,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
       .then((topology) => {
         const countries = feature(topology, topology.objects.countries);
         setGeography((countries as any).features);
+        // Add a small delay to ensure smoother transition
+        setTimeout(() => setIsLoading(false), 800);
       });
 
     // Handle Resize
@@ -286,6 +290,22 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
             ref={containerRef}
             className={`relative w-full mx-auto bg-slate-900/0 md:rounded-3xl overflow-hidden ${fullScreen ? 'h-full' : 'max-w-6xl h-[600px] border border-white/5 shadow-2xl'}`}
         >
+          {/* Loading Screen */}
+          {isLoading && (
+            <div className="absolute inset-0 z-[60] bg-black flex flex-col items-center justify-center">
+                <div className="relative">
+                    <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full animate-pulse"></div>
+                    <img src={logoWhite} alt="Loading" className="h-16 md:h-20 object-contain relative z-10 animate-pulse" />
+                </div>
+                <div className="mt-6 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
+                </div>
+                <p className="text-slate-400 text-sm mt-4 font-mono tracking-widest uppercase animate-pulse">Yükleniyor...</p>
+            </div>
+          )}
+
           {mounted && (
               <Globe
                 ref={globeEl as any}
