@@ -27,18 +27,8 @@ const oceanLabels = [
     { name: "SEA OF JAPAN", lat: 40, lng: 135, size: 0.5 },
 ];
 
-export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
-  const { t } = useTranslation();
-  const [geography, setGeography] = useState<any[]>([]);
-  const globeEl = useRef<GlobeMethods | undefined>(undefined);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-  const [mounted, setMounted] = useState(false);
-  
-  // Use a ref to store country labels to avoid re-calculating on every render
-  const [countryLabels, setCountryLabels] = useState<any[]>([]);
-
-  // Simulation State
+// Separate HUD Component to prevent Globe re-renders
+const SystemHUD = () => {
   const [downlink, setDownlink] = useState(150);
   const [upload, setUpload] = useState(40);
   const [latency, setLatency] = useState(48);
@@ -70,6 +60,54 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
     return () => clearInterval(interval);
   }, []);
+
+  return (
+             <div className="absolute top-1/2 -translate-y-1/2 left-6 z-40 pointer-events-none hidden md:block">
+                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                    <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
+                        <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
+                        <div className="flex items-center gap-2">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <span className="text-emerald-400 font-mono text-xs font-bold">ONLINE</span>
+                        </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
+                            <div className="text-white font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
+                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
+                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                        </div>
+                        <div>
+                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
+                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+  );
+};
+
+export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
+  const { t } = useTranslation();
+  const [geography, setGeography] = useState<any[]>([]);
+  const globeEl = useRef<GlobeMethods | undefined>(undefined);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+  const [mounted, setMounted] = useState(false);
+  
+  // Use a ref to store country labels to avoid re-calculating on every render
+  const [countryLabels, setCountryLabels] = useState<any[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -296,39 +334,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
           )}
 
              {/* System HUD */}
-             <div className="absolute top-1/2 -translate-y-1/2 left-6 z-40 pointer-events-none hidden md:block">
-                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                    <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
-                        <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
-                        <div className="flex items-center gap-2">
-                            <span className="relative flex h-2 w-2">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                            </span>
-                            <span className="text-emerald-400 font-mono text-xs font-bold">ONLINE</span>
-                        </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
-                            <div className="text-white font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
-                        </div>
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
-                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
-                        </div>
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
-                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
-                        </div>
-                        <div>
-                            <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
-                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
-                        </div>
-                    </div>
-                 </div>
-             </div>
+             <SystemHUD />
 
              {/* Legend Overlay */}
              <div className="absolute bottom-6 left-6 z-50 pointer-events-none">
