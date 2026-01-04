@@ -62,8 +62,8 @@ const SystemHUD = () => {
   }, []);
 
   return (
-             <div className="absolute top-1/2 -translate-y-1/2 left-6 z-40 pointer-events-none hidden md:block">
-                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+             <div className="absolute z-40 pointer-events-none md:top-1/2 md:-translate-y-1/2 md:left-6 bottom-6 right-6 md:right-auto md:bottom-auto">
+                 <div className="flex flex-col gap-1 bg-slate-950/80 p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)] max-w-[280px] md:max-w-none">
                     <div className="flex items-center justify-between gap-8 mb-2 pb-2 border-b border-white/10">
                         <span className="text-blue-400 font-mono text-xs tracking-widest font-bold">SYSTEM STATUS</span>
                         <div className="flex items-center gap-2">
@@ -75,22 +75,22 @@ const SystemHUD = () => {
                         </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                    <div className="grid grid-cols-2 gap-x-4 md:gap-x-8 gap-y-2 md:gap-y-4">
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Active Satellites</div>
-                            <div className="text-white font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
+                            <div className="text-white font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Avg Latency</div>
-                            <div className="text-emerald-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
+                            <div className="text-emerald-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-xs text-slate-500 ml-1">ms</span></div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Downlink Speed</div>
-                            <div className="text-blue-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-blue-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]">{downlink}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                         <div>
                             <div className="text-slate-500 text-[10px] uppercase tracking-wider mb-0.5">Upload Speed</div>
-                            <div className="text-purple-400 font-mono text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
+                            <div className="text-purple-400 font-mono text-lg md:text-xl font-bold drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]">{upload}<span className="text-xs text-slate-500 ml-1">Mbps</span></div>
                         </div>
                     </div>
                  </div>
@@ -356,7 +356,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
 
              {/* Zoom Controls */}
-             <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50">
+             <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50 md:bottom-6 md:right-6 bottom-48 right-6">
                 <button 
                     onClick={() => handleZoom(0.7)}
                     className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
