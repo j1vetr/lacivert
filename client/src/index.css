@@ -136,3 +136,18 @@
     @apply font-heading font-semibold tracking-tight;
   }
 }
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 120s linear infinite; /* Very slow smooth scroll */
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

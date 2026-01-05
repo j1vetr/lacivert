@@ -116,9 +116,9 @@ const EventTicker = () => {
 
     return (
         <div className="absolute bottom-0 w-full bg-slate-950/95 border-t border-white/5 backdrop-blur-md py-2 z-40 overflow-hidden hidden md:flex">
-            <div className="flex gap-16 animate-marquee whitespace-nowrap px-4 w-full">
-                {/* Duplicate the list to ensure seamless loop */}
-                {[...events, ...events, ...events].map((evt, i) => (
+            <div className="flex gap-16 animate-marquee whitespace-nowrap px-4 w-fit">
+                {/* Duplicate the list to ensure seamless loop - using 2 sets for 50% translateX logic */}
+                {[...events, ...events].map((evt, i) => (
                     <span key={i} className="text-[10px] font-mono text-cyan-500/70 flex items-center gap-2 tracking-widest uppercase shrink-0">
                         {evt}
                     </span>
