@@ -154,19 +154,6 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     }
   }, [mounted]);
 
-    return { satellites: sats, ships: shipList };
-  }, []);
-
-  // 3. Space Lasers (Inter-satellite Links) - Premium Visuals
-  // Connect a subset of satellites to nearby ones to simulate the mesh network
-  const spaceLasers = useMemo(() => {
-    const links = [];
-    const sats = satellites; // We have access to sats from the previous hook result if we split it, but it's inside useMemo.
-    // Let's re-generate or just pick random pairs for visual effect since we don't have the sats array outside.
-    // Actually, let's refactor the useMemo above to return sats so we can use them.
-    return []; 
-  }, []);
-
   const data = useMemo(() => {
      // 1. Satellites
     const N = 3000;
