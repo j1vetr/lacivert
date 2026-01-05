@@ -100,6 +100,35 @@ const SystemHUD = () => {
   );
 };
 
+// Single Event Item with Live Updating Latency
+const EventItem = ({ text }: { text: string }) => {
+    // Extract base parts
+    const parts = text.split(':');
+    const action = parts[0];
+    const rest = parts[1].split('-');
+    const location = rest[0];
+    const initialLatency = parseInt(rest[1].replace('MS', '').trim());
+
+    const [latency, setLatency] = useState(initialLatency);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLatency(prev => {
+                const change = Math.floor(Math.random() * 5) - 2; // -2 to +2 variation
+                return Math.max(10, Math.min(150, prev + change));
+            });
+        }, 1000 + Math.random() * 1000); // Random interval between 1-2s for each item
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <span className="text-[10px] font-mono text-cyan-500/70 flex items-center gap-2 tracking-widest uppercase shrink-0">
+            {action}:{location}- <span className="text-cyan-400 font-bold">{latency}MS</span>
+        </span>
+    );
+};
+
 // Event Ticker Component
 const EventTicker = () => {
     // Static list of events for smooth infinite scroll
@@ -119,9 +148,7 @@ const EventTicker = () => {
             <div className="flex gap-16 animate-marquee whitespace-nowrap px-4 w-fit">
                 {/* Duplicate the list to ensure seamless loop - using 2 sets for 50% translateX logic */}
                 {[...events, ...events].map((evt, i) => (
-                    <span key={i} className="text-[10px] font-mono text-cyan-500/70 flex items-center gap-2 tracking-widest uppercase shrink-0">
-                        {evt}
-                    </span>
+                    <EventItem key={i} text={evt} />
                 ))}
             </div>
         </div>
