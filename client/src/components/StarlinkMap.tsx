@@ -498,18 +498,27 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
              <div className="md:hidden absolute bottom-12 left-0 w-full px-4 z-50 grid grid-cols-12 gap-2 items-stretch pointer-events-none pb-4">
                  {/* 1. Legend (Left - col-span-4) */}
                  <div className="col-span-4">
-                    <div className="h-full flex flex-col justify-between bg-slate-950/80 p-2 rounded-xl border border-white/10 backdrop-blur-md text-[8px] shadow-xl">
-                        <div className="flex items-center gap-1.5 text-slate-300">
-                            <div className="w-1.5 h-1.5 rounded-full bg-sky-500"></div>
-                            <span className="font-bold leading-none">Aktif</span>
+                    <div className="h-full flex flex-col justify-between bg-slate-950/80 p-2 rounded-xl border border-white/10 backdrop-blur-md text-[7.5px] shadow-xl">
+                        <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1.5 text-slate-300">
+                                <div className="w-1.5 h-1.5 rounded-full bg-sky-500 shadow-[0_0_5px_rgba(14,165,233,0.5)] shrink-0"></div>
+                                <span className="font-bold leading-tight">Kapsama Alanında</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-slate-300">
+                                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.5)] shrink-0"></div>
+                                <span className="font-bold leading-tight">Yakında Gelecek</span>
+                            </div>
+                             <div className="flex items-center gap-1.5 text-slate-500">
+                                <div className="w-1.5 h-1.5 rounded-full bg-slate-800 border border-slate-600 shrink-0"></div>
+                                <span className="font-bold leading-tight">Kapsama Dışı</span>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-1.5 text-slate-300">
-                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
-                            <span className="font-bold leading-none">Yakında</span>
-                        </div>
-                         <div className="flex items-center gap-1.5 text-slate-300">
-                            <div className="w-1.5 h-1.5 rounded-full bg-slate-700"></div>
-                            <span className="font-bold leading-none">Pasif</span>
+
+                        <div className="h-px bg-white/10 w-full my-0.5"></div>
+
+                        <div className="flex items-center gap-1.5 text-cyan-400">
+                             <div className="w-1.5 h-1.5 rounded-full border border-cyan-400 flex items-center justify-center shrink-0"></div>
+                            <span className="font-bold leading-tight">Okyanus/Deniz (Aktif)</span>
                         </div>
                     </div>
                  </div>
