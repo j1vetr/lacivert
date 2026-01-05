@@ -181,7 +181,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     // Africa
     "566": "Nigeria", "288": "Ghana", "404": "Kenya", "646": "Rwanda", "508": "Mozambique", "454": "Malawi", "894": "Zambia", "716": "Zimbabwe", "072": "Botswana", "748": "Eswatini", "450": "Madagascar", "694": "Sierra Leone", "430": "Liberia", "562": "Niger", "180": "DR Congo", "710": "South Africa", "148": "Chad", "204": "Benin",
     // Middle East
-    "400": "Jordan", "887": "Yemen", "376": "Israel", "792": "Turkey", "364": "Iran", "368": "Iraq", "760": "Syria", "422": "Lebanon", "682": "Saudi Arabia", "784": "UAE", "634": "Qatar", "414": "Kuwait", "512": "Oman",
+    "400": "Jordan", "887": "Yemen", "376": "Israel", "792": "Turkey", "364": "Iran", "368": "Iraq", "760": "Syria", "422": "Lebanon", "682": "Saudi Arabia", "784": "UAE", "634": "Qatar", "414": "Kuwait", "512": "Oman", "031": "Azerbaijan",
     // Others (Geofenced/Waitlist/Etc)
     "356": "India", "586": "Pakistan", "144": "Sri Lanka", "524": "Nepal", "004": "Afghanistan",
     "156": "China", "643": "Russia", "112": "Belarus", "398": "Kazakhstan", "795": "Turkmenistan", "860": "Uzbekistan", "762": "Tajikistan", "417": "Kyrgyzstan",
@@ -203,15 +203,17 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     // Africa
     "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "148", "204", "180", // NGA, GHA, KEN, RWA, MOZ, MWI, ZMB, ZWE, BWA, SWZ, MDG, SLE, LBR, NER, TCD, BEN, COD
     // Middle East
-    "400", "887", "376" // JOR, YEM, ISR (Added Israel as Active)
+    "400", "887", "376", "634", "512", "031", // JOR, YEM, ISR, QAT, OMN, AZE
+    // Africa (New Active)
+    "706" // SOM
   ];
 
   // Waitlist / Coming Soon (Orange/Gold - Restricted/Pending)
   const geofencedIds = [
     // Middle East & Asia
-    "792", "356", "586", "144", "524", "004", "364", "368", "422", "682", "784", "634", "414", "512", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, LBN, SAU, UAE, QAT, KWT, OMN, THA, VNM, LAO, KHM, MMR, KOR, IDN
+    "792", "356", "586", "144", "524", "004", "364", "368", "422", "682", "784", "414", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, LBN, SAU, UAE, KWT, THA, VNM, LAO, KHM, MMR, KOR, IDN
     // Africa
-    "710", "818", "012", "504", "788", "434", "729", "231", "706", "120", "266", "232", "324", "466", "478", "516", "566", "686", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, SOM, CMR, GAB, ERI, GIN, MLI, MRT, NAM, SEN, TGO, UGA, TZA
+    "710", "818", "012", "504", "788", "434", "729", "231", "120", "266", "232", "324", "466", "478", "516", "566", "686", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, CMR, GAB, ERI, GIN, MLI, MRT, NAM, SEN, TGO, UGA, TZA
     // Others (Inactive/Blocked/Service Unavailable)
     "156", "643", "112", "398", "795", "860", "762", "417", "068", "408", "760", "192", "558", "862" // CHN, RUS, BLR, KAZ, TKM, UZB, TJK, KGZ, BOL, PRK, SYR, CUB, NIC, VEN
   ];
