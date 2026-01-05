@@ -156,15 +156,67 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
   // Generate Satellites (Random Points)
   // Instead of pointsData, we'll use customLayer for better control (spheres)
-  const satellites = useMemo(() => {
+  const { satellites, ships } = useMemo(() => {
+    // 1. Satellites
     const N = 3000;
-    return Array.from({ length: N }).map(() => ({
+    const sats = Array.from({ length: N }).map(() => ({
+      type: 'satellite',
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
       alt: 0.1, // Fixed Altitude for all satellites (Low Earth Orbit)
       color: Math.random() > 0.3 ? '#f59e0b' : '#ffffff', // Orange/Gold hue mixed with white
       size: Math.random() * 0.15 + 0.05 // Smaller, uniform dots
     }));
+
+    // 2. Ships (Maritime Coverage)
+    const shipList = [];
+    
+    // Atlantic Ocean
+    for(let i=0; i<50; i++) {
+        shipList.push({
+            type: 'ship',
+            lat: -40 + Math.random() * 90, // South to North Atlantic
+            lng: -70 + Math.random() * 60,
+            alt: 0.002, // Surface
+            color: '#06b6d4', // Cyan
+            size: 0.08,
+            maxR: Math.random() * 2 + 1,
+            propagationSpeed: Math.random() * 2 + 1,
+            repeatPeriod: Math.random() * 1000 + 500
+        });
+    }
+
+    // Pacific Ocean
+    for(let i=0; i<80; i++) {
+        shipList.push({
+            type: 'ship',
+            lat: -50 + Math.random() * 100,
+            lng: -180 + Math.random() * 90, // West Pacific
+            alt: 0.002,
+            color: '#06b6d4',
+            size: 0.08,
+            maxR: Math.random() * 2 + 1,
+            propagationSpeed: Math.random() * 2 + 1,
+            repeatPeriod: Math.random() * 1000 + 500
+        });
+    }
+    
+    // Indian Ocean
+    for(let i=0; i<40; i++) {
+        shipList.push({
+            type: 'ship',
+            lat: -40 + Math.random() * 60,
+            lng: 50 + Math.random() * 60,
+            alt: 0.002,
+            color: '#06b6d4',
+            size: 0.08,
+            maxR: Math.random() * 2 + 1,
+            propagationSpeed: Math.random() * 2 + 1,
+            repeatPeriod: Math.random() * 1000 + 500
+        });
+    }
+
+    return { satellites: sats, ships: shipList };
   }, []);
 
 
@@ -313,17 +365,9 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 ref={globeEl as any}
                 width={dimensions.width}
                 height={dimensions.height}
-                globeImageUrl={null} // Remove texture to use custom material for "active ocean" look
-                backgroundColor="#000000" // Pure Black Background (Space)
+                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+                backgroundColor="#000000" // Pure Black
                 
-                // Custom Globe Material (Deep Blue Ocean Glow)
-                globeMaterial={new THREE.MeshPhongMaterial({ 
-                    color: '#0f172a', // Slate 900 - Deep Water Base
-                    emissive: '#0c4a6e', // Sky 900 - Subtle Glow
-                    emissiveIntensity: 0.4,
-                    shininess: 0.7
-                })}
-
                 // Polygons (Countries)
                 polygonsData={geography}
                 polygonCapColor={getPolygonColor}
@@ -342,8 +386,16 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 labelResolution={2}
                 labelAltitude={0.02}
 
-                // Objects (Satellites as Spheres instead of Points to avoid "Bars")
-                objectsData={satellites}
+                // Rings (Active Ships pinging)
+                ringsData={ships}
+                ringColor={() => (t: any) => `rgba(6, 182, 212, ${1-t})`} // Cyan ripple
+                ringMaxRadius={d => (d as any).maxR}
+                ringPropagationSpeed={d => (d as any).propagationSpeed}
+                ringRepeatPeriod={d => (d as any).repeatPeriod}
+                ringAltitude={0.002}
+
+                // Objects (Satellites + Ships)
+                objectsData={[...satellites, ...ships]}
                 objectLat={d => (d as any).lat}
                 objectLng={d => (d as any).lng}
                 objectAltitude={d => (d as any).alt}
@@ -353,8 +405,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 )}
                 
                 // Atmosphere
-                atmosphereColor="#38bdf8" // Light Blue (Sky 400)
-                atmosphereAltitude={0.15} // Lower but more intense
+                atmosphereColor="#3b82f6"
+                atmosphereAltitude={0.25}
                 
                 // Interaction
                 onPolygonHover={(polygon: any) => {
