@@ -63,8 +63,8 @@ const SystemHUD = () => {
   }, []);
 
   return (
-             <div className="absolute z-40 pointer-events-none md:top-1/2 md:-translate-y-1/2 md:left-6 bottom-6 right-6 md:right-auto md:bottom-auto">
-                 <div className="flex flex-col gap-1 bg-slate-950/80 p-2 md:p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)] max-w-[170px] md:max-w-none">
+             <div className="relative w-full h-full">
+                 <div className="flex flex-col gap-1 bg-slate-950/80 p-2 md:p-4 rounded-xl border border-blue-500/30 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.2)] w-full md:max-w-[170px]">
                     <div className="flex items-center justify-between gap-4 md:gap-8 mb-1 md:mb-2 pb-1 md:pb-2 border-b border-white/10">
                         <span className="text-blue-400 font-mono text-[10px] md:text-xs tracking-widest font-bold">SYSTEM</span>
                         <div className="flex items-center gap-1.5 md:gap-2">
@@ -76,12 +76,13 @@ const SystemHUD = () => {
                         </div>
                     </div>
                     
+                    {/* Updated Grid for Mobile (Side-by-side Satellites/Latency) */}
                     <div className="grid grid-cols-2 gap-x-2 md:gap-x-8 gap-y-2 md:gap-y-4">
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-1 md:col-span-1">
                             <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Satellites</div>
                             <div className="text-white font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">9,200</div>
                         </div>
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-1 md:col-span-1">
                             <div className="text-slate-500 text-[8px] md:text-[10px] uppercase tracking-wider mb-0.5">Latency</div>
                             <div className="text-emerald-400 font-mono text-sm md:text-xl font-bold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">{latency}<span className="text-[8px] md:text-xs text-slate-500 ml-0.5 md:ml-1">ms</span></div>
                         </div>
@@ -101,34 +102,24 @@ const SystemHUD = () => {
 
 // Event Ticker Component
 const EventTicker = () => {
-    const [events, setEvents] = useState<string[]>([]);
-    
-    useEffect(() => {
-        const locations = ["London", "New York", "Tokyo", "Berlin", "Paris", "Istanbul", "Dubai", "Sydney", "Singapore", "Mumbai", "Sao Paulo", "Toronto", "Hong Kong", "Frankfurt", "Amsterdam", "Madrid", "Chicago", "Los Angeles", "Seattle", "Seoul", "Zurich", "Stockholm", "Oslo", "Helsinki", "Copenhagen"];
-        const actions = ["Connection established", "Satellite handover", "Signal optimized", "Route updated", "Bandwidth allocated", "Latency stabilizing", "Network sync complete", "Data packet routed", "Uplink verified", "Downlink confirmed", "Packet loss mitigated", "Frequency shifted"];
-        
-        const generateEvent = () => {
-            const loc = locations[Math.floor(Math.random() * locations.length)];
-            const act = actions[Math.floor(Math.random() * actions.length)];
-            const latency = Math.floor(Math.random() * 25) + 15;
-            return `${act}: ${loc} - ${latency}ms`;
-        };
-
-        // Initial events
-        setEvents(Array.from({ length: 5 }).map(generateEvent));
-
-        const interval = setInterval(() => {
-            setEvents(prev => [generateEvent(), ...prev.slice(0, 4)]);
-        }, 800);
-
-        return () => clearInterval(interval);
-    }, []);
+    // Static list of events for smooth infinite scroll
+    const events = [
+        "CONNECTION ESTABLISHED: LONDON - 24MS", "SATELLITE HANDOVER: NEW YORK - 32MS", "SIGNAL OPTIMIZED: TOKYO - 18MS", 
+        "ROUTE UPDATED: BERLIN - 28MS", "BANDWIDTH ALLOCATED: PARIS - 22MS", "LATENCY STABILIZING: ISTANBUL - 35MS", 
+        "NETWORK SYNC COMPLETE: DUBAI - 45MS", "DATA PACKET ROUTED: SYDNEY - 55MS", "UPLINK VERIFIED: SINGAPORE - 19MS", 
+        "DOWNLINK CONFIRMED: MUMBAI - 62MS", "PACKET LOSS MITIGATED: SAO PAULO - 110MS", "FREQUENCY SHIFTED: TORONTO - 41MS",
+        "CONNECTION ESTABLISHED: HONG KONG - 26MS", "SATELLITE HANDOVER: FRANKFURT - 21MS", "SIGNAL OPTIMIZED: AMSTERDAM - 15MS",
+        "ROUTE UPDATED: MADRID - 29MS", "BANDWIDTH ALLOCATED: CHICAGO - 38MS", "LATENCY STABILIZING: LOS ANGELES - 30MS",
+        "NETWORK SYNC COMPLETE: SEATTLE - 24MS", "DATA PACKET ROUTED: SEOUL - 17MS", "UPLINK VERIFIED: ZURICH - 14MS",
+        "DOWNLINK CONFIRMED: STOCKHOLM - 23MS", "PACKET LOSS MITIGATED: OSLO - 25MS", "FREQUENCY SHIFTED: HELSINKI - 27MS"
+    ];
 
     return (
         <div className="absolute bottom-0 w-full bg-slate-950/95 border-t border-white/5 backdrop-blur-md py-2 z-40 overflow-hidden hidden md:flex">
-            <div className="flex gap-16 animate-marquee whitespace-nowrap px-4">
-                {[...events, ...events].map((evt, i) => (
-                    <span key={i} className="text-[10px] font-mono text-cyan-500/70 flex items-center gap-2 tracking-widest uppercase">
+            <div className="flex gap-16 animate-marquee whitespace-nowrap px-4 w-full">
+                {/* Duplicate the list to ensure seamless loop */}
+                {[...events, ...events, ...events].map((evt, i) => (
+                    <span key={i} className="text-[10px] font-mono text-cyan-500/70 flex items-center gap-2 tracking-widest uppercase shrink-0">
                         {evt}
                     </span>
                 ))}
@@ -241,34 +232,9 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     addShips(10, 10, 25, 50, 75);
     addShips(15, 0, 25, 100, 120);
 
-    // 3. Laser Links (Mesh Network)
-    const links = [];
-    // Create chains of connections
-    for(let i=0; i < sats.length; i++) {
-        // Connect 15% of satellites to form a mesh
-        if(Math.random() > 0.85) {
-            const startSat = sats[i];
-            // Find a random nearby satellite (fake proximity for performance)
-            // Just pick a random one within a simplistic index range to simulate "grouping"
-            // or just random for the visual "web" effect. 
-            // For a better look, let's connect to the next one in the array if it's close-ish? 
-            // No, random index is fine for a chaotic mesh.
-            const targetIndex = Math.floor(Math.random() * sats.length);
-            const endSat = sats[targetIndex];
-            
-            // Only connect if distance isn't too huge (simulate visibility)
-            if (Math.abs(startSat.lat - endSat.lat) < 20 && Math.abs(startSat.lng - endSat.lng) < 20) {
-                 links.push({
-                    startLat: startSat.lat,
-                    startLng: startSat.lng,
-                    endLat: endSat.lat,
-                    endLng: endSat.lng,
-                    color: 'rgba(245, 158, 11, 0.15)' // Faint Orange/Gold Laser
-                });
-            }
-        }
-    }
-
+    // 3. Laser Links (Mesh Network) - Removed as requested
+    const links: any[] = [];
+    
     return { satellites: sats, ships: shipList, lasers: links };
   }, []);
 
@@ -493,14 +459,16 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
               />
           )}
 
-             {/* System HUD */}
-             <SystemHUD />
+             {/* Desktop HUD Position */}
+             <div className="hidden md:block absolute z-40 pointer-events-none md:top-1/2 md:-translate-y-1/2 md:left-6">
+                 <SystemHUD />
+             </div>
 
              {/* Live Event Ticker */}
              <EventTicker />
 
-             {/* Legend Overlay */}
-             <div className="absolute bottom-12 left-6 z-50 pointer-events-none max-w-[140px] md:max-w-none md:bottom-16">
+             {/* Desktop Legend Overlay */}
+             <div className="hidden md:block absolute bottom-12 left-6 z-50 pointer-events-none md:bottom-16">
                 <div className="flex flex-col gap-1.5 md:gap-2 bg-slate-950/80 p-3 md:p-4 rounded-xl border border-white/10 backdrop-blur-md text-[10px] md:text-xs shadow-2xl">
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
@@ -526,9 +494,51 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 </div>
              </div>
 
+             {/* Mobile Bottom Grid Container */}
+             <div className="md:hidden absolute bottom-12 left-0 w-full px-4 z-50 grid grid-cols-12 gap-2 items-end pointer-events-none pb-4">
+                 {/* 1. Legend (Left - col-span-3/4) */}
+                 <div className="col-span-4">
+                    <div className="flex flex-col gap-1 bg-slate-950/80 p-2 rounded-lg border border-white/10 backdrop-blur-md text-[8px] shadow-xl">
+                        <div className="flex items-center gap-1.5 text-slate-300">
+                            <div className="w-1.5 h-1.5 rounded-full bg-sky-500"></div>
+                            <span className="font-bold leading-none">Aktif</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-slate-300">
+                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+                            <span className="font-bold leading-none">Yakında</span>
+                        </div>
+                         <div className="flex items-center gap-1.5 text-slate-300">
+                            <div className="w-1.5 h-1.5 rounded-full bg-slate-700"></div>
+                            <span className="font-bold leading-none">Pasif</span>
+                        </div>
+                    </div>
+                 </div>
 
-             {/* Zoom Controls */}
-             <div className="absolute bottom-12 right-6 flex flex-col gap-3 z-50 md:bottom-16 right-6">
+                 {/* 2. System HUD (Center - col-span-6/4) */}
+                 <div className="col-span-6 flex justify-center">
+                     <SystemHUD />
+                 </div>
+
+                 {/* 3. Zoom Controls (Right - col-span-2) */}
+                 <div className="col-span-2 flex flex-col gap-2 items-end pointer-events-auto">
+                    <button 
+                        onClick={() => handleZoom(0.7)}
+                        className="w-8 h-8 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95"
+                    >
+                        <Plus className="w-4 h-4" />
+                    </button>
+                    <button 
+                        onClick={() => handleZoom(1.4)}
+                        className="w-8 h-8 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95"
+                    >
+                        <Minus className="w-4 h-4" />
+                    </button>
+                 </div>
+             </div>
+
+
+             {/* Desktop Zoom Controls */}
+             <div className="hidden md:flex absolute bottom-12 right-6 flex-col gap-3 z-50 md:bottom-16 right-6 pointer-events-auto">
                 <button 
                     onClick={() => handleZoom(0.7)}
                     className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
