@@ -168,53 +168,50 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
       size: Math.random() * 0.15 + 0.05 // Smaller, uniform dots
     }));
 
-    // 2. Ships (Maritime Coverage)
+    // 2. Ships (Maritime Coverage - Global)
     const shipList = [];
     
-    // Atlantic Ocean
-    for(let i=0; i<50; i++) {
-        shipList.push({
-            type: 'ship',
-            lat: -40 + Math.random() * 90, // South to North Atlantic
-            lng: -70 + Math.random() * 60,
-            alt: 0.002, // Surface
-            color: '#06b6d4', // Cyan
-            size: 0.08,
-            maxR: Math.random() * 2 + 1,
-            propagationSpeed: Math.random() * 2 + 1,
-            repeatPeriod: Math.random() * 1000 + 500
-        });
-    }
+    // Function to add ships in a region
+    const addShips = (count: number, latMin: number, latMax: number, lngMin: number, lngMax: number) => {
+        for(let i=0; i<count; i++) {
+            shipList.push({
+                type: 'ship',
+                lat: latMin + Math.random() * (latMax - latMin),
+                lng: lngMin + Math.random() * (lngMax - lngMin),
+                alt: 0.002, // Surface
+                color: '#06b6d4', // Cyan
+                size: 0.08,
+                maxR: Math.random() * 2 + 1,
+                propagationSpeed: Math.random() * 2 + 1,
+                repeatPeriod: Math.random() * 1000 + 500
+            });
+        }
+    };
 
-    // Pacific Ocean
-    for(let i=0; i<80; i++) {
-        shipList.push({
-            type: 'ship',
-            lat: -50 + Math.random() * 100,
-            lng: -180 + Math.random() * 90, // West Pacific
-            alt: 0.002,
-            color: '#06b6d4',
-            size: 0.08,
-            maxR: Math.random() * 2 + 1,
-            propagationSpeed: Math.random() * 2 + 1,
-            repeatPeriod: Math.random() * 1000 + 500
-        });
-    }
-    
+    // North Atlantic
+    addShips(40, 10, 60, -80, -10);
+    // South Atlantic
+    addShips(40, -50, 10, -60, 10);
+    // North Pacific (West)
+    addShips(50, 0, 60, 120, 180);
+    // North Pacific (East)
+    addShips(50, 0, 60, -180, -100);
+    // South Pacific
+    addShips(60, -60, 0, 150, -70); // This wrapping is tricky, better split
+    addShips(30, -60, 0, 150, 180);
+    addShips(30, -60, 0, -180, -70);
     // Indian Ocean
-    for(let i=0; i<40; i++) {
-        shipList.push({
-            type: 'ship',
-            lat: -40 + Math.random() * 60,
-            lng: 50 + Math.random() * 60,
-            alt: 0.002,
-            color: '#06b6d4',
-            size: 0.08,
-            maxR: Math.random() * 2 + 1,
-            propagationSpeed: Math.random() * 2 + 1,
-            repeatPeriod: Math.random() * 1000 + 500
-        });
-    }
+    addShips(50, -40, 25, 40, 110);
+    // Southern Ocean (Global Band)
+    addShips(60, -70, -50, -180, 180);
+    // Mediterranean
+    addShips(15, 30, 45, -5, 35);
+    // Gulf of Mexico & Caribbean
+    addShips(15, 10, 30, -95, -60);
+    // Arabian Sea
+    addShips(10, 10, 25, 50, 75);
+    // South China Sea
+    addShips(15, 0, 25, 100, 120);
 
     return { satellites: sats, ships: shipList };
   }, []);
@@ -432,6 +429,15 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                     <div className="flex items-center gap-2 text-slate-500">
                         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-800 border border-slate-600"></div>
                         <span>Kapsama Dışı</span>
+                    </div>
+                    
+                    <div className="h-px bg-white/10 my-0.5"></div>
+                    
+                    <div className="flex items-center gap-2 text-cyan-400">
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full border border-cyan-400 flex items-center justify-center">
+                            <div className="w-1 h-1 bg-cyan-400 rounded-full animate-ping"></div>
+                        </div>
+                        <span className="font-bold">Okyanus/Deniz (Aktif)</span>
                     </div>
                 </div>
              </div>
