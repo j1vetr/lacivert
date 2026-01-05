@@ -144,7 +144,7 @@ const EventTicker = () => {
     ];
 
     return (
-        <div className="absolute bottom-0 w-full bg-slate-950/95 border-t border-white/5 backdrop-blur-md py-2 z-40 overflow-hidden hidden md:flex">
+        <div className="absolute bottom-0 w-full bg-slate-950/95 border-t border-white/5 backdrop-blur-md py-2 z-40 overflow-hidden flex">
             <div className="flex gap-16 animate-marquee whitespace-nowrap px-4 w-fit">
                 {/* Duplicate the list to ensure seamless loop - using 2 sets for 50% translateX logic */}
                 {[...events, ...events].map((evt, i) => (
