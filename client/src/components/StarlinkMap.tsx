@@ -495,10 +495,10 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
              </div>
 
              {/* Mobile Bottom Grid Container */}
-             <div className="md:hidden absolute bottom-12 left-0 w-full px-4 z-50 grid grid-cols-12 gap-2 items-end pointer-events-none pb-4">
-                 {/* 1. Legend (Left - col-span-3/4) */}
+             <div className="md:hidden absolute bottom-12 left-0 w-full px-4 z-50 grid grid-cols-12 gap-2 items-stretch pointer-events-none pb-4">
+                 {/* 1. Legend (Left - col-span-4) */}
                  <div className="col-span-4">
-                    <div className="flex flex-col gap-1 bg-slate-950/80 p-2 rounded-lg border border-white/10 backdrop-blur-md text-[8px] shadow-xl">
+                    <div className="h-full flex flex-col justify-between bg-slate-950/80 p-2 rounded-xl border border-white/10 backdrop-blur-md text-[8px] shadow-xl">
                         <div className="flex items-center gap-1.5 text-slate-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-sky-500"></div>
                             <span className="font-bold leading-none">Aktif</span>
@@ -514,13 +514,13 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                     </div>
                  </div>
 
-                 {/* 2. System HUD (Center - col-span-6/4) */}
+                 {/* 2. System HUD (Center - col-span-6) */}
                  <div className="col-span-6 flex justify-center">
                      <SystemHUD />
                  </div>
 
                  {/* 3. Zoom Controls (Right - col-span-2) */}
-                 <div className="col-span-2 flex flex-col gap-2 items-end pointer-events-auto">
+                 <div className="col-span-2 flex flex-col justify-end gap-2 items-end pointer-events-auto pb-0">
                     <button 
                         onClick={() => handleZoom(0.7)}
                         className="w-8 h-8 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95"
