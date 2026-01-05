@@ -313,9 +313,17 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 ref={globeEl as any}
                 width={dimensions.width}
                 height={dimensions.height}
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                backgroundColor="#000000" // Pure Black
+                globeImageUrl={null} // Remove texture to use custom material for "active ocean" look
+                backgroundColor="#000000" // Pure Black Background (Space)
                 
+                // Custom Globe Material (Deep Blue Ocean Glow)
+                globeMaterial={new THREE.MeshPhongMaterial({ 
+                    color: '#0f172a', // Slate 900 - Deep Water Base
+                    emissive: '#0c4a6e', // Sky 900 - Subtle Glow
+                    emissiveIntensity: 0.4,
+                    shininess: 0.7
+                })}
+
                 // Polygons (Countries)
                 polygonsData={geography}
                 polygonCapColor={getPolygonColor}
@@ -345,8 +353,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 )}
                 
                 // Atmosphere
-                atmosphereColor="#3b82f6"
-                atmosphereAltitude={0.25}
+                atmosphereColor="#38bdf8" // Light Blue (Sky 400)
+                atmosphereAltitude={0.15} // Lower but more intense
                 
                 // Interaction
                 onPolygonHover={(polygon: any) => {
