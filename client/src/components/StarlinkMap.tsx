@@ -99,6 +99,44 @@ const SystemHUD = () => {
   );
 };
 
+// Event Ticker Component
+const EventTicker = () => {
+    const [events, setEvents] = useState<string[]>([]);
+    
+    useEffect(() => {
+        const locations = ["London", "New York", "Tokyo", "Berlin", "Paris", "Istanbul", "Dubai", "Sydney", "Singapore", "Mumbai", "Sao Paulo", "Toronto"];
+        const actions = ["🛰️ Connection established", "📡 Satellite handover", "⚡ Signal optimized", "🔄 Route updated", "📶 Bandwidth allocated"];
+        
+        const generateEvent = () => {
+            const loc = locations[Math.floor(Math.random() * locations.length)];
+            const act = actions[Math.floor(Math.random() * actions.length)];
+            const latency = Math.floor(Math.random() * 20) + 20;
+            return `${act}: ${loc} - ${latency}ms`;
+        };
+
+        // Initial events
+        setEvents(Array.from({ length: 5 }).map(generateEvent));
+
+        const interval = setInterval(() => {
+            setEvents(prev => [generateEvent(), ...prev.slice(0, 4)]);
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="absolute bottom-0 w-full bg-slate-950/90 border-t border-white/10 backdrop-blur-md py-2 z-40 overflow-hidden hidden md:flex">
+            <div className="flex gap-12 animate-marquee whitespace-nowrap px-4">
+                {[...events, ...events].map((evt, i) => (
+                    <span key={i} className="text-xs font-mono text-cyan-400/80 flex items-center gap-2">
+                        {evt}
+                    </span>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   const { t } = useTranslation();
   const [geography, setGeography] = useState<any[]>([]);
@@ -141,18 +179,46 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
-  // Initial Globe Position
+  // Initial Globe Position & Intro Animation
   useEffect(() => {
     if (globeEl.current) {
-        // Center roughly on Turkey/Europe
-        globeEl.current.pointOfView({ lat: 39, lng: 35, altitude: 2.0 }, 1000);
+        // Start far away
+        globeEl.current.pointOfView({ lat: 20, lng: 0, altitude: 4.5 });
         
-        // Auto-rotate
+        // Zoom in animation
+        setTimeout(() => {
+            globeEl.current?.pointOfView({ lat: 39, lng: 35, altitude: 2.0 }, 2500);
+        }, 500);
+        
+        // Auto-rotate settings
         globeEl.current.controls().autoRotate = true;
         globeEl.current.controls().autoRotateSpeed = 0.5;
         globeEl.current.controls().enableZoom = true;
     }
   }, [mounted]);
+
+  // Hexagonal Mesh Generation (Visual Effect)
+  const hexData = useMemo(() => {
+      // Generate points for hex grid
+      const points = [];
+      const step = 5; // Resolution of the grid
+      for (let lat = -80; lat <= 80; lat += step) {
+          for (let lng = -180; lng < 180; lng += step) {
+              // Only add points if they match roughly with land (simple lat check for demo, 
+              // or just global grid for the "cyber" look)
+              // Let's do a global faint grid to make it look like a shield
+              if (Math.random() > 0.4) {
+                  points.push({
+                      lat,
+                      lng,
+                      weight: Math.random(),
+                      color: 'rgba(6, 182, 212, 0.1)' // Very faint cyan
+                  });
+              }
+          }
+      }
+      return points;
+  }, []);
 
   const data = useMemo(() => {
      // 1. Satellites
@@ -394,6 +460,16 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                 backgroundColor="#000000" // Pure Black
                 
+                // Hex Bin (Cyber Shield Effect)
+                hexBinPointsData={hexData}
+                hexBinPointWeight="weight"
+                hexBinResolution={3} // Size of hexagons
+                hexMargin={0.2}
+                hexTopColor={() => 'rgba(6, 182, 212, 0.2)'} // Cyan top
+                hexSideColor={() => 'rgba(6, 182, 212, 0.05)'} // Faint sides
+                hexAltitude={0.05} // Slightly above surface
+                hexTransitionDuration={1000}
+
                 // Polygons (Countries)
                 polygonsData={geography}
                 polygonCapColor={getPolygonColor}
@@ -431,8 +507,8 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 )}
                 
                 // Atmosphere
-                atmosphereColor="#60a5fa" // Blue-400 for a more electric look
-                atmosphereAltitude={0.2} 
+                atmosphereColor="#93c5fd" // Lighter Blue (Blue-300) for cinematic bloom
+                atmosphereAltitude={0.25} // Increased altitude for "God rays" feel
                 
                 // Arcs (Space Lasers)
                 arcsData={lasers}
@@ -453,8 +529,11 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
              {/* System HUD */}
              <SystemHUD />
 
+             {/* Live Event Ticker */}
+             <EventTicker />
+
              {/* Legend Overlay */}
-             <div className="absolute bottom-6 left-6 z-50 pointer-events-none max-w-[140px] md:max-w-none">
+             <div className="absolute bottom-12 left-6 z-50 pointer-events-none max-w-[140px] md:max-w-none md:bottom-16">
                 <div className="flex flex-col gap-1.5 md:gap-2 bg-slate-950/80 p-3 md:p-4 rounded-xl border border-white/10 backdrop-blur-md text-[10px] md:text-xs shadow-2xl">
                     <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
@@ -482,7 +561,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
 
 
              {/* Zoom Controls */}
-             <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-50 md:bottom-6 md:right-6 bottom-56 right-6">
+             <div className="absolute bottom-12 right-6 flex flex-col gap-3 z-50 md:bottom-16 right-6">
                 <button 
                     onClick={() => handleZoom(0.7)}
                     className="w-10 h-10 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg transition-all active:scale-95"
