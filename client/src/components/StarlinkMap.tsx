@@ -154,32 +154,41 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     }
   }, [mounted]);
 
-  // Generate Satellites (Random Points)
-  // Instead of pointsData, we'll use customLayer for better control (spheres)
-  const { satellites, ships } = useMemo(() => {
-    // 1. Satellites
+    return { satellites: sats, ships: shipList };
+  }, []);
+
+  // 3. Space Lasers (Inter-satellite Links) - Premium Visuals
+  // Connect a subset of satellites to nearby ones to simulate the mesh network
+  const spaceLasers = useMemo(() => {
+    const links = [];
+    const sats = satellites; // We have access to sats from the previous hook result if we split it, but it's inside useMemo.
+    // Let's re-generate or just pick random pairs for visual effect since we don't have the sats array outside.
+    // Actually, let's refactor the useMemo above to return sats so we can use them.
+    return []; 
+  }, []);
+
+  const data = useMemo(() => {
+     // 1. Satellites
     const N = 3000;
     const sats = Array.from({ length: N }).map(() => ({
       type: 'satellite',
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
-      alt: 0.1, // Fixed Altitude for all satellites (Low Earth Orbit)
-      color: Math.random() > 0.3 ? '#f59e0b' : '#ffffff', // Orange/Gold hue mixed with white
-      size: Math.random() * 0.15 + 0.05 // Smaller, uniform dots
+      alt: 0.1, 
+      color: Math.random() > 0.3 ? '#f59e0b' : '#ffffff',
+      size: Math.random() * 0.15 + 0.05
     }));
 
-    // 2. Ships (Maritime Coverage - Global)
+    // 2. Ships... (Keeping existing logic)
     const shipList = [];
-    
-    // Function to add ships in a region
     const addShips = (count: number, latMin: number, latMax: number, lngMin: number, lngMax: number) => {
         for(let i=0; i<count; i++) {
             shipList.push({
                 type: 'ship',
                 lat: latMin + Math.random() * (latMax - latMin),
                 lng: lngMin + Math.random() * (lngMax - lngMin),
-                alt: 0.002, // Surface
-                color: '#06b6d4', // Cyan
+                alt: 0.002,
+                color: '#06b6d4',
                 size: 0.08,
                 maxR: Math.random() * 2 + 1,
                 propagationSpeed: Math.random() * 2 + 1,
@@ -187,34 +196,53 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
             });
         }
     };
-
-    // North Atlantic
+    // ... (Call addShips)
     addShips(40, 10, 60, -80, -10);
-    // South Atlantic
     addShips(40, -50, 10, -60, 10);
-    // North Pacific (West)
     addShips(50, 0, 60, 120, 180);
-    // North Pacific (East)
     addShips(50, 0, 60, -180, -100);
-    // South Pacific
-    addShips(60, -60, 0, 150, -70); // This wrapping is tricky, better split
+    addShips(60, -60, 0, 150, -70);
     addShips(30, -60, 0, 150, 180);
     addShips(30, -60, 0, -180, -70);
-    // Indian Ocean
     addShips(50, -40, 25, 40, 110);
-    // Southern Ocean (Global Band)
     addShips(60, -70, -50, -180, 180);
-    // Mediterranean
     addShips(15, 30, 45, -5, 35);
-    // Gulf of Mexico & Caribbean
     addShips(15, 10, 30, -95, -60);
-    // Arabian Sea
     addShips(10, 10, 25, 50, 75);
-    // South China Sea
     addShips(15, 0, 25, 100, 120);
 
-    return { satellites: sats, ships: shipList };
+    // 3. Laser Links (Mesh Network)
+    const links = [];
+    // Create chains of connections
+    for(let i=0; i < sats.length; i++) {
+        // Connect 15% of satellites to form a mesh
+        if(Math.random() > 0.85) {
+            const startSat = sats[i];
+            // Find a random nearby satellite (fake proximity for performance)
+            // Just pick a random one within a simplistic index range to simulate "grouping"
+            // or just random for the visual "web" effect. 
+            // For a better look, let's connect to the next one in the array if it's close-ish? 
+            // No, random index is fine for a chaotic mesh.
+            const targetIndex = Math.floor(Math.random() * sats.length);
+            const endSat = sats[targetIndex];
+            
+            // Only connect if distance isn't too huge (simulate visibility)
+            if (Math.abs(startSat.lat - endSat.lat) < 20 && Math.abs(startSat.lng - endSat.lng) < 20) {
+                 links.push({
+                    startLat: startSat.lat,
+                    startLng: startSat.lng,
+                    endLat: endSat.lat,
+                    endLng: endSat.lng,
+                    color: 'rgba(245, 158, 11, 0.15)' // Faint Orange/Gold Laser
+                });
+            }
+        }
+    }
+
+    return { satellites: sats, ships: shipList, lasers: links };
   }, []);
+
+  const { satellites, ships, lasers } = data;
 
 
   // Country ID to Name Mapping
@@ -341,6 +369,20 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
             ref={containerRef}
             className={`relative w-full mx-auto bg-slate-900/0 md:rounded-3xl overflow-hidden ${fullScreen ? 'h-full' : 'max-w-6xl h-[600px] border border-white/5 shadow-2xl'}`}
         >
+          {/* Star Background Effect */}
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/50 via-slate-950 to-black pointer-events-none">
+            {/* Stars */}
+            <div className="absolute inset-0 opacity-40" style={{
+                backgroundImage: 'radial-gradient(white 1px, transparent 1px)',
+                backgroundSize: '50px 50px'
+            }}></div>
+             <div className="absolute inset-0 opacity-20" style={{
+                backgroundImage: 'radial-gradient(white 1px, transparent 1px)',
+                backgroundSize: '120px 120px',
+                backgroundPosition: '20px 20px'
+            }}></div>
+          </div>
+
           {/* Loading Screen */}
           {isLoading && (
             <div className="absolute inset-0 z-[60] bg-black flex flex-col items-center justify-center">
@@ -402,9 +444,18 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 )}
                 
                 // Atmosphere
-                atmosphereColor="#3b82f6"
-                atmosphereAltitude={0.25}
+                atmosphereColor="#60a5fa" // Blue-400 for a more electric look
+                atmosphereAltitude={0.2} 
                 
+                // Arcs (Space Lasers)
+                arcsData={lasers}
+                arcColor={'color'}
+                arcDashLength={0.4}
+                arcDashGap={0.2}
+                arcDashAnimateTime={1500}
+                arcStroke={0.3}
+                arcAltitude={0.1} // Same as satellite altitude
+
                 // Interaction
                 onPolygonHover={(polygon: any) => {
                     // Optional: tooltip logic could go here
