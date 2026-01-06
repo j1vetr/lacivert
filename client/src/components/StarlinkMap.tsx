@@ -521,6 +521,11 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                         <div className="w-1.5 h-1.5 rounded-full bg-slate-700 border border-slate-600"></div>
                         <span className="text-[9px] text-slate-400">Pasif</span>
                     </div>
+                    <div className="w-px h-3 bg-white/20"></div>
+                    <div className="flex items-center gap-1.5">
+                         <div className="w-1.5 h-1.5 rounded-full border border-cyan-400 flex items-center justify-center shrink-0"></div>
+                        <span className="text-[9px] text-cyan-400 font-bold">Okyanus</span>
+                    </div>
                  </div>
              </div>
 
