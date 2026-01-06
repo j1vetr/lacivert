@@ -48,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans text-foreground">
       {/* Navigation */}
+      {location !== '/starlink-haritasi' && (
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled || window.location.pathname === '/starlink-haritasi' ? "bg-slate-950/95 backdrop-blur-md shadow-md border-b border-white/10" : "bg-transparent"
@@ -288,6 +289,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
+      )}
 
       {/* Main Content */}
       <main className="flex-grow pt-0">
@@ -310,6 +312,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* Footer */}
+      {location !== '/starlink-haritasi' && (
       <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -389,6 +392,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+      )}
     </div>
   );
 }
