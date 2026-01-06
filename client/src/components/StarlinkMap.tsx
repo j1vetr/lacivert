@@ -504,53 +504,47 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
                 </div>
              </div>
 
-             {/* Mobile Bottom Grid Container */}
-             <div className="md:hidden absolute bottom-12 left-0 w-full px-4 z-50 grid grid-cols-12 gap-2 items-stretch pointer-events-none pb-4">
-                 {/* 1. Legend (Left - col-span-4) */}
-                 <div className="col-span-4">
-                    <div className="h-full flex flex-col justify-between bg-slate-950/80 p-2 rounded-xl border border-white/10 backdrop-blur-md text-[7.5px] shadow-xl">
-                        <div className="flex flex-col gap-1">
-                            <div className="flex items-center gap-1.5 text-slate-300">
-                                <div className="w-1.5 h-1.5 rounded-full bg-sky-500 shadow-[0_0_5px_rgba(14,165,233,0.5)] shrink-0"></div>
-                                <span className="font-bold leading-tight">Kapsama Alanında</span>
-                            </div>
-                            <div className="flex items-center gap-1.5 text-slate-300">
-                                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.5)] shrink-0"></div>
-                                <span className="font-bold leading-tight">Yakında Gelecek</span>
-                            </div>
-                             <div className="flex items-center gap-1.5 text-slate-500">
-                                <div className="w-1.5 h-1.5 rounded-full bg-slate-800 border border-slate-600 shrink-0"></div>
-                                <span className="font-bold leading-tight">Kapsama Dışı</span>
-                            </div>
-                        </div>
-
-                        <div className="h-px bg-white/10 w-full my-0.5"></div>
-
-                        <div className="flex items-center gap-1.5 text-cyan-400">
-                             <div className="w-1.5 h-1.5 rounded-full border border-cyan-400 flex items-center justify-center shrink-0"></div>
-                            <span className="font-bold leading-tight">Okyanus/Deniz (Aktif)</span>
-                        </div>
+             {/* Mobile Top Legend Bar */}
+             <div className="md:hidden absolute top-0 left-0 w-full z-50 pointer-events-none p-4 flex justify-center">
+                 <div className="bg-slate-950/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 flex items-center gap-3 shadow-lg">
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-sky-500 shadow-[0_0_5px_rgba(14,165,233,0.5)]"></div>
+                        <span className="text-[9px] text-slate-200 font-bold">Aktif</span>
+                    </div>
+                    <div className="w-px h-3 bg-white/20"></div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.5)]"></div>
+                        <span className="text-[9px] text-slate-200 font-bold">Yakında</span>
+                    </div>
+                    <div className="w-px h-3 bg-white/20"></div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-slate-700 border border-slate-600"></div>
+                        <span className="text-[9px] text-slate-400">Pasif</span>
                     </div>
                  </div>
+             </div>
 
-                 {/* 2. System HUD (Center - col-span-6) */}
-                 <div className="col-span-6 flex justify-center">
+             {/* Mobile Bottom Layout (HUD Left, Zoom Right) */}
+             <div className="md:hidden absolute bottom-10 left-0 w-full px-4 z-40 flex items-end justify-between pointer-events-none pb-4">
+                 
+                 {/* System HUD (Left Aligned) */}
+                 <div className="pointer-events-auto">
                      <SystemHUD />
                  </div>
 
-                 {/* 3. Zoom Controls (Right - col-span-2) */}
-                 <div className="col-span-2 flex flex-col justify-end gap-2 items-end pointer-events-auto pb-0">
+                 {/* Zoom Controls (Right Aligned) */}
+                 <div className="flex flex-col gap-2 pointer-events-auto mb-1">
                     <button 
                         onClick={() => handleZoom(0.7)}
-                        className="w-8 h-8 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95"
+                        className="w-10 h-10 bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95 transition-all"
                     >
-                        <Plus className="w-4 h-4" />
+                        <Plus className="w-5 h-5 text-cyan-400" />
                     </button>
                     <button 
                         onClick={() => handleZoom(1.4)}
-                        className="w-8 h-8 bg-slate-800/90 hover:bg-slate-700 backdrop-blur-sm text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95"
+                        className="w-10 h-10 bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 shadow-lg active:scale-95 transition-all"
                     >
-                        <Minus className="w-4 h-4" />
+                        <Minus className="w-5 h-5 text-cyan-400" />
                     </button>
                  </div>
              </div>
