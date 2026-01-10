@@ -189,6 +189,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
+                            <Link href="/starlink-haritasi" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer flex items-center gap-1.5`}>
+                                <Globe className="w-4 h-4 text-cyan-400" />
+                                Starlink Map
+                            </Link>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <NavigationMenuLink asChild>
                             <Link href="/iletisim" className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white cursor-pointer`}>
                                 {t('nav.contact')}
                             </Link>
@@ -278,6 +287,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </div>
 
                     <Link href="/hakkimizda" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.about')}</Link>
+                    <Link href="/starlink-haritasi" onClick={closeMobileMenu} className="text-xl font-medium hover:text-cyan-400 flex items-center gap-2">
+                        <Globe className="w-5 h-5" /> Starlink Map
+                    </Link>
                     <Link href="/iletisim" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.contact')}</Link>
                     
                   <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white">
