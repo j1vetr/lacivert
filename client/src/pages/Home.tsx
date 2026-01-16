@@ -38,7 +38,7 @@ export default function Home() {
       />
       
       {/* NEW HERO SECTION: Clean, Maritime Focused, Service Forward */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-slate-950 pt-32 md:pt-20 pb-16 md:pb-0">
+      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-slate-950 pt-[9.5rem] md:pt-20 pb-16 md:pb-0">
         
         {/* Cinematic Background */}
         <div className="absolute inset-0 z-0">
