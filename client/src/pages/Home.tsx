@@ -29,17 +29,25 @@ const PrecisionCard = ({
     desc, 
     icon, 
     href, 
-    items = []
+    items = [],
+    isActive = false
 }: { 
     title: string, 
     desc: string, 
     icon: React.ReactNode, 
     href: string, 
-    items?: string[]
+    items?: string[],
+    isActive?: boolean
 }) => {
     return (
-        <Link href={href} className="group relative border-l border-white/10 pl-8 py-4 hover:border-cyan-500/50 transition-colors duration-500">
-            <div className="mb-6 text-slate-400 group-hover:text-cyan-400 transition-colors duration-300">
+        <Link href={href} className={`group relative border-l pl-8 py-4 transition-colors duration-500 ${
+            isActive 
+                ? 'border-cyan-500/50' 
+                : 'border-white/10 hover:border-cyan-500/50'
+        }`}>
+            <div className={`mb-6 transition-colors duration-300 ${
+                isActive ? 'text-cyan-400' : 'text-slate-400 group-hover:text-cyan-400'
+            }`}>
                 {icon}
             </div>
             
@@ -49,7 +57,9 @@ const PrecisionCard = ({
             {items.length > 0 && (
                 <ul className="space-y-2 mb-6">
                     {items.map((item, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs text-slate-500 group-hover:text-slate-400 transition-colors">
+                        <li key={i} className={`flex items-center gap-2 text-xs transition-colors ${
+                            isActive ? 'text-slate-400' : 'text-slate-500 group-hover:text-slate-400'
+                        }`}>
                             <div className="w-1 h-1 rounded-full bg-cyan-500/50"></div>
                             {item}
                         </li>
@@ -57,9 +67,13 @@ const PrecisionCard = ({
                 </ul>
             )}
 
-            <div className="flex items-center text-xs font-medium text-slate-500 group-hover:text-white transition-colors uppercase tracking-widest">
+            <div className={`flex items-center text-xs font-medium transition-colors uppercase tracking-widest ${
+                isActive ? 'text-white' : 'text-slate-500 group-hover:text-white'
+            }`}>
                 <span>İncele</span>
-                <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className={`w-3 h-3 ml-2 transition-transform ${
+                    isActive ? 'translate-x-1' : 'group-hover:translate-x-1'
+                }`} />
             </div>
         </Link>
     );
@@ -68,6 +82,15 @@ const PrecisionCard = ({
 // Removed duplicate HeroServiceCard definition
 export default function Home() {
   const { t } = useTranslation();
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        setActiveCard((prev) => (prev + 1) % 4);
+    }, 2000); // Change active card every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="bg-background text-foreground font-sans selection:bg-cyan-500/30">
@@ -226,6 +249,7 @@ export default function Home() {
                     icon={<Satellite className="w-6 h-6 stroke-1" />}
                     href="/uzay-haberlesmesi"
                     items={["Starlink Maritime", "OneWeb Enterprise", "Iridium Certus"]}
+                    isActive={activeCard === 0}
                 />
 
                 <PrecisionCard 
@@ -234,6 +258,7 @@ export default function Home() {
                     icon={<Shield className="w-6 h-6 stroke-1" />}
                     href="/siber-guvenlik"
                     items={["IMO Uyumluluk", "SOC Hizmeti", "Endpoint Koruma"]}
+                    isActive={activeCard === 1}
                 />
 
                 <PrecisionCard 
@@ -242,6 +267,7 @@ export default function Home() {
                     icon={<Server className="w-6 h-6 stroke-1" />}
                     href="/it-hizmetleri"
                     items={["Sunucu Bakım", "Veri Yedekleme", "Helpdesk"]}
+                    isActive={activeCard === 2}
                 />
 
                 <PrecisionCard 
@@ -250,6 +276,7 @@ export default function Home() {
                     icon={<Radio className="w-6 h-6 stroke-1" />}
                     href="/kara-haberlesmesi"
                     items={["Endüstriyel Router", "SD-WAN", "Global SIM"]}
+                    isActive={activeCard === 3}
                 />
 
             </div>
