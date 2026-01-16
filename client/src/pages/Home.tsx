@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_ocean_waves.png";
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
-import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
+import DigitalOcean from "@/components/ui/DigitalOcean";
 import { useTranslation } from "react-i18next";
 
 import { useEffect, useState } from "react";
@@ -86,18 +86,13 @@ export default function Home() {
         title={t('nav.home')} 
         description={t('home.hero_desc')} 
       />
-      {/* Hero Section - Concept 2: Digital Shield */}
+      {/* Hero Section - Concept 2: Digital Ocean 3D Animation */}
       <section className="relative h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
-            style={{ backgroundImage: `url(${heroBg})` }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30"></div>
+          <DigitalOcean />
           
           {/* Animated Overlay Effects */}
-          <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 mix-blend-overlay"></div>
+          <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10 pt-20">
