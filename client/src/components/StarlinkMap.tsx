@@ -228,7 +228,7 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     }));
 
     // 2. Ships... (Keeping existing logic)
-    const shipList = [];
+    const shipList: any[] = [];
     const addShips = (count: number, latMin: number, latMax: number, lngMin: number, lngMax: number) => {
         for(let i=0; i<count; i++) {
             shipList.push({
