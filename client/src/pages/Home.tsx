@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_ocean_waves.png";
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
+import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import DigitalOcean from "@/components/ui/DigitalOcean";
 import { useTranslation } from "react-i18next";
 
