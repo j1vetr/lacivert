@@ -23,77 +23,48 @@ const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: st
   </Link>
 );
 
-// Holographic Card Component for 360 Section
-const HolographicCard = ({ 
+// Corporate Service Card Component
+const CorporateServiceCard = ({ 
     title, 
     desc, 
     icon, 
     href, 
-    badges = [], 
-    features = [], 
-    btnText, 
-    className 
+    items = [], 
+    className
 }: { 
     title: string, 
     desc: string, 
     icon: React.ReactNode, 
     href: string, 
-    badges?: string[], 
-    features?: string[], 
-    btnText: string, 
-    className?: string 
+    items?: string[], 
+    className?: string
 }) => {
     return (
-        <Link href={href} className={`group relative overflow-hidden rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col ${className}`}>
-            {/* Animated Gradient Background on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
-            {/* Tech Scan Line */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-            
-            {/* Corner Accents */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-white/5 group-hover:border-cyan-500/30 rounded-tl-xl transition-colors"></div>
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-white/5 group-hover:border-cyan-500/30 rounded-br-xl transition-colors"></div>
-
+        <Link href={href} className={`group relative overflow-hidden rounded-xl bg-slate-900 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 flex flex-col ${className}`}>
             <div className="relative z-10 p-8 flex flex-col h-full">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-cyan-400 group-hover:text-white group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300">
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-cyan-400">
                         {icon}
                     </div>
-                    {/* Status Indicator */}
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">ONLINE</span>
-                    </div>
+                    <h4 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">{title}</h4>
                 </div>
 
-                <h4 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{title}</h4>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{desc}</p>
+                <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">{desc}</p>
 
-                {badges.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {badges.map((badge, i) => (
-                            <span key={i} className="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold text-cyan-300 bg-cyan-950/30 border border-cyan-500/20 rounded-md">
-                                {badge}
-                            </span>
-                        ))}
-                    </div>
-                )}
-
-                {features.length > 0 && (
-                    <ul className="space-y-2 mb-6">
-                        {features.map((feat, i) => (
-                            <li key={i} className="flex items-center gap-2 text-xs text-slate-400">
-                                <div className="w-1 h-1 bg-cyan-500 rounded-full"></div>
-                                {feat}
+                {items.length > 0 && (
+                    <ul className="space-y-3 mb-8">
+                        {items.map((item, i) => (
+                            <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
+                                <CheckCircle2 className="w-4 h-4 text-cyan-500 mt-0.5 flex-shrink-0" />
+                                <span>{item}</span>
                             </li>
                         ))}
                     </ul>
                 )}
 
-                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
-                    <span>{btnText}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-cyan-500" />
+                <div className="mt-auto pt-6 border-t border-white/10 flex items-center text-sm font-semibold text-cyan-500 group-hover:text-cyan-400 transition-colors">
+                    <span>DETAYLI İNCELE</span>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
             </div>
         </Link>
@@ -238,71 +209,61 @@ export default function Home() {
 
       </section>
 
-      {/* Premium Services Grid (Holographic Command Deck) */}
+      {/* Premium Services Grid (Corporate Command Deck) */}
       <section className="py-32 relative bg-slate-950 overflow-hidden">
-        {/* Abstract Tech Background */}
+        {/* Clean Background */}
         <div className="absolute inset-0 z-0">
-             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
-             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 relative">
-                <div className="inline-block mb-4">
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest animate-pulse">
-                        <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
-                        System Status: Operational
-                    </div>
-                </div>
-                <h3 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 tracking-tight">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">{t('home.section_360_title')}</span>
+            <div className="mb-20">
+                <h3 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
+                    Stratejik <span className="text-cyan-500">Teknoloji Çözümleri</span>
                 </h3>
-                <p className="text-slate-400 max-w-2xl mx-auto text-lg font-light">
-                    Denizcilik ve kurumsal operasyonlarınız için uçtan uca, entegre ve güvenli dijital altyapı yönetimi.
+                <p className="text-slate-400 max-w-2xl text-lg font-light">
+                    Denizcilik sektörü başta olmak üzere, kurumunuzun dijital dönüşüm yolculuğunda güvenilir iş ortağınız.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 
-                {/* Card 1: IT Support (Large) */}
-                <HolographicCard 
-                    className="md:col-span-2"
-                    title={t('home.card_it_title')}
-                    desc={t('home.card_it_desc')}
-                    icon={<Server className="w-6 h-6" />}
-                    href="/it-hizmetleri"
-                    btnText={t('home.btn_examine')}
-                    badges={[t('home.badges.server_mgmt'), t('home.badges.cloud_backup'), t('home.badges.helpdesk')]}
-                />
-
-                {/* Card 2: Cyber Security (Tall) */}
-                <HolographicCard 
-                    className="md:row-span-2"
-                    title={t('home.card_cyber_title')}
-                    desc={t('home.card_cyber_desc')}
-                    icon={<Shield className="w-6 h-6" />}
-                    href="/siber-guvenlik"
-                    btnText={t('home.card_cyber_btn')}
-                    features={[t('home.features.edr'), t('home.features.soc'), t('home.features.pentest')]}
-                />
-
-                {/* Card 3: Space Comm */}
-                <HolographicCard 
+                {/* Card 1: Maritime / Space (Priority) */}
+                <CorporateServiceCard 
+                    className="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 border-cyan-500/20"
                     title={t('home.card_space_title')}
-                    desc={t('home.card_space_desc')}
+                    desc="Gemileriniz için kesintisiz, yüksek hızlı ve güvenilir uydu haberleşme çözümleri. Starlink, OneWeb ve Iridium yetkili satıcısı."
                     icon={<Satellite className="w-6 h-6" />}
                     href="/uzay-haberlesmesi"
-                    btnText={t('home.btn_discover')}
+                    items={["Starlink Maritime Kurulum & Entegrasyon", "OneWeb Düşük Gecikmeli Bağlantı", "Iridium Küresel Kapsama"]}
+                />
+
+                {/* Card 2: Cyber Security */}
+                <CorporateServiceCard 
+                    title={t('home.card_cyber_title')}
+                    desc="Denizcilik siber güvenliği (IMO 2021) standartlarına uygun koruma ve 7/24 izleme hizmetleri."
+                    icon={<Shield className="w-6 h-6" />}
+                    href="/siber-guvenlik"
+                    items={["IMO Uyumlu Güvenlik", "7/24 SOC İzleme", "Fidye Yazılımı Koruması"]}
+                />
+
+                {/* Card 3: IT Support */}
+                <CorporateServiceCard 
+                    title={t('home.card_it_title')}
+                    desc="Kurumsal altyapınız için uçtan uca yönetim, sunucu bakımı ve teknik destek hizmetleri."
+                    icon={<Server className="w-6 h-6" />}
+                    href="/it-hizmetleri"
+                    items={["Sunucu & Veri Merkezi Yönetimi", "Bulut Yedekleme Çözümleri", "Uzaktan & Yerinde Destek"]}
                 />
 
                 {/* Card 4: Land Comm */}
-                <HolographicCard 
+                <CorporateServiceCard 
+                    className="md:col-span-2"
                     title={t('home.card_land_title')}
-                    desc={t('home.card_land_desc')}
+                    desc="Limanlar, tersaneler ve kıyı tesisleri için endüstriyel 4G/5G ve geniş alan ağ çözümleri."
                     icon={<Radio className="w-6 h-6" />}
                     href="/kara-haberlesmesi"
-                    btnText={t('home.btn_discover')}
+                    items={["Endüstriyel 4G/5G Routerlar", "SD-WAN Altyapısı", "Yedekli Bağlantı Yönetimi"]}
                 />
 
             </div>
