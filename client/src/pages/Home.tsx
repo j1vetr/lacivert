@@ -3,6 +3,7 @@ import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Za
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import shipHeroBg from "@assets/stock_images/container_ship_at_se_5e055e0a.jpg";
+import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
