@@ -3,21 +3,21 @@ import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Za
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 import shipHeroBg from "@assets/stock_images/container_ship_at_se_5e055e0a.jpg";
+import heroVideoBg from "@assets/generated_videos/cinematic_container_ship_at_sunset_video.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
 // Service Card Component for Hero
-const HeroServiceCard = ({ icon: Icon, title, desc, link, delay }: { icon: any, title: string, desc: string, link: string, delay: string }) => (
-  <Link href={link} className={`block group relative bg-white/10 dark:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-cyan-400/50 p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
-    <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-        <ArrowRight className="w-5 h-5 text-cyan-400" />
+const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
+  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-6 py-6 pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
+    <div className="flex justify-between items-start">
+        <div>
+            <h3 className="text-xl font-bold text-white mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
+            <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[90%]">{desc}</p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
     </div>
-    <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/20 transition-colors">
-        <Icon className="w-6 h-6 text-blue-200 group-hover:text-cyan-300 transition-colors" />
-    </div>
-    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-100">{title}</h3>
-    <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">{desc}</p>
   </Link>
 );
 
@@ -36,10 +36,16 @@ export default function Home() {
         
         {/* Cinematic Background */}
         <div className="absolute inset-0 z-0">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 animate-slow-zoom"
-            style={{ backgroundImage: `url(${shipHeroBg})` }}
-          ></div>
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            poster={shipHeroBg}
+            className="absolute inset-0 w-full h-full object-cover scale-105"
+          >
+            <source src={heroVideoBg} type="video/mp4" />
+          </video>
           {/* Gradients for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30"></div>
@@ -80,21 +86,18 @@ export default function Home() {
                    {/* Glass Panel Container */}
                    <div className="grid grid-cols-1 gap-4">
                         <HeroServiceCard 
-                            icon={Satellite} 
                             title="Starlink Maritime" 
                             desc={t('services_space.tab_starlink_desc')} 
                             link="/uzay-haberlesmesi"
                             delay="delay-500"
                         />
                          <HeroServiceCard 
-                            icon={Globe} 
                             title="Eutelsat OneWeb" 
                             desc={t('services_space.tab_oneweb_desc')} 
                             link="/uzay-haberlesmesi"
                             delay="delay-600"
                         />
                          <HeroServiceCard 
-                            icon={Radio} 
                             title="Iridium Certus" 
                             desc={t('services_space.tab_iridium_desc')} 
                             link="/uzay-haberlesmesi"
