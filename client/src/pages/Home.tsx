@@ -23,49 +23,43 @@ const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: st
   </Link>
 );
 
-// Corporate Service Card Component
-const CorporateServiceCard = ({ 
+// Precision Grid Card Component
+const PrecisionCard = ({ 
     title, 
     desc, 
     icon, 
     href, 
-    items = [], 
-    className
+    items = []
 }: { 
     title: string, 
     desc: string, 
     icon: React.ReactNode, 
     href: string, 
-    items?: string[], 
-    className?: string
+    items?: string[]
 }) => {
     return (
-        <Link href={href} className={`group relative overflow-hidden rounded-xl bg-slate-900 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 flex flex-col ${className}`}>
-            <div className="relative z-10 p-8 flex flex-col h-full">
-                <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-cyan-400">
-                        {icon}
-                    </div>
-                    <h4 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">{title}</h4>
-                </div>
+        <Link href={href} className="group relative border-l border-white/10 pl-8 py-4 hover:border-cyan-500/50 transition-colors duration-500">
+            <div className="mb-6 text-slate-400 group-hover:text-cyan-400 transition-colors duration-300">
+                {icon}
+            </div>
+            
+            <h4 className="text-xl font-medium text-white mb-3 tracking-wide">{title}</h4>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">{desc}</p>
+            
+            {items.length > 0 && (
+                <ul className="space-y-2 mb-6">
+                    {items.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2 text-xs text-slate-500 group-hover:text-slate-400 transition-colors">
+                            <div className="w-1 h-1 rounded-full bg-cyan-500/50"></div>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            )}
 
-                <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">{desc}</p>
-
-                {items.length > 0 && (
-                    <ul className="space-y-3 mb-8">
-                        {items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
-                                <CheckCircle2 className="w-4 h-4 text-cyan-500 mt-0.5 flex-shrink-0" />
-                                <span>{item}</span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-
-                <div className="mt-auto pt-6 border-t border-white/10 flex items-center text-sm font-semibold text-cyan-500 group-hover:text-cyan-400 transition-colors">
-                    <span>DETAYLI İNCELE</span>
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </div>
+            <div className="flex items-center text-xs font-medium text-slate-500 group-hover:text-white transition-colors uppercase tracking-widest">
+                <span>İncele</span>
+                <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
             </div>
         </Link>
     );
@@ -209,61 +203,58 @@ export default function Home() {
 
       </section>
 
-      {/* Premium Services Grid (Corporate Command Deck) */}
-      <section className="py-32 relative bg-slate-950 overflow-hidden">
-        {/* Clean Background */}
-        <div className="absolute inset-0 z-0">
-             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-            <div className="mb-20">
-                <h3 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6 tracking-tight">
-                    Stratejik <span className="text-cyan-500">Teknoloji Çözümleri</span>
-                </h3>
-                <p className="text-slate-400 max-w-2xl text-lg font-light">
-                    Denizcilik sektörü başta olmak üzere, kurumunuzun dijital dönüşüm yolculuğunda güvenilir iş ortağınız.
-                </p>
+      {/* NEW: Precision Services Grid (Compact & Minimal) */}
+      <section className="py-24 bg-slate-950 border-t border-white/5">
+        <div className="container mx-auto px-4">
+            
+            {/* Header: Left Aligned, Minimal */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-white/5 pb-8">
+                <div>
+                    <h3 className="text-3xl font-heading font-light text-white tracking-tight">
+                        Kritik Operasyonel <br />
+                        <span className="font-bold text-cyan-500">Yetkinlikler</span>
+                    </h3>
+                </div>
+                <div className="md:max-w-md text-right md:text-left">
+                    <p className="text-slate-500 text-sm leading-relaxed font-light">
+                        Denizcilik, enerji ve endüstriyel sektörler için özelleştirilmiş, yüksek erişilebilirlikli dijital altyapı servisleri.
+                    </p>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Grid: 4 Columns, Clean Lines */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                {/* Card 1: Maritime / Space (Priority) */}
-                <CorporateServiceCard 
-                    className="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 border-cyan-500/20"
-                    title={t('home.card_space_title')}
-                    desc="Gemileriniz için kesintisiz, yüksek hızlı ve güvenilir uydu haberleşme çözümleri. Starlink, OneWeb ve Iridium yetkili satıcısı."
-                    icon={<Satellite className="w-6 h-6" />}
+                <PrecisionCard 
+                    title="Uzay Haberleşmesi"
+                    desc="Gemiler ve uzak sahalar için Starlink, OneWeb ve Iridium tabanlı kesintisiz LEO/GEO uydu internet çözümleri."
+                    icon={<Satellite className="w-6 h-6 stroke-1" />}
                     href="/uzay-haberlesmesi"
-                    items={["Starlink Maritime Kurulum & Entegrasyon", "OneWeb Düşük Gecikmeli Bağlantı", "Iridium Küresel Kapsama"]}
+                    items={["Starlink Maritime", "OneWeb Enterprise", "Iridium Certus"]}
                 />
 
-                {/* Card 2: Cyber Security */}
-                <CorporateServiceCard 
-                    title={t('home.card_cyber_title')}
-                    desc="Denizcilik siber güvenliği (IMO 2021) standartlarına uygun koruma ve 7/24 izleme hizmetleri."
-                    icon={<Shield className="w-6 h-6" />}
+                <PrecisionCard 
+                    title="Siber Güvenlik"
+                    desc="IMO 2021 regülasyonlarına tam uyumlu, 7/24 izlenen aktif siber savunma ve tehdit önleme sistemleri."
+                    icon={<Shield className="w-6 h-6 stroke-1" />}
                     href="/siber-guvenlik"
-                    items={["IMO Uyumlu Güvenlik", "7/24 SOC İzleme", "Fidye Yazılımı Koruması"]}
+                    items={["IMO Uyumluluk", "SOC Hizmeti", "Endpoint Koruma"]}
                 />
 
-                {/* Card 3: IT Support */}
-                <CorporateServiceCard 
-                    title={t('home.card_it_title')}
-                    desc="Kurumsal altyapınız için uçtan uca yönetim, sunucu bakımı ve teknik destek hizmetleri."
-                    icon={<Server className="w-6 h-6" />}
+                <PrecisionCard 
+                    title="IT Yönetimi"
+                    desc="Kurumsal sunucu, veri merkezi ve bulut altyapılarının profesyonel yönetimi ve teknik destek hizmetleri."
+                    icon={<Server className="w-6 h-6 stroke-1" />}
                     href="/it-hizmetleri"
-                    items={["Sunucu & Veri Merkezi Yönetimi", "Bulut Yedekleme Çözümleri", "Uzaktan & Yerinde Destek"]}
+                    items={["Sunucu Bakım", "Veri Yedekleme", "Helpdesk"]}
                 />
 
-                {/* Card 4: Land Comm */}
-                <CorporateServiceCard 
-                    className="md:col-span-2"
-                    title={t('home.card_land_title')}
-                    desc="Limanlar, tersaneler ve kıyı tesisleri için endüstriyel 4G/5G ve geniş alan ağ çözümleri."
-                    icon={<Radio className="w-6 h-6" />}
+                <PrecisionCard 
+                    title="Kara Haberleşmesi"
+                    desc="Limanlar ve endüstriyel tesisler için yedekli, yüksek performanslı 4G/5G ve SD-WAN ağ altyapıları."
+                    icon={<Radio className="w-6 h-6 stroke-1" />}
                     href="/kara-haberlesmesi"
-                    items={["Endüstriyel 4G/5G Routerlar", "SD-WAN Altyapısı", "Yedekli Bağlantı Yönetimi"]}
+                    items={["Endüstriyel Router", "SD-WAN", "Global SIM"]}
                 />
 
             </div>
