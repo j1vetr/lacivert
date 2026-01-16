@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEO } from "@/components/SEO";
-import imgSpace from "@assets/generated_images/starlink_satellite_dish_on_a_modern_commercial_ship.webp";
+import OrbitalNetwork from "@/components/ui/OrbitalNetwork";
 import { useTranslation } from "react-i18next";
 
 export default function ServicesSpace() {
@@ -31,11 +31,9 @@ export default function ServicesSpace() {
       />
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${imgSpace})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+        <div className="absolute inset-0 z-0">
+          <OrbitalNetwork />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 pt-48 md:pt-40">
           <div className="max-w-3xl animate-in slide-in-from-left duration-700">
