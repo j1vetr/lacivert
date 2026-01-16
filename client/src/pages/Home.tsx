@@ -6,7 +6,7 @@ import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_oce
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import DigitalOcean from "@/components/ui/DigitalOcean";
-import HeroHUD from "@/components/ui/HeroHUD";
+import HeroHorizon from "@/components/ui/HeroHorizon";
 import { useTranslation } from "react-i18next";
 
 import { useEffect, useState } from "react";
@@ -88,17 +88,20 @@ export default function Home() {
         title={t('nav.home')} 
         description={t('home.hero_desc')} 
       />
-      {/* Hero Section - Concept 2: Digital Ocean 3D Animation */}
+      {/* Hero Section - Concept 1: The Horizon */}
       <section className="relative h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <DigitalOcean />
+          
+          {/* Top Half Darkness Overlay */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none"></div>
           
           {/* Animated Overlay Effects */}
           <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
         </div>
         
-        {/* HUD Overlay - Replaces standard container content */}
-        <HeroHUD />
+        {/* Horizon UI Overlay */}
+        <HeroHorizon t={t} />
 
       </section>
 
