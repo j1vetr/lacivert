@@ -8,6 +8,12 @@ import globalNetBg from "@assets/generated_images/abstract_dark_global_network_m
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
+// Brand Logos
+import starlinkLogo from "@assets/stock_images/starlink_company_log_1de34a6f.jpg";
+import onewebLogo from "@assets/stock_images/eutelsat_oneweb_comp_c2ee7114.jpg";
+import iridiumLogo from "@assets/stock_images/iridium_communicatio_5bad4256.jpg";
+import fortinetLogo from "@assets/stock_images/fortinet_logo_8ff07742.jpg";
+
 // Service Card Component for Hero
 const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
   <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-6 py-6 pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
@@ -56,9 +62,6 @@ export default function Home() {
                 
                 {/* Text Content */}
                 <div className="lg:col-span-7 space-y-8">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold tracking-wide uppercase mb-2 animate-in fade-in slide-in-from-left duration-700">
-                        <Signal className="w-4 h-4" /> {t('home.hero_badge')}
-                    </div>
                     
                     <h1 className="text-5xl md:text-7xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
                         {t('home.hero_title_prefix')} <br/>
@@ -113,11 +116,11 @@ export default function Home() {
         <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/50 backdrop-blur-sm py-6">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-16 items-center text-slate-500 text-sm font-semibold uppercase tracking-widest">
-                    <span>Authorized Partner:</span>
-                    <span className="text-slate-300 flex items-center gap-2"><Satellite className="w-4 h-4" /> STARLINK</span>
-                    <span className="text-slate-300 flex items-center gap-2"><Globe className="w-4 h-4" /> ONEWEB</span>
-                    <span className="text-slate-300 flex items-center gap-2"><Radio className="w-4 h-4" /> IRIDIUM</span>
-                    <span className="text-slate-300 flex items-center gap-2"><Shield className="w-4 h-4" /> FORTINET</span>
+                    <span>{t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners:" : "Çözüm Ortakları:"}</span>
+                    <img src={starlinkLogo} alt="Starlink" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+                    <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+                    <img src={iridiumLogo} alt="Iridium" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+                    <img src={fortinetLogo} alt="Fortinet" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
                 </div>
             </div>
         </div>
