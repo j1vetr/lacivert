@@ -10,19 +10,84 @@ import { useEffect, useState } from "react";
 
 // Brand Logos (New) - Removed as we are switching to text marquee
 
-// Service Card Component for Hero
-const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
-  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-3 md:pl-6 py-3 md:py-6 pr-3 md:pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
-    <div className="flex justify-between items-start">
-        <div>
-            <h3 className="text-sm md:text-xl font-bold text-white mb-1 md:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
-            <p className="text-[10px] md:text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[95%] md:max-w-[90%]">{desc}</p>
-        </div>
-        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
-    </div>
-  </Link>
-);
+// Holographic Card Component for 360 Section
+const HolographicCard = ({ 
+    title, 
+    desc, 
+    icon, 
+    href, 
+    badges = [], 
+    features = [], 
+    btnText, 
+    className 
+}: { 
+    title: string, 
+    desc: string, 
+    icon: React.ReactNode, 
+    href: string, 
+    badges?: string[], 
+    features?: string[], 
+    btnText: string, 
+    className?: string 
+}) => {
+    return (
+        <Link href={href} className={`group relative overflow-hidden rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col ${className}`}>
+            {/* Animated Gradient Background on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            {/* Tech Scan Line */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+            
+            {/* Corner Accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-white/5 group-hover:border-cyan-500/30 rounded-tl-xl transition-colors"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-white/5 group-hover:border-cyan-500/30 rounded-br-xl transition-colors"></div>
 
+            <div className="relative z-10 p-8 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-6">
+                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-cyan-400 group-hover:text-white group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300">
+                        {icon}
+                    </div>
+                    {/* Status Indicator */}
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">ONLINE</span>
+                    </div>
+                </div>
+
+                <h4 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{title}</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{desc}</p>
+
+                {badges.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                        {badges.map((badge, i) => (
+                            <span key={i} className="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold text-cyan-300 bg-cyan-950/30 border border-cyan-500/20 rounded-md">
+                                {badge}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                {features.length > 0 && (
+                    <ul className="space-y-2 mb-6">
+                        {features.map((feat, i) => (
+                            <li key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                                <div className="w-1 h-1 bg-cyan-500 rounded-full"></div>
+                                {feat}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
+                    <span>{btnText}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-cyan-500" />
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+// Removed duplicate HeroServiceCard definition
 export default function Home() {
   const { t } = useTranslation();
 
@@ -160,89 +225,72 @@ export default function Home() {
 
       </section>
 
-      {/* Premium Services Grid (Bento Style) */}
-      <section className="py-32 relative bg-slate-50 dark:bg-transparent transition-colors">
-        <div className="container mx-auto px-4">
-            <div className="text-center mb-20">
-                <h2 className="text-sm font-bold tracking-widest text-cyan-600 dark:text-cyan-500 uppercase mb-4">{t('home.section_360_badge')}</h2>
-                <h3 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white">{t('home.section_360_title')}</h3>
+      {/* Premium Services Grid (Holographic Command Deck) */}
+      <section className="py-32 relative bg-slate-950 overflow-hidden">
+        {/* Abstract Tech Background */}
+        <div className="absolute inset-0 z-0">
+             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-20 relative">
+                <div className="inline-block mb-4">
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest animate-pulse">
+                        <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
+                        System Status: Operational
+                    </div>
+                </div>
+                <h3 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 tracking-tight">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">{t('home.section_360_title')}</span>
+                </h3>
+                <p className="text-slate-400 max-w-2xl mx-auto text-lg font-light">
+                    Denizcilik ve kurumsal operasyonlarınız için uçtan uca, entegre ve güvenli dijital altyapı yönetimi.
+                </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 
                 {/* Card 1: IT Support (Large) */}
-                <div className="md:col-span-2 bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
-                    <div className="absolute right-0 top-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-                    <div className="relative z-10">
-                        <div className="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-8 border border-blue-200 dark:border-blue-500/20">
-                            <Server className="w-7 h-7" />
-                        </div>
-                        <h4 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('home.card_it_title')}</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
-                            {t('home.card_it_desc')}
-                        </p>
-                        <div className="flex flex-wrap gap-3 mb-8">
-                            <Badge text={t('home.badges.server_mgmt')} />
-                            <Badge text={t('home.badges.cloud_backup')} />
-                            <Badge text={t('home.badges.helpdesk')} />
-                            <Badge text={t('home.badges.hardware_supply')} />
-                        </div>
-                        <Link href="/it-hizmetleri" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
-                            {t('home.btn_examine')} <ArrowRight className="ml-2 w-5 h-5" />
-                        </Link>
-                    </div>
-                </div>
+                <HolographicCard 
+                    className="md:col-span-2"
+                    title={t('home.card_it_title')}
+                    desc={t('home.card_it_desc')}
+                    icon={<Server className="w-6 h-6" />}
+                    href="/it-hizmetleri"
+                    btnText={t('home.btn_examine')}
+                    badges={[t('home.badges.server_mgmt'), t('home.badges.cloud_backup'), t('home.badges.helpdesk')]}
+                />
 
                 {/* Card 2: Cyber Security (Tall) */}
-                <div className="md:row-span-2 bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col shadow-lg dark:shadow-none">
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.1),transparent_60%)]"></div>
-                     <div className="relative z-10 flex-grow">
-                        <div className="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 border border-emerald-200 dark:border-emerald-500/20">
-                            <Shield className="w-7 h-7" />
-                        </div>
-                        <h4 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('home.card_cyber_title')}</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 leading-relaxed">
-                            {t('home.card_cyber_desc')}
-                        </p>
-                        <ul className="space-y-4 mb-8">
-                            <FeatureItem text={t('home.features.edr')} />
-                            <FeatureItem text={t('home.features.soc')} />
-                            <FeatureItem text={t('home.features.pentest')} />
-                            <FeatureItem text={t('home.features.ir')} />
-                        </ul>
-                     </div>
-                     <Link href="/siber-guvenlik" className="w-full py-4 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-center text-slate-900 dark:text-white font-medium transition-all flex items-center justify-center gap-2 mt-auto relative z-20 cursor-pointer hover:scale-[1.02]">
-                        {t('home.card_cyber_btn')} <Shield className="w-4 h-4" />
-                    </Link>
-                </div>
+                <HolographicCard 
+                    className="md:row-span-2"
+                    title={t('home.card_cyber_title')}
+                    desc={t('home.card_cyber_desc')}
+                    icon={<Shield className="w-6 h-6" />}
+                    href="/siber-guvenlik"
+                    btnText={t('home.card_cyber_btn')}
+                    features={[t('home.features.edr'), t('home.features.soc'), t('home.features.pentest')]}
+                />
 
                 {/* Card 3: Space Comm */}
-                <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
-                    <div className="w-14 h-14 rounded-2xl bg-sky-100 dark:bg-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 border border-sky-200 dark:border-sky-500/20">
-                        <Satellite className="w-7 h-7" />
-                    </div>
-                    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('home.card_space_title')}</h4>
-                    <p className="text-slate-600 dark:text-slate-400 mb-6">
-                        {t('home.card_space_desc')}
-                    </p>
-                    <Link href="/uzay-haberlesmesi" className="inline-flex items-center text-sky-600 dark:text-sky-400 font-semibold hover:text-sky-500 dark:hover:text-sky-300 transition-colors">
-                        {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
-                </div>
+                <HolographicCard 
+                    title={t('home.card_space_title')}
+                    desc={t('home.card_space_desc')}
+                    icon={<Satellite className="w-6 h-6" />}
+                    href="/uzay-haberlesmesi"
+                    btnText={t('home.btn_discover')}
+                />
 
                 {/* Card 4: Land Comm */}
-                <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-10 border border-slate-200 dark:border-white/5 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 shadow-lg dark:shadow-none">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-700/30 flex items-center justify-center text-slate-600 dark:text-slate-300 mb-6 border border-slate-200 dark:border-slate-600/30">
-                        <Radio className="w-7 h-7" />
-                    </div>
-                    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('home.card_land_title')}</h4>
-                    <p className="text-slate-600 dark:text-slate-400 mb-6">
-                        {t('home.card_land_desc')}
-                    </p>
-                    <Link href="/kara-haberlesmesi" className="inline-flex items-center text-slate-600 dark:text-slate-400 font-semibold hover:text-slate-500 dark:hover:text-slate-300 transition-colors">
-                        {t('home.btn_discover')} <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
-                </div>
+                <HolographicCard 
+                    title={t('home.card_land_title')}
+                    desc={t('home.card_land_desc')}
+                    icon={<Radio className="w-6 h-6" />}
+                    href="/kara-haberlesmesi"
+                    btnText={t('home.btn_discover')}
+                />
 
             </div>
         </div>
