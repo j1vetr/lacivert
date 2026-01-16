@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Shield, Wifi, Activity, Navigation, Anchor, Globe, Lock, Cpu, Server, Radio } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 // Reusable HUD Card Component
 const HUDCard = ({ children, className = "", align = "left" }: { children: React.ReactNode, className?: string, align?: "left" | "right" }) => (
@@ -32,6 +33,8 @@ const LiveValue = ({ min, max, unit = "", interval = 1000, decimals = 0 }: { min
 };
 
 export const HeroHUD = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="absolute inset-0 z-20 flex flex-col justify-between pointer-events-none p-4 md:p-8 pt-24 pb-12">
             
@@ -41,19 +44,19 @@ export const HeroHUD = () => {
                 <div className="hidden md:flex flex-col gap-2 animate-in slide-in-from-left duration-1000 fade-in">
                     <HUDCard className="w-64">
                         <div className="flex items-center gap-2 mb-2 text-cyan-500 text-xs font-bold tracking-widest uppercase border-b border-cyan-500/20 pb-1">
-                            <Navigation className="w-3 h-3" /> Vessel Status
+                            <Navigation className="w-3 h-3" /> {t('home.hud_vessel_status')}
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <div className="text-[10px] text-slate-400 uppercase">Speed</div>
+                                <div className="text-[10px] text-slate-400 uppercase">{t('home.hud_speed')}</div>
                                 <div className="text-lg font-bold text-white"><LiveValue min={12} max={18} unit=" kn" decimals={1} /></div>
                             </div>
                             <div>
-                                <div className="text-[10px] text-slate-400 uppercase">Heading</div>
+                                <div className="text-[10px] text-slate-400 uppercase">{t('home.hud_heading')}</div>
                                 <div className="text-lg font-bold text-white"><LiveValue min={140} max={145} unit="°" decimals={0} /></div>
                             </div>
                             <div className="col-span-2">
-                                <div className="text-[10px] text-slate-400 uppercase">Coordinates</div>
+                                <div className="text-[10px] text-slate-400 uppercase">{t('home.hud_coordinates')}</div>
                                 <div className="text-xs font-mono text-cyan-200">34°42'18.4"N 33°19'53.2"E</div>
                             </div>
                         </div>
@@ -65,7 +68,7 @@ export const HeroHUD = () => {
                     <HUDCard className="w-72" align="right">
                          <div className="flex items-center justify-between gap-2 mb-2 text-cyan-500 text-xs font-bold tracking-widest uppercase border-b border-cyan-500/20 pb-1">
                             <div className="flex items-center gap-2">
-                                <Wifi className="w-3 h-3" /> Network Integrity
+                                <Wifi className="w-3 h-3" /> {t('home.hud_network_integrity')}
                             </div>
                             <span className="flex h-2 w-2 relative">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -74,18 +77,18 @@ export const HeroHUD = () => {
                         </div>
                          <div className="space-y-3">
                             <div className="flex justify-between items-center">
-                                <span className="text-[10px] text-slate-400 uppercase">Starlink Signal</span>
+                                <span className="text-[10px] text-slate-400 uppercase">{t('home.hud_signal')}</span>
                                 <div className="flex gap-0.5">
                                     {[1,2,3,4,5].map(i => <div key={i} className={`w-1 h-3 rounded-sm ${i<=4 ? 'bg-cyan-400' : 'bg-slate-700'}`}></div>)}
                                 </div>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-[10px] text-slate-400 uppercase">Latency</span>
+                                <span className="text-[10px] text-slate-400 uppercase">{t('home.hud_latency')}</span>
                                 <LiveValue min={25} max={45} unit=" ms" />
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-[10px] text-slate-400 uppercase">Firewall</span>
-                                <span className="text-emerald-400 text-xs font-bold flex items-center gap-1"><Shield className="w-3 h-3" /> ACTIVE</span>
+                                <span className="text-[10px] text-slate-400 uppercase">{t('home.hud_firewall')}</span>
+                                <span className="text-emerald-400 text-xs font-bold flex items-center gap-1"><Shield className="w-3 h-3" /> {t('home.hud_active')}</span>
                             </div>
                         </div>
                     </HUDCard>
@@ -99,28 +102,28 @@ export const HeroHUD = () => {
                     <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-cyan-950/40 border border-cyan-500/30 backdrop-blur-md mb-8 animate-in fade-in zoom-in duration-700 delay-300">
                         <div className="flex items-center gap-1.5">
                             <Activity className="w-4 h-4 text-emerald-400" />
-                            <span className="text-xs font-mono text-emerald-400 font-bold">SYSTEM OPTIMIZED</span>
+                            <span className="text-xs font-mono text-emerald-400 font-bold">{t('home.hud_system_optimized')}</span>
                         </div>
                         <div className="w-px h-4 bg-cyan-500/30"></div>
                         <div className="flex items-center gap-1.5">
                             <Globe className="w-4 h-4 text-cyan-400" />
-                            <span className="text-xs font-mono text-cyan-200">GLOBAL LINK</span>
+                            <span className="text-xs font-mono text-cyan-200">{t('home.hud_global_link')}</span>
                         </div>
                     </div>
 
                     {/* Main Title */}
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-[0_0_30px_rgba(6,182,212,0.3)]">
                         <span className="block text-transparent bg-clip-text bg-gradient-to-b from-slate-200 to-slate-500 text-2xl md:text-3xl font-light tracking-[0.2em] mb-4 uppercase">
-                            Denizcilik & Teknoloji
+                            {t('home.hero_supertitle')}
                         </span>
-                        Okyanusun Ortasında <br/>
+                        {t('home.hero_title_line1')} <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300">
-                            Ofis Konforu
+                            {t('home.hero_title_line2')}
                         </span>
                     </h1>
 
                     <p className="text-lg md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
-                        Kesintisiz Starlink bağlantısı ve siber güvenlik kalkanı ile gemileriniz, dünyanın neresinde olursa olsun işinizin merkezinde.
+                        {t('home.hero_desc_new')}
                     </p>
 
                     {/* Buttons */}
@@ -130,7 +133,7 @@ export const HeroHUD = () => {
                                 <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/50"></div>
                                 <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/50"></div>
                                 <span className="relative z-10 flex items-center gap-3">
-                                    HİZMETLERİ KEŞFET <Radio className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                                    {t('home.hud_services_btn')} <Radio className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                                 </span>
                             </Link>
                         </Button>
@@ -138,7 +141,7 @@ export const HeroHUD = () => {
                             <Link href="/iletisim">
                                 <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-slate-400/50"></div>
                                 <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-slate-400/50"></div>
-                                <span className="relative z-10">BİZE ULAŞIN</span>
+                                <span className="relative z-10">{t('home.hud_contact_btn')}</span>
                             </Link>
                         </Button>
                     </div>
@@ -153,7 +156,7 @@ export const HeroHUD = () => {
                     <span>ENCRYPTION: AES-256</span>
                  </div>
                  <div className="flex gap-8">
-                    <span className="animate-pulse">● LIVE MONITORING</span>
+                    <span className="animate-pulse">● {t('home.hud_live_monitoring')}</span>
                  </div>
             </div>
 

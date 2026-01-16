@@ -6,7 +6,7 @@ import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_oce
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import DigitalOcean from "@/components/ui/DigitalOcean";
-import HeroHorizon from "@/components/ui/HeroHorizon";
+import HeroHUD from "@/components/ui/HeroHUD";
 import { useTranslation } from "react-i18next";
 
 import { useEffect, useState } from "react";
@@ -101,7 +101,7 @@ export default function Home() {
         </div>
         
         {/* Horizon UI Overlay */}
-        <HeroHorizon t={t} />
+        <HeroHUD />
 
       </section>
 
