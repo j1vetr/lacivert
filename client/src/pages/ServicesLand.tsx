@@ -22,7 +22,7 @@ export default function ServicesLand() {
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-48 md:pt-40">
+        <div className="container mx-auto px-4 relative z-10 pt-[9.5rem] md:pt-40">
           <div className="max-w-4xl animate-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 text-accent mb-8">
                 <div className="p-2 bg-accent/10 rounded-lg backdrop-blur-sm border border-accent/20">
