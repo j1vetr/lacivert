@@ -6,6 +6,7 @@ import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_oce
 import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
 import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
 import DigitalOcean from "@/components/ui/DigitalOcean";
+import HeroHUD from "@/components/ui/HeroHUD";
 import { useTranslation } from "react-i18next";
 
 import { useEffect, useState } from "react";
@@ -96,61 +97,9 @@ export default function Home() {
           <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10 pt-20">
-          <div className="max-w-4xl animate-in slide-in-from-left fade-in duration-1000">
-            
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 font-mono text-sm tracking-widest uppercase mb-8 backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                <Shield className="w-4 h-4" /> 
-                <span className="animate-pulse">Cyber Defense Active</span>
-            </div>
+        {/* HUD Overlay - Replaces standard container content */}
+        <HeroHUD />
 
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight drop-shadow-2xl">
-              <span className="block text-slate-400 text-3xl sm:text-4xl md:text-5xl font-light tracking-normal mb-2">Denizlerdeki</span>
-              Dijital Kaleniz <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 filter drop-shadow-[0_0_20px_rgba(34,211,238,0.5)]">
-                Güvende.
-              </span>
-            </h1>
-
-            <p className="text-lg md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl font-light border-l-4 border-cyan-500 pl-6 bg-gradient-to-r from-slate-950/80 to-transparent py-4 pr-4 backdrop-blur-sm">
-              Starlink ile kesintisiz bağlantı, gelişmiş firewall ile aşılmaz güvenlik. Gemileriniz okyanusun ortasında bile ofisiniz kadar güvenli.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-5">
-              <Button asChild size="lg" className="text-lg h-16 px-10 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full shadow-[0_0_40px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0 ring-1 ring-white/20 group">
-                <Link href="/it-hizmetleri">
-                  <span className="relative z-10 flex items-center gap-2">
-                    Keşfet <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg h-16 px-10 border-white/10 text-white bg-slate-900/40 hover:bg-white/10 backdrop-blur-md rounded-full transition-all hover:scale-105 hover:border-cyan-500/50">
-                <Link href="/iletisim">
-                  İletişime Geç
-                </Link>
-              </Button>
-            </div>
-            
-            {/* Trust Metrics */}
-            <div className="mt-16 flex items-center gap-8 text-slate-400 text-sm font-mono uppercase tracking-widest">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    System Online
-                </div>
-                <div className="h-4 w-px bg-white/10"></div>
-                <div className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-cyan-500" />
-                    Secure Link
-                </div>
-                <div className="h-4 w-px bg-white/10"></div>
-                <div className="flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-blue-500" />
-                    Global Coverage
-                </div>
-            </div>
-
-          </div>
-        </div>
       </section>
 
       {/* Premium Services Grid (Bento Style) */}
