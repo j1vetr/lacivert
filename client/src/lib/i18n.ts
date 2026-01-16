@@ -51,11 +51,10 @@ const resources = {
       },
       "home": {
         "hero_badge": "",
-        "hero_title_prefix": "Denizcilik Uydu",
-        "hero_title_main": "HABERLEŞME & AĞ ÇÖZÜMLERİ",
+        "hero_title_prefix": "Gemiler İçin",
+        "hero_title_main": "Kesintisiz Uydu İnternet ve Siber Güvenlik",
         "hero_typewriter": "GÜVENLE YÖNETİN",
         "hero_desc": "Filonuz için okyanusun her yerinde kesintisiz bağlantı ve siber güvenlik.",
-        "hero_desc_new": "Filonuz için okyanusun her yerinde kesintisiz bağlantı ve siber güvenlik.",
         "discover_services": "Denizcilik Çözümleri",
         "contact_us": "İletişime Geçin",
         "section_360_badge": "360° Teknoloji Yönetimi",
@@ -430,8 +429,7 @@ const resources = {
         "hero_title_prefix": "Maritime Satellite",
         "hero_title_main": "COMM & NETWORK SOLUTIONS",
         "hero_typewriter": "WITH CONFIDENCE",
-        "hero_desc": "We carry your business into the future with IT services, cyber security, Starlink satellite internet, and cloud solutions.",
-        "hero_desc_new": "Uninterrupted connectivity and cyber security for your fleet, anywhere in the oceans.",
+        "hero_desc": "Your ships are at the center of your business with uninterrupted Starlink connection and cyber security shield, wherever they are in the world.",
         "discover_services": "Maritime Solutions",
         "contact_us": "Contact Us",
         "section_360_badge": "360° Technology Management",
@@ -500,7 +498,6 @@ const resources = {
         "hero_supertitle": "Maritime & Technology",
         "hero_title_line1": "Office Comfort",
         "hero_title_line2": "in Middle of Ocean",
-        "hero_desc_new": "Your ships are at the center of your business with uninterrupted Starlink connection and cyber security shield, wherever they are in the world."
       },
       "services_it": {
         "title": "IT Support & Maintenance",

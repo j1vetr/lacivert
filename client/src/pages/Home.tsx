@@ -8,19 +8,19 @@ import globalNetBg from "@assets/generated_images/abstract_dark_global_network_m
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
-// Brand Logos
-import starlinkLogo from "@assets/stock_images/starlink_company_log_1de34a6f.jpg";
-import onewebLogo from "@assets/stock_images/eutelsat_oneweb_comp_c2ee7114.jpg";
-import iridiumLogo from "@assets/stock_images/iridium_communicatio_5bad4256.jpg";
-import fortinetLogo from "@assets/stock_images/fortinet_logo_8ff07742.jpg";
+// Brand Logos (New)
+import starlinkLogo from "@assets/logos/starlink.png";
+import onewebLogo from "@assets/logos/oneweb.png";
+import iridiumLogo from "@assets/logos/iridium.png";
+import fortinetLogo from "@assets/logos/fortinet.png";
 
 // Service Card Component for Hero
 const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
-  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-6 py-6 pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
+  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-4 md:pl-6 py-4 md:py-6 pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
     <div className="flex justify-between items-start">
         <div>
-            <h3 className="text-xl font-bold text-white mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
-            <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[90%]">{desc}</p>
+            <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
+            <p className="text-xs md:text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[90%]">{desc}</p>
         </div>
         <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
     </div>
@@ -38,7 +38,7 @@ export default function Home() {
       />
       
       {/* NEW HERO SECTION: Clean, Maritime Focused, Service Forward */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-slate-950">
+      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-slate-950 pt-24 md:pt-20 pb-16 md:pb-0">
         
         {/* Cinematic Background */}
         <div className="absolute inset-0 z-0">
@@ -53,41 +53,41 @@ export default function Home() {
             <source src={heroVideoBg} type="video/mp4" />
           </video>
           {/* Gradients for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
                 {/* Text Content */}
-                <div className="lg:col-span-7 space-y-8">
+                <div className="lg:col-span-7 space-y-6 md:space-y-8">
                     
-                    <h1 className="text-5xl md:text-7xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
+                    <h1 className="text-4xl md:text-7xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
                         {t('home.hero_title_prefix')} <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
                            {t('home.hero_title_main')}
                         </span>
                     </h1>
                     
-                    <p className="text-xl md:text-2xl text-slate-300 font-light max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-                        {t('home.hero_desc_new')}
+                    <p className="text-lg md:text-2xl text-slate-300 font-light max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+                        {t('home.hero_desc')}
                     </p>
 
-                    <div className="flex flex-wrap gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-                        <Button asChild size="lg" className="h-14 px-8 text-lg bg-cyan-600 hover:bg-cyan-500 text-white border-0 shadow-lg shadow-cyan-900/20 rounded-full">
+                    <div className="flex flex-wrap gap-3 md:gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+                        <Button asChild size="lg" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg bg-cyan-600 hover:bg-cyan-500 text-white border-0 shadow-lg shadow-cyan-900/20 rounded-full w-full md:w-auto">
                             <Link href="/iletisim">{t('home.start_project')}</Link>
                         </Button>
-                        <Button asChild size="lg" variant="outline" className="h-14 px-8 text-lg border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full">
+                        <Button asChild size="lg" variant="outline" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full w-full md:w-auto">
                             <Link href="/it-hizmetleri">{t('home.discover_services')}</Link>
                         </Button>
                     </div>
                 </div>
 
                 {/* Hero Services Grid (The "Menu" the user requested) */}
-                <div className="lg:col-span-5 relative mt-8 lg:mt-0">
+                <div className="lg:col-span-5 relative mt-4 md:mt-0">
                    {/* Glass Panel Container */}
-                   <div className="grid grid-cols-1 gap-4">
+                   <div className="grid grid-cols-1 gap-3 md:gap-4">
                         <HeroServiceCard 
                             title="Starlink Maritime" 
                             desc={t('services_space.tab_starlink_desc')} 
@@ -112,17 +112,52 @@ export default function Home() {
             </div>
         </div>
 
-        {/* Brand Bar / Trust Indicators */}
-        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/50 backdrop-blur-sm py-6">
+        {/* Brand Bar / Trust Indicators - Redesigned for Logo Consistency */}
+        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-4 md:py-6 hidden md:block">
             <div className="container mx-auto px-4">
-                <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-16 items-center text-slate-500 text-sm font-semibold uppercase tracking-widest">
-                    <span>{t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners:" : "Çözüm Ortakları:"}</span>
-                    <img src={starlinkLogo} alt="Starlink" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-                    <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-                    <img src={iridiumLogo} alt="Iridium" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-                    <img src={fortinetLogo} alt="Fortinet" className="h-8 object-contain mix-blend-screen opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+                <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12 items-center">
+                    <span className="text-slate-500 text-xs md:text-sm font-semibold uppercase tracking-widest hidden lg:block">
+                        {t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners:" : "Çözüm Ortakları:"}
+                    </span>
+                    
+                    {/* Uniform Logo Containers */}
+                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <img src={starlinkLogo} alt="Starlink" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <img src={iridiumLogo} alt="Iridium" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <img src={fortinetLogo} alt="Fortinet" className="h-full w-auto object-contain" />
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        {/* Mobile Partners Grid (Visible only on mobile) */}
+        <div className="w-full bg-slate-950 py-8 border-t border-white/5 md:hidden">
+             <div className="container mx-auto px-4">
+                <p className="text-slate-500 text-xs font-semibold uppercase tracking-widest text-center mb-6">
+                     {t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners" : "Çözüm Ortakları"}
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                     <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
+                        <img src={starlinkLogo} alt="Starlink" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
+                        <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
+                        <img src={iridiumLogo} alt="Iridium" className="h-full w-auto object-contain" />
+                    </div>
+                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
+                        <img src={fortinetLogo} alt="Fortinet" className="h-full w-auto object-contain" />
+                    </div>
+                </div>
+             </div>
         </div>
 
       </section>
