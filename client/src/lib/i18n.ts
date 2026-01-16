@@ -51,8 +51,8 @@ const resources = {
       },
       "home": {
         "hero_badge": "",
-        "hero_title_prefix": "Gemiler İçin",
-        "hero_title_main": "Kesintisiz Uydu İnternet ve Siber Güvenlik",
+        "hero_title_prefix": "Denizcilikle",
+        "hero_title_main": "Uydu İnternet & Siber Güvenlik Çözümleri",
         "hero_typewriter": "GÜVENLE YÖNETİN",
         "hero_desc": "Filonuz için okyanusun her yerinde kesintisiz bağlantı ve siber güvenlik.",
         "discover_services": "Denizcilik Çözümleri",

@@ -63,7 +63,7 @@ export default function Home() {
                 {/* Text Content */}
                 <div className="lg:col-span-7 space-y-6 md:space-y-8">
                     
-                    <h1 className="text-4xl md:text-7xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
+                    <h1 className="text-3xl md:text-6xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
                         {t('home.hero_title_prefix')} <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
                            {t('home.hero_title_main')}
