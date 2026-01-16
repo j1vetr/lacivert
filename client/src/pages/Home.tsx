@@ -8,11 +8,7 @@ import globalNetBg from "@assets/generated_images/abstract_dark_global_network_m
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
-// Brand Logos (New)
-import starlinkLogo from "@assets/logos/starlink.png";
-import onewebLogo from "@assets/logos/oneweb.png";
-import iridiumLogo from "@assets/logos/iridium.png";
-import fortinetLogo from "@assets/logos/fortinet.png";
+// Brand Logos (New) - Removed as we are switching to text marquee
 
 // Service Card Component for Hero
 const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
@@ -112,52 +108,54 @@ export default function Home() {
             </div>
         </div>
 
-        {/* Brand Bar / Trust Indicators - Redesigned for Logo Consistency */}
-        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-4 md:py-6 hidden md:block">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12 items-center">
-                    <span className="text-slate-500 text-xs md:text-sm font-semibold uppercase tracking-widest hidden lg:block">
-                        {t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners:" : "Çözüm Ortakları:"}
-                    </span>
-                    
-                    {/* Uniform Logo Containers */}
-                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src={starlinkLogo} alt="Starlink" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src={iridiumLogo} alt="Iridium" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-10 px-4 py-1.5 bg-white rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src={fortinetLogo} alt="Fortinet" className="h-full w-auto object-contain" />
-                    </div>
+        {/* Brand Marquee - Replaces Logos */}
+        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-6 overflow-hidden z-20">
+            {/* Inline styles for marquee animation */}
+            <style dangerouslySetInnerHTML={{__html: `
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee {
+                    animation: marquee 40s linear infinite;
+                }
+                .animate-marquee:hover {
+                    animation-play-state: paused;
+                }
+            `}} />
+            
+            <div className="flex animate-marquee w-max whitespace-nowrap">
+                {/* First Set */}
+                <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
+                </div>
+                {/* Duplicated Set for Seamless Loop */}
+                <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
+                </div>
+                 {/* Triplicated Set for Wide Screens just in case */}
+                 <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
+                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
                 </div>
             </div>
-        </div>
-        
-        {/* Mobile Partners Grid (Visible only on mobile) */}
-        <div className="w-full bg-slate-950 py-8 border-t border-white/5 md:hidden">
-             <div className="container mx-auto px-4">
-                <p className="text-slate-500 text-xs font-semibold uppercase tracking-widest text-center mb-6">
-                     {t('home.hero_title_prefix') === "Maritime Satellite" ? "Authorized Partners" : "Çözüm Ortakları"}
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                     <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
-                        <img src={starlinkLogo} alt="Starlink" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
-                        <img src={onewebLogo} alt="Eutelsat OneWeb" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
-                        <img src={iridiumLogo} alt="Iridium" className="h-full w-auto object-contain" />
-                    </div>
-                    <div className="h-12 px-4 py-2 bg-white rounded-lg flex items-center justify-center">
-                        <img src={fortinetLogo} alt="Fortinet" className="h-full w-auto object-contain" />
-                    </div>
-                </div>
-             </div>
         </div>
 
       </section>
