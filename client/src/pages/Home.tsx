@@ -207,19 +207,14 @@ export default function Home() {
       <section className="py-24 bg-slate-950 border-t border-white/5">
         <div className="container mx-auto px-4">
             
-            {/* Header: Left Aligned, Minimal */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-white/5 pb-8">
-                <div>
-                    <h3 className="text-3xl font-heading font-light text-white tracking-tight">
-                        Kritik Operasyonel <br />
-                        <span className="font-bold text-cyan-500">Yetkinlikler</span>
-                    </h3>
-                </div>
-                <div className="md:max-w-md text-right md:text-left">
-                    <p className="text-slate-500 text-sm leading-relaxed font-light">
-                        Denizcilik, enerji ve endüstriyel sektörler için özelleştirilmiş, yüksek erişilebilirlikli dijital altyapı servisleri.
-                    </p>
-                </div>
+            {/* Header: Clean & Unified */}
+            <div className="mb-16 border-b border-white/5 pb-8">
+                <h3 className="text-3xl md:text-4xl font-heading font-light text-white tracking-tight mb-4">
+                    Kritik Operasyonel <span className="font-bold text-cyan-500">Yetkinlikler</span>
+                </h3>
+                <p className="text-slate-500 text-base leading-relaxed font-light max-w-2xl">
+                    Denizcilik, enerji ve endüstriyel sektörler için özelleştirilmiş, yüksek erişilebilirlikli dijital altyapı servisleri.
+                </p>
             </div>
 
             {/* Grid: 4 Columns, Clean Lines */}
