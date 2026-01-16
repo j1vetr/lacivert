@@ -12,13 +12,13 @@ import { useEffect, useState } from "react";
 
 // Service Card Component for Hero
 const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
-  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-4 md:pl-6 py-4 md:py-6 pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
+  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-3 md:pl-6 py-3 md:py-6 pr-3 md:pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
     <div className="flex justify-between items-start">
         <div>
-            <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
-            <p className="text-xs md:text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[90%]">{desc}</p>
+            <h3 className="text-sm md:text-xl font-bold text-white mb-1 md:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
+            <p className="text-[10px] md:text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[95%] md:max-w-[90%]">{desc}</p>
         </div>
-        <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
     </div>
   </Link>
 );
@@ -34,7 +34,7 @@ export default function Home() {
       />
       
       {/* NEW HERO SECTION: Clean, Maritime Focused, Service Forward */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-slate-950 pt-[12rem] md:pt-20 pb-32 md:pb-24">
+      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-slate-950 pt-[14rem] md:pt-20 pb-32 md:pb-24">
         
         {/* Cinematic Background */}
         <div className="absolute inset-0 z-0">
