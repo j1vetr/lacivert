@@ -1,83 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Zap, Radio, Globe, Satellite, Cpu, Activity, CheckCircle2 } from "lucide-react";
+import { Shield, Server, Wifi, Cloud, ArrowRight, Anchor, Building2, Factory, Zap, Radio, Globe, Satellite, Cpu, Activity, CheckCircle2, ChevronRight, Signal } from "lucide-react";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
-import heroBg from "@assets/generated_images/digital_cyber_shield_protecting_ocean_waves.png";
-import heroVideo from "@assets/generated_videos/abstract_navy_blue_cyber_security_network_background.mp4";
-import globalNetBg from "@assets/generated_images/abstract_dark_global_network_map_with_glowing_connections.webp";
-import DigitalOcean from "@/components/ui/DigitalOcean";
-import HeroHUD from "@/components/ui/HeroHUD";
+import shipHeroBg from "@assets/stock_images/container_ship_at_se_5e055e0a.jpg";
 import { useTranslation } from "react-i18next";
-
 import { useEffect, useState } from "react";
 
-function TypewriterText({ text, delay = 500 }: { text: string, delay?: number }) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [started, setStarted] = useState(false);
-  const { t } = useTranslation();
-
-  // If text is a key, translate it. If not, keep it.
-  // Ideally we pass the key to this component.
-  // But for now let's assume text is passed as is.
-  // Wait, "GÜVENLE YÖNETİN" is passed.
-  
-  useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      setStarted(true);
-    }, delay);
-    return () => clearTimeout(startTimeout);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!started) return;
-
-    let i = 0;
-    const interval = setInterval(() => {
-        if (i < text.length) {
-            setDisplayedText(text.substring(0, i + 1));
-            i++;
-        } else {
-            clearInterval(interval);
-        }
-    }, 100); // Typing speed
-
-    return () => clearInterval(interval);
-  }, [text, started]);
-
-  // Custom rendering for the specific hero text to handle mixed colors
-  // We check if the text matches the translated version of "GÜVENLE YÖNETİN"
-  // Or we can check if it contains specific words.
-  // Let's simplify: just render the text. The color split logic was specific to Turkish words.
-  // "MANAGE TECH" -> "WITH CONFIDENCE"
-  // If we want to preserve the split coloring, we need to know where to split.
-  
-  if (text.includes(" ")) {
-      const spaceIndex = displayedText.indexOf(' ');
-      const hasSpace = spaceIndex !== -1;
-      
-      const firstPart = hasSpace ? displayedText.substring(0, spaceIndex) : displayedText;
-      const secondPart = hasSpace ? displayedText.substring(spaceIndex) : "";
-
-      return (
-        <span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 drop-shadow-2xl">
-            {firstPart}
-          </span>
-          <span className="text-white drop-shadow-2xl">
-            {secondPart}
-          </span>
-          <span className="animate-pulse text-cyan-400">|</span>
-        </span>
-      );
-  }
-
-  return (
-    <span>
-      {displayedText}
-      <span className="animate-pulse text-cyan-400">|</span>
-    </span>
-  );
-}
+// Service Card Component for Hero
+const HeroServiceCard = ({ icon: Icon, title, desc, link, delay }: { icon: any, title: string, desc: string, link: string, delay: string }) => (
+  <Link href={link} className={`block group relative bg-white/10 dark:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-cyan-400/50 p-6 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
+    <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+        <ArrowRight className="w-5 h-5 text-cyan-400" />
+    </div>
+    <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/20 transition-colors">
+        <Icon className="w-6 h-6 text-blue-200 group-hover:text-cyan-300 transition-colors" />
+    </div>
+    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-100">{title}</h3>
+    <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">{desc}</p>
+  </Link>
+);
 
 export default function Home() {
   const { t } = useTranslation();
@@ -88,17 +29,94 @@ export default function Home() {
         title={t('nav.home')} 
         description={t('home.hero_desc')} 
       />
-      {/* Hero Section - Concept 1: The Horizon */}
-      <section className="relative h-screen flex items-center overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 z-0">
-          <DigitalOcean />
-          
-          {/* Top Half Darkness Overlay */}
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none"></div>
-        </div>
+      
+      {/* NEW HERO SECTION: Clean, Maritime Focused, Service Forward */}
+      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-slate-950">
         
-        {/* Horizon UI Overlay */}
-        <HeroHUD />
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 animate-slow-zoom"
+            style={{ backgroundImage: `url(${shipHeroBg})` }}
+          ></div>
+          {/* Gradients for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10 pt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                {/* Text Content */}
+                <div className="lg:col-span-7 space-y-8">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold tracking-wide uppercase mb-2 animate-in fade-in slide-in-from-left duration-700">
+                        <Signal className="w-4 h-4" /> {t('home.hero_badge')}
+                    </div>
+                    
+                    <h1 className="text-5xl md:text-7xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
+                        {t('home.hero_title_prefix')} <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
+                           {t('home.hero_title_main')}
+                        </span>
+                    </h1>
+                    
+                    <p className="text-xl md:text-2xl text-slate-300 font-light max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+                        {t('home.hero_desc_new')}
+                    </p>
+
+                    <div className="flex flex-wrap gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+                        <Button asChild size="lg" className="h-14 px-8 text-lg bg-cyan-600 hover:bg-cyan-500 text-white border-0 shadow-lg shadow-cyan-900/20 rounded-full">
+                            <Link href="/iletisim">{t('home.start_project')}</Link>
+                        </Button>
+                        <Button asChild size="lg" variant="outline" className="h-14 px-8 text-lg border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full">
+                            <Link href="/it-hizmetleri">{t('home.discover_services')}</Link>
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Hero Services Grid (The "Menu" the user requested) */}
+                <div className="lg:col-span-5 relative mt-8 lg:mt-0">
+                   {/* Glass Panel Container */}
+                   <div className="grid grid-cols-1 gap-4">
+                        <HeroServiceCard 
+                            icon={Satellite} 
+                            title="Starlink Maritime" 
+                            desc={t('services_space.tab_starlink_desc')} 
+                            link="/uzay-haberlesmesi"
+                            delay="delay-500"
+                        />
+                         <HeroServiceCard 
+                            icon={Globe} 
+                            title="Eutelsat OneWeb" 
+                            desc={t('services_space.tab_oneweb_desc')} 
+                            link="/uzay-haberlesmesi"
+                            delay="delay-600"
+                        />
+                         <HeroServiceCard 
+                            icon={Radio} 
+                            title="Iridium Certus" 
+                            desc={t('services_space.tab_iridium_desc')} 
+                            link="/uzay-haberlesmesi"
+                            delay="delay-700"
+                        />
+                   </div>
+                </div>
+
+            </div>
+        </div>
+
+        {/* Brand Bar / Trust Indicators */}
+        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/50 backdrop-blur-sm py-6">
+            <div className="container mx-auto px-4">
+                <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-16 items-center text-slate-500 text-sm font-semibold uppercase tracking-widest">
+                    <span>Authorized Partner:</span>
+                    <span className="text-slate-300 flex items-center gap-2"><Satellite className="w-4 h-4" /> STARLINK</span>
+                    <span className="text-slate-300 flex items-center gap-2"><Globe className="w-4 h-4" /> ONEWEB</span>
+                    <span className="text-slate-300 flex items-center gap-2"><Radio className="w-4 h-4" /> IRIDIUM</span>
+                    <span className="text-slate-300 flex items-center gap-2"><Shield className="w-4 h-4" /> FORTINET</span>
+                </div>
+            </div>
+        </div>
 
       </section>
 
