@@ -95,9 +95,6 @@ export default function Home() {
           
           {/* Top Half Darkness Overlay */}
           <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none"></div>
-          
-          {/* Animated Overlay Effects */}
-          <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
         </div>
         
         {/* Horizon UI Overlay */}
