@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
+import { X, Send, Loader2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Message {
@@ -100,7 +100,7 @@ export function Chatbot() {
         data-testid="chatbot-toggle"
         aria-label="Sohbet asistanını aç"
       >
-        <MessageCircle className="w-6 h-6" />
+        <img src="/lacivert-icon.png" alt="Lacivert" className="w-8 h-8" />
       </button>
 
       {/* Chat Window */}
@@ -112,8 +112,8 @@ export function Chatbot() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#1e3a5f] bg-[#0d2137] rounded-t-2xl">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center">
-              <Bot className="w-5 h-5 text-blue-400" />
+            <div className="w-10 h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center overflow-hidden">
+              <img src="/lacivert-icon.png" alt="Lacivert" className="w-6 h-6" />
             </div>
             <div>
               <h3 className="text-white font-medium text-sm">Lacivert Asistan</h3>
@@ -134,7 +134,7 @@ export function Chatbot() {
         <div className="flex-1 overflow-y-auto p-4 space-y-4" data-testid="chatbot-messages">
           {messages.length === 0 && (
             <div className="text-center text-gray-400 py-8">
-              <Bot className="w-12 h-12 mx-auto mb-3 text-[#1e3a5f]" />
+              <img src="/lacivert-icon.png" alt="Lacivert" className="w-12 h-12 mx-auto mb-3" />
               <p className="text-sm">Merhaba! Lacivert Teknoloji hizmetleri hakkında size yardımcı olabilirim.</p>
               <div className="mt-4 space-y-2">
                 <button
@@ -168,8 +168,8 @@ export function Chatbot() {
               className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               {msg.role === "assistant" && (
-                <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-4 h-4 text-blue-400" />
+                <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
                 </div>
               )}
               <div
@@ -192,8 +192,8 @@ export function Chatbot() {
 
           {isLoading && (
             <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0">
-                <Bot className="w-4 h-4 text-blue-400" />
+              <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
               </div>
               <div className="bg-[#0d2137] border border-[#1e3a5f]/50 px-4 py-2.5 rounded-2xl rounded-bl-md">
                 <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />
