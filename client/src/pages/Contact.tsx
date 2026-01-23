@@ -36,30 +36,30 @@ const formSchema = z.object({
   message: z.string().min(10, "Mesajınız en az 10 karakter olmalıdır."),
 });
 
-const services = [
-  { value: "starlink", label: "Starlink Maritime", icon: Satellite },
-  { value: "oneweb", label: "OneWeb", icon: Satellite },
-  { value: "iridium", label: "Iridium", icon: Satellite },
-  { value: "peplink", label: "Peplink SD-WAN", icon: Wifi },
-  { value: "teltonika", label: "Teltonika IoT", icon: Wifi },
-  { value: "it", label: "IT Hizmetleri", icon: Building2 },
-  { value: "security", label: "Siber Güvenlik", icon: Shield },
-  { value: "other", label: "Diğer", icon: Ship },
-];
-
-const subjects = [
-  { value: "quote", label: "Teklif Talebi" },
-  { value: "info", label: "Bilgi Almak İstiyorum" },
-  { value: "support", label: "Teknik Destek" },
-  { value: "partnership", label: "İş Ortaklığı" },
-  { value: "other", label: "Diğer" },
-];
-
 export default function Contact() {
   const { toast } = useToast();
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const services = [
+    { value: "starlink", label: t('contact.service_starlink'), icon: Satellite },
+    { value: "oneweb", label: t('contact.service_oneweb'), icon: Satellite },
+    { value: "iridium", label: t('contact.service_iridium'), icon: Satellite },
+    { value: "peplink", label: t('contact.service_peplink'), icon: Wifi },
+    { value: "teltonika", label: t('contact.service_teltonika'), icon: Wifi },
+    { value: "it", label: t('contact.service_it'), icon: Building2 },
+    { value: "security", label: t('contact.service_security'), icon: Shield },
+    { value: "other", label: t('contact.service_other'), icon: Ship },
+  ];
+
+  const subjects = [
+    { value: "quote", label: t('contact.subject_quote') },
+    { value: "info", label: t('contact.subject_info') },
+    { value: "support", label: t('contact.subject_support') },
+    { value: "partnership", label: t('contact.subject_partnership') },
+    { value: "other", label: t('contact.subject_other') },
+  ];
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -98,16 +98,16 @@ export default function Contact() {
 
       setIsSuccess(true);
       toast({
-        title: "Mesajınız Gönderildi!",
-        description: "En kısa sürede sizinle iletişime geçeceğiz.",
+        title: t('contact.toast_title'),
+        description: t('contact.toast_desc'),
       });
       form.reset();
       
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       toast({
-        title: "Hata",
-        description: "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+        title: t('contact.toast_error_title'),
+        description: t('contact.toast_error_desc'),
         variant: "destructive",
       });
     } finally {
@@ -127,7 +127,7 @@ export default function Contact() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-blue-300 mb-6">
             <Mail className="w-4 h-4" />
-            <span>7/24 Destek</span>
+            <span>{t('contact.hero_badge')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
             {t('contact.hero_title')}
@@ -200,10 +200,10 @@ export default function Contact() {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <Ship className="w-6 h-6 text-cyan-400" />
-                    <h3 className="font-bold text-white">Denizcilik Çözümleri</h3>
+                    <h3 className="font-bold text-white">{t('contact.maritime_card_title')}</h3>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">
-                    Gemileriniz için uydu internet, VSAT ve iletişim çözümlerinde 15 yılı aşkın deneyim.
+                    {t('contact.maritime_card_desc')}
                   </p>
                 </CardContent>
               </Card>
@@ -217,17 +217,16 @@ export default function Contact() {
                       <div className="w-20 h-20 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle2 className="w-10 h-10 text-green-400" />
                       </div>
-                      <h2 className="text-2xl font-bold text-white mb-3">Mesajınız Alındı!</h2>
+                      <h2 className="text-2xl font-bold text-white mb-3">{t('contact.success_title')}</h2>
                       <p className="text-slate-400 max-w-md mx-auto">
-                        Talebiniz ekibimize iletildi. En kısa sürede sizinle iletişime geçeceğiz. 
-                        E-posta adresinize onay mesajı gönderildi.
+                        {t('contact.success_desc')}
                       </p>
                     </div>
                   ) : (
                     <>
                       <div className="mb-8">
                         <h2 className="text-2xl font-bold text-white mb-2">{t('contact.form_title')}</h2>
-                        <p className="text-slate-400">Formu doldurarak teklif alın veya sorularınızı iletin.</p>
+                        <p className="text-slate-400">{t('contact.form_subtitle')}</p>
                       </div>
                       
                       <Form {...form}>
@@ -238,10 +237,10 @@ export default function Contact() {
                               name="name"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Ad Soyad *</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_name')} *</FormLabel>
                                   <FormControl>
                                     <Input 
-                                      placeholder="Adınız ve soyadınız" 
+                                      placeholder={t('contact.form_name_ph')} 
                                       className="h-12 bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20" 
                                       data-testid="input-name"
                                       {...field} 
@@ -256,10 +255,10 @@ export default function Contact() {
                               name="company"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Şirket Adı</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_company')}</FormLabel>
                                   <FormControl>
                                     <Input 
-                                      placeholder="Şirketinizin adı (opsiyonel)" 
+                                      placeholder={t('contact.form_company_ph')} 
                                       className="h-12 bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20" 
                                       data-testid="input-company"
                                       {...field} 
@@ -277,11 +276,11 @@ export default function Contact() {
                               name="email"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">E-posta *</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_email')} *</FormLabel>
                                   <FormControl>
                                     <Input 
                                       type="email"
-                                      placeholder="ornek@sirket.com" 
+                                      placeholder={t('contact.form_email_ph')} 
                                       className="h-12 bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20" 
                                       data-testid="input-email"
                                       {...field} 
@@ -296,10 +295,10 @@ export default function Contact() {
                               name="phone"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Telefon</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_phone')}</FormLabel>
                                   <FormControl>
                                     <Input 
-                                      placeholder="0 5XX XXX XX XX" 
+                                      placeholder={t('contact.form_phone_ph')} 
                                       className="h-12 bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20" 
                                       data-testid="input-phone"
                                       {...field} 
@@ -317,11 +316,11 @@ export default function Contact() {
                               name="subject"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Konu *</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_subject')} *</FormLabel>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                       <SelectTrigger className="h-12 bg-slate-800/50 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500/20" data-testid="select-subject">
-                                        <SelectValue placeholder="Konu seçiniz" />
+                                        <SelectValue placeholder={t('contact.form_subject_ph')} />
                                       </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="bg-slate-800 border-slate-700">
@@ -345,11 +344,11 @@ export default function Contact() {
                               name="service"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">İlgilendiğiniz Hizmet</FormLabel>
+                                  <FormLabel className="text-white">{t('contact.form_service')}</FormLabel>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                       <SelectTrigger className="h-12 bg-slate-800/50 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500/20" data-testid="select-service">
-                                        <SelectValue placeholder="Hizmet seçiniz (opsiyonel)" />
+                                        <SelectValue placeholder={t('contact.form_service_ph')} />
                                       </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="bg-slate-800 border-slate-700">
@@ -378,10 +377,10 @@ export default function Contact() {
                             name="message"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-white">Mesajınız *</FormLabel>
+                                <FormLabel className="text-white">{t('contact.form_message')} *</FormLabel>
                                 <FormControl>
                                   <Textarea 
-                                    placeholder="Talebinizi veya sorunuzu detaylı olarak yazınız..." 
+                                    placeholder={t('contact.form_message_ph')} 
                                     className="min-h-[150px] bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20 resize-none" 
                                     data-testid="textarea-message"
                                     {...field} 
@@ -393,7 +392,7 @@ export default function Contact() {
                           />
 
                           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pt-4">
-                            <p className="text-slate-500 text-sm">* ile işaretli alanlar zorunludur.</p>
+                            <p className="text-slate-500 text-sm">{t('contact.required_fields')}</p>
                             <Button 
                               type="submit" 
                               size="lg" 
@@ -404,7 +403,7 @@ export default function Contact() {
                               {isSubmitting ? (
                                 <>
                                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                  Gönderiliyor...
+                                  {t('contact.btn_sending')}
                                 </>
                               ) : (
                                 <>
