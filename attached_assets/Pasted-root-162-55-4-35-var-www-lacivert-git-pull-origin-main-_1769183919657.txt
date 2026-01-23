@@ -1,0 +1,55 @@
+root@162-55-4-35:/var/www/lacivert# git pull origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 2 (delta 1), reused 2 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (2/2), 210 bytes | 210.00 KiB/s, done.
+From https://github.com/j1vetr/lacivert
+ * branch            main       -> FETCH_HEAD
+   9b71c78..c0643d2  main       -> origin/main
+Updating eff6799..c0643d2
+Fast-forward
+root@162-55-4-35:/var/www/lacivert# git stash
+No local changes to save
+root@162-55-4-35:/var/www/lacivert# git pull origin main
+From https://github.com/j1vetr/lacivert
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+root@162-55-4-35:/var/www/lacivert# npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index-prod.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js
+
+vite v7.1.12 building for production...
+✓ 2383 modules transformed.
+rendering chunks (1)...[meta-images] no Replit deployment domain found, skipping meta tag updates
+../dist/public/index.html                                                                                         2.64 kB │ gzip:   0.90 kB
+../dist/public/assets/peplink_5g_maritime_router_device-DknZFtgY.webp                                            23.67 kB
+../dist/public/assets/lacivert light logo_1763796346759-WC73pPaY.png                                             25.51 kB
+../dist/public/assets/teltonika_industrial_5g_gateway_device-B41Ltmkj.webp                                       35.09 kB
+../dist/public/assets/iridium_certus_maritime_satellite_terminal_on_a_ship-DfCRDzqe.webp                         44.08 kB
+../dist/public/assets/starlink_maritime_flat_high_performance_dish_on_a_luxury_yacht_at_sunset-H6INNnEH.webp     64.16 kB
+../dist/public/assets/abstract_dark_global_network_map_with_glowing_connections-B3-KtHAy.webp                    65.04 kB
+../dist/public/assets/abstract_cloud_computing_network_visualization-BC5R-oi0.webp                               65.53 kB
+../dist/public/assets/abstract_cybersecurity_digital_shield_concept-DUIG8J-D.webp                                98.09 kB
+../dist/public/assets/eutelsat_oneweb_satellite_constellation_in_space-BfXJL-Eh.webp                            111.88 kB
+../dist/public/assets/close-up_of_enterprise_rack_server_blade_with_blue_leds-Bl_O2Wl2.webp                     141.24 kB
+../dist/public/assets/modern_clean_server_room_with_blue_lighting-APLUFPFS.webp                                 152.72 kB
+../dist/public/assets/container_ship_at_se_5e055e0a-C5zrprPw.jpg                                                246.34 kB
+../dist/public/assets/cinematic_container_ship_at_sunset_video-CH9wDb1P.mp4                                   7,979.21 kB
+../dist/public/assets/index-jMk9wHTx.css                                                                        177.78 kB │ gzip:  25.49 kB
+../dist/public/assets/index-DdaMqZ1y.js                                                                       2,901.85 kB │ gzip: 836.87 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.51s
+
+  dist/index.js  12.7kb
+
+⚡ Done in 2ms
+root@162-55-4-35:/var/www/lacivert# pm2 start ecosystem.config.cjs --env production
+[PM2][WARN] Applications lacivert-teknoloji not running, starting...
+[PM2][ERROR] Error: Script not found: /var/www/lacivert/dist/server/index.js
+root@162-55-4-35:/var/www/lacivert#
