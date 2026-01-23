@@ -425,10 +425,6 @@ export function Chatbot() {
                 ))}
               </div>
               
-              {/* Live Support */}
-              <div className="mt-4 pt-4 border-t border-[#1e3a5f]/30">
-                <LiveSupportButton onClick={openWhatsApp} text={texts.liveSupport} />
-              </div>
             </div>
           )}
 
