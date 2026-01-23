@@ -17,8 +17,7 @@ module.exports = {
         OPENAI_API_KEY: '',
         SMTP_HOST: 'mail.lacivertteknoloji.com',
         SMTP_USER: 'no-reply@lacivertteknoloji.com',
-        SMTP_PASSWORD: '',
-        DATABASE_URL: ''
+        SMTP_PASSWORD: ''
       }
     }
   ]
