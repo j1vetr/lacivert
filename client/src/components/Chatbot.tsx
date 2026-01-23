@@ -94,7 +94,7 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#1e3a5f] hover:bg-[#2a4a6f] text-white shadow-lg flex items-center justify-center transition-all duration-300 ${
+        className={`fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-[#1e3a5f] hover:bg-[#2a4a6f] text-white shadow-lg flex items-center justify-center transition-all duration-300 ${
           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
         }`}
         data-testid="chatbot-toggle"
@@ -105,7 +105,7 @@ export function Chatbot() {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] bg-[#0a1929] border border-[#1e3a5f] rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ${
+        className={`fixed bottom-6 left-6 z-50 w-[380px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] bg-[#0a1929] border border-[#1e3a5f] rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
