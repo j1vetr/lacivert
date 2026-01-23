@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import OpenAI from "openai";
+import nodemailer from "nodemailer";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -103,6 +104,109 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("OpenAI API error:", error);
       return res.status(500).json({ error: "AI servisi şu an kullanılamıyor." });
+    }
+  });
+
+  // Contact form email endpoint
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { name, email, phone, subject, message } = req.body;
+
+      if (!name || !email || !subject || !message) {
+        return res.status(400).json({ error: "Tüm alanları doldurunuz." });
+      }
+
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      });
+
+      const adminEmail = "info@lacivertteknoloji.com";
+      
+      // Email to admin
+      await transporter.sendMail({
+        from: `"Lacivert Teknoloji Web" <${process.env.SMTP_USER}>`,
+        to: adminEmail,
+        subject: `Yeni İletişim Formu: ${subject}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8fafc; border-radius: 10px;">
+            <div style="background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%); padding: 20px; border-radius: 10px 10px 0 0; text-align: center;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">Yeni İletişim Talebi</h1>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #e2e8f0;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-weight: bold; color: #1e3a5f; width: 120px;">Ad Soyad:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #334155;">${name}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-weight: bold; color: #1e3a5f;">E-posta:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #334155;"><a href="mailto:${email}" style="color: #0ea5e9;">${email}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-weight: bold; color: #1e3a5f;">Telefon:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #334155;">${phone || '-'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-weight: bold; color: #1e3a5f;">Konu:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #334155;">${subject}</td>
+                </tr>
+              </table>
+              <div style="margin-top: 20px;">
+                <h3 style="color: #1e3a5f; margin-bottom: 10px;">Mesaj:</h3>
+                <p style="background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 1.6; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
+              </div>
+            </div>
+            <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 20px;">Bu e-posta lacivertteknoloji.com web sitesinden otomatik olarak gönderilmiştir.</p>
+          </div>
+        `,
+      });
+
+      // Confirmation email to user
+      await transporter.sendMail({
+        from: `"Lacivert Teknoloji" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "Talebiniz Alındı - Lacivert Teknoloji",
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8fafc; border-radius: 10px;">
+            <div style="background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">Talebiniz Alındı!</h1>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #e2e8f0;">
+              <p style="color: #334155; font-size: 16px; line-height: 1.8; margin: 0 0 20px 0;">
+                Sayın <strong>${name}</strong>,
+              </p>
+              <p style="color: #334155; font-size: 16px; line-height: 1.8; margin: 0 0 20px 0;">
+                İletişim formunuz başarıyla alınmıştır. Ekibimiz en kısa sürede sizinle iletişime geçecektir.
+              </p>
+              <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="margin: 0; color: #64748b; font-size: 14px;"><strong>Konu:</strong> ${subject}</p>
+              </div>
+              <p style="color: #334155; font-size: 16px; line-height: 1.8; margin: 0;">
+                Acil durumlar için bizi <a href="tel:+905350246977" style="color: #0ea5e9;">0 535 024 69 77</a> numarasından arayabilirsiniz.
+              </p>
+              <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+              <p style="color: #64748b; font-size: 14px; margin: 0;">
+                Saygılarımızla,<br>
+                <strong style="color: #1e3a5f;">Lacivert Teknoloji Ekibi</strong>
+              </p>
+            </div>
+            <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 20px;">
+              Gürsel Mah. İmrahor Cad. Premier Kampüs Ofis No: 29/A Kat:6 Ofis:217, Kağıthane / İstanbul
+            </p>
+          </div>
+        `,
+      });
+
+      return res.json({ success: true, message: "E-posta başarıyla gönderildi." });
+    } catch (error) {
+      console.error("Email error:", error);
+      return res.status(500).json({ error: "E-posta gönderilemedi. Lütfen tekrar deneyin." });
     }
   });
 
