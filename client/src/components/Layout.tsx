@@ -208,9 +208,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
            <div className="hidden lg:block">
                 <Button 
                 asChild
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 border-0"
+                size="lg"
+                className="group relative bg-gradient-to-r from-cyan-500 via-blue-500 to-blue-600 hover:from-cyan-400 hover:via-blue-400 hover:to-blue-500 text-white font-bold px-8 shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300 border-0 overflow-hidden"
                 >
-                <Link href="/iletisim">
+                <Link href="/iletisim" className="flex items-center gap-2">
+                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
                     {t('nav.get_quote')}
                 </Link>
                 </Button>
@@ -290,8 +295,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </Link>
                     <Link href="/iletisim" onClick={closeMobileMenu} className="text-xl font-medium hover:text-blue-400">{t('nav.contact')}</Link>
                     
-                  <Button asChild className="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white">
-                    <Link href="/iletisim" onClick={closeMobileMenu}>{t('nav.get_quote')}</Link>
+                  <Button asChild size="lg" className="w-full mt-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-blue-600 hover:from-cyan-400 hover:via-blue-400 hover:to-blue-500 text-white font-bold shadow-lg">
+                    <Link href="/iletisim" onClick={closeMobileMenu} className="flex items-center justify-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                      {t('nav.get_quote')}
+                    </Link>
                   </Button>
                 </div>
               </SheetContent>
