@@ -17,10 +17,10 @@ interface ServiceCard {
 
 function TypingIndicator() {
   return (
-    <div className="flex gap-1 items-center px-2">
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+    <div className="flex gap-1.5 items-center px-2 py-1">
+      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0ms", animationDuration: "0.6s" }} />
+      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.15s", animationDuration: "0.6s" }} />
+      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.3s", animationDuration: "0.6s" }} />
     </div>
   );
 }
@@ -72,6 +72,8 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [, setLocation] = useLocation();
 
@@ -82,6 +84,21 @@ export function Chatbot() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    if (!hasInteracted) {
+      const timer = setTimeout(() => {
+        setShowWelcome(true);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasInteracted]);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    setShowWelcome(false);
+    setHasInteracted(true);
+  };
 
   const navigateAndClose = (link: string) => {
     setIsOpen(false);
@@ -236,16 +253,52 @@ export function Chatbot() {
 
   return (
     <>
+      {/* Welcome Bubble */}
+      <div
+        className={`fixed bottom-24 left-6 z-50 transition-all duration-500 ${
+          showWelcome && !isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <div className="relative bg-[#0d2137] border border-[#1e3a5f] rounded-2xl px-4 py-3 shadow-xl max-w-[260px]">
+          <button 
+            onClick={() => setShowWelcome(false)}
+            className="absolute -top-2 -right-2 w-5 h-5 bg-[#1e3a5f] rounded-full flex items-center justify-center text-gray-400 hover:text-white text-xs"
+          >
+            ×
+          </button>
+          <p className="text-white text-sm">Merhaba! Size nasıl yardımcı olabilirim?</p>
+          <div className="flex gap-2 mt-2">
+            <button 
+              onClick={() => { handleOpen(); setInput("Starlink nedir?"); }}
+              className="text-xs text-blue-400 hover:text-blue-300"
+            >
+              Starlink nedir?
+            </button>
+          </div>
+          <div className="absolute bottom-0 left-8 transform translate-y-full">
+            <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-[#1e3a5f]"></div>
+          </div>
+        </div>
+      </div>
+
       {/* Chat Button */}
       <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-[#1e3a5f] hover:bg-[#2a4a6f] text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+        onClick={handleOpen}
+        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group ${
           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
         }`}
         data-testid="chatbot-toggle"
         aria-label="Sohbet asistanını aç"
       >
-        <img src="/lacivert-icon.png" alt="Lacivert" className="w-8 h-8" />
+        {/* Pulse rings */}
+        <span className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping" style={{ animationDuration: "2s" }} />
+        <span className="absolute inset-[-4px] rounded-full border-2 border-blue-400/30 animate-pulse" />
+        
+        {/* Online indicator */}
+        <span className="absolute top-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-[#0a1929] animate-pulse" />
+        
+        {/* Logo */}
+        <img src="/lacivert-icon.png" alt="Lacivert" className="w-9 h-9 relative z-10 group-hover:scale-110 transition-transform" />
       </button>
 
       {/* Chat Window */}
@@ -257,20 +310,26 @@ export function Chatbot() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#1e3a5f] bg-gradient-to-r from-[#0d2137] to-[#1e3a5f]/30 rounded-t-2xl">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center overflow-hidden ring-2 ring-blue-500/30">
-              <img src="/lacivert-icon.png" alt="Lacivert" className="w-6 h-6" />
+            <div className="relative">
+              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden ring-2 ring-blue-500/30">
+                <img src="/lacivert-icon.png" alt="Lacivert" className="w-7 h-7" />
+              </div>
+              <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[#0d2137]" />
             </div>
             <div>
               <h3 className="text-white font-medium text-sm">Lacivert Asistan</h3>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <p className="text-gray-400 text-xs">Çevrimiçi</p>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <p className="text-green-400 text-xs font-medium">Çevrimiçi</p>
               </div>
             </div>
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-gray-400 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-lg"
+            className="text-gray-400 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-lg"
             data-testid="chatbot-close"
             aria-label="Sohbeti kapat"
           >
@@ -282,32 +341,38 @@ export function Chatbot() {
         <div className="flex-1 overflow-y-auto p-4 space-y-4" data-testid="chatbot-messages">
           {messages.length === 0 && (
             <div className="text-center text-gray-400 py-6">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center ring-4 ring-[#1e3a5f]/30">
-                <img src="/lacivert-icon.png" alt="Lacivert" className="w-10 h-10" />
+              <div className="relative w-20 h-20 mx-auto mb-4">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center ring-4 ring-[#1e3a5f]/30">
+                  <img src="/lacivert-icon.png" alt="Lacivert" className="w-12 h-12" />
+                </div>
+                <span className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[#0a1929]" />
               </div>
-              <p className="text-sm font-medium text-white mb-1">Merhaba!</p>
-              <p className="text-xs text-gray-400 mb-4">Lacivert Teknoloji hizmetleri hakkında size yardımcı olabilirim.</p>
+              <p className="text-base font-medium text-white mb-1">Merhaba!</p>
+              <p className="text-xs text-gray-400 mb-5">Lacivert Teknoloji hizmetleri hakkında size yardımcı olabilirim.</p>
               <div className="space-y-2">
                 <button
                   onClick={() => { setInput("Starlink nedir?"); }}
-                  className="block w-full text-left px-4 py-2.5 text-xs bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all"
+                  className="block w-full text-left px-4 py-3 text-sm bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all group"
                   data-testid="quick-question-1"
                 >
-                  <span className="text-blue-400">→</span> Starlink nedir?
+                  <span className="text-blue-400 mr-2">→</span>
+                  <span className="text-gray-300 group-hover:text-white">Starlink nedir?</span>
                 </button>
                 <button
                   onClick={() => { setInput("Denizcilik için hangi çözümleriniz var?"); }}
-                  className="block w-full text-left px-4 py-2.5 text-xs bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all"
+                  className="block w-full text-left px-4 py-3 text-sm bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all group"
                   data-testid="quick-question-2"
                 >
-                  <span className="text-blue-400">→</span> Denizcilik için hangi çözümleriniz var?
+                  <span className="text-blue-400 mr-2">→</span>
+                  <span className="text-gray-300 group-hover:text-white">Denizcilik çözümleriniz neler?</span>
                 </button>
                 <button
                   onClick={() => { setInput("Teklif almak istiyorum"); }}
-                  className="block w-full text-left px-4 py-2.5 text-xs bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all"
+                  className="block w-full text-left px-4 py-3 text-sm bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all group"
                   data-testid="quick-question-3"
                 >
-                  <span className="text-blue-400">→</span> Teklif almak istiyorum
+                  <span className="text-blue-400 mr-2">→</span>
+                  <span className="text-gray-300 group-hover:text-white">Teklif almak istiyorum</span>
                 </button>
               </div>
             </div>
@@ -321,8 +386,10 @@ export function Chatbot() {
               <div key={i} className="space-y-2">
                 <div className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   {msg.role === "assistant" && (
-                    <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
+                    <div className="relative flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden">
+                        <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
+                      </div>
                     </div>
                   )}
                   <div
@@ -365,8 +432,10 @@ export function Chatbot() {
 
           {isLoading && (
             <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
+              <div className="relative flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden">
+                  <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
+                </div>
               </div>
               <div className="bg-[#0d2137] border border-[#1e3a5f]/50 px-4 py-3 rounded-2xl rounded-bl-md">
                 <TypingIndicator />
