@@ -15,6 +15,7 @@ import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfUse from "@/pages/TermsOfUse";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Chatbot } from "@/components/Chatbot";
 
 // Sub-service pages
 import StarlinkPage from "@/pages/services/space/Starlink";
@@ -28,6 +29,7 @@ function Router() {
   return (
     <Layout>
       <ScrollToTop />
+      <Chatbot />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/hakkimizda" component={About} />
