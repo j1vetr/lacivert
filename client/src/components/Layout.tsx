@@ -322,7 +322,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         href="https://wa.me/905350246977"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 md:p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all hover:scale-110 flex items-center justify-center animate-in fade-in zoom-in duration-500"
+        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 md:p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all hover:scale-110 flex items-center justify-center animate-in fade-in zoom-in duration-500"
         title="WhatsApp ile İletişime Geçin"
       >
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="w-6 h-6 md:w-8 md:h-8">
