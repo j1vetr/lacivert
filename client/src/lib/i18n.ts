@@ -22,7 +22,8 @@ const resources = {
         "technical_specs": "Teknik Özellikler",
         "use_cases": "Kullanım Alanları",
         "solutions": "Çözümler",
-        "sectors": "Sektörler"
+        "sectors": "Sektörler",
+        "scroll_down": "Aşağı Kaydır"
       },
       "nav": {
         "home": "Ana Sayfa",
@@ -424,7 +425,8 @@ const resources = {
         "technical_specs": "Technical Specs",
         "use_cases": "Use Cases",
         "solutions": "Solutions",
-        "sectors": "Sectors"
+        "sectors": "Sectors",
+        "scroll_down": "Scroll Down"
       },
       "nav": {
         "home": "Home",
