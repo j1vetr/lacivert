@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { X, Send, User, Satellite, Wifi, Shield, Monitor, ArrowRight, Sparkles, MessageCircle } from "lucide-react";
+import { X, Send, User, Satellite, Wifi, Shield, Monitor, ArrowRight, MessageCircle, Ship, Building2, Truck, Factory, Check } from "lucide-react";
 import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 
@@ -7,6 +7,7 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp?: Date;
+  type?: "text" | "sector-select" | "quote-form";
 }
 
 interface ServiceCard {
@@ -21,13 +22,164 @@ interface SuggestionButton {
   query: string;
 }
 
-function TypingIndicator() {
+interface QuoteFormData {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  message: string;
+}
+
+function TypingIndicator({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-1 py-0.5">
-      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[pulse_1.4s_ease-in-out_infinite]" />
-      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[pulse_1.4s_ease-in-out_0.2s_infinite]" />
-      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[pulse_1.4s_ease-in-out_0.4s_infinite]" />
+    <div className="flex items-center gap-2">
+      <span className="text-gray-500 text-xs font-medium">{name}</span>
+      <div className="flex items-center gap-0.5">
+        <span className="w-1 h-1 bg-blue-500 rounded-full animate-[bounce_1s_ease-in-out_infinite]" />
+        <span className="w-1 h-1 bg-blue-500 rounded-full animate-[bounce_1s_ease-in-out_0.15s_infinite]" />
+        <span className="w-1 h-1 bg-blue-500 rounded-full animate-[bounce_1s_ease-in-out_0.3s_infinite]" />
+      </div>
     </div>
+  );
+}
+
+function SectorSelector({ onSelect, isEnglish }: { onSelect: (sector: string) => void; isEnglish: boolean }) {
+  const sectors = isEnglish ? [
+    { id: "maritime", label: "Maritime", icon: Ship },
+    { id: "corporate", label: "Corporate", icon: Building2 },
+    { id: "logistics", label: "Logistics", icon: Truck },
+    { id: "industrial", label: "Industrial", icon: Factory },
+  ] : [
+    { id: "maritime", label: "Denizcilik", icon: Ship },
+    { id: "corporate", label: "Kurumsal", icon: Building2 },
+    { id: "logistics", label: "Lojistik", icon: Truck },
+    { id: "industrial", label: "Endüstriyel", icon: Factory },
+  ];
+
+  return (
+    <div className="grid grid-cols-2 gap-2 mt-2">
+      {sectors.map((sector) => {
+        const Icon = sector.icon;
+        return (
+          <button
+            key={sector.id}
+            onClick={() => onSelect(sector.id)}
+            className="flex items-center gap-2 px-3 py-2.5 bg-white border border-gray-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all group"
+          >
+            <div className="w-8 h-8 rounded-lg bg-blue-100 group-hover:bg-blue-500 flex items-center justify-center transition-colors">
+              <Icon className="w-4 h-4 text-blue-500 group-hover:text-white transition-colors" />
+            </div>
+            <span className="text-xs font-medium text-gray-700 group-hover:text-blue-600">{sector.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function QuoteForm({ onSubmit, onCancel, isEnglish }: { onSubmit: (data: QuoteFormData) => void; onCancel: () => void; isEnglish: boolean }) {
+  const [formData, setFormData] = useState<QuoteFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await onSubmit(formData);
+    setIsSubmitting(false);
+  };
+
+  const texts = {
+    title: isEnglish ? "Quick Quote Request" : "Hızlı Teklif Formu",
+    name: isEnglish ? "Name" : "Ad Soyad",
+    email: isEnglish ? "Email" : "E-posta",
+    phone: isEnglish ? "Phone" : "Telefon",
+    company: isEnglish ? "Company" : "Şirket",
+    message: isEnglish ? "Message (optional)" : "Mesaj (opsiyonel)",
+    submit: isEnglish ? "Send Request" : "Teklif İste",
+    cancel: isEnglish ? "Cancel" : "İptal"
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm space-y-2">
+      <h4 className="text-sm font-semibold text-gray-800 mb-2">{texts.title}</h4>
+      
+      <input
+        type="text"
+        placeholder={texts.name}
+        value={formData.name}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
+        required
+      />
+      
+      <div className="grid grid-cols-2 gap-2">
+        <input
+          type="email"
+          placeholder={texts.email}
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
+          required
+        />
+        <input
+          type="tel"
+          placeholder={texts.phone}
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
+        />
+      </div>
+      
+      <input
+        type="text"
+        placeholder={texts.company}
+        value={formData.company}
+        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
+      />
+      
+      <textarea
+        placeholder={texts.message}
+        value={formData.message}
+        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 resize-none"
+        rows={2}
+      />
+      
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="flex-1 px-3 py-2 text-xs font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+        >
+          {texts.cancel}
+        </button>
+        <button
+          type="submit"
+          disabled={isSubmitting || !formData.name || !formData.email}
+          className="flex-1 px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 flex items-center justify-center gap-1"
+        >
+          {isSubmitting ? (
+            <div className="flex gap-1">
+              <span className="w-1 h-1 bg-white rounded-full animate-bounce" />
+              <span className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+              <span className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+            </div>
+          ) : (
+            <>
+              <Send className="w-3 h-3" />
+              {texts.submit}
+            </>
+          )}
+        </button>
+      </div>
+    </form>
   );
 }
 
@@ -110,12 +262,22 @@ export function Chatbot() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [welcomeShown, setWelcomeShown] = useState(false);
+  const [userSector, setUserSector] = useState<string | null>(null);
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const [showSectorSelect, setShowSectorSelect] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [, setLocation] = useLocation();
   const { i18n } = useTranslation();
 
   const isEnglish = i18n.language === 'en';
+
+  const sectorNames: Record<string, { tr: string; en: string }> = {
+    maritime: { tr: "Denizcilik", en: "Maritime" },
+    corporate: { tr: "Kurumsal", en: "Corporate" },
+    logistics: { tr: "Lojistik", en: "Logistics" },
+    industrial: { tr: "Endüstriyel", en: "Industrial" }
+  };
 
   const texts = {
     welcome: isEnglish ? "Hi! How can I help you?" : "Merhaba! Size nasıl yardımcı olabilirim?",
@@ -125,17 +287,18 @@ export function Chatbot() {
     liveSupport: isEnglish ? "Talk to support" : "Destek ile konuşun",
     getQuote: isEnglish ? "Get Quote" : "Teklif Al",
     viewMap: isEnglish ? "View Map" : "Haritayı Gör",
-    poweredBy: isEnglish ? "AI Assistant" : "Yapay Zeka Asistan",
+    typing: isEnglish ? "Lacivert is typing" : "Lacivert yazıyor",
     greeting: isEnglish 
-      ? "Hi there! 👋 I'm Lacivert's AI assistant. I can help you with satellite communication, IT services, and more. What would you like to know?"
-      : "Merhaba! 👋 Ben Lacivert'in yapay zeka asistanıyım. Uydu haberleşmesi, IT hizmetleri ve daha fazlası hakkında size yardımcı olabilirim. Ne öğrenmek istersiniz?",
+      ? "Hi there! 👋 I'm Lacivert's assistant. Which sector are you interested in?"
+      : "Merhaba! 👋 Ben Lacivert'in asistanıyım. Hangi sektörle ilgileniyorsunuz?",
+    sectorSelected: (sector: string) => isEnglish 
+      ? `Great! I can help you with ${sectorNames[sector]?.en || sector} solutions. What would you like to know?`
+      : `Harika! ${sectorNames[sector]?.tr || sector} sektörü için size yardımcı olabilirim. Ne öğrenmek istersiniz?`,
     quickQuestions: isEnglish ? [
       { text: "Starlink", query: "Tell me about Starlink" },
-      { text: "Maritime", query: "Maritime solutions" },
       { text: "Get quote", query: "I want a quote" }
     ] : [
       { text: "Starlink", query: "Starlink hakkında bilgi ver" },
-      { text: "Denizcilik", query: "Denizcilik çözümleri" },
       { text: "Teklif al", query: "Teklif almak istiyorum" }
     ],
     serviceCards: {
@@ -155,7 +318,7 @@ export function Chatbot() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]);
+  }, [messages, isLoading, showQuoteForm, showSectorSelect]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -163,6 +326,7 @@ export function Chatbot() {
     }
     if (isOpen && !welcomeShown) {
       setMessages([{ role: "assistant", content: texts.greeting, timestamp: new Date() }]);
+      setShowSectorSelect(true);
       setWelcomeShown(true);
     }
   }, [isOpen]);
@@ -189,6 +353,72 @@ export function Chatbot() {
 
   const openWhatsApp = () => {
     window.open("https://wa.me/905350246977", "_blank");
+  };
+
+  const handleSectorSelect = (sector: string) => {
+    setUserSector(sector);
+    setShowSectorSelect(false);
+    
+    const sectorLabel = isEnglish ? sectorNames[sector]?.en : sectorNames[sector]?.tr;
+    setMessages(prev => [
+      ...prev,
+      { role: "user", content: sectorLabel || sector, timestamp: new Date() }
+    ]);
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        { role: "assistant", content: texts.sectorSelected(sector), timestamp: new Date() }
+      ]);
+      setIsLoading(false);
+    }, 800);
+  };
+
+  const handleQuoteSubmit = async (data: QuoteFormData) => {
+    setShowQuoteForm(false);
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          company: data.company,
+          subject: isEnglish ? "Quick Quote Request (Chatbot)" : "Hızlı Teklif Talebi (Chatbot)",
+          message: `${isEnglish ? "Sector" : "Sektör"}: ${userSector ? (isEnglish ? sectorNames[userSector]?.en : sectorNames[userSector]?.tr) : "-"}\n\n${data.message || (isEnglish ? "Quote request from chatbot" : "Chatbot üzerinden teklif talebi")}`,
+          language: i18n.language
+        }),
+      });
+
+      if (response.ok) {
+        setMessages(prev => [
+          ...prev,
+          { 
+            role: "assistant", 
+            content: isEnglish 
+              ? "Thank you! ✅ Your quote request has been received. Our team will contact you shortly."
+              : "Teşekkürler! ✅ Teklif talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
+            timestamp: new Date() 
+          }
+        ]);
+      } else {
+        throw new Error("Failed to send");
+      }
+    } catch (error) {
+      setMessages(prev => [
+        ...prev,
+        { 
+          role: "assistant", 
+          content: isEnglish 
+            ? "Sorry, there was an error. Please try again or contact us directly."
+            : "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.",
+          timestamp: new Date() 
+        }
+      ]);
+    }
   };
 
   const detectServiceCards = (content: string): ServiceCard[] => {
@@ -224,9 +454,6 @@ export function Chatbot() {
     const buttons: { text: string; link: string }[] = [];
     const lowerContent = content.toLowerCase();
     
-    if (lowerContent.includes("iletişim") || lowerContent.includes("teklif") || lowerContent.includes("contact") || lowerContent.includes("quote")) {
-      buttons.push({ text: texts.getQuote, link: "/iletisim" });
-    }
     if (lowerContent.includes("harita") || lowerContent.includes("kapsama") || lowerContent.includes("map") || lowerContent.includes("coverage")) {
       buttons.push({ text: texts.viewMap, link: "/starlink-haritasi" });
     }
@@ -247,10 +474,6 @@ export function Chatbot() {
       suggestions.push(
         { text: isEnglish ? "Compare" : "Karşılaştır", query: isEnglish ? "Compare solutions" : "Çözümleri karşılaştır" }
       );
-    } else if (lowerContent.includes("teklif") || lowerContent.includes("fiyat") || lowerContent.includes("quote") || lowerContent.includes("price")) {
-      suggestions.push(
-        { text: isEnglish ? "Contact" : "İletişim", query: isEnglish ? "Contact support" : "Destek ile iletişim" }
-      );
     }
 
     return suggestions.slice(0, 2);
@@ -266,6 +489,15 @@ export function Chatbot() {
            lowerContent.includes("representative");
   };
 
+  const detectQuoteRequest = (content: string): boolean => {
+    const lowerContent = content.toLowerCase();
+    return lowerContent.includes("teklif") || 
+           lowerContent.includes("fiyat") || 
+           lowerContent.includes("quote") ||
+           lowerContent.includes("price") ||
+           lowerContent.includes("pricing");
+  };
+
   const sendMessage = async (customMessage?: string) => {
     const messageToSend = customMessage || input.trim();
     if (!messageToSend || isLoading) return;
@@ -275,12 +507,34 @@ export function Chatbot() {
     setInput("");
     setIsLoading(true);
 
+    if (detectQuoteRequest(messageToSend)) {
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          { 
+            role: "assistant", 
+            content: isEnglish 
+              ? "I'd be happy to help you get a quote! Please fill out this quick form:"
+              : "Size teklif hazırlamamız için yardımcı olmaktan mutluluk duyarım! Lütfen bu kısa formu doldurun:",
+            timestamp: new Date() 
+          }
+        ]);
+        setShowQuoteForm(true);
+        setIsLoading(false);
+      }, 600);
+      return;
+    }
+
     try {
+      const contextMessage = userSector 
+        ? `[User sector: ${sectorNames[userSector]?.en || userSector}] ${messageToSend}`
+        : messageToSend;
+
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
-          messages: [...messages, userMessage],
+          messages: [...messages, { ...userMessage, content: contextMessage }],
           language: i18n.language
         }),
       });
@@ -356,7 +610,7 @@ export function Chatbot() {
           <button onClick={() => setShowWelcome(false)} className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs shadow-sm">×</button>
           <p className="text-gray-800 text-xs font-medium">{texts.welcome}</p>
           <button onClick={handleOpen} className="text-[11px] text-blue-600 font-medium mt-1.5 flex items-center gap-0.5 hover:text-blue-700">
-            Sohbet başlat <ArrowRight className="w-3 h-3" />
+            {isEnglish ? "Start chat" : "Sohbet başlat"} <ArrowRight className="w-3 h-3" />
           </button>
         </div>
       </div>
@@ -401,7 +655,7 @@ export function Chatbot() {
           {messages.map((msg, i) => {
             const serviceCards = msg.role === "assistant" ? detectServiceCards(msg.content) : [];
             const actionButtons = msg.role === "assistant" ? detectActionButtons(msg.content) : [];
-            const suggestions = msg.role === "assistant" && i === messages.length - 1 ? detectSuggestions(msg.content) : [];
+            const suggestions = msg.role === "assistant" && i === messages.length - 1 && !showQuoteForm && !showSectorSelect ? detectSuggestions(msg.content) : [];
             const showLiveSupport = msg.role === "assistant" && detectLiveSupport(msg.content);
             
             return (
@@ -466,8 +720,26 @@ export function Chatbot() {
             );
           })}
 
-          {/* Quick Questions - show only at start */}
-          {messages.length === 1 && !isLoading && (
+          {/* Sector Selection */}
+          {showSectorSelect && !isLoading && (
+            <div className="ml-9 msg-in">
+              <SectorSelector onSelect={handleSectorSelect} isEnglish={isEnglish} />
+            </div>
+          )}
+
+          {/* Quote Form */}
+          {showQuoteForm && !isLoading && (
+            <div className="ml-9 msg-in">
+              <QuoteForm 
+                onSubmit={handleQuoteSubmit} 
+                onCancel={() => setShowQuoteForm(false)} 
+                isEnglish={isEnglish} 
+              />
+            </div>
+          )}
+
+          {/* Quick Questions */}
+          {messages.length > 1 && !showSectorSelect && !showQuoteForm && !isLoading && userSector && messages.length === 3 && (
             <div className="flex gap-1.5 flex-wrap ml-9 msg-in">
               {texts.quickQuestions.map((q, idx) => (
                 <button
@@ -487,7 +759,7 @@ export function Chatbot() {
                 <img src="/lacivert-icon.png" alt="" className="w-4 h-4" />
               </div>
               <div className="bg-white border border-gray-200 px-3 py-2.5 rounded-2xl rounded-bl-sm shadow-sm">
-                <TypingIndicator />
+                <TypingIndicator name={texts.typing} />
               </div>
             </div>
           )}
@@ -507,7 +779,7 @@ export function Chatbot() {
               placeholder={texts.placeholder}
               className="flex-1 bg-transparent text-gray-900 placeholder-gray-400 text-sm focus:outline-none py-2"
               data-testid="chatbot-input"
-              disabled={isLoading}
+              disabled={isLoading || showSectorSelect}
             />
             <button
               onClick={() => sendMessage()}
