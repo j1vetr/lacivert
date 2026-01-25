@@ -120,7 +120,7 @@ export default function Home() {
         </div>
 
         {/* Content Container */}
-        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 sm:pt-28 md:pt-32 lg:pt-20 pb-24 sm:pb-28 md:pb-32">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-32 sm:pt-36 md:pt-40 lg:pt-32 pb-24 sm:pb-28 md:pb-32">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
                 
                 {/* Text Content */}
