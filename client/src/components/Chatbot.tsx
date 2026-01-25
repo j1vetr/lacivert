@@ -577,28 +577,47 @@ export function Chatbot() {
   };
 
   const renderMessage = (content: string) => {
-    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let processedContent = content;
     const parts: React.ReactNode[] = [];
+    let keyCounter = 0;
+
+    // Combined regex for bold (**text**) and links [text](url)
+    const combinedRegex = /(\*\*([^*]+)\*\*)|(\[([^\]]+)\]\(([^)]+)\))/g;
     let lastIndex = 0;
     let match;
 
-    while ((match = linkRegex.exec(content)) !== null) {
+    while ((match = combinedRegex.exec(content)) !== null) {
+      // Add text before match
       if (match.index > lastIndex) {
         parts.push(content.slice(lastIndex, match.index));
       }
-      parts.push(
-        <a
-          key={match.index}
-          href={match[2]}
-          className="text-blue-600 hover:text-blue-700 underline font-medium"
-          onClick={(e) => {
-            e.preventDefault();
-            navigateAndClose(match![2]);
-          }}
-        >
-          {match[1]}
-        </a>
-      );
+
+      if (match[1]) {
+        // Bold text: **text**
+        parts.push(
+          <strong key={`bold-${keyCounter++}`} className="font-semibold text-gray-900">
+            {match[2]}
+          </strong>
+        );
+      } else if (match[3]) {
+        // Link: [text](url)
+        const linkText = match[4];
+        const linkUrl = match[5];
+        parts.push(
+          <a
+            key={`link-${keyCounter++}`}
+            href={linkUrl}
+            className="text-blue-600 hover:text-blue-700 underline font-medium"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateAndClose(linkUrl);
+            }}
+          >
+            {linkText}
+          </a>
+        );
+      }
+
       lastIndex = match.index + match[0].length;
     }
 
