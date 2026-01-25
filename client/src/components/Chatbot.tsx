@@ -636,6 +636,10 @@ export function Chatbot() {
         .chat-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
         @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .msg-in { animation: msgIn 0.25s ease-out; }
+        @keyframes blink { 
+          0%, 90%, 100% { transform: scaleY(1); } 
+          95% { transform: scaleY(0.1); } 
+        }
       `}</style>
 
       {/* Welcome Bubble */}
@@ -652,27 +656,38 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={handleOpen}
-        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/40 flex items-center justify-center transition-all hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50 group ${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}
+        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 text-white shadow-xl shadow-blue-500/40 flex items-center justify-center transition-all hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50 group ${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}
         data-testid="chatbot-toggle"
       >
-        {/* Animated rings */}
-        <span className="absolute inset-0 rounded-2xl bg-white/10 animate-ping" style={{ animationDuration: "3s" }} />
-        <span className="absolute inset-[-4px] rounded-2xl border-2 border-blue-400/30 animate-pulse" />
+        {/* Animated glow */}
+        <span className="absolute inset-0 rounded-2xl bg-cyan-400/20 animate-pulse" />
+        <span className="absolute inset-[-3px] rounded-2xl border-2 border-cyan-300/30 animate-pulse" style={{ animationDelay: "0.5s" }} />
         
-        {/* Satellite orbit animation */}
-        <span className="absolute w-20 h-20">
-          <span className="absolute w-2 h-2 bg-cyan-400 rounded-full animate-[spin_4s_linear_infinite] shadow-lg shadow-cyan-400/50" style={{ top: '0', left: '50%', marginLeft: '-4px' }} />
-        </span>
-        
-        {/* Logo */}
-        <div className="relative z-10 w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-          <img src="/lacivert-icon.png" alt="Chat" className="w-6 h-6" />
+        {/* Robot Face */}
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          {/* Antenna */}
+          <div className="absolute -top-2 w-1.5 h-3 bg-cyan-300 rounded-full">
+            <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-cyan-300 rounded-full animate-pulse shadow-lg shadow-cyan-300/50" />
+          </div>
+          
+          {/* Head */}
+          <div className="w-10 h-9 bg-white/20 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center mt-1 group-hover:bg-white/30 transition-colors">
+            {/* Eyes */}
+            <div className="flex gap-2 mb-0.5">
+              <span className="w-2 h-2 bg-white rounded-full animate-[blink_3s_ease-in-out_infinite]" />
+              <span className="w-2 h-2 bg-white rounded-full animate-[blink_3s_ease-in-out_infinite]" style={{ animationDelay: "0.1s" }} />
+            </div>
+            {/* Mouth - animated wave */}
+            <div className="flex gap-0.5 mt-0.5">
+              <span className="w-1 h-1 bg-cyan-300 rounded-full animate-[bounce_1s_ease-in-out_infinite]" />
+              <span className="w-1 h-1 bg-cyan-300 rounded-full animate-[bounce_1s_ease-in-out_infinite_0.1s]" />
+              <span className="w-1 h-1 bg-cyan-300 rounded-full animate-[bounce_1s_ease-in-out_infinite_0.2s]" />
+            </div>
+          </div>
         </div>
         
         {/* Online indicator */}
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-        </span>
+        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg animate-pulse" />
       </button>
 
       {/* Chat Window */}
