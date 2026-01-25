@@ -14,7 +14,7 @@ export default function About() {
         description={t('about.desc')} 
       />
       {/* Header */}
-      <section className="bg-slate-900 text-white pt-38 pb-20">
+      <section className="bg-slate-900 text-white pt-44 sm:pt-48 md:pt-52 lg:pt-44 pb-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 animate-in fade-in slide-in-from-bottom-4">{t('about.hero_title')}</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">

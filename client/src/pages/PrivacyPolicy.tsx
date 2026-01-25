@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <div>
       <SEO title="Gizlilik Politikası" />
       {/* Header */}
-      <section className="bg-slate-950 text-white pt-38 pb-16">
+      <section className="bg-slate-950 text-white pt-44 sm:pt-48 md:pt-52 lg:pt-44 pb-16">
         <div className="container mx-auto px-4 text-center">
           <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
             <ShieldCheck className="w-8 h-8 text-accent" />

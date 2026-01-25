@@ -35,7 +35,7 @@ export default function ServicesSpace() {
           <OrbitalNetwork />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-38 md:pt-40">
+        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
           <div className="max-w-3xl animate-in slide-in-from-left duration-700">
             <div className="flex items-center gap-2 text-accent mb-6">
                 <Satellite className="w-6 h-6 animate-pulse" />

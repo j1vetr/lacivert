@@ -24,7 +24,7 @@ export default function StarlinkPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-950/80"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-38 md:pt-40">
+        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight">
               {t('sub_starlink.hero_title_prefix')} <br/>
