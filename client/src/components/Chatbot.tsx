@@ -109,48 +109,63 @@ function QuoteForm({ onSubmit, onCancel, isEnglish }: { onSubmit: (data: QuoteFo
     <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm space-y-2">
       <h4 className="text-sm font-semibold text-gray-800 mb-2">{texts.title}</h4>
       
-      <input
-        type="text"
-        placeholder={texts.name}
-        value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
-        required
-      />
-      
-      <div className="grid grid-cols-2 gap-2">
+      <div className="space-y-1">
+        <label className="text-[10px] text-gray-500 font-medium">{texts.name} *</label>
         <input
-          type="email"
-          placeholder={texts.email}
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
+          type="text"
+          placeholder={isEnglish ? "John Doe" : "Ahmet Yılmaz"}
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 bg-gray-50"
           required
-        />
-        <input
-          type="tel"
-          placeholder={texts.phone}
-          value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
         />
       </div>
       
-      <input
-        type="text"
-        placeholder={texts.company}
-        value={formData.company}
-        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400"
-      />
+      <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-1">
+          <label className="text-[10px] text-gray-500 font-medium">{texts.email} *</label>
+          <input
+            type="email"
+            placeholder="ornek@mail.com"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 bg-gray-50"
+            required
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="text-[10px] text-gray-500 font-medium">{texts.phone}</label>
+          <input
+            type="tel"
+            placeholder="05XX XXX XX XX"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 bg-gray-50"
+          />
+        </div>
+      </div>
       
-      <textarea
-        placeholder={texts.message}
-        value={formData.message}
-        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 resize-none"
-        rows={2}
-      />
+      <div className="space-y-1">
+        <label className="text-[10px] text-gray-500 font-medium">{texts.company}</label>
+        <input
+          type="text"
+          placeholder={isEnglish ? "Company name" : "Şirket adı"}
+          value={formData.company}
+          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 bg-gray-50"
+        />
+      </div>
+      
+      <div className="space-y-1">
+        <label className="text-[10px] text-gray-500 font-medium">{texts.message}</label>
+        <textarea
+          placeholder={isEnglish ? "Your message..." : "Mesajınız..."}
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 resize-none bg-gray-50"
+          rows={2}
+        />
+      </div>
       
       <div className="flex gap-2">
         <button
