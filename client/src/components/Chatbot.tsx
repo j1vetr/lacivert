@@ -518,10 +518,6 @@ export function Chatbot() {
               <Send className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex items-center justify-center gap-1 mt-2 text-[10px] text-gray-400">
-            <Sparkles className="w-3 h-3" />
-            <span>{texts.poweredBy}</span>
-          </div>
         </div>
       </div>
     </>
