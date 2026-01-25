@@ -15,7 +15,7 @@ export default function TeltonikaPage() {
         description={t('sub_teltonika.desc')} 
       />
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
              <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
@@ -24,15 +24,15 @@ export default function TeltonikaPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/60 to-slate-950"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-3xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-4 sm:mb-6">
               {t('sub_teltonika.hero_title_prefix')} <span className="text-blue-500">{t('sub_teltonika.hero_title_main')}</span>
             </h1>
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl">
               {t('sub_teltonika.hero_desc')}
             </p>
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-14 px-8 rounded-full">
+            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg">
                 <Link href="/iletisim">{t('common.learn_more')}</Link>
             </Button>
           </div>

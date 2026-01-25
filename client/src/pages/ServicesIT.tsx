@@ -16,7 +16,7 @@ export default function ServicesIT() {
         description={t('services_it.desc')} 
       />
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center overflow-hidden bg-slate-950">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
          <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity transform scale-105"
           style={{ backgroundImage: `url(${imgServer})` }}
@@ -24,22 +24,22 @@ export default function ServicesIT() {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.15),transparent_50%)]"></div>
         
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-4xl animate-in slide-in-from-bottom-8 duration-700 fade-in">
-            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 leading-tight text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 sm:mb-8 leading-tight text-white tracking-tight">
               {t('services_it.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400">{t('services_it.hero_title_main')}</span> {t('services_it.hero_title_suffix')}
             </h1>
-            <p className="text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl font-light border-l-4 border-blue-500 pl-6">
+            <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-8 sm:mb-10 leading-relaxed max-w-2xl font-light border-l-4 border-blue-500 pl-4 sm:pl-6">
               {t('services_it.hero_desc')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-0">
-                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white h-14 px-10 text-lg font-bold rounded-full shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg font-bold rounded-full shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all hover:scale-105">
                     <Link href="/iletisim">
                     {t('services_it.btn_quote')}
                     </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white h-14 px-10 text-lg font-medium rounded-full backdrop-blur-sm">
+                <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg font-medium rounded-full backdrop-blur-sm">
                     <Link href="#services">
                     {t('services_it.btn_details')}
                     </Link>

@@ -15,7 +15,7 @@ export default function ServicesSecurity() {
         description={t('services_security.desc')} 
       />
       {/* Hero Section - Dark & Cyber */}
-      <section className="relative h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Layers */}
         <div className="absolute inset-0 z-0">
              <div 
@@ -29,25 +29,25 @@ export default function ServicesSecurity() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
             
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tighter">
               {t('services_security.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">{t('services_security.hero_title_main')}</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mb-12 leading-relaxed font-light border-l-4 border-cyan-500 pl-6">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-light border-l-4 border-cyan-500 pl-4 sm:pl-6">
               {t('services_security.hero_desc')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 mb-16">
-                <Button asChild size="lg" className="bg-cyan-600 text-white hover:bg-cyan-50 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild size="lg" className="bg-cyan-600 text-white hover:bg-cyan-500 font-bold h-12 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg shadow-[0_0_30px_rgba(8,145,178,0.5)] transition-all hover:scale-105 border-0">
                     <Link href="/iletisim">
                         {t('services_security.btn_analysis')}
                     </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white font-medium h-16 px-10 rounded-full text-lg backdrop-blur-sm">
+                <Button asChild variant="outline" size="lg" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white font-medium h-12 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg backdrop-blur-sm">
                     <Link href="#solutions">
                         {t('services_security.btn_solutions')}
                     </Link>

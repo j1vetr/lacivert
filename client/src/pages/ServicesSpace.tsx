@@ -30,27 +30,23 @@ export default function ServicesSpace() {
         description={t('services_space.desc')} 
       />
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <OrbitalNetwork />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-3xl animate-in slide-in-from-left duration-700">
-            <div className="flex items-center gap-2 text-accent mb-6">
-                <Satellite className="w-6 h-6 animate-pulse" />
-                <span className="font-mono tracking-widest uppercase">{t('services_space.hero_badge')}</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-8 leading-none">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 sm:mb-8 leading-tight">
               {t('services_space.hero_title_prefix')} <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 text-4xl md:text-6xl font-light">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light">
                 {t('services_space.hero_title_main')}
               </span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-xl mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-xl mb-8 sm:mb-10 leading-relaxed">
               {t('services_space.hero_desc')}
             </p>
-            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-slate-200 font-bold h-14 px-8">
+            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-slate-200 font-bold h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg">
                 <Link href="/iletisim">
                 {t('common.get_quote')}
                 </Link>

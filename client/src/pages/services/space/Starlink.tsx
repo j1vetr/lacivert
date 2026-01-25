@@ -15,7 +15,7 @@ export default function StarlinkPage() {
         description={t('sub_starlink.desc')} 
       />
       {/* Hero Section */}
-      <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-950">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
              <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
@@ -24,22 +24,22 @@ export default function StarlinkPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-950/80"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-4xl animate-in slide-in-from-bottom-10 duration-1000 fade-in">
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 sm:mb-8 leading-tight">
               {t('sub_starlink.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">{t('sub_starlink.hero_title_main')}</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl font-light">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl font-light">
               {t('sub_starlink.hero_desc')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50 font-bold h-16 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50 font-bold h-12 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all hover:scale-105">
                     <Link href="/iletisim">
                         {t('sub_starlink.btn_apply')}
                     </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-16 px-10 rounded-full text-lg backdrop-blur-sm">
+                <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-12 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg backdrop-blur-sm">
                     <Link href="#packages">
                         {t('sub_starlink.btn_packages')}
                     </Link>

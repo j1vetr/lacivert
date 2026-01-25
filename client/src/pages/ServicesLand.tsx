@@ -16,25 +16,25 @@ export default function ServicesLand() {
         description={t('services_land.desc')} 
       />
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden bg-slate-950">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2668&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-44 sm:pt-48 md:pt-52 lg:pt-44">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="max-w-4xl animate-in slide-in-from-left duration-700">
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-[0.9] tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tight">
               {t('services_land.hero_title_prefix')} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 font-light">
                 {t('services_land.hero_title_main')}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mb-10 leading-relaxed font-light">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-light">
               {t('services_land.hero_desc')}
             </p>
-            <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-accent text-primary hover:bg-cyan-400 font-bold h-14 px-10 rounded-full text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+                <Button asChild size="lg" className="bg-accent text-primary hover:bg-cyan-400 font-bold h-12 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105">
                     <Link href="/iletisim">
                     {t('services_land.btn_project')}
                     </Link>
