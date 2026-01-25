@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { X, Send, User, Satellite, Wifi, Shield, Monitor, ArrowRight, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, Send, User, Satellite, Wifi, Shield, Monitor, ArrowRight, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
+  timestamp?: Date;
 }
 
 interface ServiceCard {
@@ -23,10 +23,12 @@ interface SuggestionButton {
 
 function TypingIndicator() {
   return (
-    <div className="flex gap-1.5 items-center px-2 py-1">
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0ms", animationDuration: "0.6s" }} />
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.15s", animationDuration: "0.6s" }} />
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.3s", animationDuration: "0.6s" }} />
+    <div className="flex gap-1 items-center px-1">
+      <div className="flex gap-1">
+        <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-[bounce_1s_ease-in-out_infinite]" />
+        <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-[bounce_1s_ease-in-out_infinite_0.15s]" />
+        <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-[bounce_1s_ease-in-out_infinite_0.3s]" />
+      </div>
     </div>
   );
 }
@@ -43,18 +45,18 @@ function ServiceCardComponent({ card, onNavigate }: { card: ServiceCard; onNavig
   return (
     <button
       onClick={() => onNavigate(card.link)}
-      className="w-full text-left bg-gradient-to-r from-[#1e3a5f]/40 to-[#1e3a5f]/20 border border-[#1e3a5f]/50 rounded-xl p-3 hover:from-[#1e3a5f]/60 hover:to-[#1e3a5f]/40 transition-all group"
+      className="w-full text-left bg-gradient-to-r from-slate-800/80 to-slate-800/40 border border-slate-700/50 rounded-xl p-3.5 hover:from-slate-700/80 hover:to-slate-700/40 hover:border-blue-500/30 transition-all duration-300 group shadow-sm hover:shadow-md hover:shadow-blue-500/5"
     >
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-[#1e3a5f] flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
           <Icon className="w-5 h-5 text-blue-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-white text-sm font-medium flex items-center gap-2">
+          <h4 className="text-white text-sm font-semibold flex items-center gap-2">
             {card.title}
-            <ArrowRight className="w-3 h-3 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ArrowRight className="w-3.5 h-3.5 text-blue-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
           </h4>
-          <p className="text-gray-400 text-xs mt-0.5 line-clamp-2">{card.description}</p>
+          <p className="text-slate-400 text-xs mt-1 line-clamp-2 leading-relaxed">{card.description}</p>
         </div>
       </div>
     </button>
@@ -65,7 +67,7 @@ function ActionButton({ text, onClick }: { text: string; onClick: () => void }) 
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/30 rounded-full text-blue-400 text-xs transition-colors"
+      className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-500/30 hover:border-blue-400/50 rounded-full text-blue-400 text-xs font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/10"
     >
       {text}
       <ArrowRight className="w-3 h-3" />
@@ -77,7 +79,7 @@ function SuggestionButtonComponent({ text, onClick }: { text: string; onClick: (
   return (
     <button
       onClick={onClick}
-      className="px-3 py-1.5 bg-[#1e3a5f]/30 hover:bg-[#1e3a5f]/50 border border-[#1e3a5f]/40 rounded-full text-gray-300 text-xs transition-colors hover:text-white"
+      className="px-3.5 py-2 bg-slate-800/60 hover:bg-slate-700/80 border border-slate-700/50 hover:border-slate-600 rounded-full text-slate-300 text-xs font-medium transition-all duration-300 hover:text-white hover:scale-105"
     >
       {text}
     </button>
@@ -88,14 +90,18 @@ function LiveSupportButton({ onClick, text }: { onClick: () => void; text: strin
   return (
     <button
       onClick={onClick}
-      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#25D366]/20 hover:bg-[#25D366]/30 border border-[#25D366]/40 rounded-xl text-[#25D366] text-sm font-medium transition-colors"
+      className="w-full flex items-center justify-center gap-2.5 px-4 py-3 bg-gradient-to-r from-[#25D366]/20 to-[#128C7E]/20 hover:from-[#25D366]/30 hover:to-[#128C7E]/30 border border-[#25D366]/40 hover:border-[#25D366]/60 rounded-xl text-[#25D366] text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#25D366]/10"
     >
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </svg>
       {text}
     </button>
   );
+}
+
+function formatTime(date: Date): string {
+  return date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
 }
 
 export function Chatbot() {
@@ -106,6 +112,7 @@ export function Chatbot() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [, setLocation] = useLocation();
   const { t, i18n } = useTranslation();
 
@@ -114,13 +121,14 @@ export function Chatbot() {
   const texts = {
     welcome: isEnglish ? "Hello! How can I help you?" : "Merhaba! Size nasıl yardımcı olabilirim?",
     assistantName: isEnglish ? "Lacivert Assistant" : "Lacivert Asistan",
-    online: isEnglish ? "Online" : "Çevrimiçi",
+    online: isEnglish ? "Online - Ready to help" : "Çevrimiçi - Yardıma hazır",
     placeholder: isEnglish ? "Type your message..." : "Mesajınızı yazın...",
     hello: isEnglish ? "Hello!" : "Merhaba!",
     helpText: isEnglish ? "I can help you with Lacivert Teknoloji services." : "Lacivert Teknoloji hizmetleri hakkında size yardımcı olabilirim.",
     liveSupport: isEnglish ? "Talk to a real person" : "Gerçek kişiyle konuşun",
     getQuote: isEnglish ? "Get Quote" : "Teklif Al",
     viewMap: isEnglish ? "View Map" : "Haritayı Gör",
+    poweredBy: isEnglish ? "Powered by AI" : "Yapay Zeka Destekli",
     quickQuestions: isEnglish ? [
       { text: "What is Starlink?", query: "What is Starlink?" },
       { text: "Maritime solutions?", query: "What maritime solutions do you offer?" },
@@ -148,6 +156,12 @@ export function Chatbot() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!hasInteracted) {
@@ -258,7 +272,7 @@ export function Chatbot() {
     const messageToSend = customMessage || input.trim();
     if (!messageToSend || isLoading) return;
 
-    const userMessage: Message = { role: "user", content: messageToSend };
+    const userMessage: Message = { role: "user", content: messageToSend, timestamp: new Date() };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
@@ -276,12 +290,12 @@ export function Chatbot() {
       if (!response.ok) throw new Error("API error");
 
       const data = await response.json();
-      const assistantMessage: Message = { role: "assistant", content: data.message };
+      const assistantMessage: Message = { role: "assistant", content: data.message, timestamp: new Date() };
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: isEnglish ? "Sorry, an error occurred. Please try again." : "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin." },
+        { role: "assistant", content: isEnglish ? "Sorry, an error occurred. Please try again." : "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.", timestamp: new Date() },
       ]);
     } finally {
       setIsLoading(false);
@@ -309,7 +323,7 @@ export function Chatbot() {
         <a
           key={match.index}
           href={match[2]}
-          className="text-blue-400 hover:text-blue-300 underline"
+          className="text-blue-400 hover:text-blue-300 underline underline-offset-2 font-medium"
           onClick={(e) => {
             e.preventDefault();
             navigateAndClose(match![2]);
@@ -330,30 +344,60 @@ export function Chatbot() {
 
   return (
     <>
+      {/* Custom Scrollbar Styles */}
+      <style>{`
+        .chatbot-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .chatbot-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .chatbot-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(100, 116, 139, 0.3);
+          border-radius: 3px;
+        }
+        .chatbot-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(100, 116, 139, 0.5);
+        }
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .message-animate {
+          animation: slideUp 0.3s ease-out forwards;
+        }
+      `}</style>
+
       {/* Welcome Bubble */}
       <div
         className={`fixed bottom-24 left-6 z-50 transition-all duration-500 ${
           showWelcome && !isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="relative bg-[#0d2137] border border-[#1e3a5f] rounded-2xl px-4 py-3 shadow-xl max-w-[260px]">
+        <div className="relative bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 shadow-2xl shadow-black/20 max-w-[280px]">
           <button 
             onClick={() => setShowWelcome(false)}
-            className="absolute -top-2 -right-2 w-5 h-5 bg-[#1e3a5f] rounded-full flex items-center justify-center text-gray-400 hover:text-white text-xs"
+            className="absolute -top-2 -right-2 w-6 h-6 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 text-sm transition-colors"
           >
             ×
           </button>
-          <p className="text-white text-sm">{texts.welcome}</p>
-          <div className="flex gap-2 mt-2">
+          <p className="text-white text-sm font-medium">{texts.welcome}</p>
+          <div className="flex gap-2 mt-2.5">
             <button 
               onClick={() => { handleOpen(); setInput(texts.quickQuestions[0].query); }}
-              className="text-xs text-blue-400 hover:text-blue-300"
+              className="text-xs text-blue-400 hover:text-blue-300 font-medium transition-colors"
             >
-              {texts.quickQuestions[0].text}
+              {texts.quickQuestions[0].text} →
             </button>
           </div>
           <div className="absolute bottom-0 left-8 transform translate-y-full">
-            <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-[#1e3a5f]"></div>
+            <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-slate-700"></div>
           </div>
         </div>
       </div>
@@ -361,70 +405,75 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={handleOpen}
-        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group ${
+        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 text-white shadow-xl shadow-black/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/20 group border border-slate-700 ${
           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
         }`}
         data-testid="chatbot-toggle"
         aria-label="Sohbet asistanını aç"
       >
-        {/* Pulse rings */}
         <span className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping" style={{ animationDuration: "2s" }} />
-        <span className="absolute inset-[-4px] rounded-full border-2 border-blue-400/30 animate-pulse" />
-        
-        {/* Logo */}
+        <span className="absolute inset-[-3px] rounded-full border-2 border-blue-400/20 animate-pulse" />
         <img src="/lacivert-icon.png" alt="Lacivert" className="w-9 h-9 relative z-10 group-hover:scale-110 transition-transform" />
       </button>
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-6 left-6 z-50 w-[400px] max-w-[calc(100vw-48px)] h-[550px] max-h-[calc(100vh-100px)] bg-[#0a1929] border border-[#1e3a5f] rounded-2xl shadow-2xl flex flex-col transition-all duration-300 origin-bottom-left ${
+        className={`fixed bottom-6 left-6 z-50 w-[400px] max-w-[calc(100vw-48px)] h-[600px] max-h-[calc(100vh-100px)] bg-slate-950 border border-slate-800 rounded-3xl shadow-2xl shadow-black/40 flex flex-col transition-all duration-300 origin-bottom-left overflow-hidden ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[#1e3a5f] bg-gradient-to-r from-[#0d2137] to-[#1e3a5f]/30 rounded-t-2xl">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden ring-2 ring-blue-500/30">
-              <img src="/lacivert-icon.png" alt="Lacivert" className="w-7 h-7" />
+        <div className="relative px-5 py-4 border-b border-slate-800/80">
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3.5">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden ring-2 ring-slate-700/50 shadow-lg">
+                  <img src="/lacivert-icon.png" alt="Lacivert" className="w-7 h-7" />
+                </div>
+                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-950 animate-pulse" />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-sm tracking-tight">{texts.assistantName}</h3>
+                <p className="text-emerald-400 text-xs font-medium flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                  {texts.online}
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-white font-medium text-sm">{texts.assistantName}</h3>
-              <p className="text-gray-400 text-xs">{texts.online}</p>
-            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-slate-400 hover:text-white transition-all p-2 hover:bg-slate-800 rounded-xl"
+              data-testid="chatbot-close"
+              aria-label="Sohbeti kapat"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-gray-400 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-lg"
-            data-testid="chatbot-close"
-            aria-label="Sohbeti kapat"
-          >
-            <X className="w-5 h-5" />
-          </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4" data-testid="chatbot-messages">
+        <div className="flex-1 overflow-y-auto p-5 space-y-4 chatbot-scrollbar" data-testid="chatbot-messages">
           {messages.length === 0 && (
-            <div className="text-center text-gray-400 py-6">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center ring-4 ring-[#1e3a5f]/30">
+            <div className="text-center py-8">
+              <div className="w-20 h-20 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center ring-4 ring-slate-800 shadow-xl">
                 <img src="/lacivert-icon.png" alt="Lacivert" className="w-12 h-12" />
               </div>
-              <p className="text-base font-medium text-white mb-1">{texts.hello}</p>
-              <p className="text-xs text-gray-400 mb-5">{texts.helpText}</p>
-              <div className="space-y-2">
+              <p className="text-lg font-semibold text-white mb-1">{texts.hello}</p>
+              <p className="text-sm text-slate-400 mb-6">{texts.helpText}</p>
+              <div className="space-y-2.5">
                 {texts.quickQuestions.map((q, idx) => (
                   <button
                     key={idx}
                     onClick={() => { setInput(q.query); }}
-                    className="block w-full text-left px-4 py-3 text-sm bg-gradient-to-r from-[#1e3a5f]/30 to-transparent hover:from-[#1e3a5f]/50 border border-[#1e3a5f]/30 rounded-xl transition-all group"
+                    className="block w-full text-left px-4 py-3.5 text-sm bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-xl transition-all duration-300 group"
                     data-testid={`quick-question-${idx + 1}`}
                   >
-                    <span className="text-blue-400 mr-2">→</span>
-                    <span className="text-gray-300 group-hover:text-white">{q.text}</span>
+                    <span className="text-blue-400 mr-2 group-hover:mr-3 transition-all">→</span>
+                    <span className="text-slate-300 group-hover:text-white font-medium">{q.text}</span>
                   </button>
                 ))}
               </div>
-              
             </div>
           )}
 
@@ -435,25 +484,32 @@ export function Chatbot() {
             const showLiveSupport = msg.role === "assistant" && detectLiveSupport(msg.content);
             
             return (
-              <div key={i} className="space-y-2">
+              <div key={i} className="space-y-2.5 message-animate" style={{ animationDelay: `${i * 0.05}s` }}>
                 <div className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   {msg.role === "assistant" && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden flex-shrink-0 ring-1 ring-slate-700/50">
                       <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
                     </div>
                   )}
-                  <div
-                    className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                      msg.role === "user"
-                        ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-br-md shadow-lg"
-                        : "bg-[#0d2137] text-gray-200 border border-[#1e3a5f]/50 rounded-bl-md"
-                    }`}
-                    data-testid={`message-${msg.role}-${i}`}
-                  >
-                    {renderMessage(msg.content)}
+                  <div className="flex flex-col gap-1">
+                    <div
+                      className={`max-w-[85%] px-4 py-3 text-sm leading-relaxed ${
+                        msg.role === "user"
+                          ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl rounded-br-md shadow-lg shadow-blue-500/20"
+                          : "bg-slate-900 text-slate-200 border border-slate-800 rounded-2xl rounded-bl-md"
+                      }`}
+                      data-testid={`message-${msg.role}-${i}`}
+                    >
+                      {renderMessage(msg.content)}
+                    </div>
+                    {msg.timestamp && (
+                      <span className={`text-[10px] text-slate-500 ${msg.role === "user" ? "text-right" : "text-left ml-1"}`}>
+                        {formatTime(msg.timestamp)}
+                      </span>
+                    )}
                   </div>
                   {msg.role === "user" && (
-                    <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20">
                       <User className="w-4 h-4 text-white" />
                     </div>
                   )}
@@ -486,7 +542,7 @@ export function Chatbot() {
                 
                 {/* Suggestion Buttons */}
                 {suggestions.length > 0 && !isLoading && (
-                  <div className="ml-11 flex gap-2 flex-wrap mt-2">
+                  <div className="ml-11 flex gap-2 flex-wrap mt-1">
                     {suggestions.map((sug, idx) => (
                       <SuggestionButtonComponent key={idx} text={sug.text} onClick={() => sendMessage(sug.query)} />
                     ))}
@@ -497,11 +553,11 @@ export function Chatbot() {
           })}
 
           {isLoading && (
-            <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#0d2137] flex items-center justify-center overflow-hidden flex-shrink-0">
+            <div className="flex gap-3 justify-start message-animate">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden flex-shrink-0 ring-1 ring-slate-700/50">
                 <img src="/lacivert-icon.png" alt="Lacivert" className="w-5 h-5" />
               </div>
-              <div className="bg-[#0d2137] border border-[#1e3a5f]/50 px-4 py-3 rounded-2xl rounded-bl-md">
+              <div className="bg-slate-900 border border-slate-800 px-4 py-3 rounded-2xl rounded-bl-md">
                 <TypingIndicator />
               </div>
             </div>
@@ -510,27 +566,35 @@ export function Chatbot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
-        <div className="p-4 border-t border-[#1e3a5f] bg-gradient-to-r from-[#0d2137] to-[#0a1929] rounded-b-2xl">
-          <div className="flex gap-2">
+        {/* Input Area */}
+        <div className="p-4 border-t border-slate-800/80">
+          <div className="relative flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-2xl px-4 py-2 focus-within:border-blue-500/50 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all duration-300">
             <input
+              ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={texts.placeholder}
-              className="flex-1 bg-[#0a1929] border border-[#1e3a5f] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
+              className="flex-1 bg-transparent text-white placeholder-slate-500 text-sm focus:outline-none py-2"
               data-testid="chatbot-input"
               disabled={isLoading}
             />
-            <Button
+            <button
               onClick={() => sendMessage()}
               disabled={!input.trim() || isLoading}
-              className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-4 transition-all disabled:opacity-50"
+              className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white flex items-center justify-center transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105 active:scale-95"
               data-testid="chatbot-send"
+              aria-label="Mesaj gönder"
             >
               <Send className="w-4 h-4" />
-            </Button>
+            </button>
+          </div>
+          
+          {/* Powered By */}
+          <div className="flex items-center justify-center gap-1.5 mt-3 text-[10px] text-slate-600">
+            <Sparkles className="w-3 h-3" />
+            <span>{texts.poweredBy}</span>
           </div>
         </div>
       </div>
