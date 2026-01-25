@@ -10,15 +10,15 @@ import { useEffect, useState } from "react";
 
 // Brand Logos (New) - Removed as we are switching to text marquee
 
-// Service Card Component for Hero
+// Service Card Component for Hero - Fully Responsive
 const HeroServiceCard = ({ title, desc, link, delay }: { title: string, desc: string, link: string, delay: string }) => (
-  <Link href={link} className={`block group relative bg-slate-950/40 dark:bg-slate-950/60 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-3 md:pl-6 py-3 md:py-6 pr-3 md:pr-4 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer`}>
-    <div className="flex justify-between items-start">
-        <div>
-            <h3 className="text-sm md:text-xl font-bold text-white mb-1 md:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
-            <p className="text-[10px] md:text-sm text-slate-300 line-clamp-2 leading-relaxed max-w-[95%] md:max-w-[90%]">{desc}</p>
+  <Link href={link} className={`block group relative bg-slate-950/50 backdrop-blur-md border-l-2 border-white/20 hover:border-cyan-400 pl-4 sm:pl-5 md:pl-6 py-4 sm:py-5 md:py-6 pr-4 sm:pr-5 md:pr-6 transition-all duration-300 hover:bg-slate-900/60 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards ${delay} cursor-pointer rounded-r-lg`}>
+    <div className="flex justify-between items-start gap-3">
+        <div className="flex-1 min-w-0">
+            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-1 sm:mb-2 tracking-wide uppercase group-hover:text-cyan-400 transition-colors">{title}</h3>
+            <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">{desc}</p>
         </div>
-        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/50 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" />
     </div>
   </Link>
 );
@@ -99,8 +99,8 @@ export default function Home() {
         description={t('home.hero_desc')} 
       />
       
-      {/* NEW HERO SECTION: Clean, Maritime Focused, Service Forward */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-slate-950 pt-[14rem] md:pt-20 pb-32 md:pb-24">
+      {/* HERO SECTION: Fully Responsive */}
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-950">
         
         {/* Cinematic Background */}
         <div className="absolute inset-0 z-0">
@@ -110,46 +110,46 @@ export default function Home() {
             muted 
             playsInline
             poster={shipHeroBg}
-            className="absolute inset-0 w-full h-full object-cover scale-105"
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={heroVideoBg} type="video/mp4" />
           </video>
-          {/* Gradients for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30"></div>
+          {/* Mobile: stronger overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950 md:bg-gradient-to-r md:from-slate-950/95 md:via-slate-950/60 md:to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* Content Container */}
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 sm:pt-28 md:pt-32 lg:pt-20 pb-24 sm:pb-28 md:pb-32">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
                 
                 {/* Text Content */}
-                <div className="lg:col-span-7 space-y-6 md:space-y-8">
+                <div className="lg:col-span-7 space-y-4 sm:space-y-6 md:space-y-8 text-center lg:text-left">
                     
-                    <h1 className="text-3xl md:text-6xl font-heading font-bold text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
-                        {t('home.hero_title_prefix')} <br/>
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
+                        {t('home.hero_title_prefix')} <br className="hidden sm:block"/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
                            {t('home.hero_title_main')}
                         </span>
                     </h1>
                     
-                    <p className="text-lg md:text-2xl text-slate-300 font-light max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+                    <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-slate-300 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
                         {t('home.hero_desc')}
                     </p>
 
-                    <div className="flex flex-wrap gap-3 md:gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-                        <Button asChild size="lg" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg bg-cyan-600 hover:bg-cyan-500 text-white border-0 shadow-lg shadow-cyan-900/20 rounded-full w-full md:w-auto">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+                        <Button asChild size="lg" className="h-11 sm:h-12 md:h-14 px-6 sm:px-8 text-sm sm:text-base md:text-lg bg-cyan-600 hover:bg-cyan-500 text-white border-0 shadow-lg shadow-cyan-900/20 rounded-full">
                             <Link href="/iletisim">{t('home.start_project')}</Link>
                         </Button>
-                        <Button asChild size="lg" variant="outline" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full w-full md:w-auto">
+                        <Button asChild size="lg" variant="outline" className="h-11 sm:h-12 md:h-14 px-6 sm:px-8 text-sm sm:text-base md:text-lg border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full">
                             <Link href="/it-hizmetleri">{t('home.discover_services')}</Link>
                         </Button>
                     </div>
                 </div>
 
-                {/* Hero Services Grid (The "Menu" the user requested) */}
-                <div className="lg:col-span-5 relative mt-4 md:mt-0">
-                   {/* Glass Panel Container */}
-                   <div className="grid grid-cols-1 gap-3 md:gap-4">
+                {/* Hero Services Grid */}
+                <div className="lg:col-span-5 relative mt-6 sm:mt-8 lg:mt-0">
+                   <div className="grid grid-cols-1 gap-2 sm:gap-3 md:gap-4">
                         <HeroServiceCard 
                             title="Starlink Maritime" 
                             desc={t('services_space.tab_starlink_desc')} 
@@ -174,9 +174,8 @@ export default function Home() {
             </div>
         </div>
 
-        {/* Brand Marquee - Replaces Logos */}
-        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-6 overflow-hidden z-20">
-            {/* Inline styles for marquee animation */}
+        {/* Brand Marquee */}
+        <div className="absolute bottom-0 w-full border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-3 sm:py-4 md:py-6 overflow-hidden z-20">
             <style dangerouslySetInnerHTML={{__html: `
                 @keyframes marquee {
                     0% { transform: translateX(0); }
@@ -191,36 +190,13 @@ export default function Home() {
             `}} />
             
             <div className="flex animate-marquee w-max whitespace-nowrap">
-                {/* First Set */}
-                <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
-                </div>
-                {/* Duplicated Set for Seamless Loop */}
-                <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
-                </div>
-                 {/* Triplicated Set for Wide Screens just in case */}
-                 <div className="flex items-center gap-16 md:gap-24 px-8 md:px-12">
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Starlink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">OneWeb</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Iridium</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Fortinet</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">GMS</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Peplink</span>
-                    <span className="text-2xl md:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">Teltonika</span>
-                </div>
+                {[1, 2, 3].map((set) => (
+                    <div key={set} className="flex items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 px-4 sm:px-6 md:px-8 lg:px-12">
+                        {['Starlink', 'OneWeb', 'Iridium', 'Fortinet', 'GMS', 'Peplink', 'Teltonika'].map((brand) => (
+                            <span key={`${set}-${brand}`} className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold text-white/40 uppercase tracking-widest hover:text-white transition-colors cursor-default font-heading">{brand}</span>
+                        ))}
+                    </div>
+                ))}
             </div>
         </div>
 
