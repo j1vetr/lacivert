@@ -652,11 +652,27 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={handleOpen}
-        className={`fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30 flex items-center justify-center transition-all hover:scale-105 ${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}
+        className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/40 flex items-center justify-center transition-all hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/50 group ${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}
         data-testid="chatbot-toggle"
       >
-        <span className="absolute inset-0 rounded-full bg-white/20 animate-ping" style={{ animationDuration: "2.5s" }} />
-        <MessageCircle className="w-6 h-6" />
+        {/* Animated rings */}
+        <span className="absolute inset-0 rounded-2xl bg-white/10 animate-ping" style={{ animationDuration: "3s" }} />
+        <span className="absolute inset-[-4px] rounded-2xl border-2 border-blue-400/30 animate-pulse" />
+        
+        {/* Satellite orbit animation */}
+        <span className="absolute w-20 h-20">
+          <span className="absolute w-2 h-2 bg-cyan-400 rounded-full animate-[spin_4s_linear_infinite] shadow-lg shadow-cyan-400/50" style={{ top: '0', left: '50%', marginLeft: '-4px' }} />
+        </span>
+        
+        {/* Logo */}
+        <div className="relative z-10 w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+          <img src="/lacivert-icon.png" alt="Chat" className="w-6 h-6" />
+        </div>
+        
+        {/* Online indicator */}
+        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+        </span>
       </button>
 
       {/* Chat Window */}
