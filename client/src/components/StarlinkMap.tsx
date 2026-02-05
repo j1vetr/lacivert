@@ -278,13 +278,13 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
     // North America & Central America
     "840", "124", "484", "044", "214", "308", "388", "630", "850", "320", "188", // USA, CAN, MEX, BHS, DOM, JAM, PRI, GRD, VIR, GTM, CRI
     // South America
-    "076", "032", "152", "170", "604", "218", "600", "858", "328", "254", "740", // BRA, ARG, CHL, COL, PER, ECU, PRY, URY, GUY, GUF, SUR
+    "076", "032", "152", "170", "604", "218", "600", "858", "328", "254", "740", "068", "862", // BRA, ARG, CHL, COL, PER, ECU, PRY, URY, GUY, GUF, SUR, BOL, VEN
     // Europe (Nearly all + Cyprus)
     "826", "372", "250", "276", "380", "724", "620", "528", "056", "756", "040", "616", "203", "703", "348", "642", "100", "300", "752", "578", "246", "208", "233", "428", "440", "352", "191", "705", "498", "804", "268", "499", "807", "492", "470", "008", "196", // UK, IRL, FRA, DEU, ITA, ESP, PRT, NLD, BEL, CHE, AUT, POL, CZE, SVK, HUN, ROU, BGR, GRC, SWE, NOR, FIN, DNK, EST, LVA, LTU, ISL, HRV, SVN, MDA, UKR, GEO, MNE, MKD, MCO, MLT, ALB, CYP
     // Asia / Oceania
-    "392", "608", "458", "702", "496", "036", "554", "242", "598", "090", "548", "882", "776", "050", // JPN, PHL, MYS, SGP, MNG, AUS, NZL, FJI, PNG, SLB, VUT, WSM, TON, BGD
+    "392", "608", "458", "702", "496", "036", "554", "242", "090", "548", "882", "776", "050", "064", "410", "360", "398", // JPN, PHL, MYS, SGP, MNG, AUS, NZL, FJI, SLB, VUT, WSM, TON, BGD, BTN, KOR, IDN, KAZ
     // Africa
-    "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "148", "204", "180", // NGA, GHA, KEN, RWA, MOZ, MWI, ZMB, ZWE, BWA, SWZ, MDG, SLE, LBR, NER, TCD, BEN, COD
+    "566", "288", "404", "646", "508", "454", "894", "716", "072", "748", "450", "694", "430", "562", "148", "204", "180", "686", "728", // NGA, GHA, KEN, RWA, MOZ, MWI, ZMB, ZWE, BWA, SWZ, MDG, SLE, LBR, NER, TCD, BEN, COD, SEN, SSD
     // Middle East
     "400", "887", "376", "634", "512", "031", // JOR, YEM, ISR, QAT, OMN, AZE
     // Africa (New Active)
@@ -294,11 +294,13 @@ export function StarlinkMap({ fullScreen = false }: { fullScreen?: boolean }) {
   // Waitlist / Coming Soon (Orange/Gold - Restricted/Pending)
   const geofencedIds = [
     // Middle East & Asia
-    "792", "356", "586", "144", "524", "004", "364", "368", "422", "682", "784", "414", "764", "704", "418", "116", "104", "410", "360", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, LBN, SAU, UAE, KWT, THA, VNM, LAO, KHM, MMR, KOR, IDN
+    "792", "356", "586", "144", "524", "004", "364", "368", "422", "682", "784", "414", "764", "704", "418", "116", "104", // TUR, IND, PAK, LKA, NPL, AFG, IRN, IRQ, LBN, SAU, UAE, KWT, THA, VNM, LAO, KHM, MMR
     // Africa
-    "710", "818", "012", "504", "788", "434", "729", "231", "120", "266", "232", "324", "466", "478", "516", "566", "686", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, CMR, GAB, ERI, GIN, MLI, MRT, NAM, SEN, TGO, UGA, TZA
+    "710", "818", "012", "504", "788", "434", "729", "231", "120", "266", "232", "324", "466", "478", "516", "768", "800", "834", "854", // ZAF, EGY, DZA, MAR, TUN, LBY, SDN, ETH, CMR, GAB, ERI, GIN, MLI, MRT, NAM, TGO, UGA, TZA
     // Others (Inactive/Blocked/Service Unavailable)
-    "156", "643", "112", "398", "795", "860", "762", "417", "068", "408", "760", "192", "558", "862" // CHN, RUS, BLR, KAZ, TKM, UZB, TJK, KGZ, BOL, PRK, SYR, CUB, NIC, VEN
+    "156", "643", "112", "795", "860", "762", "417", "408", "760", "192", "558", // CHN, RUS, BLR, TKM, UZB, TJK, KGZ, PRK, SYR, CUB, NIC
+    // Papua New Guinea (Yellow/Waitlist)
+    "598" // PNG
   ];
 
   // Calculate centroids for country labels when geography loads
